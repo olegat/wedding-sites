@@ -9,9 +9,26 @@ body {
 
 .banner {
     width: 100%;
-    aspect-ratio: 3/1;
-    background: url("./banner.png") no-repeat center center;
+    aspect-ratio: 16/9;
+    background: url("./banner_16_9.png") no-repeat center top;
     background-size: cover;
+    position: absolute;
+    z-index: -1000;
+
+    /* Fade mask: keeps RGB intact, fades alpha */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+}
+
+.banner-bounds {
+    width: 100%;
+    aspect-ratio: 5/1;
+    background-size: cover;
+    z-index: -1000;
 }
 
 /* Floating language menu */
