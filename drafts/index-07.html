@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary & Oli Wedding Festival</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #fff7f0;
+      color: #2b1d15;
+      line-height: 1.6;
+    }
+
+    /* Poster styles */
+    .poster {
+      background: linear-gradient(180deg, #ffb347 0%, #e17a47 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+    .poster h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4em;
+      margin: 0;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+    .poster h2 {
+      font-size: 2em;
+      margin: 10px 0 40px;
+      letter-spacing: 2px;
+      color: #fff8dc;
+    }
+
+    /* Poster logo grid */
+    .poster-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .poster-logos img {
+      max-height: 60px;
+      max-width: 160px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.1);
+      padding: 6px;
+      border-radius: 6px;
+    }
+
+    /* Section styling */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #7b2d26;
+      text-align: center;
+    }
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+    .lineup-item {
+      background: #ffe8cc;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    }
+    .lineup-item img {
+      max-height: 50px;
+      margin-bottom: 10px;
+    }
+    .lineup-item p {
+      margin: 5px 0;
+      font-weight: 500;
+    }
+
+    .rsvp {
+      text-align: center;
+      padding: 40px 20px;
+      background: #e17a47;
+      color: #fff;
+      border-radius: 12px;
+      margin: 60px auto;
+      max-width: 600px;
+    }
+    .rsvp button {
+      padding: 16px 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background: #2b1d15;
+      color: #ffd166;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .autumn-leaves {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2em;
+      opacity: 0.6;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .details-box {
+      background: #fff2e0;
+      border: 2px dashed #e17a47;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .details-box h4 {
+      margin-top: 0;
+      color: #d86f45;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Poster -->
+  <div class="poster">
+    <div class="autumn-leaves">🍁🎃🍂</div>
+    <h1>Mary & Oli</h1>
+    <h2>Wedding Festival · Saturday 10th October 2026 · Zaragoza, Spain</h2>
+
+    <div class="poster-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Logo_ACDC.svg" alt="AC/DC Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Metallica_wordmark.svg" alt="Metallica Logo">
+      <img src="https://iconape.com/wp-content/files/zl/295943/svg/295943.svg" alt="Public Enemy Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Rosal%C3%ADa_signature.svg" alt="Rosalía Logo">
+      <img src="https://www.svgwaves.io/cutfiles/bad-bunny-13.svg" alt="Bad Bunny Logo">
+      <img src="https://brandeps.com/logo-download/T/The-cure-logo-vector-01.svg" alt="The Cure Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Iron_Maiden_logo_black.svg" alt="Iron Maiden Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/fi/4/45/Blacksabbath.svg" alt="Black Sabbath Logo">
+    </div>
+  </div>
+
+  <!-- Lineup Section -->
+  <section>
+    <h3>Festival Lineup</h3>
+    <div class="lineup-grid">
+      <div class="lineup-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Metallica_wordmark.svg" alt="Metallica">
+        <p>Main Stage</p>
+        <p>Ceremony · 16:00</p>
+      </div>
+      <div class="lineup-item">
+        <img src="https://www.svgwaves.io/cutfiles/bad-bunny-13.svg" alt="Bad Bunny">
+        <p>Hip-Hop Tent</p>
+        <p>Cocktail · 17:30</p>
+      </div>
+      <div class="lineup-item">
+        <img src="https://iconape.com/wp-content/files/zl/295943/svg/295943.svg" alt="Public Enemy">
+        <p>Reggaeton Stage</p>
+        <p>Dinner · 19:00</p>
+      </div>
+      <div class="lineup-item">
+        <img src="https://brandeps.com/logo-download/T/The-cure-logo-vector-01.svg" alt="The Cure">
+        <p>Indie Garden</p>
+        <p>Evening Party · 21:00</p>
+      </div>
+      <div class="lineup-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Logo_ACDC.svg" alt="AC/DC">
+        <p>Rock Arena</p>
+        <p>Night Party · 22:30</p>
+      </div>
+      <div class="lineup-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Rosal%C3%ADa_signature.svg" alt="Rosalía">
+        <p>Harvest Tent</p>
+        <p>After Party · 00:00</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp">
+    <h3>🎟️ RSVP & Secure Your Spot</h3>
+    <p>Join the biggest Autumn Wedding Festival of the year!</p>
+    <button>RSVP Here</button>
+  </section>
+
+  <!-- Practical Info -->
+  <section>
+    <h3>Details & Info</h3>
+    <div class="details-grid">
+      <div class="details-box">
+        <h4>Location</h4>
+        <p>Zaragoza, Spain — Full venue details coming soon.</p>
+      </div>
+      <div class="details-box">
+        <h4>Dress Code</h4>
+        <p>Autumn Festival Chic: cozy, stylish, colorful.</p>
+      </div>
+      <div class="details-box">
+        <h4>Travel & Stay</h4>
+        <p>Nearest airport: Zaragoza. Accommodation info coming soon.</p>
+      </div>
+      <div class="details-box">
+        <h4>Festival Vibes</h4>
+        <p>Expect pumpkins, leaves, lanterns, and music from Rock, Metal, Hip-Hop, Reggaeton & Indie genres.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

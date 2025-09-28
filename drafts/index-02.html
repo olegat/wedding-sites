@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary & Oli Wedding Fest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #1c1c1c;
+      color: #fff;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      text-align: center;
+      padding: 120px 20px;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    header h1 {
+      font-size: 4em;
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    header h2 {
+      margin: 15px 0;
+      font-size: 2em;
+      color: #ffd166;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    nav {
+      background: #e63946;
+      text-align: center;
+      padding: 15px 0;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    section h2 {
+      font-size: 2.5em;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #ffd166;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .schedule {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .slot {
+      background: #2b2b2b;
+      border: 2px solid #ffd166;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .slot h3 {
+      margin: 0;
+      font-size: 1.3em;
+      color: #e63946;
+    }
+    .slot p {
+      margin-top: 10px;
+      font-size: 1em;
+      color: #f1f1f1;
+    }
+    .poster {
+      background: #ffd166;
+      color: #1c1c1c;
+      padding: 40px;
+      text-align: center;
+      border-radius: 15px;
+    }
+    .poster h3 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .rsvp {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .rsvp button {
+      padding: 15px 35px;
+      background: #e63946;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    footer {
+      background: #2b2b2b;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+    footer p {
+      margin: 8px 0;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mary & Oli</h1>
+    <h2>Wedding Festival 2026</h2>
+    <p>Saturday 10th October · Zaragoza, Spain</p>
+  </header>
+
+  <nav>
+    <a href="#schedule">Schedule</a>
+    <a href="#vibes">Festival Vibes</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#info">Info</a>
+  </nav>
+
+  <section id="schedule">
+    <h2>Festival Schedule</h2>
+    <div class="schedule">
+      <div class="slot">
+        <h3>Main Stage</h3>
+        <p>✨ Ceremony · 16:00</p>
+      </div>
+      <div class="slot">
+        <h3>Acoustic Stage</h3>
+        <p>🍷 Cocktail Hour · 17:30</p>
+      </div>
+      <div class="slot">
+        <h3>Indie Tent</h3>
+        <p>🍽️ Dinner · 19:00</p>
+      </div>
+      <div class="slot">
+        <h3>Rock Arena</h3>
+        <p>🎸 Party · 21:00</p>
+      </div>
+      <div class="slot">
+        <h3>DJ Booth</h3>
+        <p>🔥 Afterparty · Midnight</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vibes">
+    <h2>Festival Vibes</h2>
+    <div class="poster">
+      <h3>🍂 Autumn Leaves · 🎶 Music · 🎃 Pumpkins · ✨ Lights</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies eros in risus ullamcorper feugiat. Donec dapibus, mauris nec fermentum venenatis, lorem magna finibus libero, sit amet blandit lorem metus vel nisi.</p>
+    </div>
+  </section>
+
+  <section id="rsvp">
+    <h2>RSVP</h2>
+    <div class="rsvp">
+      <p>Secure your wristband to the biggest love festival of the year!</p>
+      <button>Get Your Ticket</button>
+    </div>
+  </section>
+
+  <footer id="info">
+    <p>📍 Zaragoza, Spain</p>
+    <p>👗 Dress Code: Autumn Festival Chic</p>
+    <p>🛏️ Accommodation info coming soon</p>
+    <p>✈️ Travel details will be shared</p>
+  </footer>
+</body>
+</html>

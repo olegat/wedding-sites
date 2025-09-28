@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mary & Oli Autumn Music Festival</title>
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #fff7f0;
+    overflow-x: hidden;
+  }
+
+  /* General headings */
+  h1, h2, h3 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  h1 { font-size: 3em; color: #b3472f; }
+  h2 { font-size: 2em; color: #e17a47; }
+  h3 { font-size: 1.8em; color: #7b2d26; }
+
+  /* Horizontal scroll stage sections */
+  .stage-section {
+    display: flex;
+    overflow-x: auto;
+    padding: 40px 0;
+    scroll-snap-type: x mandatory;
+  }
+  .stage-card {
+    flex: 0 0 300px;
+    margin: 0 20px;
+    background: #ffe8cc;
+    border-radius: 15px;
+    padding: 20px;
+    scroll-snap-align: start;
+    position: relative;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+  }
+  .stage-card img {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  /* Floating decorations */
+  .leaf, .pumpkin, .note {
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.7;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(120%); }
+    100% { transform: translateY(-20%); }
+  }
+
+  /* RSVP / info */
+  .card {
+    max-width: 700px;
+    margin: 60px auto;
+    background: #fff2e0;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.2);
+  }
+  .card button {
+    padding: 16px 40px;
+    font-size: 1.2em;
+    background: #b3472f;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Mary & Oli Autumn Music Festival</h1>
+<h2>Saturday 10th October 2026 · Zaragoza, Spain</h2>
+
+<!-- Floating decorations -->
+<div class="leaf" style="top:10%; left:5%; animation-duration:18s;">🍁</div>
+<div class="leaf" style="top:30%; left:50%; animation-duration:22s;">🍂</div>
+<div class="pumpkin" style="top:60%; left:20%; animation-duration:25s;">🎃</div>
+<div class="note" style="top:80%; left:70%; animation-duration:20s;">🎵</div>
+
+<!-- Stage sections -->
+<div class="stage-section">
+  <div class="stage-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Metallica_wordmark.svg" style="transform:rotate(-10deg);" alt="Metallica">
+    <h3>Main Stage</h3>
+    <p>16:00 Ceremony</p>
+    <p>Live rock vibes, autumn lanterns & leaves</p>
+  </div>
+  <div class="stage-card">
+    <img src="https://www.svgwaves.io/cutfiles/bad-bunny-13.svg" style="transform:rotate(8deg);" alt="Bad Bunny">
+    <h3>Hip-Hop Tent</h3>
+    <p>17:30 Cocktail</p>
+    <p>Beats and Reggaeton under the trees</p>
+  </div>
+  <div class="stage-card">
+    <img src="https://iconape.com/wp-content/files/zl/295943/svg/295943.svg" style="transform:rotate(-12deg);" alt="Public Enemy">
+    <h3>Reggaeton Stage</h3>
+    <p>19:00 Dinner</p>
+    <p>Pumpkins, colored lights & music</p>
+  </div>
+  <div class="stage-card">
+    <img src="https://brandeps.com/logo-download/T/The-cure-logo-vector-01.svg" style="transform:rotate(10deg);" alt="The Cure">
+    <h3>Indie Garden</h3>
+    <p>21:00 Evening Party</p>
+    <p>Autumn leaves and mellow indie tunes</p>
+  </div>
+  <div class="stage-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Logo_ACDC.svg" style="transform:rotate(-8deg);" alt="AC/DC">
+    <h3>Rock Arena</h3>
+    <p>22:30 Night Party</p>
+    <p>Guitars & bonfire vibes</p>
+  </div>
+  <div class="stage-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Rosal%C3%ADa_signature.svg" style="transform:rotate(5deg);" alt="Rosalía">
+    <h3>Harvest Tent</h3>
+    <p>00:00 After Party</p>
+    <p>Autumn festival lights & dancing</p>
+  </div>
+</div>
+
+<!-- RSVP Card -->
+<div class="card">
+  <h3>🎟️ RSVP</h3>
+  <p>Secure your spot at Mary & Oli’s Autumn Wedding Festival!</p>
+  <button>RSVP Here</button>
+</div>
+
+<!-- Info Card -->
+<div class="card">
+  <h3>Festival Details</h3>
+  <ul>
+    <li>Dress Code: Autumn Festival Chic</li>
+    <li>Accommodation info coming soon</li>
+    <li>Travel: Zaragoza nearest airport</li>
+    <li>Festival vibes: pumpkins, leaves, lanterns, multi-genre music</li>
+  </ul>
+</div>
+
+</body>
+</html>
