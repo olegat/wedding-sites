@@ -1,0 +1,27 @@
+#!/bin/sh
+
+check_commands() {
+  missing=0
+  for cmd in "$@"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Error: required command '$cmd' not found in PATH." >&2
+      missing=1
+    fi
+  done
+  if [ $missing -ne 0 ]; then
+    exit 1
+  fi
+}
+
+required_cmds=("cpp" "yarn")
+check_commands "${required_cmds[@]}"
+
+if [ ! -d "node_modules" ]; then
+  echo "Installing dependencies..."
+  yarn install --silent --non-interactive || {
+    echo "Error: yarn install failed." >&2
+    exit 1
+  }
+fi
+
+exec yarn --silent node -r @swc-node/register ./toolchain/hagaCLI.ts "$@"
