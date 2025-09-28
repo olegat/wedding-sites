@@ -1,0 +1,23 @@
+# -*- Mode: csv; tab-width: 20; -*-
+
+AC/DC	https://upload.wikimedia.org/wikipedia/commons/5/58/Logo_ACDC.svg
+Metallica	https://upload.wikimedia.org/wikipedia/commons/e/ea/Metallica_wordmark.svg
+Public Enemy	https://iconape.com/wp-content/files/zl/295943/svg/295943.svg
+Rosalía	https://upload.wikimedia.org/wikipedia/commons/4/41/Rosal%C3%ADa_signature.svg
+Bad Bunny	https://www.svgwaves.io/cutfiles/bad-bunny-13.svg
+The Cure	https://brandeps.com/logo-download/T/The-cure-logo-vector-01.svg
+Iron Maiden	https://upload.wikimedia.org/wikipedia/commons/6/61/Iron_Maiden_logo_black.svg
+Black Sabbath	https://upload.wikimedia.org/wikipedia/fi/4/45/Blacksabbath.svg
+Oasis	https://upload.wikimedia.org/wikipedia/commons/4/44/Oasis_Logo.svg
+Skindred	https://assets.stickpng.com/images/6571a1f004a7c65afd08e332.png
+System Of A Down	https://exoshop.com/cdn/shop/files/systemofadown.svg?v=1696971235
+Airbourne	https://upload.wikimedia.org/wikipedia/commons/3/30/Airbourne_-_Logo.svg
+Alestorm	./alestorm.png
+Guns N Roses	./gun-n-roses.png
+Linkin Park	https://upload.wikimedia.org/wikipedia/lt/5/59/Linkinparklogo2.svg
+Dead Maus	https://i.pinimg.com/736x/81/7b/f0/817bf09d1ae422c1a108b898e9874a0b.jpg
+#Knife Party	TODO
+#Dmitry Vegas & Like Mike	TODO
+#Damien Marley	TODO
+#The Skints	TODO
+#Bad Bunny	https://upload.wikimedia.org/wikipedia/commons/3/34/Bad_Bunny_sig.svg
