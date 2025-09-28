@@ -3,10 +3,11 @@ export type HagaCoreCommandArgs = string[];
 export type HagaCoreRule = {
     name: string;                     // unique identifier
     commands: HagaCoreCommandArgs[];  // multiple commands per rule
-    description?: string;             // optional human-readable description
+    description?: string | undefined; // optional human-readable description
 };
 
 export type HagaCoreTarget = {
+    type?: never;
     inputs: string[];
     outputs: string[];
     rule: string; // must match a HagaCoreRule.name
