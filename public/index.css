@@ -69,10 +69,11 @@ body {
 }
 
 .poster h2 {
-    font-size: 2em;
+    font-size: 2.3em;
     margin: 10px 0 30px;
-    color: #2e1d12;
+    color: #f9ac2a;
     letter-spacing: 2px;
+    text-shadow: 2px 2px 6px #2d1d12;
 }
 
 .date-location {
