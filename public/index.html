@@ -117,29 +117,40 @@
       color: #e63946;
     }
 
-    .highlight-block {
-      background: rgba(255,255,255,0.8);
+    .big-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      font-style: italic;
+      color: #fff;
+      background: rgba(0,0,0,0.4);
       padding: 30px;
+      margin: 50px auto;
       border-radius: 12px;
-      margin: 40px 0;
+      max-width: 700px;
+      line-height: 1.5;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
 
-    .highlight-block h3 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
+    .rsvp-block {
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      padding: 40px 20px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .rsvp-block h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
       color: #7b2d26;
     }
 
-    .highlight-block p {
-      font-size: 1.1em;
-      line-height: 1.5;
+    .rsvp-block p {
+      font-size: 1.2em;
+      margin-bottom: 25px;
     }
 
-    .rsvp {
-      margin-top: 60px;
-    }
-
-    .rsvp button {
+    .rsvp-block button {
       padding: 18px 40px;
       font-size: 1.2em;
       background: #2e1d12;
@@ -147,6 +158,11 @@
       border: none;
       border-radius: 50px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .rsvp-block button:hover {
+      background: #3f2a1b;
     }
 
     footer {
@@ -231,15 +247,14 @@
       </div>
     </div>
 
-    <div class="highlight-block">
-      <h3>🍂 Festival Vibes</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Expect glowing lanterns, autumn leaves, pumpkins, golden lights, and music across genres. Our wedding is not just a day — it’s a festival of love, rhythm, and firelight.</p>
+    <div class="big-quote">
+      "Not just a wedding — a festival of love, rhythm, and autumn firelight."
     </div>
 
-    <div class="rsvp">
-      <h3>🎟️ Get Your Wristband</h3>
-      <p>RSVP now to secure your spot at the biggest autumn festival of love!</p>
-      <button>RSVP Here</button>
+    <div class="rsvp-block">
+      <h2>🎟️ Grab Your Wristband</h2>
+      <p>Join us for a once-in-a-lifetime celebration</p>
+      <button>RSVP Now</button>
     </div>
   </div>
 
