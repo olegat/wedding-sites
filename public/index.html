@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary & Oli Wedding Festival</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background: linear-gradient(to bottom, #ffb347, #ffcc33, #e17a47);
+      color: #1c1c1c;
+    }
+
+    /* Floating language menu */
+    .lang-menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .lang-menu a {
+      margin: 0 5px;
+      color: #2e1d12;
+      text-decoration: none;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .lang-menu a:hover {
+      text-decoration: underline;
+    }
+
+    .poster {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .poster h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4em;
+      margin: 0;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .poster h2 {
+      font-size: 2em;
+      margin: 10px 0 30px;
+      color: #2e1d12;
+      letter-spacing: 2px;
+    }
+
+    .date-location {
+      font-size: 1.2em;
+      font-weight: bold;
+      background: #2e1d12;
+      color: #ffd166;
+      padding: 10px 15px;
+      display: inline-block;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    /* Seamless logo marquee */
+    .logo-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 20px 0 40px;
+      height: 100px;
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: scroll 20s linear infinite;
+    }
+    .marquee-track img {
+      height: 80px;
+      margin-right: 35px;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .lineup {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .lineup h3 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .bands {
+      font-size: 1.5em;
+      line-height: 1.8;
+      text-transform: uppercase;
+      color: #1c1c1c;
+    }
+
+    .bands strong {
+      display: block;
+      font-size: 2em;
+      margin: 15px 0;
+      color: #e63946;
+    }
+
+    .highlight-block {
+      background: rgba(255,255,255,0.8);
+      padding: 30px;
+      border-radius: 12px;
+      margin: 40px 0;
+    }
+
+    .highlight-block h3 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #7b2d26;
+    }
+
+    .highlight-block p {
+      font-size: 1.1em;
+      line-height: 1.5;
+    }
+
+    .rsvp {
+      margin-top: 60px;
+    }
+
+    .rsvp button {
+      padding: 18px 40px;
+      font-size: 1.2em;
+      background: #2e1d12;
+      color: #ffd166;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 30px 20px;
+      background: #2e1d12;
+      color: #fff;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating language menu -->
+  <div class="lang-menu">
+    <a href="#">EN</a> | <a href="#">ES</a> | <a href="#">FR</a>
+  </div>
+
+  <div class="poster">
+    <h1>Mary & Oli</h1>
+    <h2>Wedding Festival</h2>
+    <div class="date-location">
+      Saturday 10th October 2026 · Zaragoza, Spain
+    </div>
+
+    <!-- Seamless logo marquee -->
+    <div class="logo-marquee">
+      <div class="marquee-track">
+        <!-- Original sequence -->
+        <img src="./linkinpark.svg" alt="Linkin Park">
+        <img src="./oasis.svg" alt="Oasis">
+        <img src="./thecure.svg" style="height: 60px; margin-top: 10px" alt="The Cure">
+        <img src="./acdc.svg" alt="AC/DC">
+        <img src="./skindred.png" style="height: 50px; margin-top: 15px" alt="Skindred">
+        <img src="./ironmaiden.svg" alt="Iron Maiden">
+        <img src="./rosalia.svg" alt="Rosalía">
+        <img src="./badbunny.svg" alt="Bad Bunny">
+        <img src="./guns-n-roses.png" alt="Gun N Roses">
+        <img src="./deadmaus.png" alt="Dead Maus">
+        <img src="./metallica.svg" alt="Metallica">
+        <img src="./systemofadown.svg" alt="System Of A Down">
+        <img src="./publicenemy.svg" alt="Public Enemy">
+        <img src="./blacksabbath.svg" alt="Black Sabbath">
+        <img src="./alestorm.png" alt="Alestorm">
+        <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" alt="Airbourne">
+
+        <!-- Duplicate for seamless looping -->
+        <img src="./linkinpark.svg" alt="Linkin Park">
+        <img src="./oasis.svg" alt="Oasis">
+        <img src="./thecure.svg" style="height: 60px; margin-top: 10px" alt="The Cure">
+        <img src="./acdc.svg" alt="AC/DC">
+        <img src="./skindred.png" style="height: 50px; margin-top: 15px" alt="Skindred">
+        <img src="./ironmaiden.svg" alt="Iron Maiden">
+        <img src="./rosalia.svg" alt="Rosalía">
+        <img src="./badbunny.svg" alt="Bad Bunny">
+        <img src="./guns-n-roses.png" alt="Gun N Roses">
+        <img src="./deadmaus.png" alt="Dead Maus">
+        <img src="./metallica.svg" alt="Metallica">
+        <img src="./systemofadown.svg" alt="System Of A Down">
+        <img src="./publicenemy.svg" alt="Public Enemy">
+        <img src="./blacksabbath.svg" alt="Black Sabbath">
+        <img src="./alestorm.png" alt="Alestorm">
+        <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" alt="Airbourne">
+      </div>
+    </div>
+
+    <div class="lineup">
+      <h3>Full Lineup</h3>
+      <div class="bands">
+        <strong>Main Stage</strong>
+        ✨ Ceremony · 16:00 <br>
+        🍷 Cocktail Hour · 17:30 <br>
+
+        <strong>Harvest Tent</strong>
+        🍽️ Dinner · 19:00 <br>
+
+        <strong>Rock Arena</strong>
+        🎸 Party (Rock, Metal, Reggaeton, Hip-Hop) · 21:00 <br>
+
+        <strong>Bonfire Stage</strong>
+        🔥 Afterparty · Midnight
+      </div>
+    </div>
+
+    <div class="highlight-block">
+      <h3>🍂 Festival Vibes</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Expect glowing lanterns, autumn leaves, pumpkins, golden lights, and music across genres. Our wedding is not just a day — it’s a festival of love, rhythm, and firelight.</p>
+    </div>
+
+    <div class="rsvp">
+      <h3>🎟️ Get Your Wristband</h3>
+      <p>RSVP now to secure your spot at the biggest autumn festival of love!</p>
+      <button>RSVP Here</button>
+    </div>
+  </div>
+
+  <footer>
+    📍 Zaragoza, Spain · 👗 Dress Code: Autumn Festival Chic · 🛏️ Accommodation details soon · ✈️ Travel info coming soon
+  </footer>
+</body>
+</html>
