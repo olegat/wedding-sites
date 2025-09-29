@@ -15,6 +15,10 @@ import {
     type HagaKeyword,
 } from "./hagaKeyword";
 
+import {
+    HagaContext,
+} from "./hagaContext";
+
 
 //------------------------------------------------------------------------------
 // Types:
@@ -42,12 +46,6 @@ export type HagaSweetTarget = HagaSweetTargetCPP | HagaCoreTarget;
 export type HagaSweetExport = {
     rules?: HagaCoreRule[],
     targets: HagaSweetTarget[];
-};
-
-export type HagaContext = {
-    readonly ruleMap: Map<string, HagaCoreRule>;
-    eatKeywork(sym: HagaKeyword): string;
-    reportError(err: Error): void;
 };
 
 //------------------------------------------------------------------------------
@@ -134,7 +132,7 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
 
 export const HagaMacros = {
     eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
-        const ctx: HagaContext = (globalThis as any).ctx; // HACK: I'll fix later
+        const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
         addRules(ctx, sweetExport);
         return {
             rules: Array.from(ctx.ruleMap.values()),

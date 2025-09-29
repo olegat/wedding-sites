@@ -1,14 +1,25 @@
 import path from "node:path";
 import process from "node:process";
 
-import type { HagaCoreExport, HagaCoreRule } from "./hagaCore";
-import { writeNinjaBuild } from "./hagaCore";
-import { HagaKeywords, type HagaKeyword } from "./hagaKeyword";
+import {
+    type HagaCoreExport,
+    type HagaCoreRule,
+    writeNinjaBuild,
+} from "./hagaCore";
+
+import {
+    HagaKeywords,
+    type HagaKeyword,
+} from "./hagaKeyword";
+
+import {
+    HagaContext,
+} from "./hagaContext";
 
 //------------------------------------------------------------------------------
 // Context implementation
 //------------------------------------------------------------------------------
-class CLIContext {
+class CLIContext implements HagaContext {
     private errors: Error[] = [];
     readonly ruleMap: Map<string, HagaCoreRule> = new Map();
 
@@ -92,7 +103,7 @@ async function runGenin(args: string[]): Promise<void> {
     }
 
     const ctx = new CLIContext();
-    (globalThis as any).ctx = ctx;
+    HagaContext.setGlobalContext(ctx);
 
     // Dynamic import of the HAGA.ts file
     let mod: unknown;
