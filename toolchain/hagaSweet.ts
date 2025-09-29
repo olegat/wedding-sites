@@ -11,8 +11,7 @@ import type {
 } from "./hagaCore";
 
 import {
-    HagaKeywords,
-    type HagaKeyword,
+    HagaKeyword,
 } from "./hagaKeyword";
 
 import {
@@ -23,41 +22,44 @@ import {
 //------------------------------------------------------------------------------
 // Types:
 //------------------------------------------------------------------------------
-export type HagaSweetStringComposition = (string | HagaKeyword)[];
+type HagaSweetStringComposition = (string | HagaKeyword)[];
 
-export type HagaSweetString = string | HagaSweetStringComposition;
+type HagaSweetString = string | HagaSweetStringComposition;
 
-export type HagaSweetCommandArgs = HagaSweetString[];
+type HagaSweetCommandArgs = HagaSweetString[];
 
-export type HagaSweetRule = {
+type HagaSweetRule = {
     name: HagaSweetString;
     commands: HagaSweetCommandArgs[];
     description?: HagaSweetString;
 };
 
-export type HagaSweetTargetCPP = {
+type HagaSweetTargetCPP = {
     type: 'cpp';
     input: HagaSweetString;
     output?: HagaSweetString;
 };
 
-export type HagaSweetTarget = HagaSweetTargetCPP | HagaCoreTarget;
+type HagaSweetTarget = HagaSweetTargetCPP | HagaCoreTarget;
 
-export type HagaSweetExport = {
+type HagaSweetExport = {
     rules?: HagaCoreRule[],
     targets: HagaSweetTarget[];
 };
 
 //------------------------------------------------------------------------------
-// Implementation:
+// Constants:
 //------------------------------------------------------------------------------
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
     'cpp': {
         name: 'cpp',
-        commands: [ [ [HagaKeywords.CPP_COMMAND], '-P', '$in', '>', '$out' ] ],
+        commands: [ [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ] ],
     }
 };
 
+//------------------------------------------------------------------------------
+// Implementation:
+//------------------------------------------------------------------------------
 function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
     for (const sweetRule of sweetExport.rules ?? []) {
         if (ctx.ruleMap.has(sweetRule.name)) {
@@ -121,8 +123,8 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
 function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
     const input      : string = eatString(ctx, sweetTarget.input)
     const output     : string = eatString(ctx, sweetTarget.output ?? `${dirname(input)}/${basename(input, '.in')}`);
-    const absInput   : string = toAbsolutePath(ctx, input,  HagaKeywords.INPUT_DIR);
-    const absOutput  : string = toAbsolutePath(ctx, output, HagaKeywords.OUTPUT_DIR);
+    const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.INPUT_DIR);
+    const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.OUTPUT_DIR);
     return {
         inputs: [ absInput ],
         outputs: [ absOutput ],
@@ -130,22 +132,37 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     };
 }
 
-export const HagaMacros = {
-    eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
-        const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
-        addRules(ctx, sweetExport);
-        return {
-            rules: Array.from(ctx.ruleMap.values()),
-            targets: sweetExport.targets.map((target) => {
-                switch (target.type) {
-                    case 'cpp':
-                        return eatTargetCPP(ctx, target);
-                    case undefined:
-                        return target satisfies HagaCoreTarget;
-                    default:
-                        return target satisfies never;
-                }
-            }),
-        };
-    }
+function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
+    const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
+    addRules(ctx, sweetExport);
+    return {
+        rules: Array.from(ctx.ruleMap.values()),
+        targets: sweetExport.targets.map((target) => {
+            switch (target.type) {
+                case 'cpp':
+                    return eatTargetCPP(ctx, target);
+                case undefined:
+                    return target satisfies HagaCoreTarget;
+                default:
+                    return target satisfies never;
+            }
+        }),
+    };
+}
+
+//------------------------------------------------------------------------------
+// Exports:
+//------------------------------------------------------------------------------
+export type {
+    HagaSweetCommandArgs,
+    HagaSweetExport,
+    HagaSweetRule,
+    HagaSweetString,
+    HagaSweetStringComposition,
+    HagaSweetTarget,
+    HagaSweetTargetCPP,
+};
+
+export const HagaSweet = {
+    eatSugar,
 };

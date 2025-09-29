@@ -2,14 +2,14 @@ import path from "node:path";
 import process from "node:process";
 
 import {
+    HagaCore,
     type HagaCoreExport,
     type HagaCoreRule,
-    writeNinjaBuild,
 } from "./hagaCore";
 
 import {
-    HagaKeywords,
-    type HagaKeyword,
+    HagaKeyword,
+    HagaKeywordMapping,
 } from "./hagaKeyword";
 
 import {
@@ -126,7 +126,7 @@ async function runGenin(args: string[]): Promise<void> {
     ctx.flushErrors();
 
     // Write Ninja to stdout
-    writeNinjaBuild(exportData, (s) => process.stdout.write(s));
+    HagaCore.writeNinjaBuild(exportData, (s) => process.stdout.write(s));
 }
 
 //------------------------------------------------------------------------------

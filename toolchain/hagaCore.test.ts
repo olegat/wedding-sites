@@ -1,4 +1,4 @@
-import { writeNinjaBuild, HagaCoreExport } from "./hagaCore";
+import { HagaCore, HagaCoreExport } from "./hagaCore";
 import { writeFileSync } from "node:fs";
 
 const core: HagaCoreExport = {
@@ -20,4 +20,4 @@ const core: HagaCoreExport = {
   ]
 };
 
-writeNinjaBuild(core, s => writeFileSync("build.ninja", s, { flag: "a" }));
+HagaCore.writeNinjaBuild(core, s => writeFileSync("build.ninja", s, { flag: "a" }));

@@ -1,7 +1,6 @@
-import { type HagaCoreExport } from '../toolchain/hagaCore'
-import { HagaMacros } from '../toolchain/hagaSweet'
+import { HagaSweet } from '../toolchain/hagaSweet'
 
-export default HagaMacros.eatSugar({
+export default HagaSweet.eatSugar({
     targets: [
         { type: 'cpp', input: 'index.html.in' },
     ],
