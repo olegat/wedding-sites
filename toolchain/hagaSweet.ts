@@ -134,7 +134,7 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
 
 export const HagaMacros = {
     eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
-        const ctx: HagaContext = (window as any).ctx; // HACK: I'll fix later
+        const ctx: HagaContext = (globalThis as any).ctx; // HACK: I'll fix later
         addRules(ctx, sweetExport);
         return {
             rules: Array.from(ctx.ruleMap.values()),

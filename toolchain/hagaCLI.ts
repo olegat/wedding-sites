@@ -21,7 +21,7 @@ class CLIContext {
             case HagaKeywords.OUTPUT_DIR:
                 return process.cwd();
             default:
-                this.reportError(new Error(`Unknown keyword: ${sym}`));
+                this.reportError(new Error(`Unknown keyword: ${sym.keyword}`));
                 return "";
         }
     }
@@ -82,30 +82,36 @@ async function runGenin(args: string[]): Promise<void> {
         process.exit(1);
     }
 
-    const inputFile = path.resolve(inputPath);
-    if (!fs.existsSync(inputFile)) {
-        console.error(`[HAGA ERROR] File not found: ${inputFile}`);
-        process.exit(1);
+    const absPath = path.resolve(process.cwd(), inputPath);
+    if (absPath.endsWith(".ts")) {
+        require("ts-node").register({
+            transpileOnly: true, // faster, we trust the IDE/compiler for type errors
+            compilerOptions: {
+                module: "commonjs", // since your CLI uses CJS-style require
+                esModuleInterop: true
+            }
+        });
     }
 
     const ctx = new CLIContext();
     (globalThis as any).ctx = ctx;
 
     // Dynamic import of the HAGA.ts file
-    let mod: any;
+    let mod: unknown;
     try {
-        mod = await import(pathToFileURL(inputFile).href);
+        mod = require(absPath).default;
     } catch (err) {
-        console.error(`[HAGA ERROR] Failed to import ${inputFile}:`, err);
+        console.error(`[HAGA ERROR] Failed to import ${absPath}:`, err);
         process.exit(1);
     }
 
-    if (!mod.HAGA) {
-        console.error(`[HAGA ERROR] Module ${inputFile} does not export { HAGA }`);
+    // Dynamic import of the HAGA.ts file
+    if (!mod) {
+        console.error(`[HAGA ERROR] Module ${absPath} does have a default export`);
         process.exit(1);
     }
 
-    const exportData: HagaCoreExport = mod.HAGA;
+    const exportData: HagaCoreExport = mod as HagaCoreExport; // TODO: validate
 
     // Flush errors collected during macro evaluation
     ctx.flushErrors();
