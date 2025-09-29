@@ -23,16 +23,10 @@ class CLIContext implements HagaContext {
     private errors: Error[] = [];
     readonly ruleMap: Map<string, HagaCoreRule> = new Map();
 
-    eatKeywork(sym: HagaKeyword): string {
-        switch (sym) {
-            case HagaKeywords.INPUT_DIR:
-                return process.cwd();
-            case HagaKeywords.OUTPUT_DIR:
-                return process.cwd();
-            default:
-                this.reportError(new Error(`Unknown keyword: ${sym.keyword}`));
-                return "";
-        }
+    constructor(private readonly keywordMap: HagaKeywordMapping) {}
+
+    eatKeywork(kwObj: HagaKeyword): string {
+        return this.keywordMap[kwObj.keyword];
     }
 
     reportError(err: Error): void {
@@ -46,6 +40,10 @@ class CLIContext implements HagaContext {
             }
             this.errors = [];
         }
+    }
+
+    debugLog(): void {
+        console.log(this.keywordMap);
     }
 }
 
@@ -91,7 +89,8 @@ async function runGenin(args: string[]): Promise<void> {
         process.exit(1);
     }
 
-    const absPath = path.resolve(process.cwd(), inputPath);
+    const cwd = process.cwd();
+    const absPath = path.resolve(cwd, inputPath);
     if (absPath.endsWith(".ts")) {
         require("ts-node").register({
             transpileOnly: true, // faster, we trust the IDE/compiler for type errors
@@ -102,7 +101,15 @@ async function runGenin(args: string[]): Promise<void> {
         });
     }
 
-    const ctx = new CLIContext();
+    const inputSubDir = path.relative(cwd, path.dirname(absPath));
+    const ctx = new CLIContext({
+        INPUT_DIR: cwd,
+        OUTPUT_DIR: path.resolve(cwd, 'out'),
+        CURRENT_INPUT_DIR: path.resolve(cwd, inputSubDir),
+        CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
+        CPP_COMMAND: 'cpp',
+    });
+    ctx.debugLog();
     HagaContext.setGlobalContext(ctx);
 
     // Dynamic import of the HAGA.ts file
