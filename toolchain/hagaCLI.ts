@@ -109,7 +109,6 @@ async function runGenin(args: string[]): Promise<void> {
         CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
         CPP_COMMAND: 'cpp',
     });
-    ctx.debugLog();
     HagaContext.setGlobalContext(ctx);
 
     // Dynamic import of the HAGA.ts file

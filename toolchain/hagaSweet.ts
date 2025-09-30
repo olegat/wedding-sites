@@ -1,7 +1,4 @@
-import {
-    basename,
-    dirname,
-} from 'node:path';
+import path from 'node:path';
 
 import type {
     HagaCoreCommandArgs,
@@ -84,9 +81,16 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
     }
 }
 
-function toAbsolutePath(ctx: HagaContext, url: string, baseKeyword: HagaKeyword): string {
+function toAbsolutePath(ctx: HagaContext, filepath: string, baseKeyword: HagaKeyword): string {
     const basepath: string = ctx.eatKeywork(baseKeyword);
-    return URL.parse(url, `file://${basepath}`)?.pathname ?? 'NOTFOUND';
+    return path.resolve(basepath, filepath);
+}
+
+function dropExtension(filepath: string, extToDrop: `.${string}`): string {
+    if (filepath.endsWith(extToDrop)) {
+        return filepath.slice(0, filepath.length - extToDrop.length);
+    }
+    return filepath;
 }
 
 function eatString(ctx: HagaContext, sweetString: undefined): undefined;
@@ -122,9 +126,9 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
 
 function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
     const input      : string = eatString(ctx, sweetTarget.input)
-    const output     : string = eatString(ctx, sweetTarget.output ?? `${dirname(input)}/${basename(input, '.in')}`);
-    const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.INPUT_DIR);
-    const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.OUTPUT_DIR);
+    const output     : string = eatString(ctx, sweetTarget.output ?? dropExtension(input, '.in'));
+    const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.CURRENT_INPUT_DIR);
+    const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.CURRENT_OUTPUT_DIR);
     return {
         inputs: [ absInput ],
         outputs: [ absOutput ],
