@@ -16,6 +16,10 @@ import {
     HagaContext,
 } from "./hagaContext";
 
+import {
+    HagaSweet
+} from "./hagaSweet";
+
 //------------------------------------------------------------------------------
 // Context implementation
 //------------------------------------------------------------------------------
@@ -108,6 +112,8 @@ async function runGenin(args: string[]): Promise<void> {
         CURRENT_INPUT_DIR: path.resolve(cwd, inputSubDir),
         CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
         CPP_COMMAND: 'cpp',
+        HAGA_COMMAND: './haga',
+        HAGA_INPUT_HAGAFILE: inputPath,
     });
     HagaContext.setGlobalContext(ctx);
 
@@ -127,6 +133,19 @@ async function runGenin(args: string[]): Promise<void> {
     }
 
     const exportData: HagaCoreExport = mod as HagaCoreExport; // TODO: validate
+
+    // Add default rule for regenerating `build.ninja`
+    if (!ctx.ruleMap.has('regen')) {
+        const defaultRegen = HagaSweet.eatSugar({ targets: [ { type: 'regen' } ]});
+        // TODO! Fix eatSugar().rules logic (incorrectly output ctx.rulesMap.values()):
+        //exportData.rules.push(...defaultRegen.rules);
+        for (const rule of defaultRegen.rules) {
+            if (rule.name === 'regen') {
+                exportData.rules.push(rule);
+            }
+        }
+        exportData.targets.push(...defaultRegen.targets);
+    }
 
     // Flush errors collected during macro evaluation
     ctx.flushErrors();

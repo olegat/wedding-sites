@@ -37,7 +37,17 @@ type HagaSweetTargetCPP = {
     output?: HagaSweetString;
 };
 
-type HagaSweetTarget = HagaSweetTargetCPP | HagaCoreTarget;
+export type HagaSweetTargetRegen = {
+    type: "regen";
+    inputs?: HagaSweetString[]; // default [[HagaKeyword.HAGA_INPUT_HAGAFILE]]
+    implicits?: HagaSweetString[]; // default ['./haga', 'toolchain/**.ts']
+    outputs?: HagaSweetString[]; // default ["build.ninja"]
+};
+
+type HagaSweetTarget =
+    HagaSweetTargetCPP |
+    HagaSweetTargetRegen |
+    HagaCoreTarget;
 
 type HagaSweetExport = {
     rules?: HagaCoreRule[],
@@ -51,7 +61,12 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
     'cpp': {
         name: 'cpp',
         commands: [ [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ] ],
-    }
+    },
+    'regen': {
+        name: 'regen',
+        commands: [ [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out'] ],
+        description: 'Regenerate build.ninja',
+    },
 };
 
 //------------------------------------------------------------------------------
@@ -69,6 +84,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
     for (const target of sweetExport.targets) {
         switch (target.type) {
             case 'cpp':
+            case 'regen':
                 if ( ! ctx.ruleMap.has(target.type)) {
                     const sweetRule : HagaSweetRule = SweetRules[target.type];
                     const coreRule  : HagaCoreRule  = eatRule(ctx,sweetRule);
@@ -112,6 +128,14 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
     return buffer.join('');
 }
 
+function eatStrings(ctx: HagaContext, sweetString: undefined): undefined;
+function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[]): string[];
+function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[] | undefined): string[] | undefined;
+function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[] | undefined): string[] | undefined {
+    return sweetString?.map((s) => eatString(ctx, s));
+}
+
+
 function eatCommands(ctx: HagaContext, sweetCommandArgs: HagaSweetCommandArgs[]): HagaCoreCommandArgs[] {
     return sweetCommandArgs.map((sweetArgs) => sweetArgs.map((s) => eatString(ctx, s)));
 }
@@ -136,6 +160,25 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     };
 }
 
+function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
+    const inputs    = sweetTarget.inputs ?? [[HagaKeyword.HAGA_INPUT_HAGAFILE]];
+    const outputs   = sweetTarget.outputs ?? ['build.ninja'];
+    const implicits = sweetTarget.implicits ?? [
+        'haga',
+        'toolchain/hagaContext.ts',
+        'toolchain/hagaKeyword.ts',
+        'toolchain/hagaSweet.ts',
+        'toolchain/hagaCLI.ts',
+        'toolchain/hagaCore.ts',
+    ];
+    return {
+        inputs: eatStrings(ctx, inputs),
+        outputs: eatStrings(ctx, outputs),
+        implicits: eatStrings(ctx, implicits),
+        rule: "regen",
+        restat: true,
+    };
+}
 function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
     const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
     addRules(ctx, sweetExport);
@@ -145,6 +188,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
             switch (target.type) {
                 case 'cpp':
                     return eatTargetCPP(ctx, target);
+                case 'regen':
+                    return eatTargetRegen(ctx, target);
                 case undefined:
                     return target satisfies HagaCoreTarget;
                 default:

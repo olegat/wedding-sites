@@ -3,10 +3,12 @@
 //------------------------------------------------------------------------------
 type Keywords =
     'CPP_COMMAND' |
-    'INPUT_DIR' |
-    'OUTPUT_DIR' |
     'CURRENT_INPUT_DIR' |
-    'CURRENT_OUTPUT_DIR';
+    'CURRENT_OUTPUT_DIR'|
+    'HAGA_COMMAND' |
+    'HAGA_INPUT_HAGAFILE' |
+    'INPUT_DIR' |
+    'OUTPUT_DIR';
 
 type KeywordObj<K extends Keywords> = { readonly keyword: K };
 
@@ -15,10 +17,12 @@ type KeywordObj<K extends Keywords> = { readonly keyword: K };
 //------------------------------------------------------------------------------
 const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     CPP_COMMAND: { keyword: 'CPP_COMMAND' },
-    INPUT_DIR: { keyword: 'INPUT_DIR' },
-    OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
     CURRENT_INPUT_DIR: { keyword: 'CURRENT_INPUT_DIR' },
     CURRENT_OUTPUT_DIR: { keyword: 'CURRENT_OUTPUT_DIR' },
+    HAGA_COMMAND: { keyword: 'HAGA_COMMAND' },
+    HAGA_INPUT_HAGAFILE: { keyword: 'HAGA_INPUT_HAGAFILE' },
+    INPUT_DIR: { keyword: 'INPUT_DIR' },
+    OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
 };
 
 type HagaKeyword = typeof HagaKeyword[Keywords];

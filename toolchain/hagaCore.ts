@@ -7,13 +7,16 @@ type HagaCoreRule = {
     name: string;                     // unique identifier
     commands: HagaCoreCommandArgs[];  // multiple commands per rule
     description?: string | undefined; // optional human-readable description
+    generator?: boolean;
 };
 
 type HagaCoreTarget = {
     type?: never;
     inputs: string[];
     outputs: string[];
+    implicits?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
+    restat?: boolean;
 };
 
 type HagaCoreExport = {
@@ -48,6 +51,10 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
             outputStream(`  description = ${rule.description}\n`);
         }
 
+        if (rule.generator !== undefined) {
+            outputStream(`  generator = ${rule.generator ? 1 : 0}\n`);
+        }
+
         outputStream(`\n`);
     });
 
@@ -55,7 +62,20 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
     coreExport.targets.forEach(target => {
         const inputs = target.inputs.join(" ");
         const outputs = target.outputs.join(" ");
-        outputStream(`build ${outputs}: ${target.rule} ${inputs}\n\n`);
+        outputStream(`build ${outputs}: ${target.rule} ${inputs}`);
+
+        if (target.implicits != undefined) {
+            const implicits = target.implicits.join(" ");
+            outputStream(` | ${implicits}`);
+        }
+
+        outputStream(`\n`);
+
+        if (target.restat !== undefined) {
+            outputStream(`  restat = ${target.restat ? 1 : 0}\n`);
+        }
+
+        outputStream(`\n`);
     });
 }
 
