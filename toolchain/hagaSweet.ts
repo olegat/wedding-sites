@@ -37,6 +37,12 @@ type HagaSweetTargetCPP = {
     output?: HagaSweetString;
 };
 
+type HagaSweetTargetCopy = {
+    type: 'copy';
+    inputs: HagaSweetString[];
+    outputDir?: HagaSweetString;
+};
+
 export type HagaSweetTargetRegen = {
     type: "regen";
     inputs?: HagaSweetString[]; // default [[HagaKeyword.HAGA_INPUT_HAGAFILE]]
@@ -45,6 +51,7 @@ export type HagaSweetTargetRegen = {
 };
 
 type HagaSweetTarget =
+    HagaSweetTargetCopy |
     HagaSweetTargetCPP |
     HagaSweetTargetRegen |
     HagaCoreTarget;
@@ -58,6 +65,12 @@ type HagaSweetExport = {
 // Constants:
 //------------------------------------------------------------------------------
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
+    'copy': {
+        name: 'copy',
+        commands: [
+            [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ]
+        ],
+    },
     'cpp': {
         name: 'cpp',
         commands: [
@@ -88,6 +101,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
 
     for (const target of sweetExport.targets) {
         switch (target.type) {
+            case 'copy':
             case 'cpp':
             case 'regen':
                 if ( ! ctx.ruleMap.has(target.type)) {
@@ -133,6 +147,15 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
     return buffer.join('');
 }
 
+function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: undefined): undefined;
+function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString): string;
+function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString | undefined): string | undefined;
+function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString | undefined): string | undefined {
+    const base = eatString(ctx, baseDir);
+    const name = eatString(ctx, sweetString);
+    return base != null && name != null ? path.resolve(base, name) : undefined;
+}
+
 function resolvePaths(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString[]): string[] {
     const base = eatString(ctx, baseDir);
     return sweetString?.map((s) => path.resolve(base, eatString(ctx, s)));
@@ -148,6 +171,19 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
         commands: eatCommands(ctx, sweetRule.commands),
         description: eatString(ctx, sweetRule.description),
     };
+}
+
+function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
+    const outDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir ?? '');
+    return sweetTarget.inputs.map(sweetInput => {
+        const relInput: string = eatString(ctx, sweetInput)
+        const absInput: string = toAbsolutePath(ctx, relInput, HagaKeyword.CURRENT_INPUT_DIR);
+        return {
+            inputs: [ absInput ],
+            outputs: [ path.resolve(outDir, relInput) ],
+            rule: 'copy'
+        }
+    });
 }
 
 function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
@@ -181,6 +217,7 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
         restat: true,
     };
 }
+
 function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
     const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
     addRules(ctx, sweetExport);
@@ -188,6 +225,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
         rules: Array.from(ctx.ruleMap.values()),
         targets: sweetExport.targets.map((target) => {
             switch (target.type) {
+                case 'copy':
+                    return eatTargetCopy(ctx, target);
                 case 'cpp':
                     return eatTargetCPP(ctx, target);
                 case 'regen':
@@ -197,7 +236,7 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                 default:
                     return target satisfies never;
             }
-        }),
+        }).flat(),
     };
 }
 

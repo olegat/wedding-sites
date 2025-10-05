@@ -2,6 +2,7 @@
 // Types:
 //------------------------------------------------------------------------------
 type Keywords =
+    'COPY_COMMAND' |
     'CPP_COMMAND' |
     'CURRENT_INPUT_DIR' |
     'CURRENT_OUTPUT_DIR'|
@@ -16,6 +17,7 @@ type KeywordObj<K extends Keywords> = { readonly keyword: K };
 // Constants:
 //------------------------------------------------------------------------------
 const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
+    COPY_COMMAND: { keyword: 'COPY_COMMAND' },
     CPP_COMMAND: { keyword: 'CPP_COMMAND' },
     CURRENT_INPUT_DIR: { keyword: 'CURRENT_INPUT_DIR' },
     CURRENT_OUTPUT_DIR: { keyword: 'CURRENT_OUTPUT_DIR' },
