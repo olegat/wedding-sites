@@ -78,7 +78,7 @@ Arguments:
   INPUT_HAGA_FILE   Path to a HAGA.ts module that exports { HAGA }
 
 Examples:
-  haga genin public/HAGA.ts > build.ninja
+  haga genin HAGA.ts > build.ninja
 `);
 }
 
@@ -91,11 +91,11 @@ Description:
   out/ directory.
 
 Arguments:
-  INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: public/HAGA.ts)
+  INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: ./HAGA.ts)
 
 Examples:
   haga build
-  haga build public/HAGA.ts
+  haga build my_path/HAGA.ts
 `);
 }
 
@@ -222,7 +222,7 @@ async function main(argv: string[]) {
 
     const [subcommand, ...rest] = argv;
 
-    const hagaFile = path.resolve(process.cwd(), rest[0] ?? 'public/HAGA.ts')
+    const hagaFile = path.resolve(process.cwd(), rest[0] ?? 'HAGA.ts')
     switch (subcommand) {
         case "genin": {
             return await runGenin(hagaFile, undefined);
