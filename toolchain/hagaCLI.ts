@@ -99,11 +99,6 @@ Examples:
 `);
 }
 
-function printGeninInvalid() {
-    console.error("Invalid usage of 'haga genin'");
-    console.error("Run 'haga help genin' for usage.");
-}
-
 //------------------------------------------------------------------------------
 // Subcommands
 //------------------------------------------------------------------------------
