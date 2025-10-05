@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary & Oli Wedding Festival</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <!-- Full-width banner -->
+  <div class="banner"></div>
+  <div class="banner-bounds"></div>
+
+  <!-- Floating language menu -->
+  <div class="lang-menu">
+    <a href="#">EN</a> | <a href="#">ES</a> | <a href="#">FR</a>
+  </div>
+
+  <div class="poster">
+    <h1>Mary & Oli</h1>
+    <h2>Wedding Festival</h2>
+    <div class="date-location">
+      Saturday 10th October 2026 · Zaragoza, Spain
+    </div>
+
+    <!-- Seamless logo marquee -->
+    <div class="logo-marquee">
+      <div class="marquee-track">
+#define BANDS \
+        <img src="./linkinpark.svg" alt="Linkin Park"> \
+        <img src="./oasis.svg" alt="Oasis"> \
+        <img src="./thecure.svg" style="height: 60px; margin-top: 10px" alt="The Cure"> \
+        <img src="./acdc.svg" alt="AC/DC"> \
+        <img src="./skindred.png" style="height: 50px; margin-top: 15px" alt="Skindred"> \
+        <img src="./ironmaiden.svg" alt="Iron Maiden"> \
+        <img src="./rosalia.svg" alt="Rosalía"> \
+        <img src="./badbunny.svg" alt="Bad Bunny"> \
+        <img src="./guns-n-roses.png" alt="Gun N Roses"> \
+        <img src="./deadmaus.png" alt="Dead Maus"> \
+        <img src="./metallica.svg" alt="Metallica"> \
+        <img src="./systemofadown.svg" alt="System Of A Down"> \
+        <img src="./publicenemy.svg" alt="Public Enemy"> \
+        <img src="./blacksabbath.svg" alt="Black Sabbath"> \
+        <img src="./alestorm.png" alt="Alestorm"> \
+        <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" alt="Airbourne"> \
+
+        <!-- Duplicate for seamless looping -->
+        BANDS
+        BANDS
+      </div>
+    </div>
+
+    <div class="lineup">
+      <h3>Full Lineup</h3>
+      <div class="bands">
+        <strong>Main Stage</strong>
+        ✨ Ceremony · 16:00 <br>
+        🍷 Cocktail Hour · 17:30 <br>
+
+        <strong>Harvest Tent</strong>
+        🍽️ Dinner · 19:00 <br>
+
+        <strong>Rock Arena</strong>
+        🎸 Party (Rock, Metal, Reggaeton, Hip-Hop) · 21:00 <br>
+
+        <strong>Bonfire Stage</strong>
+        🔥 Afterparty · Midnight
+      </div>
+    </div>
+
+    <div class="big-quote">
+      "Not just a wedding — a festival of love, rhythm, and autumn firelight."
+    </div>
+
+    <div class="rsvp-block">
+      <h2>🎟️ Grab Your Wristband</h2>
+      <p>Join us for a once-in-a-lifetime celebration</p>
+      <button>RSVP Now</button>
+    </div>
+  </div>
+
+  <footer>
+    📍 Zaragoza, Spain · 👗 Dress Code: Autumn Festival Chic · 🛏️ Accommodation details soon · ✈️ Travel info coming soon
+  </footer>
+</body>
+</html>
