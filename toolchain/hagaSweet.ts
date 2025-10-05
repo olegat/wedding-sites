@@ -60,11 +60,16 @@ type HagaSweetExport = {
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
     'cpp': {
         name: 'cpp',
-        commands: [ [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ] ],
+        commands: [
+            [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ]
+        ],
     },
     'regen': {
         name: 'regen',
-        commands: [ [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out'] ],
+        commands: [
+            [ 'cd', [HagaKeyword.INPUT_DIR] ],
+            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out']
+        ],
         description: 'Regenerate build.ninja',
     },
 };
@@ -128,13 +133,10 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
     return buffer.join('');
 }
 
-function eatStrings(ctx: HagaContext, sweetString: undefined): undefined;
-function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[]): string[];
-function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[] | undefined): string[] | undefined;
-function eatStrings(ctx: HagaContext, sweetString: HagaSweetString[] | undefined): string[] | undefined {
-    return sweetString?.map((s) => eatString(ctx, s));
+function resolvePaths(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString[]): string[] {
+    const base = eatString(ctx, baseDir);
+    return sweetString?.map((s) => path.resolve(base, eatString(ctx, s)));
 }
-
 
 function eatCommands(ctx: HagaContext, sweetCommandArgs: HagaSweetCommandArgs[]): HagaCoreCommandArgs[] {
     return sweetCommandArgs.map((sweetArgs) => sweetArgs.map((s) => eatString(ctx, s)));
@@ -162,19 +164,19 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
 
 function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
     const inputs    = sweetTarget.inputs ?? [[HagaKeyword.HAGA_INPUT_HAGAFILE]];
-    const outputs   = sweetTarget.outputs ?? ['build.ninja'];
-    const implicits = sweetTarget.implicits ?? [
+    const outputs   = sweetTarget.outputs ?? resolvePaths(ctx, [HagaKeyword.OUTPUT_DIR], ['build.ninja'])
+    const implicits = sweetTarget.implicits ?? resolvePaths(ctx, [HagaKeyword.INPUT_DIR], [
         'haga',
         'toolchain/hagaContext.ts',
         'toolchain/hagaKeyword.ts',
         'toolchain/hagaSweet.ts',
         'toolchain/hagaCLI.ts',
         'toolchain/hagaCore.ts',
-    ];
+    ]);
     return {
-        inputs: eatStrings(ctx, inputs),
-        outputs: eatStrings(ctx, outputs),
-        implicits: eatStrings(ctx, implicits),
+        inputs:    resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  inputs),
+        outputs:   resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], outputs),
+        implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  implicits),
         rule: "regen",
         restat: true,
     };
