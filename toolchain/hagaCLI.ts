@@ -1,5 +1,8 @@
+import fs from "fs";
 import path from "node:path";
 import process from "node:process";
+import { spawn } from "node:child_process";
+import { runGenin } from "./hagaGenin"; // assuming you have this entrypoint
 
 import {
     HagaCore,
@@ -60,6 +63,7 @@ function printGlobalHelp() {
 Available subcommands:
   help              Show this help message
   genin             Generate Ninja build files from a HAGA.ts file
+  build             Generate (if missing) and run Ninja in the out/ directory
 `);
 }
 
@@ -78,6 +82,23 @@ Examples:
 `);
 }
 
+function printBuildHelp() {
+    console.log(`Usage: haga build [INPUT_HAGA_FILE]
+
+Description:
+  "build" ensures there is an out/build.ninja file, generating one if missing
+  by invoking "haga genin". After that, it runs the Ninja build system in the
+  out/ directory.
+
+Arguments:
+  INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: public/HAGA.ts)
+
+Examples:
+  haga build
+  haga build public/HAGA.ts
+`);
+}
+
 function printGeninInvalid() {
     console.error("Invalid usage of 'haga genin'");
     console.error("Run 'haga help genin' for usage.");
@@ -86,15 +107,9 @@ function printGeninInvalid() {
 //------------------------------------------------------------------------------
 // Subcommands
 //------------------------------------------------------------------------------
-async function runGenin(args: string[]): Promise<void> {
-    const inputPath = args[0];
-    if (inputPath == null || args.length !== 1) {
-        printGeninInvalid();
-        process.exit(1);
-    }
-
+async function runGenin(hagaFile: string, outDir: string | undefined): Promise<void> {
     const cwd = process.cwd();
-    const absPath = path.resolve(cwd, inputPath);
+    const absPath = path.resolve(cwd, hagaFile);
     if (absPath.endsWith(".ts")) {
         require("ts-node").register({
             transpileOnly: true, // faster, we trust the IDE/compiler for type errors
@@ -113,7 +128,7 @@ async function runGenin(args: string[]): Promise<void> {
         CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
         CPP_COMMAND: 'cpp',
         HAGA_COMMAND: './haga',
-        HAGA_INPUT_HAGAFILE: inputPath,
+        HAGA_INPUT_HAGAFILE: hagaFile,
     });
     HagaContext.setGlobalContext(ctx);
 
@@ -150,8 +165,44 @@ async function runGenin(args: string[]): Promise<void> {
     // Flush errors collected during macro evaluation
     ctx.flushErrors();
 
-    // Write Ninja to stdout
-    HagaCore.writeNinjaBuild(exportData, (s) => process.stdout.write(s));
+    let outStream: (s: string) => void;
+    if (outDir) {
+        // Write Ninja to file
+        const outPath = path.resolve(outDir, 'build.ninja');
+        outStream = s => fs.writeFileSync(outPath, s, { flag: "a" });
+    } else {
+        // Write Ninja to stdout
+        outStream = (s) => process.stdout.write(s);
+    }
+    HagaCore.writeNinjaBuild(exportData, outStream);
+}
+
+async function runBuild(hagaFile: string): Promise<void> {
+    const outDir = path.resolve("out");
+    const ninjaFile = path.join(outDir, "build.ninja");
+
+    // Step 1. Ensure out/ exists
+    if (!fs.existsSync(outDir)) {
+        fs.mkdirSync(outDir, { recursive: true });
+    }
+
+    // Step 2. Generate build.ninja if missing
+    if (!fs.existsSync(ninjaFile)) {
+        await runGenin(hagaFile, outDir);
+    }
+
+    // Step 3. Invoke ninja
+    await new Promise<void>((resolve, reject) => {
+        const proc = spawn("ninja", {
+            cwd: outDir,
+            stdio: "inherit",
+        });
+
+        proc.on("close", (code) => {
+            if (code === 0) resolve();
+            else reject(new Error(`[HAGA ERROR] ninja exited with code ${code}`));
+        });
+    });
 }
 
 //------------------------------------------------------------------------------
@@ -161,6 +212,8 @@ async function main(argv: string[]) {
     if (argv.length === 0 || argv[0] === "help") {
         if (argv.length === 2 && argv[1] === "genin") {
             printGeninHelp();
+        } else if (argv.length === 2 && argv[1] === "build") {
+            printBuildHelp();
         } else {
             printGlobalHelp();
         }
@@ -168,10 +221,15 @@ async function main(argv: string[]) {
     }
 
     const [subcommand, ...rest] = argv;
+
+    const hagaFile = path.resolve(process.cwd(), rest[0] ?? 'public/HAGA.ts')
     switch (subcommand) {
-        case "genin":
-            await runGenin(rest);
-            break;
+        case "genin": {
+            return await runGenin(hagaFile, undefined);
+        }
+        case "build": {
+            return await runBuild(hagaFile);
+        }
         default:
             console.error(`Unknown subcommand: ${subcommand}`);
             printGlobalHelp();
