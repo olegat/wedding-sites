@@ -13,7 +13,7 @@ export default HagaSweet.eatSugar({
                 'public/airbourne.svg',
                 'public/alestorm.png',
                 'public/badbunny.svg',
-                'public/banner_16_9.png',
+                'public/banner_16_9.jpeg',
                 'public/blacksabbath.svg',
                 'public/deadmaus.png',
                 'public/guns-n-roses.png',
