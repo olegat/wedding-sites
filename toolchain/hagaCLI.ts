@@ -148,14 +148,14 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
     // Add default rule for regenerating `build.ninja`
     if (!ctx.ruleMap.has('regen')) {
         const defaultRegen = HagaSweet.eatSugar({ targets: [ { type: 'regen' } ]});
-        // TODO! Fix eatSugar().rules logic (incorrectly output ctx.rulesMap.values()):
+        // TODO! Fix eatSugar().rules logic (incorrectly outputs ctx.rulesMap.values()):
         //exportData.rules.push(...defaultRegen.rules);
         for (const rule of defaultRegen.rules) {
             if (rule.name === 'regen') {
                 exportData.rules.push(rule);
             }
         }
-        exportData.targets.push(...defaultRegen.targets);
+        exportData.targets.unshift(...defaultRegen.targets);
     }
 
     // Flush errors collected during macro evaluation
