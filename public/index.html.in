@@ -45,34 +45,67 @@
     </div>
 
     <div class="lineup">
-      <h3>Full Lineup</h3>
+      <h3>
+        <span lang="en">Full Lineup</span>
+        <span lang="es">Programa Completo</span>
+        <span lang="fr">Programme Complet</span>
+      </h3>
       <div class="bands">
         <strong>Main Stage</strong>
-        ✨ Ceremony · 16:00 <br>
-        🍷 Cocktail Hour · 17:30 <br>
+        ✨
+        <span lang="en">Ceremony</span>
+        <span lang="es">Ceremonia</span>
+        <span lang="fr">Cérémonie</span>
+        · 16:00 <br>
+        🍷
+        <span lang="en">Cocktail Hour</span>
+        <span lang="es">Hora del Cóctel</span>
+        <span lang="fr">Heure du Cocktail</span>
+        · 17:30 <br>
 
         <strong>Harvest Tent</strong>
-        🍽️ Dinner · 19:00 <br>
+        🍽️
+        <span lang="en">Dinner</span>
+        <span lang="es">Cena</span>
+        <span lang="fr">Dîner</span>
+        · 19:00 <br>
 
         <strong>Rock Arena</strong>
-        🎸 Party (Rock, Metal, Reggaeton, Hip-Hop) · 21:00 <br>
+        🎸
+        <span lang="en">Party</span>
+        <span lang="es">Fiesta</span>
+        <span lang="fr">Fête</span>
+        (Rock, Metal, Reggaeton, Hip-Hop) · 21:00<br>
 
         <strong>Bonfire Stage</strong>
-        🔥 Afterparty · Midnight
+        🔥 Afterparty · 04:00
       </div>
     </div>
 
     <div class="big-quote">
-      "Not just a wedding — a festival of love, rhythm, and autumn firelight."
+      <span lang="en">"Not just a wedding — a festival of love, rhythm, and autumn firelight."</span>
+      <span lang="es">"No solo una boda — un festival de amor, ritmo y fuego otoñal."</span>
+      <span lang="fr">"Pas seulement un mariage — un festival d'amour, de rythme et de feu d'automne."</span>
     </div>
 
     <div class="rsvp-block">
-      <h2>🎟️ Grab Your Wristband</h2>
-      <p>Join us for a once-in-a-lifetime celebration</p>
-      <button>RSVP Now</button>
+      <h2>
+        <span lang="en">🎟️ Grab Your Wristband</span>
+        <span lang="es">🎟️ Consigue tu Pulsera</span>
+        <span lang="fr">🎟️ Obtenez votre Bracelet</span>
+      </h2>
+      <p>
+        <span lang="en">Join us for a once-in-a-lifetime celebration</span>
+        <span lang="es">Únete a nosotros para una celebración única</span>
+        <span lang="fr">Rejoignez-nous pour une célébration unique</span>
+      </p>
+      <button>
+        <span lang="en">RSVP Now</span>
+        <span lang="es">Confirmar Asistencia</span>
+        <span lang="fr">RSVP</span>
+      </button>
     </div>
   </div>
-
 
   #include "body_footer.html"
 </body>
