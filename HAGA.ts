@@ -37,6 +37,7 @@ export default HagaSweet.eatSugar({
                 'public/guns-n-roses.png',
                 'public/index.css',
                 'public/ironmaiden.svg',
+                'public/language.js',
                 'public/linkinpark.svg',
                 'public/metallica.svg',
                 'public/oasis.svg',

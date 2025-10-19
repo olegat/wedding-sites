@@ -12,7 +12,9 @@
     <h1>Mary & Oli</h1>
     <h2>Wedding Festival</h2>
     <div class="date-location">
-      Saturday 10th October 2026 · Zaragoza, Spain
+      <span lang="en">Saturday 10th October 2026 · Zaragoza, Spain</span>
+      <span lang="es">Sábado 10 de Octubre de 2026 · Zaragoza, España</span>
+      <span lang="fr">Samedi 10 Octobre 2026 · Saragosse, Espagne</span>
     </div>
 
     <!-- Seamless logo marquee -->

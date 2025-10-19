@@ -30,6 +30,17 @@ body {
     text-decoration: underline;
 }
 
+span[lang] {
+  display: none;
+}
+
+html[lang="en"] span[lang="en"],
+html[lang="es"] span[lang="es"],
+html[lang="fr"] span[lang="fr"] {
+  display: inline;
+}
+
+
 /* Floating burger menu */
 .burger-menu {
   position: fixed;
