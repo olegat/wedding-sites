@@ -8,27 +8,6 @@ body {
     color: #1c1c1c;
 }
 
-.banner {
-    width: 100%;
-    background-size: cover;
-    position: absolute;
-    z-index: -1000;
-
-    /* Fade mask: keeps RGB intact, fades alpha */
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: 100% 100%;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-    mask-repeat: no-repeat;
-    mask-size: 100% 100%;
-}
-
-.banner-bounds {
-    width: 100%;
-    background-size: cover;
-    z-index: -1000;
-}
-
 /* Floating language menu */
 .lang-menu {
     position: fixed;
