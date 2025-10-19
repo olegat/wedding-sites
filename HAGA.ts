@@ -5,10 +5,22 @@ export default HagaSweet.eatSugar({
         {
             type: 'cpp',
             input: 'public/index.html.in',
+            // C-u M-! ./print-implicits.bash public/index.html.in
+            implicits: [
+                'public/body_footer.html',
+                'public/body_header.html',
+                'public/head_common.html',
+            ],
         },
         {
             type: 'cpp',
             input: 'public/travel.html.in',
+            // C-u M-! ./print-implicits.bash public/travel.html.in
+            implicits: [
+                'public/body_footer.html',
+                'public/body_header.html',
+                'public/head_common.html',
+            ],
         },
         {
             type: 'copy',
@@ -19,6 +31,7 @@ export default HagaSweet.eatSugar({
                 'public/badbunny.svg',
                 'public/banner_16_9.jpeg',
                 'public/blacksabbath.svg',
+                'public/common.css',
                 'public/deadmaus.png',
                 'public/guns-n-roses.png',
                 'public/index.css',

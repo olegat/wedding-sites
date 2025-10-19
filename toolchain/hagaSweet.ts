@@ -35,6 +35,7 @@ type HagaSweetTargetCPP = {
     type: 'cpp';
     input: HagaSweetString;
     output?: HagaSweetString;
+    implicits?: HagaSweetString[];
 };
 
 type HagaSweetTargetCopy = {
@@ -191,9 +192,11 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     const output     : string = eatString(ctx, sweetTarget.output ?? dropExtension(input, '.in'));
     const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.CURRENT_INPUT_DIR);
     const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.CURRENT_OUTPUT_DIR);
+    const implicits = resolvePaths(ctx, [HagaKeyword.INPUT_DIR], sweetTarget.implicits ?? []);
     return {
         inputs: [ absInput ],
         outputs: [ absOutput ],
+        implicits,
         rule: 'cpp',
     };
 }
