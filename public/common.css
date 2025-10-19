@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Playfair+Display:wght@600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    background: linear-gradient(to bottom, #ffb347, #ffcc33, #e17a47);
+    color: #1c1c1c;
+}
+
+.banner {
+    width: 100%;
+    background-size: cover;
+    position: absolute;
+    z-index: -1000;
+
+    /* Fade mask: keeps RGB intact, fades alpha */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+}
+
+.banner-bounds {
+    width: 100%;
+    background-size: cover;
+    z-index: -1000;
+}
+
+/* Floating language menu */
+.lang-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.8);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    z-index: 1000;
+}
+.lang-menu a {
+    margin: 0 5px;
+    color: #2e1d12;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+.lang-menu a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 80px;
+    padding: 30px 20px;
+    background: #2e1d12;
+    color: #fff;
+    font-size: 0.95em;
+}
