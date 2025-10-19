@@ -31,6 +31,7 @@ export default HagaSweet.eatSugar({
                 'public/badbunny.svg',
                 'public/banner_16_9.jpeg',
                 'public/blacksabbath.svg',
+                'public/burger.js',
                 'public/common.css',
                 'public/deadmaus.png',
                 'public/guns-n-roses.png',

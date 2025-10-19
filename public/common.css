@@ -30,6 +30,53 @@ body {
     text-decoration: underline;
 }
 
+/* Floating burger menu */
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50px;
+  padding: 10px;
+  z-index: 1000;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #2e1d12;
+}
+
+.burger-menu svg {
+  display: block;
+}
+
+/* Burger menu links (hidden by default) */
+.burger-links {
+  position: fixed;
+  top: 60px; /* just below burger button */
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  padding: 10px 20px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.burger-links a {
+  text-decoration: none;
+  color: #2e1d12;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.burger-links a:hover {
+  text-decoration: underline;
+}
+
 footer {
     margin-top: 80px;
     padding: 30px 20px;
