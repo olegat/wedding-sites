@@ -7,6 +7,10 @@ export default HagaSweet.eatSugar({
             input: 'public/index.html.in',
         },
         {
+            type: 'cpp',
+            input: 'public/travel.html.in',
+        },
+        {
             type: 'copy',
             inputs: [
                 'public/acdc.svg',
@@ -27,6 +31,8 @@ export default HagaSweet.eatSugar({
                 'public/skindred.png',
                 'public/systemofadown.svg',
                 'public/thecure.svg',
+                'public/travel.css',
+                'public/travel_3_2.jpeg',
             ],
         },
     ],

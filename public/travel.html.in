@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  #include "head_common.html"
+  <title>Mary & Oli Wedding Festival</title>
+  <link rel="stylesheet" href="./travel.css">
+</head>
+<body>
+  #include "body_header.html"
+
+  <div class="poster">
+    <h1>Travel Info</h1>
+
+    <h2>Flights</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor magna at eros convallis, nec fermentum neque fringilla.</p>
+
+    <h2>Trains</h2>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+
+    <h2>Car Rentals</h2>
+    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+
+    <h2>Local Transport</h2>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+    <h2>Accommodation Nearby</h2>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>Travel Tips</h2>
+    <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus.</p>
+  </div>
+
+  #include "body_footer.html"
+</body>
+</html>
