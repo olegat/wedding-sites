@@ -13,7 +13,7 @@ check_commands() {
   fi
 }
 
-required_cmds=("cpp" "yarn")
+required_cmds=("cpp" "ninja" "yarn")
 check_commands "${required_cmds[@]}"
 
 if [ ! -d "node_modules" ]; then
