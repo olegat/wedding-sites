@@ -21,22 +21,22 @@
     <div class="logo-marquee">
       <div class="marquee-track">
 #define BANDS \
-        <img src="./linkinpark.svg" alt="Linkin Park"> \
-        <img src="./oasis.svg" alt="Oasis"> \
-        <img src="./thecure.svg" style="height: 60px; margin-top: 10px" alt="The Cure"> \
-        <img src="./acdc.svg" alt="AC/DC"> \
-        <img src="./skindred.png" style="height: 50px; margin-top: 15px" alt="Skindred"> \
-        <img src="./ironmaiden.svg" alt="Iron Maiden"> \
-        <img src="./rosalia.svg" alt="Rosalía"> \
-        <img src="./badbunny.svg" alt="Bad Bunny"> \
-        <img src="./guns-n-roses.png" alt="Gun N Roses"> \
-        <img src="./deadmaus.png" alt="Dead Maus"> \
-        <img src="./metallica.svg" alt="Metallica"> \
-        <img src="./systemofadown.svg" alt="System Of A Down"> \
-        <img src="./publicenemy.svg" alt="Public Enemy"> \
-        <img src="./blacksabbath.svg" alt="Black Sabbath"> \
-        <img src="./alestorm.png" alt="Alestorm"> \
-        <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" alt="Airbourne"> \
+        <img src="./linkinpark.svg" width="116" height="80" alt="Linkin Park"> \
+        <img src="./oasis.svg" width="173" height="80" alt="Oasis"> \
+        <img src="./thecure.svg" width="127" height="60" alt="The Cure"> \
+        <img src="./acdc.svg" width="206" height="80" alt="AC/DC"> \
+        <img src="./skindred.png" width="176" height="50" alt="Skindred"> \
+        <img src="./ironmaiden.svg" width="143" height="80" alt="Iron Maiden"> \
+        <img src="./rosalia.svg" width="125" height="80" alt="Rosalía"> \
+        <img src="./badbunny.svg" width="172" height="80" alt="Bad Bunny"> \
+        <img src="./guns-n-roses.png" width="142" height="80" alt="Gun N Roses"> \
+        <img src="./deadmaus.png" width="134" height="80" alt="Dead Maus"> \
+        <img src="./metallica.svg" width="191" height="80" alt="Metallica"> \
+        <img src="./systemofadown.svg" width="80" height="80" alt="System Of A Down"> \
+        <img src="./publicenemy.svg" width="224" height="80" alt="Public Enemy"> \
+        <img src="./blacksabbath.svg" width="160" height="80" alt="Black Sabbath"> \
+        <img src="./alestorm.png" width="124" height="80" alt="Alestorm"> \
+        <img src="./airbourne.svg" width="188" height="50" alt="Airbourne"> \
 
         <!-- Duplicate for seamless looping -->
         BANDS
