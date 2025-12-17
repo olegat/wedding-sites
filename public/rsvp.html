@@ -38,6 +38,7 @@
 
       .disabled { opacity: 0.5; pointer-events: none; }
       .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .placeholder { font-weight: normal; font-size: 0.9rem; color: #555; display: block; margin-top: 0.2rem; }
     </style>
   </head>
 
@@ -104,7 +105,10 @@
         <span lang="en">+1 Name</span>
         <span lang="es">Nombre del acompañante</span>
         <span lang="fr">Nom du +1</span>
-        <input name="plus1_name" type="text" disabled placeholder="Optional" />
+        <input name="plus1_name" type="text" disabled />
+        <span class="placeholder" lang="en">Optional</span>
+        <span class="placeholder" lang="es">Opcional</span>
+        <span class="placeholder" lang="fr">Optionnel</span>
       </label>
 
       <!-- 3. Dietary & Alcohol -->
@@ -122,14 +126,22 @@
               <span lang="en">Allergies</span>
               <span lang="es">Alergias</span>
               <span lang="fr">Allergies</span>
-              <input name="allergies_main" type="text" placeholder="e.g. nuts, gluten" />
+              <input name="allergies_main" type="text" />
+              <span class="placeholder" lang="en">e.g. nuts, gluten</span>
+              <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
+              <span class="placeholder" lang="fr">ex. noix, gluten</span>
             </label>
+
             <label>
               <span lang="en">Dietary choice</span>
               <span lang="es">Dieta</span>
               <span lang="fr">Régime</span>
-              <input name="diet_main" type="text" placeholder="e.g. vegan, vegetarian" />
+              <input name="diet_main" type="text" />
+              <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
+              <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
+              <span class="placeholder" lang="fr">ex. végan, végétarien</span>
             </label>
+
             <fieldset class="radio-group">
               <legend>
                 <span lang="en">Will you drink alcohol?</span>
@@ -147,14 +159,22 @@
               <span lang="en">+1 Allergies</span>
               <span lang="es">Alergias del acompañante</span>
               <span lang="fr">Allergies du +1</span>
-              <input name="allergies_plus1" type="text" placeholder="Optional" disabled />
+              <input name="allergies_plus1" type="text" disabled />
+              <span class="placeholder" lang="en">e.g. nuts, gluten</span>
+              <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
+              <span class="placeholder" lang="fr">ex. noix, gluten</span>
             </label>
+
             <label>
               <span lang="en">+1 Dietary choice</span>
               <span lang="es">Dieta del acompañante</span>
               <span lang="fr">Régime du +1</span>
-              <input name="diet_plus1" type="text" placeholder="Optional" disabled />
+              <input name="diet_plus1" type="text" disabled />
+              <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
+              <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
+              <span class="placeholder" lang="fr">ex. végan, végétarien</span>
             </label>
+
             <fieldset class="radio-group">
               <legend>
                 <span lang="en">+1 Will drink alcohol?</span>
@@ -185,7 +205,10 @@
         <span lang="en">Anything else we should know?</span>
         <span lang="es">¿Algo más que debamos saber?</span>
         <span lang="fr">Autre chose à signaler ?</span>
-        <textarea name="notes" rows="4" placeholder="Optional"></textarea>
+        <textarea name="notes" rows="4"></textarea>
+        <span class="placeholder" lang="en">Optional</span>
+        <span class="placeholder" lang="es">Opcional</span>
+        <span class="placeholder" lang="fr">Optionnel</span>
       </label>
 
       <!-- Hidden metadata -->
@@ -239,10 +262,19 @@
       // Function to disable all fields if not attending
       function updateAttendingFields() {
         const attendingYes = document.querySelector('input[name="attending"]:checked')?.value === 'yes';
-        form.querySelectorAll('input, select, textarea, fieldset').forEach(el => {
-          if (!['attending', 'lang'].includes(el.name) && !['attending-fieldset'].includes(el.id)) {
+
+        // All relevant elements
+        const allEls = form.querySelectorAll('input, select, textarea, fieldset, label, .placeholder');
+        allEls.forEach(el => {
+          if (!['lang', 'attending'].includes(el.name) && el.id !== 'attending-fieldset') {
             el.disabled = !attendingYes;
-            el.closest('fieldset')?.classList.toggle('disabled', !attendingYes);
+            if ((el.tagName === 'LABEL' && el.id === 'plus1-name-label') || el.classList.contains('placeholder')) {
+              el.classList.toggle('disabled', !attendingYes);
+            }
+            const closestFieldset = el.closest('fieldset');
+            if (closestFieldset && closestFieldset.id !== 'attending-fieldset') {
+              closestFieldset.classList.toggle('disabled', !attendingYes);
+            }
           }
         });
       }
