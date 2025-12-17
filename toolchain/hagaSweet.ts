@@ -72,30 +72,27 @@ type HagaSweetExport = {
 //------------------------------------------------------------------------------
 // Constants:
 //------------------------------------------------------------------------------
+const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
+
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
     'copy': {
         name: 'copy',
         commands: [
-            [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ]
+            [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ],
         ],
         description: 'Copying $in',
     },
     'cpp': {
         name: 'cpp',
         commands: [
-            [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ]
+            [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ],
         ],
         description: 'CPP $in',
     },
     'minify': {
         name: 'minify',
         commands: [
-            [
-                [HagaKeyword.BASH_COMMAND],
-                [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'],
-                '$in',
-                '$out',
-            ],
+            [ [HagaKeyword.BASH_COMMAND], MinifyAny, '$in', '$out', ],
         ],
         description: 'Minifying $in',
     },
@@ -103,7 +100,7 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         name: 'regen',
         commands: [
             [ 'cd', [HagaKeyword.INPUT_DIR] ],
-            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out']
+            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out'],
         ],
         description: 'Regenerate build.ninja',
     },
@@ -230,7 +227,13 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
 }
 
 function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
-    return eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
+    const result = eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
+    const minifyAnyJs = eatString(ctx, MinifyAny);
+    for (const targ of result) {
+        targ.implicits ??= [];
+        targ.implicits.push(minifyAnyJs);
+    }
+    return result;
 }
 
 function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
