@@ -29,11 +29,21 @@
           font-weight: 600;
       }
 
-      input, select, button {
+      input[type="text"], input[type="email"], select, button {
           width: 100%;
           margin-top: 0.4rem;
           padding: 0.6rem;
           font-size: 1rem;
+      }
+
+      .radio-group {
+          margin-top: 0.5rem;
+      }
+
+      .radio-group label {
+          display: inline-block;
+          margin-right: 1rem;
+          font-weight: normal;
       }
 
       button {
@@ -61,7 +71,7 @@
     </h1>
 
     <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
-      <!-- 1. Language first -->
+      <!-- LANGUAGE SELECT -->
       <label>
         <span lang="en">Language</span>
         <span lang="es">Idioma</span>
@@ -73,13 +83,15 @@
         </select>
       </label>
 
+      <!-- NAME -->
       <label>
         <span lang="en">Name</span>
         <span lang="es">Nombre</span>
         <span lang="fr">Nom</span>
-        <input name="name" required />
+        <input name="name" type="text" required />
       </label>
 
+      <!-- EMAIL -->
       <label>
         <span lang="en">Email</span>
         <span lang="es">Correo electrónico</span>
@@ -87,26 +99,28 @@
         <input name="email" type="email" required />
       </label>
 
-      <label>
-        <span lang="en">Attending?</span>
-        <span lang="es">¿Asistirá?</span>
-        <span lang="fr">Présence?</span>
-        <select name="attending">
-          <option value="yes">
-            <span lang="en">Yes</span>
-            <span lang="es">Sí</span>
-            <span lang="fr">Oui</span>
-          </option>
-          <option value="no">
-            <span lang="en">No</span>
-            <span lang="es">No</span>
-            <span lang="fr">Non</span>
-          </option>
-        </select>
-      </label>
+      <!-- ATTENDING? (RADIO BUTTONS) -->
+      <fieldset class="radio-group">
+        <legend>
+          <span lang="en">Attending?</span>
+          <span lang="es">¿Asistirá?</span>
+          <span lang="fr">Présence?</span>
+        </legend>
 
-      <!-- Optional metadata -->
-      <input type="hidden" name="source" value="rsvp-test" />
+        <label>
+          <input type="radio" name="attending" value="yes" required />
+          <span lang="en">Yes</span>
+          <span lang="es">Sí</span>
+          <span lang="fr">Oui</span>
+        </label>
+
+        <label>
+          <input type="radio" name="attending" value="no" required />
+          <span lang="en">No</span>
+          <span lang="es">No</span>
+          <span lang="fr">Non</span>
+        </label>
+      </fieldset>
 
       <button type="submit">
         <span lang="en">Submit</span>
@@ -144,7 +158,6 @@
         currentLang = e.target.value;
         localStorage.setItem('lang', currentLang);
         document.documentElement.lang = currentLang;
-        // CSS handles showing/hiding <span lang>
       });
 
       // ------------------------------
