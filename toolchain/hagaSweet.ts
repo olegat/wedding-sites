@@ -44,6 +44,12 @@ type HagaSweetTargetCopy = {
     outputDir?: HagaSweetString;
 };
 
+type HagaSweetTargetMinifyHtml = {
+    type: 'minify-html';
+    inputs: HagaSweetString[];
+    outputDir?: HagaSweetString;
+};
+
 export type HagaSweetTargetRegen = {
     type: "regen";
     inputs?: HagaSweetString[]; // default [[HagaKeyword.HAGA_INPUT_HAGAFILE]]
@@ -54,6 +60,7 @@ export type HagaSweetTargetRegen = {
 type HagaSweetTarget =
     HagaSweetTargetCopy |
     HagaSweetTargetCPP |
+    HagaSweetTargetMinifyHtml |
     HagaSweetTargetRegen |
     HagaCoreTarget;
 
@@ -77,6 +84,21 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         commands: [
             [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ]
         ],
+    },
+    'minify-html': {
+        name: 'minify-html',
+        commands: [
+            [
+                [HagaKeyword.NPX_COMMAND], 'html-minifier-terser',
+                '--collapse-whitespace',
+                '--remove-comments',
+                '--minify-css', 'true',
+                '--minify-js', 'true',
+                '-o', '$out',
+                '$in',
+            ],
+        ],
+        description: 'Minifying $in',
     },
     'regen': {
         name: 'regen',
@@ -104,6 +126,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
         switch (target.type) {
             case 'copy':
             case 'cpp':
+            case 'minify-html':
             case 'regen':
                 if ( ! ctx.ruleMap.has(target.type)) {
                     const sweetRule : HagaSweetRule = SweetRules[target.type];
@@ -174,7 +197,9 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
     };
 }
 
-function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
+type InputsAndOutdir = { inputs: HagaSweetString[], outputDir?: HagaSweetString };
+type Rule = keyof typeof SweetRules;
+function eatTargetInputsWithRule(ctx: HagaContext, sweetTarget: InputsAndOutdir, rule: Rule): HagaCoreTarget[] {
     const outDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir ?? '');
     return sweetTarget.inputs.map(sweetInput => {
         const relInput: string = eatString(ctx, sweetInput)
@@ -182,9 +207,13 @@ function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): Haga
         return {
             inputs: [ absInput ],
             outputs: [ path.resolve(outDir, relInput) ],
-            rule: 'copy'
+            rule,
         }
     });
+}
+
+function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
+    return eatTargetInputsWithRule(ctx, sweetTarget, 'copy');
 }
 
 function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
@@ -199,6 +228,10 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
         implicits,
         rule: 'cpp',
     };
+}
+
+function eatTargetMinifyHtml(ctx: HagaContext, sweetTarget: HagaSweetTargetMinifyHtml): HagaCoreTarget[] {
+    return eatTargetInputsWithRule(ctx, sweetTarget, 'minify-html');
 }
 
 function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
@@ -232,6 +265,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetCopy(ctx, target);
                 case 'cpp':
                     return eatTargetCPP(ctx, target);
+                case 'minify-html':
+                    return eatTargetMinifyHtml(ctx, target);
                 case 'regen':
                     return eatTargetRegen(ctx, target);
                 case undefined:

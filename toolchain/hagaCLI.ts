@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "node:path";
 import process from "node:process";
 import { spawn } from "node:child_process";
-import { runGenin } from "./hagaGenin"; // assuming you have this entrypoint
 
 import {
     HagaCore,
@@ -125,6 +124,7 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         CPP_COMMAND: 'cpp',
         HAGA_COMMAND: './haga',
         HAGA_INPUT_HAGAFILE: hagaFile,
+        NPX_COMMAND: 'npx',
     });
     HagaContext.setGlobalContext(ctx);
 

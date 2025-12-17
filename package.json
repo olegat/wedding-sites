@@ -11,6 +11,7 @@
     "@swc/core": "^1.7.26",
     "@types/node": "^22.7.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "html-minifier-terser": "^7.1.0"
   }
 }

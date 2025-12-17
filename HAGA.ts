@@ -23,6 +23,12 @@ export default HagaSweet.eatSugar({
             ],
         },
         {
+            type: 'minify-html',
+            inputs: [
+                'public/rsvp.html',
+            ],
+        },
+        {
             type: 'copy',
             inputs: [
                 'public/acdc.svg',
