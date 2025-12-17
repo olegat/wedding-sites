@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RSVP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      span[lang] {
+          display: none;
+      }
+
+      html[lang="en"] span[lang="en"],
+      html[lang="es"] span[lang="es"],
+      html[lang="fr"] span[lang="fr"] {
+          display: inline;
+      }
+
+      body {
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+          max-width: 480px;
+          margin: 3rem auto;
+          padding: 0 1rem;
+          line-height: 1.4;
+      }
+
+      label {
+          display: block;
+          margin-top: 1rem;
+          font-weight: 600;
+      }
+
+      input, select, button {
+          width: 100%;
+          margin-top: 0.4rem;
+          padding: 0.6rem;
+          font-size: 1rem;
+      }
+
+      button {
+          margin-top: 1.5rem;
+          cursor: pointer;
+      }
+
+      .hidden {
+          display: none;
+      }
+
+      .success {
+          font-weight: 600;
+          color: #0a7a0a;
+          margin-top: 2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>
+      <span lang="en">RSVP</span>
+      <span lang="es">Confirmación</span>
+      <span lang="fr">RSVP</span>
+    </h1>
+
+    <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
+      <!-- 1. Language first -->
+      <label>
+        <span lang="en">Language</span>
+        <span lang="es">Idioma</span>
+        <span lang="fr">Langue</span>
+        <select name="lang" id="lang-select">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+      </label>
+
+      <label>
+        <span lang="en">Name</span>
+        <span lang="es">Nombre</span>
+        <span lang="fr">Nom</span>
+        <input name="name" required />
+      </label>
+
+      <label>
+        <span lang="en">Email</span>
+        <span lang="es">Correo electrónico</span>
+        <span lang="fr">E-mail</span>
+        <input name="email" type="email" required />
+      </label>
+
+      <label>
+        <span lang="en">Attending?</span>
+        <span lang="es">¿Asistirá?</span>
+        <span lang="fr">Présence?</span>
+        <select name="attending">
+          <option value="yes">
+            <span lang="en">Yes</span>
+            <span lang="es">Sí</span>
+            <span lang="fr">Oui</span>
+          </option>
+          <option value="no">
+            <span lang="en">No</span>
+            <span lang="es">No</span>
+            <span lang="fr">Non</span>
+          </option>
+        </select>
+      </label>
+
+      <!-- Optional metadata -->
+      <input type="hidden" name="source" value="rsvp-test" />
+
+      <button type="submit">
+        <span lang="en">Submit</span>
+        <span lang="es">Enviar</span>
+        <span lang="fr">Envoyer</span>
+      </button>
+    </form>
+
+    <div id="success" class="success hidden">
+      <span lang="en">Thanks! Your response has been recorded.</span>
+      <span lang="es">¡Gracias! Su respuesta ha sido registrada.</span>
+      <span lang="fr">Merci ! Votre réponse a été enregistrée.</span>
+    </div>
+
+    <script>
+      // ------------------------------
+      // Configuration
+      // ------------------------------
+      const fakeGetformio = true; // set false in production
+      const form = document.getElementById("rsvp-form");
+      const success = document.getElementById("success");
+      const langSelect = document.getElementById("lang-select");
+
+      // ------------------------------
+      // 1. Initialize language from localStorage
+      // ------------------------------
+      let currentLang = localStorage.getItem('lang') || 'en';
+      langSelect.value = currentLang;
+      document.documentElement.lang = currentLang;
+
+      // ------------------------------
+      // 2. Update language on change
+      // ------------------------------
+      langSelect.addEventListener("change", (e) => {
+        currentLang = e.target.value;
+        localStorage.setItem('lang', currentLang);
+        document.documentElement.lang = currentLang;
+        // CSS handles showing/hiding <span lang>
+      });
+
+      // ------------------------------
+      // 3. Handle form submission
+      // ------------------------------
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (fakeGetformio) {
+          // ------------------------------
+          // Fake submission logic
+          // ------------------------------
+          form.classList.add("hidden");
+          success.classList.remove("hidden");
+          return;
+        }
+
+        // ------------------------------
+        // Normal submission to Getform
+        // ------------------------------
+        const formData = new FormData(form);
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          form.classList.add("hidden");
+          success.classList.remove("hidden");
+        } catch (err) {
+          console.error(err);
+          alert("Submission failed. Please try again.");
+        }
+      });
+    </script>
+  </body>
+</html>
