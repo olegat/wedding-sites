@@ -120,10 +120,12 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         OUTPUT_DIR: path.resolve(cwd, 'out'),
         CURRENT_INPUT_DIR: path.resolve(cwd, inputSubDir),
         CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
+        BASH_COMMAND: 'bash',
         COPY_COMMAND: 'cp',
         CPP_COMMAND: 'cpp',
         HAGA_COMMAND: './haga',
         HAGA_INPUT_HAGAFILE: hagaFile,
+        NODE_COMMAND: 'node',
         NPX_COMMAND: 'npx',
     });
     HagaContext.setGlobalContext(ctx);

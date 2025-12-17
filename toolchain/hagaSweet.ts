@@ -44,8 +44,8 @@ type HagaSweetTargetCopy = {
     outputDir?: HagaSweetString;
 };
 
-type HagaSweetTargetMinifyHtml = {
-    type: 'minify-html';
+type HagaSweetTargetMinify = {
+    type: 'minify';
     inputs: HagaSweetString[];
     outputDir?: HagaSweetString;
 };
@@ -60,7 +60,7 @@ export type HagaSweetTargetRegen = {
 type HagaSweetTarget =
     HagaSweetTargetCopy |
     HagaSweetTargetCPP |
-    HagaSweetTargetMinifyHtml |
+    HagaSweetTargetMinify |
     HagaSweetTargetRegen |
     HagaCoreTarget;
 
@@ -78,24 +78,23 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         commands: [
             [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ]
         ],
+        description: 'Copying $in',
     },
     'cpp': {
         name: 'cpp',
         commands: [
             [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ]
         ],
+        description: 'CPP $in',
     },
-    'minify-html': {
-        name: 'minify-html',
+    'minify': {
+        name: 'minify',
         commands: [
             [
-                [HagaKeyword.NPX_COMMAND], 'html-minifier-terser',
-                '--collapse-whitespace',
-                '--remove-comments',
-                '--minify-css', 'true',
-                '--minify-js', 'true',
-                '-o', '$out',
+                [HagaKeyword.BASH_COMMAND],
+                [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'],
                 '$in',
+                '$out',
             ],
         ],
         description: 'Minifying $in',
@@ -126,7 +125,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
         switch (target.type) {
             case 'copy':
             case 'cpp':
-            case 'minify-html':
+            case 'minify':
             case 'regen':
                 if ( ! ctx.ruleMap.has(target.type)) {
                     const sweetRule : HagaSweetRule = SweetRules[target.type];
@@ -230,8 +229,8 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     };
 }
 
-function eatTargetMinifyHtml(ctx: HagaContext, sweetTarget: HagaSweetTargetMinifyHtml): HagaCoreTarget[] {
-    return eatTargetInputsWithRule(ctx, sweetTarget, 'minify-html');
+function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
+    return eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
 }
 
 function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
@@ -265,8 +264,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetCopy(ctx, target);
                 case 'cpp':
                     return eatTargetCPP(ctx, target);
-                case 'minify-html':
-                    return eatTargetMinifyHtml(ctx, target);
+                case 'minify':
+                    return eatTargetMinify(ctx, target);
                 case 'regen':
                     return eatTargetRegen(ctx, target);
                 case undefined:

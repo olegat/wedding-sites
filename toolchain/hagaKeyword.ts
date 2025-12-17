@@ -2,6 +2,7 @@
 // Types:
 //------------------------------------------------------------------------------
 type Keywords =
+    'BASH_COMMAND' |
     'COPY_COMMAND' |
     'CPP_COMMAND' |
     'CURRENT_INPUT_DIR' |
@@ -9,6 +10,7 @@ type Keywords =
     'HAGA_COMMAND' |
     'HAGA_INPUT_HAGAFILE' |
     'INPUT_DIR' |
+    'NODE_COMMAND' |
     'NPX_COMMAND' |
     'OUTPUT_DIR';
 
@@ -18,6 +20,7 @@ type KeywordObj<K extends Keywords> = { readonly keyword: K };
 // Constants:
 //------------------------------------------------------------------------------
 const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
+    BASH_COMMAND: { keyword: 'BASH_COMMAND' },
     COPY_COMMAND: { keyword: 'COPY_COMMAND' },
     CPP_COMMAND: { keyword: 'CPP_COMMAND' },
     CURRENT_INPUT_DIR: { keyword: 'CURRENT_INPUT_DIR' },
@@ -25,6 +28,7 @@ const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     HAGA_COMMAND: { keyword: 'HAGA_COMMAND' },
     HAGA_INPUT_HAGAFILE: { keyword: 'HAGA_INPUT_HAGAFILE' },
     INPUT_DIR: { keyword: 'INPUT_DIR' },
+    NODE_COMMAND: { keyword: 'NODE_COMMAND'},
     NPX_COMMAND: { keyword: 'NPX_COMMAND'},
     OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
 };
