@@ -15,6 +15,7 @@ type HagaCoreTarget = {
     inputs: string[];
     outputs: string[];
     implicits?: string[] | undefined;
+    orderOnly?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
     restat?: boolean;
 };
@@ -67,6 +68,11 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
         if (target.implicits != undefined) {
             const implicits = target.implicits.join(" ");
             outputStream(` | ${implicits}`);
+        }
+
+        if (target.orderOnly != undefined) {
+            const orderOnly = target.orderOnly.join(" ");
+            outputStream(` || ${orderOnly}`);
         }
 
         outputStream(`\n`);

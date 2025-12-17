@@ -160,6 +160,17 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         exportData.targets.unshift(...defaultRegen.targets);
     }
 
+    // Build `build.ninja` before all other targets
+    const regenTarg = exportData.targets.find(t => t.rule === 'regen');
+    if (regenTarg) {
+        for (const targ of exportData.targets) {
+            if (targ.rule !== 'regen') {
+                targ.orderOnly ??= [];
+                targ.orderOnly.push(...regenTarg.outputs);
+            }
+        }
+    }
+
     // Flush errors collected during macro evaluation
     ctx.flushErrors();
 
