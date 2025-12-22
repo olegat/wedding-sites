@@ -48,6 +48,10 @@
           margin-top: 0.25rem;
           line-height: 1.4;
       }
+
+      .mainq {
+          margin-top: 1.5rem;
+      }
     </style>
   </head>
 
@@ -60,184 +64,202 @@
 
     <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
       <!-- LANGUAGE SELECT -->
-      <label>
-        <span lang="en">Language</span>
-        <span lang="es">Idioma</span>
-        <span lang="fr">Langue</span>
-        <select name="lang" id="lang-select">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="fr">Français</option>
-        </select>
-      </label>
+      <div class="mainq">
+        <label>
+          <span lang="en">Language</span>
+          <span lang="es">Idioma</span>
+          <span lang="fr">Langue</span>
+          <select name="lang" id="lang-select">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+          </select>
+        </label>
+      </div>
 
       <!-- NAME -->
-      <label>
-        <span lang="en">Name</span>
-        <span lang="es">Nombre</span>
-        <span lang="fr">Nom</span>
-        <input name="name" type="text" required />
-      </label>
+      <div class="mainq">
+        <label>
+          <span lang="en">Name</span>
+          <span lang="es">Nombre</span>
+          <span lang="fr">Nom</span>
+          <input name="name" type="text" required />
+        </label>
+      </div>
 
       <!-- EMAIL -->
-      <label>
-        <span lang="en">Email</span>
-        <span lang="es">Correo electrónico</span>
-        <span lang="fr">E-mail</span>
-        <div class="questioninfo">
-          <span lang="en">We'll use this email address to send you updates.</span>
-          <span lang="es">Usaremos esta dirección de correo para enviarle actualizaciones.</span>
-          <span lang="fr">Nous utiliserons cette adresse e-mail pour vous envoyer des informations.</span>
-        </div>
-        <input name="email" type="email" required />
-      </label>
+      <div class="mainq">
+        <label>
+          <span lang="en">Email</span>
+          <span lang="es">Correo electrónico</span>
+          <span lang="fr">E-mail</span>
+          <div class="questioninfo">
+            <span lang="en">We'll use this email address to send you updates.</span>
+            <span lang="es">Usaremos esta dirección de correo para enviarle actualizaciones.</span>
+            <span lang="fr">Nous utiliserons cette adresse e-mail pour vous envoyer des informations.</span>
+          </div>
+          <input name="email" type="email" required />
+        </label>
+      </div>
 
       <!-- ATTENDING? RADIO -->
-      <fieldset class="radio-group" id="attending-fieldset">
-        <legend>
-          <span lang="en">Attending?</span>
-          <span lang="es">¿Asistirá?</span>
-          <span lang="fr">Présence?</span>
-        </legend>
-        <label><input type="radio" name="attending" value="yes" required /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-        <label><input type="radio" name="attending" value="no" required /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
-      </fieldset>
+      <div class="mainq">
+        <fieldset class="radio-group" id="attending-fieldset">
+          <legend>
+            <span lang="en">Attending?</span>
+            <span lang="es">¿Asistirá?</span>
+            <span lang="fr">Présence?</span>
+          </legend>
+          <label><input type="radio" name="attending" value="yes" required /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+          <label><input type="radio" name="attending" value="no" required /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+        </fieldset>
+      </div>
 
       <!-- 1. +1 -->
-      <fieldset class="radio-group" id="plus1-fieldset">
-        <legend>
-          <span lang="en">Will you be bringing a +1?</span>
-          <span lang="es">¿Traerá acompañante?</span>
-          <span lang="fr">Allez-vous venir avec un +1 ?</span>
-        </legend>
-        <label><input type="radio" name="plus1" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-        <label><input type="radio" name="plus1" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
-      </fieldset>
+      <div class="mainq">
+        <fieldset class="radio-group" id="plus1-fieldset">
+          <legend>
+            <span lang="en">Will you be bringing a +1?</span>
+            <span lang="es">¿Traerá acompañante?</span>
+            <span lang="fr">Allez-vous venir avec un +1 ?</span>
+          </legend>
+          <label><input type="radio" name="plus1" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+          <label><input type="radio" name="plus1" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+        </fieldset>
+      </div>
 
       <!-- 2. +1 Name -->
-      <label id="plus1-name-label">
-        <span lang="en">+1 Name</span>
-        <span lang="es">Nombre del acompañante</span>
-        <span lang="fr">Nom du +1</span>
-        <input name="plus1_name" type="text" disabled />
-        <span class="placeholder" lang="en">Optional</span>
-        <span class="placeholder" lang="es">Opcional</span>
-        <span class="placeholder" lang="fr">Optionnel</span>
-      </label>
+      <div class="mainq">
+        <label id="plus1-name-label">
+          <span lang="en">+1 Name</span>
+          <span lang="es">Nombre del acompañante</span>
+          <span lang="fr">Nom du +1</span>
+          <input name="plus1_name" type="text" disabled />
+          <span class="placeholder" lang="en">Optional</span>
+          <span class="placeholder" lang="es">Opcional</span>
+          <span class="placeholder" lang="fr">Optionnel</span>
+        </label>
+      </div>
 
       <!-- 3. Dietary & Alcohol -->
-      <fieldset>
-        <legend>
-          <span lang="en">Dietary Requirements & Alcohol</span>
-          <span lang="es">Requisitos alimentarios y alcohol</span>
-          <span lang="fr">Régimes alimentaires et alcool</span>
-        </legend>
+      <div class="mainq">
+        <fieldset>
+          <legend>
+            <span lang="en">Dietary Requirements & Alcohol</span>
+            <span lang="es">Requisitos alimentarios y alcohol</span>
+            <span lang="fr">Régimes alimentaires et alcool</span>
+          </legend>
 
-        <div class="grid-two">
-          <!-- Main Guest -->
-          <div>
-            <label>
-              <span lang="en">Allergies</span>
-              <span lang="es">Alergias</span>
-              <span lang="fr">Allergies</span>
-              <input name="allergies_main" type="text" />
-              <span class="placeholder" lang="en">e.g. nuts, gluten</span>
-              <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
-              <span class="placeholder" lang="fr">ex. noix, gluten</span>
-            </label>
+          <div class="grid-two">
+            <!-- Main Guest -->
+            <div>
+              <label>
+                <span lang="en">Allergies</span>
+                <span lang="es">Alergias</span>
+                <span lang="fr">Allergies</span>
+                <input name="allergies_main" type="text" />
+                <span class="placeholder" lang="en">e.g. nuts, gluten</span>
+                <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
+                <span class="placeholder" lang="fr">ex. noix, gluten</span>
+              </label>
 
-            <label>
-              <span lang="en">Dietary choice</span>
-              <span lang="es">Dieta</span>
-              <span lang="fr">Régime</span>
-              <input name="diet_main" type="text" />
-              <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
-              <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
-              <span class="placeholder" lang="fr">ex. végan, végétarien</span>
-            </label>
+              <label>
+                <span lang="en">Dietary choice</span>
+                <span lang="es">Dieta</span>
+                <span lang="fr">Régime</span>
+                <input name="diet_main" type="text" />
+                <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
+                <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
+                <span class="placeholder" lang="fr">ex. végan, végétarien</span>
+              </label>
 
-            <fieldset class="radio-group">
-              <legend>
-                <span lang="en">Will you drink alcohol?</span>
-                <span lang="es">¿Beberá alcohol?</span>
-                <span lang="fr">Alcool ?</span>
-              </legend>
-              <label><input type="radio" name="alcohol_main" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-              <label><input type="radio" name="alcohol_main" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
-            </fieldset>
+              <fieldset class="radio-group">
+                <legend>
+                  <span lang="en">Will you drink alcohol?</span>
+                  <span lang="es">¿Beberá alcohol?</span>
+                  <span lang="fr">Alcool ?</span>
+                </legend>
+                <label><input type="radio" name="alcohol_main" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+                <label><input type="radio" name="alcohol_main" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+              </fieldset>
+            </div>
+
+            <!-- +1 guest -->
+            <div id="plus1-diet-column" class="disabled">
+              <label>
+                <span lang="en">+1 Allergies</span>
+                <span lang="es">Alergias del acompañante</span>
+                <span lang="fr">Allergies du +1</span>
+                <input name="allergies_plus1" type="text" disabled />
+                <span class="placeholder" lang="en">e.g. nuts, gluten</span>
+                <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
+                <span class="placeholder" lang="fr">ex. noix, gluten</span>
+              </label>
+
+              <label>
+                <span lang="en">+1 Dietary choice</span>
+                <span lang="es">Dieta del acompañante</span>
+                <span lang="fr">Régime du +1</span>
+                <input name="diet_plus1" type="text" disabled />
+                <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
+                <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
+                <span class="placeholder" lang="fr">ex. végan, végétarien</span>
+              </label>
+
+              <fieldset class="radio-group">
+                <legend>
+                  <span lang="en">+1 Will drink alcohol?</span>
+                  <span lang="es">El acompañante beberá alcohol?</span>
+                  <span lang="fr">+1 Alcool ?</span>
+                </legend>
+                <label><input type="radio" name="alcohol_plus1" value="yes" disabled /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+                <label><input type="radio" name="alcohol_plus1" value="no" disabled /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+              </fieldset>
+            </div>
           </div>
-
-          <!-- +1 guest -->
-          <div id="plus1-diet-column" class="disabled">
-            <label>
-              <span lang="en">+1 Allergies</span>
-              <span lang="es">Alergias del acompañante</span>
-              <span lang="fr">Allergies du +1</span>
-              <input name="allergies_plus1" type="text" disabled />
-              <span class="placeholder" lang="en">e.g. nuts, gluten</span>
-              <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
-              <span class="placeholder" lang="fr">ex. noix, gluten</span>
-            </label>
-
-            <label>
-              <span lang="en">+1 Dietary choice</span>
-              <span lang="es">Dieta del acompañante</span>
-              <span lang="fr">Régime du +1</span>
-              <input name="diet_plus1" type="text" disabled />
-              <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
-              <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
-              <span class="placeholder" lang="fr">ex. végan, végétarien</span>
-            </label>
-
-            <fieldset class="radio-group">
-              <legend>
-                <span lang="en">+1 Will drink alcohol?</span>
-                <span lang="es">El acompañante beberá alcohol?</span>
-                <span lang="fr">+1 Alcool ?</span>
-              </legend>
-              <label><input type="radio" name="alcohol_plus1" value="yes" disabled /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-              <label><input type="radio" name="alcohol_plus1" value="no" disabled /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
-            </fieldset>
-          </div>
-        </div>
-      </fieldset>
+        </fieldset>
+      </div>
 
       <!-- 4. Preboda -->
-      <fieldset class="radio-group">
-        <legend>
-          <span lang="en">Do you plan on joining the "preboda"?</span>
-          <span lang="es">¿Planea asistir a la "preboda"?</span>
-          <span lang="fr">Prévoit de rejoindre la "preboda" ?</span>
-        </legend>
-        <div class="questioninfo">
-          <span lang="en">
-            This is a casual and informal gathering the day before the wedding.
-            It's a great opportunity to mingle with other guests beforehand.
-          </span>
-          <span lang="es">
-            Es un encuentro informal y distendido el día antes de la boda.
-            Es una excelente oportunidad para conocer a otros invitados con antelación.
-          </span>
-          <span lang="fr">
-            Il s'agit d'une rencontre informelle et conviviale la veille du mariage.
-            C'est une excellente occasion de faire connaissance avec les autres invités à l'avance.
-          </span>
-        </div>
-        <label><input type="radio" name="preboda" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-        <label><input type="radio" name="preboda" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
-        <label><input type="radio" name="preboda" value="maybe" /> <span lang="en">Maybe</span><span lang="es">Tal vez</span><span lang="fr">Peut-être</span></label>
-      </fieldset>
+      <div class="mainq">
+        <fieldset class="radio-group">
+          <legend>
+            <span lang="en">Do you plan on joining the "preboda"?</span>
+            <span lang="es">¿Planea asistir a la "preboda"?</span>
+            <span lang="fr">Prévoit de rejoindre la "preboda" ?</span>
+          </legend>
+          <div class="questioninfo">
+            <span lang="en">
+              This is a casual and informal gathering the day before the wedding.
+              It's a great opportunity to mingle with other guests beforehand.
+            </span>
+            <span lang="es">
+              Es un encuentro informal y distendido el día antes de la boda.
+              Es una excelente oportunidad para conocer a otros invitados con antelación.
+            </span>
+            <span lang="fr">
+              Il s'agit d'une rencontre informelle et conviviale la veille du mariage.
+              C'est une excellente occasion de faire connaissance avec les autres invités à l'avance.
+            </span>
+          </div>
+          <label><input type="radio" name="preboda" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+          <label><input type="radio" name="preboda" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+          <label><input type="radio" name="preboda" value="maybe" /> <span lang="en">Maybe</span><span lang="es">Tal vez</span><span lang="fr">Peut-être</span></label>
+        </fieldset>
+      </div>
 
       <!-- 5. Anything else -->
-      <label>
-        <span lang="en">Anything else we should know?</span>
-        <span lang="es">¿Algo más que debamos saber?</span>
-        <span lang="fr">Autre chose à signaler ?</span>
-        <textarea name="notes" rows="4"></textarea>
-        <span class="placeholder" lang="en">Optional</span>
-        <span class="placeholder" lang="es">Opcional</span>
-        <span class="placeholder" lang="fr">Optionnel</span>
-      </label>
+      <div class="mainq">
+        <label>
+          <span lang="en">Anything else we should know?</span>
+          <span lang="es">¿Algo más que debamos saber?</span>
+          <span lang="fr">Autre chose à signaler ?</span>
+          <textarea name="notes" rows="4"></textarea>
+          <span class="placeholder" lang="en">Optional</span>
+          <span class="placeholder" lang="es">Opcional</span>
+          <span class="placeholder" lang="fr">Optionnel</span>
+        </label>
+      </div>
 
       <!-- Hidden metadata -->
       <input type="hidden" name="source" value="rsvp-test" />
