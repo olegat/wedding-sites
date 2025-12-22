@@ -21,8 +21,15 @@
       <h2>Getting Around Zaragoza</h2>
       <p>Zaragoza is a compact and very walkable city. For most visitors, there is no need to rent a car: many hotels, restaurants, and sights are within easy walking distance. For slightly longer journeys, taxis and city buses are plentiful, affordable, and easy to use. Taxis can be hailed on the street or found at taxi ranks.</p>
       <p>The wedding takes place during the Fiestas del Pilar, when the city is busier than usual and some streets may be closed or pedestrianised. Public transport and taxis continue to operate during the festivities, though journeys may occasionally take a little longer.</p>
-      <p>Dedicated shuttle buses will be provided between Zaragoza and the wedding venue (located outside the city). Full details and schedules will be shared closer to the date.</p>
     </section>
+
+    <section>
+      <h2>Venue</h2>
+      <p>Our wedding will be held entirely at <strong>Soto de Bruil</strong>, located in Alfajarín (50172).</p>
+      <p>Dedicated shuttle buses will be provided between Zaragoza and the venue. Full details and schedules will be shared closer to the date.</p>
+      <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    </section>
+
   </div>
 
   #include "body_footer.html"
