@@ -276,11 +276,11 @@
           <div class="diet-row">
             <fieldset id="alcohol-main-fieldset" class="radio-group no-margin-top">
               <label>
-                <input type="radio" name="alcohol_main" value="yes" />
+                <input id="alcohol-main-yes" type="radio" name="alcohol_main" value="yes" />
                 <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span>
               </label>
               <label>
-                <input type="radio" name="alcohol_main" value="no" />
+                <input id="alcohol-main-yes" type="radio" name="alcohol_main" value="no" />
                 <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span>
               </label>
             </fieldset>
@@ -370,16 +370,25 @@
         'plus1-name-placeholder-en',
         'plus1-name-placeholder-es',
         'plus1-name-placeholder-fr',
-        'plus1-diet-column',
+        'allergies-plus1-label',
         'allergies-plus1',
+        'diet-plus1-label',
         'diet-plus1',
+        'alcohol-plus1-label',
+        'alcohol-plus1-fieldset',
         'alcohol-plus1-yes',
         'alcohol-plus1-no',
       ];
 
       const ATTENDING_TOGGLEABLE_IDS = [
         'plus1-fieldset',
+        'allergies-main',
         'diet-fieldset',
+        'diet-main',
+        'alcohol-main-label',
+        'alcohol-main-fieldset',
+        'alcohol-main-yes',
+        'alcohol-main-no',
         'preboda-fieldset',
         ...PLUS1_TOGGLEABLE_IDS,
       ];
