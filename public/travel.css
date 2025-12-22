@@ -23,7 +23,7 @@
 }
 
 .poster {
-    max-width: 900px;
+    max-width: 700px;
     margin: auto;
     padding: 40px 20px;
     text-align: center;
@@ -40,7 +40,20 @@
 .poster h2 {
     font-size: 2.3em;
     margin: 10px 0 30px;
-    color: #f9ac2a;
+    color: #e63946;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 6px #2d1d12;
+    /* text-shadow: 2px 2px 6px #2d1d12; */
+}
+
+section {
+    background: rgb(255 235 181 / 76%);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    margin: 1.5rem 0;
+}
+
+section h2,
+section p {
+    text-align: left;
 }
