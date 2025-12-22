@@ -2,6 +2,7 @@
 // Types:
 //------------------------------------------------------------------------------
 type HagaCoreCommandArgs = string[];
+type HagaCoreVars = Record<string, string>;
 
 type HagaCoreRule = {
     name: string;                     // unique identifier
@@ -18,6 +19,7 @@ type HagaCoreTarget = {
     orderOnly?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
     restat?: boolean;
+    vars?: HagaCoreVars | undefined;
 };
 
 type HagaCoreExport = {
@@ -80,6 +82,11 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
         if (target.restat !== undefined) {
             outputStream(`  restat = ${target.restat ? 1 : 0}\n`);
         }
+        if (target.vars) {
+            for (const [key, val] of Object.entries(target.vars)) {
+                outputStream(`  ${key} = ${val}\n`);
+            }
+        }
 
         outputStream(`\n`);
     });
@@ -89,11 +96,8 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
  * Escape arguments for Ninja command lines
  */
 function escapeArg(arg: string): string {
-    if (/[\s$"]/g.test(arg)) {
-        // wrap in quotes and escape $
-        return `"${arg.replace(/\$/g, "$$")}"`;
-    }
-    return arg;
+    // Escape $ for Ninja, but DO NOT quote
+    return arg.replace(/\$/g, "$$");
 }
 
 //------------------------------------------------------------------------------
@@ -104,6 +108,7 @@ export type {
     HagaCoreRule,
     HagaCoreTarget,
     HagaCoreExport,
+    HagaCoreVars,
     HagaOutputStream,
 };
 

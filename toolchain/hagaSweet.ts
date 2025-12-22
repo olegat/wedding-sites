@@ -58,11 +58,19 @@ export type HagaSweetTargetRegen = {
     outputs?: HagaSweetString[]; // default ["build.ninja"]
 };
 
+type HagaSweetTargetZip = {
+    type: 'zip';
+    inputs: HagaSweetString[];
+    inputDir?: HagaSweetString;
+    output: HagaSweetString;
+};
+
 type HagaSweetTarget =
     HagaSweetTargetCopy |
     HagaSweetTargetCPP |
     HagaSweetTargetMinify |
     HagaSweetTargetRegen |
+    HagaSweetTargetZip |
     HagaCoreTarget;
 
 type HagaSweetExport = {
@@ -74,6 +82,7 @@ type HagaSweetExport = {
 // Constants:
 //------------------------------------------------------------------------------
 const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
+const ZipAbs: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/zip-abs.sh'];
 
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
     'copy': {
@@ -105,6 +114,13 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         ],
         description: 'Regenerate build.ninja',
     },
+    'zip': {
+        name: 'zip',
+        commands: [
+            [ [HagaKeyword.BASH_COMMAND], ZipAbs, '$out', '$indir', '$in', ],
+        ],
+        description: 'Zipping $out',
+    },
 };
 
 //------------------------------------------------------------------------------
@@ -125,6 +141,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
             case 'cpp':
             case 'minify':
             case 'regen':
+            case 'zip':
                 if ( ! ctx.ruleMap.has(target.type)) {
                     const sweetRule : HagaSweetRule = SweetRules[target.type];
                     const coreRule  : HagaCoreRule  = eatRule(ctx,sweetRule);
@@ -263,6 +280,17 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
     };
 }
 
+function eatTargetZip(ctx: HagaContext, sweetTarget: HagaSweetTargetZip): HagaCoreTarget {
+    const indir = eatString(ctx, sweetTarget.inputDir ?? [HagaKeyword.CURRENT_INPUT_DIR]);
+    return {
+        inputs:  resolvePaths(ctx, indir, sweetTarget.inputs),
+        outputs: resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], [sweetTarget.output]),
+        rule: "zip",
+        implicits:  [ eatString(ctx, ZipAbs) ],
+        vars: { indir },
+    };
+}
+
 function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
     const ctx: HagaContext = HagaContext.getNonNullableGlobalContext();
     addRules(ctx, sweetExport);
@@ -278,6 +306,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetMinify(ctx, target);
                 case 'regen':
                     return eatTargetRegen(ctx, target);
+                case 'zip':
+                    return eatTargetZip(ctx, target);
                 case undefined:
                     return target satisfies HagaCoreTarget;
                 default:
