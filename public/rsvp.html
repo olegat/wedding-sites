@@ -426,6 +426,23 @@
         }
       }
 
+      function serializeForm() {
+        const formData = new FormData(form);
+        const obj = {};
+        formData.forEach((value, key) => {
+          if (obj[key]) {
+            if (Array.isArray(obj[key])) {
+              obj[key].push(value);
+            } else {
+              obj[key] = [obj[key], value];
+            }
+          } else {
+            obj[key] = value;
+          }
+        });
+        return obj;
+      }
+
       // Initialize language
       let currentLang = localStorage.getItem('lang') || 'en';
       langSelect.value = currentLang;
@@ -449,6 +466,11 @@
         if (fakeGetformio) {
           form.classList.add('hidden');
           success.classList.remove('hidden');
+
+          // (Debug) Render form content as JSON
+          const pre = document.createElement('pre');
+          pre.textContent = JSON.stringify(serializeForm(), null, 2);
+          success.appendChild(pre);
           return;
         }
 
