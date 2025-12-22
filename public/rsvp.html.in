@@ -1,3 +1,4 @@
+#define USE_ALCOHOL_PROMPT 0
 <!doctype html>
 <html lang="en">
   <head>
@@ -153,7 +154,7 @@
           <span lang="es">Correo electrónico</span>
           <span lang="fr">E-mail</span>
           <div class="questioninfo">
-            <span lang="en">We'll use this email address to send you updates.</span>
+            <span lang="en">We&#39;ll use this email address to send you updates.</span>
             <span lang="es">Usaremos esta dirección de correo para enviarle actualizaciones.</span>
             <span lang="fr">Nous utiliserons cette adresse e-mail pour vous envoyer des informations.</span>
           </div>
@@ -263,6 +264,7 @@
             <span class="placeholder" lang="fr">ex. végan, végétarien</span>
           </div>
 
+#if USE_ALCOHOL_PROMPT
           <div class="diet-row">
             <legend id="alcohol-main-label">
               <span lang="en">Will you drink alcohol?</span>
@@ -298,6 +300,7 @@
               </label>
             </fieldset>
           </div>
+#endif
         </fieldset>
       </div>
 
@@ -312,7 +315,7 @@
           <div class="questioninfo">
             <span lang="en">
               This is a casual and informal gathering the day before the wedding.
-              It's a great opportunity to mingle with other guests beforehand.
+              It&#39;s a great opportunity to mingle with other guests beforehand.
             </span>
             <span lang="es">
               Es un encuentro informal y distendido el día antes de la boda.
@@ -374,10 +377,12 @@
         'allergies-plus1',
         'diet-plus1-label',
         'diet-plus1',
+#if USE_ALCOHOL_PROMPT
         'alcohol-plus1-label',
         'alcohol-plus1-fieldset',
         'alcohol-plus1-yes',
         'alcohol-plus1-no',
+#endif
       ];
 
       const ATTENDING_TOGGLEABLE_IDS = [
@@ -385,10 +390,12 @@
         'allergies-main',
         'diet-fieldset',
         'diet-main',
+#if USE_ALCOHOL_PROMPT
         'alcohol-main-label',
         'alcohol-main-fieldset',
         'alcohol-main-yes',
         'alcohol-main-no',
+#endif
         'preboda-fieldset',
         ...PLUS1_TOGGLEABLE_IDS,
       ];

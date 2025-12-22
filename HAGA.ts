@@ -26,9 +26,15 @@ export default HagaSweet.eatSugar({
             ],
         },
         {
+            type: 'cpp',
+            input: 'public/rsvp.html.in',
+            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/rsvp.html'],
+            // C-u M-! ./print-implicits.bash public/rsvp.html.in
+            implicits: [],
+        },
+        {
             type: 'minify',
             inputs: [
-                'public/rsvp.html',
                 'public/burger.js',
                 'public/common.css',
                 'public/index.css',
@@ -40,6 +46,7 @@ export default HagaSweet.eatSugar({
             type: 'minify',
             inputs: [
                 'index.html',
+                'rsvp.html',
                 'travel.html',
             ],
             inputDir: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'],
