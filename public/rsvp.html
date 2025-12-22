@@ -18,46 +18,84 @@
 
       body {
           font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-          max-width: 600px;
-          margin: 2rem auto;
-          padding: 0 1rem;
           line-height: 1.4;
+          margin: 2rem auto;
+          max-width: 600px;
+          padding: 0 1rem;
       }
 
-      label { display: block; margin-top: 1rem; font-weight: 600; }
-      legend { display: block; margin-top: 1rem; font-weight: 600; }
+      label,
+      legend {
+          display: block;
+          font-weight: 600;
+          margin-top: 1rem;
+      }
+
       input[type="text"], input[type="email"], select, textarea, button {
-          width: 100%;
+          font-size: 1rem;
           margin-top: 0.4rem;
           padding: 0.6rem;
-          font-size: 1rem;
+          width: 100%;
       }
 
-      .radio-group { margin-top: 1rem; }
-      .radio-group label { display: inline-block; margin-right: 1rem; font-weight: normal; }
+      .radio-group {
+          margin-top: 1rem;
+      }
+      .radio-group label {
+          display: inline-block;
+          font-weight: normal;
+          margin-right: 1rem;
+      }
 
-      fieldset { margin-top: 1rem; margin-inline: 0; border: none; padding: 0; }
-      legend { font-weight: 600; padding-inline: 0; }
+      fieldset {
+          border: none;
+          margin-inline: 0;
+          margin-top: 1rem;
+          padding: 0;
+      }
 
-      .hidden { display: none; }
-      .success { font-weight: 600; color: #0a7a0a; margin-top: 2rem; }
+      legend {
+          font-weight: 600;
+          padding-inline: 0;
+      }
 
-      .disabled { opacity: 0.5; pointer-events: none; }
+      .hidden {
+          display: none;
+      }
+
+      .success {
+          color: #0a7a0a;
+          font-weight: 600;
+          margin-top: 2rem;
+      }
+
+      .disabled {
+          opacity: 0.5;
+          pointer-events: none;
+      }
+
       .diet-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.5rem;
           align-items: start;
+          display: grid;
+          gap: 0.5rem;
+          grid-template-columns: 1fr 1fr;
       }
-      .placeholder { font-weight: normal; font-size: 0.9rem; color: #555; display: block; margin-top: 0.2rem; }
+
+      .placeholder {
+          color: #555;
+          display: block;
+          font-size: 0.9rem;
+          font-weight: normal;
+          margin-top: 0.2rem;
+      }
 
       .questioninfo {
+          color: #666;
+          font-size: 0.9em;
           font-style: italic;
           font-weight: normal;
-          font-size: 0.9em;
-          color: #666;
-          margin-top: 0.25rem;
           line-height: 1.4;
+          margin-top: 0.25rem;
       }
 
       .mainq {
