@@ -134,16 +134,16 @@
           <span lang="en">+1 Name</span>
           <span lang="es">Nombre del acompañante</span>
           <span lang="fr">Nom du +1</span>
-          <input name="plus1_name" type="text" disabled />
-          <span class="placeholder" lang="en">Optional</span>
-          <span class="placeholder" lang="es">Opcional</span>
-          <span class="placeholder" lang="fr">Optionnel</span>
+          <input id="plus1-name-input" name="plus1_name" type="text" disabled />
+          <span id="plus1-name-placeholder-en" class="placeholder" lang="en">Optional</span>
+          <span id="plus1-name-placeholder-es" class="placeholder" lang="es">Opcional</span>
+          <span id="plus1-name-placeholder-fr" class="placeholder" lang="fr">Optionnel</span>
         </label>
       </div>
 
       <!-- 3. Dietary & Alcohol -->
       <div class="mainq">
-        <fieldset>
+        <fieldset id="diet-fieldset">
           <legend>
             <span lang="en">Dietary Requirements & Alcohol</span>
             <span lang="es">Requisitos alimentarios y alcohol</span>
@@ -157,7 +157,7 @@
                 <span lang="en">Allergies</span>
                 <span lang="es">Alergias</span>
                 <span lang="fr">Allergies</span>
-                <input name="allergies_main" type="text" />
+                <input id="allergies-main" name="allergies_main" type="text" />
                 <span class="placeholder" lang="en">e.g. nuts, gluten</span>
                 <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
                 <span class="placeholder" lang="fr">ex. noix, gluten</span>
@@ -167,7 +167,7 @@
                 <span lang="en">Dietary choice</span>
                 <span lang="es">Dieta</span>
                 <span lang="fr">Régime</span>
-                <input name="diet_main" type="text" />
+                <input id="diet-main" name="diet_main" type="text" />
                 <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
                 <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
                 <span class="placeholder" lang="fr">ex. végan, végétarien</span>
@@ -179,8 +179,8 @@
                   <span lang="es">¿Beberá alcohol?</span>
                   <span lang="fr">Alcool ?</span>
                 </legend>
-                <label><input type="radio" name="alcohol_main" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-                <label><input type="radio" name="alcohol_main" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+                <label><input id="alcohol-main-yes" type="radio" name="alcohol_main" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+                <label><input id="alcohol-main-no" type="radio" name="alcohol_main" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
               </fieldset>
             </div>
 
@@ -190,7 +190,7 @@
                 <span lang="en">+1 Allergies</span>
                 <span lang="es">Alergias del acompañante</span>
                 <span lang="fr">Allergies du +1</span>
-                <input name="allergies_plus1" type="text" disabled />
+                <input id="allergies-plus1" name="allergies_plus1" type="text" disabled />
                 <span class="placeholder" lang="en">e.g. nuts, gluten</span>
                 <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
                 <span class="placeholder" lang="fr">ex. noix, gluten</span>
@@ -200,7 +200,7 @@
                 <span lang="en">+1 Dietary choice</span>
                 <span lang="es">Dieta del acompañante</span>
                 <span lang="fr">Régime du +1</span>
-                <input name="diet_plus1" type="text" disabled />
+                <input id="diet-plus1" name="diet_plus1" type="text" disabled />
                 <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
                 <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
                 <span class="placeholder" lang="fr">ex. végan, végétarien</span>
@@ -212,8 +212,8 @@
                   <span lang="es">El acompañante beberá alcohol?</span>
                   <span lang="fr">+1 Alcool ?</span>
                 </legend>
-                <label><input type="radio" name="alcohol_plus1" value="yes" disabled /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-                <label><input type="radio" name="alcohol_plus1" value="no" disabled /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+                <label><input id="alcohol-plus1-yes" type="radio" name="alcohol_plus1" value="yes" disabled /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
+                <label><input id="alcohol-plus1-no" type="radio" name="alcohol_plus1" value="no" disabled /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
               </fieldset>
             </div>
           </div>
@@ -222,7 +222,7 @@
 
       <!-- 4. Preboda -->
       <div class="mainq">
-        <fieldset class="radio-group">
+        <fieldset class="radio-group" id="preboda-fieldset">
           <legend>
             <span lang="en">Do you plan on joining the "preboda"?</span>
             <span lang="es">¿Planea asistir a la "preboda"?</span>
@@ -254,7 +254,7 @@
           <span lang="en">Anything else we should know?</span>
           <span lang="es">¿Algo más que debamos saber?</span>
           <span lang="fr">Autre chose à signaler ?</span>
-          <textarea name="notes" rows="4"></textarea>
+          <textarea id="notes-textarea" name="notes" rows="4"></textarea>
           <span class="placeholder" lang="en">Optional</span>
           <span class="placeholder" lang="es">Opcional</span>
           <span class="placeholder" lang="fr">Optionnel</span>
@@ -285,8 +285,60 @@
 
       const attendingRadios = document.querySelectorAll('input[name="attending"]');
       const plus1Radios = document.querySelectorAll('input[name="plus1"]');
-      const plus1NameInput = document.querySelector('input[name="plus1_name"]');
-      const plus1DietColumn = document.getElementById('plus1-diet-column');
+
+      const PLUS1_TOGGLEABLE_IDS = [
+        'plus1-name-label',
+        'plus1-name-input',
+        'plus1-name-placeholder-en',
+        'plus1-name-placeholder-es',
+        'plus1-name-placeholder-fr',
+        'plus1-diet-column',
+        'allergies-plus1',
+        'diet-plus1',
+        'alcohol-plus1-yes',
+        'alcohol-plus1-no',
+      ];
+
+      const ATTENDING_TOGGLEABLE_IDS = [
+        'plus1-fieldset',
+        'diet-fieldset',
+        'preboda-fieldset',
+        'notes-textarea',
+        ...PLUS1_TOGGLEABLE_IDS,
+      ];
+
+      function updateElements(enabled, ids) {
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+
+          if ('disabled' in el) {
+            el.disabled = !enabled;
+          }
+
+          el.classList.toggle('disabled', !enabled);
+        });
+      }
+
+      function updatePlus1Fields() {
+        const plus1Yes =
+          document.querySelector('input[name="plus1"]:checked')?.value === 'yes';
+
+        updateElements(plus1Yes, PLUS1_TOGGLEABLE_IDS);
+      }
+
+      function updateAttendingFields() {
+        const attendingYes =
+          document.querySelector('input[name="attending"]:checked')?.value === 'yes';
+
+        updateElements(attendingYes, ATTENDING_TOGGLEABLE_IDS);
+
+        if (!attendingYes) {
+          updateElements(false, PLUS1_TOGGLEABLE_IDS);
+        } else {
+          updatePlus1Fields();
+        }
+      }
 
       // Initialize language
       let currentLang = localStorage.getItem('lang') || 'en';
@@ -299,40 +351,10 @@
         document.documentElement.lang = currentLang;
       });
 
-      // Function to enable/disable +1 fields
-      function updatePlus1Fields() {
-        const plus1Yes = document.querySelector('input[name="plus1"]:checked')?.value === 'yes';
-        plus1NameInput.disabled = !plus1Yes;
-        plus1DietColumn.classList.toggle('disabled', !plus1Yes);
-        plus1DietColumn.querySelectorAll('input[type="text"], input[type="radio"]').forEach(el => el.disabled = !plus1Yes);
-      }
-
       plus1Radios.forEach(r => r.addEventListener('change', updatePlus1Fields));
-
-      // Function to disable all fields if not attending
-      function updateAttendingFields() {
-        const attendingYes = document.querySelector('input[name="attending"]:checked')?.value === 'yes';
-
-        // All relevant elements
-        const allEls = form.querySelectorAll('input, select, textarea, fieldset, label, .placeholder');
-        allEls.forEach(el => {
-          if (!['lang', 'attending'].includes(el.name) && el.id !== 'attending-fieldset') {
-            el.disabled = !attendingYes;
-            if ((el.tagName === 'LABEL' && el.id === 'plus1-name-label') || el.classList.contains('placeholder')) {
-              el.classList.toggle('disabled', !attendingYes);
-            }
-            const closestFieldset = el.closest('fieldset');
-            if (closestFieldset && closestFieldset.id !== 'attending-fieldset') {
-              closestFieldset.classList.toggle('disabled', !attendingYes);
-            }
-          }
-        });
-      }
-
-      attendingRadios.forEach(r => r.addEventListener('change', () => {
-        updateAttendingFields();
-        updatePlus1Fields();
-      }));
+      attendingRadios.forEach(r =>
+        r.addEventListener('change', updateAttendingFields)
+      );
 
       // Form submit
       form.addEventListener('submit', async e => {
