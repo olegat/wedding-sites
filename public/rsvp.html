@@ -39,6 +39,15 @@
       .disabled { opacity: 0.5; pointer-events: none; }
       .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
       .placeholder { font-weight: normal; font-size: 0.9rem; color: #555; display: block; margin-top: 0.2rem; }
+
+      .questioninfo {
+          font-style: italic;
+          font-weight: normal;
+          font-size: 0.9em;
+          color: #666;
+          margin-top: 0.25rem;
+          line-height: 1.4;
+      }
     </style>
   </head>
 
@@ -75,6 +84,11 @@
         <span lang="en">Email</span>
         <span lang="es">Correo electrónico</span>
         <span lang="fr">E-mail</span>
+        <div class="questioninfo">
+          <span lang="en">We'll use this email address to send you updates.</span>
+          <span lang="es">Usaremos esta dirección de correo para enviarle actualizaciones.</span>
+          <span lang="fr">Nous utiliserons cette adresse e-mail pour vous envoyer des informations.</span>
+        </div>
         <input name="email" type="email" required />
       </label>
 
@@ -191,10 +205,24 @@
       <!-- 4. Preboda -->
       <fieldset class="radio-group">
         <legend>
-          <span lang="en">Do you plan on joining the "preboda"? (casual informal gathering 1–2 days before the wedding)</span>
-          <span lang="es">¿Planea asistir a la "preboda"? (reunión informal 1–2 días antes de la boda)</span>
-          <span lang="fr">Prévoit de rejoindre la "preboda" ? (rencontre informelle 1–2 jours avant le mariage)</span>
+          <span lang="en">Do you plan on joining the "preboda"?</span>
+          <span lang="es">¿Planea asistir a la "preboda"?</span>
+          <span lang="fr">Prévoit de rejoindre la "preboda" ?</span>
         </legend>
+        <div class="questioninfo">
+          <span lang="en">
+            This is a casual and informal gathering the day before the wedding.
+            It's a great opportunity to mingle with other guests beforehand.
+          </span>
+          <span lang="es">
+            Es un encuentro informal y distendido el día antes de la boda.
+            Es una excelente oportunidad para conocer a otros invitados con antelación.
+          </span>
+          <span lang="fr">
+            Il s'agit d'une rencontre informelle et conviviale la veille du mariage.
+            C'est une excellente occasion de faire connaissance avec les autres invités à l'avance.
+          </span>
+        </div>
         <label><input type="radio" name="preboda" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
         <label><input type="radio" name="preboda" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
         <label><input type="radio" name="preboda" value="maybe" /> <span lang="en">Maybe</span><span lang="es">Tal vez</span><span lang="fr">Peut-être</span></label>
