@@ -47,6 +47,7 @@ type HagaSweetTargetCopy = {
 type HagaSweetTargetMinify = {
     type: 'minify';
     inputs: HagaSweetString[];
+    inputDir?: HagaSweetString;
     outputDir?: HagaSweetString;
 };
 
@@ -193,16 +194,22 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
     };
 }
 
-type InputsAndOutdir = { inputs: HagaSweetString[], outputDir?: HagaSweetString };
+type InputsAndOutdir = {
+    inputs: HagaSweetString[],
+    outputDir?: HagaSweetString,
+    inputDir?: HagaSweetString
+};
 type Rule = keyof typeof SweetRules;
 function eatTargetInputsWithRule(ctx: HagaContext, sweetTarget: InputsAndOutdir, rule: Rule): HagaCoreTarget[] {
-    const outDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir ?? '');
+    const outDir : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir ?? '');
+    const inDir  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.inputDir ?? '');
     return sweetTarget.inputs.map(sweetInput => {
-        const relInput: string = eatString(ctx, sweetInput)
-        const absInput: string = toAbsolutePath(ctx, relInput, HagaKeyword.CURRENT_INPUT_DIR);
+        const name  : string = eatString(ctx, sweetInput)
+        const absInput  : string = resolvePath(ctx, inDir,  name);
+        const absOutput : string = resolvePath(ctx, outDir, name);
         return {
-            inputs: [ absInput ],
-            outputs: [ path.resolve(outDir, relInput) ],
+            inputs:  [ absInput  ],
+            outputs: [ absOutput ],
             rule,
         }
     });

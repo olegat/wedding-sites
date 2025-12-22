@@ -1,3 +1,4 @@
+import { HagaKeyword } from './toolchain/hagaKeyword';
 import { HagaSweet } from './toolchain/hagaSweet'
 
 export default HagaSweet.eatSugar({
@@ -5,6 +6,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'cpp',
             input: 'public/index.html.in',
+            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/index.html'],
             // C-u M-! ./print-implicits.bash public/index.html.in
             implicits: [
                 'public/body_footer.html',
@@ -15,6 +17,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'cpp',
             input: 'public/travel.html.in',
+            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/travel.html'],
             // C-u M-! ./print-implicits.bash public/travel.html.in
             implicits: [
                 'public/body_footer.html',
@@ -32,6 +35,15 @@ export default HagaSweet.eatSugar({
                 'public/language.js',
                 'public/travel.css',
             ],
+        },
+        {
+            type: 'minify',
+            inputs: [
+                'index.html',
+                'travel.html',
+            ],
+            inputDir: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'],
+            outputDir: 'public',
         },
         {
             type: 'copy',
