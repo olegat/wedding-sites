@@ -5,6 +5,11 @@
     <title>RSVP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+      /* GLOBAL BOX MODEL FIX */
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
       /* LANGUAGE HANDLING */
       span[lang] { display: none; }
       html[lang="en"] span[lang="en"],
@@ -25,7 +30,6 @@
           margin-top: 0.4rem;
           padding: 0.6rem;
           font-size: 1rem;
-          box-sizing: border-box;
       }
 
       .radio-group { margin-top: 1rem; }
