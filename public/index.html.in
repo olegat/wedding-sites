@@ -99,11 +99,13 @@
         <span lang="es">Únete a nosotros para una celebración única</span>
         <span lang="fr">Rejoignez-nous pour une célébration unique</span>
       </p>
-      <button>
-        <span lang="en">RSVP Now</span>
-        <span lang="es">Confirmar Asistencia</span>
-        <span lang="fr">RSVP</span>
-      </button>
+      <a href="./rsvp.html" target="_blank" rel="noopener">
+        <button type="button">
+          <span lang="en">RSVP Now</span>
+          <span lang="es">Confirmar Asistencia</span>
+          <span lang="fr">RSVP</span>
+        </button>
+      </a>
     </div>
   </div>
 
