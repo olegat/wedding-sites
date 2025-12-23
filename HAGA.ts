@@ -1,7 +1,9 @@
 import { HagaKeyword } from './toolchain/hagaKeyword';
 import { HagaSweet, HagaSweetString } from './toolchain/hagaSweet'
 
-const CPP_OUTPUT_DIR: HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
+const INDIR_PUBLIC  : HagaSweetString = [HagaKeyword.CURRENT_INPUT_DIR,  '/public'];
+const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
+const OUTDIR_PUBLIC : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'];
 
 export default HagaSweet.eatSugar({
     targets: [
@@ -15,8 +17,8 @@ export default HagaSweet.eatSugar({
                 'travel.html.in',
                 'rsvp.html.in',
             ],
-            inputDir: [HagaKeyword.CURRENT_INPUT_DIR, '/public'],
-            outputDir: CPP_OUTPUT_DIR,
+            inputDir: INDIR_PUBLIC,
+            outputDir: OUTDIR_CPP,
         },
         {
             type: 'minify',
@@ -25,8 +27,8 @@ export default HagaSweet.eatSugar({
                 'rsvp.html',
                 'travel.html',
             ],
-            inputDir: CPP_OUTPUT_DIR,
-            outputDir: 'public',
+            inputDir: OUTDIR_CPP,
+            outputDir: OUTDIR_PUBLIC,
         },
         {
             type: 'minify',
@@ -91,7 +93,7 @@ export default HagaSweet.eatSugar({
                 'travel.html',
                 'travel_3_2.jpeg',
             ],
-            inputDir: [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'],
+            inputDir: OUTDIR_PUBLIC,
             output: 'site.zip',
         },
     ],
