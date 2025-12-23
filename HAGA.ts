@@ -64,6 +64,12 @@ export default HagaSweet.eatSugar({
             ],
         },
         {
+            type: 'copy',
+            inputs: ['travelalt_3_2.png'],
+            inputDir: ['design'],
+            outputDir: ['public']
+        },
+        {
             type: 'zip',
             inputs: [
                 'acdc.svg',

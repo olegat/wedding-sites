@@ -49,6 +49,7 @@ type HagaSweetTargetCPPs = {
 type HagaSweetTargetCopy = {
     type: 'copy';
     inputs: HagaSweetString[];
+    inputDir?: HagaSweetString;
     outputDir?: HagaSweetString;
 };
 
