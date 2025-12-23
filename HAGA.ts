@@ -1,22 +1,32 @@
 import { HagaKeyword } from './toolchain/hagaKeyword';
-import { HagaSweet } from './toolchain/hagaSweet'
+import { HagaSweet, HagaSweetString } from './toolchain/hagaSweet'
+
+const CPP_OUTPUT_DIR: HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
 
 export default HagaSweet.eatSugar({
     targets: [
+        // Two steps for *.html.in files:
+        // 1. output `out/cpp/*.html` and `out/cpp/*.html.d` with clang.
+        // 2. output `out/public/*.html` with minify.
         {
-            type: 'cpp',
-            input: 'public/index.html.in',
-            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/index.html'],
+            type: 'cpps',
+            inputs: [
+                'index.html.in',
+                'travel.html.in',
+                'rsvp.html.in',
+            ],
+            inputDir: [HagaKeyword.CURRENT_INPUT_DIR, '/public'],
+            outputDir: CPP_OUTPUT_DIR,
         },
         {
-            type: 'cpp',
-            input: 'public/travel.html.in',
-            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/travel.html'],
-        },
-        {
-            type: 'cpp',
-            input: 'public/rsvp.html.in',
-            output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/rsvp.html'],
+            type: 'minify',
+            inputs: [
+                'index.html',
+                'rsvp.html',
+                'travel.html',
+            ],
+            inputDir: CPP_OUTPUT_DIR,
+            outputDir: 'public',
         },
         {
             type: 'minify',
@@ -27,16 +37,6 @@ export default HagaSweet.eatSugar({
                 'public/language.js',
                 'public/travel.css',
             ],
-        },
-        {
-            type: 'minify',
-            inputs: [
-                'index.html',
-                'rsvp.html',
-                'travel.html',
-            ],
-            inputDir: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'],
-            outputDir: 'public',
         },
         {
             type: 'copy',

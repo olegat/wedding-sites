@@ -39,6 +39,13 @@ type HagaSweetTargetCPP = {
     implicits?: HagaSweetString[];
 };
 
+type HagaSweetTargetCPPs = {
+    type: 'cpps';
+    inputs: HagaSweetString[];
+    inputDir?: HagaSweetString;
+    outputDir?: HagaSweetString;
+};
+
 type HagaSweetTargetCopy = {
     type: 'copy';
     inputs: HagaSweetString[];
@@ -69,6 +76,7 @@ type HagaSweetTargetZip = {
 type HagaSweetTarget =
     HagaSweetTargetCopy |
     HagaSweetTargetCPP |
+    HagaSweetTargetCPPs |
     HagaSweetTargetMinify |
     HagaSweetTargetRegen |
     HagaSweetTargetZip |
@@ -85,6 +93,14 @@ type HagaSweetExport = {
 const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
 const ZipAbs: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/zip-abs.sh'];
 
+const CPPRule: HagaSweetRule = {
+    name: 'cpp',
+    commands: [
+        [ [HagaKeyword.CLANG_COMMAND],
+          '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
+    ],
+    description: 'CPP $in',
+};
 const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
     'copy': {
         name: 'copy',
@@ -93,14 +109,8 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         ],
         description: 'Copying $in',
     },
-    'cpp': {
-        name: 'cpp',
-        commands: [
-            [ [HagaKeyword.CLANG_COMMAND],
-              '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
-        ],
-        description: 'CPP $in',
-    },
+    'cpp': CPPRule,
+    'cpps': CPPRule,
     'minify': {
         name: 'minify',
         commands: [
@@ -141,6 +151,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
         switch (target.type) {
             case 'copy':
             case 'cpp':
+            case 'cpps':
             case 'minify':
             case 'regen':
             case 'zip':
@@ -257,6 +268,19 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     };
 }
 
+function eatTargetCPPs(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs): HagaCoreTarget[] {
+    const result: HagaCoreTarget[] = [];
+    const inputDir  = sweetTarget.inputDir  ?? [HagaKeyword.CURRENT_INPUT_DIR];
+    const outputDir = sweetTarget.outputDir ?? [HagaKeyword.CURRENT_OUTPUT_DIR];
+    for (const baseInput of sweetTarget.inputs) {
+        const baseName : string = dropExtension(eatString(ctx, baseInput), '.in');
+        const input    : string = resolvePath(ctx, inputDir,  baseInput);
+        const output   : string = resolvePath(ctx, outputDir, baseName);
+        result.push(eatTargetCPP(ctx, { type: 'cpp', input, output }));
+    }
+    return result;
+}
+
 function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
     const result = eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
     const minifyAnyJs = eatString(ctx, MinifyAny);
@@ -309,6 +333,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetCopy(ctx, target);
                 case 'cpp':
                     return eatTargetCPP(ctx, target);
+                case 'cpps':
+                    return eatTargetCPPs(ctx, target);
                 case 'minify':
                     return eatTargetMinify(ctx, target);
                 case 'regen':
