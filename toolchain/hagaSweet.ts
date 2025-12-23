@@ -5,6 +5,7 @@ import type {
     HagaCoreExport,
     HagaCoreRule,
     HagaCoreTarget,
+    HagaCoreVars,
 } from "./hagaCore";
 
 import {
@@ -95,7 +96,8 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
     'cpp': {
         name: 'cpp',
         commands: [
-            [ [HagaKeyword.CPP_COMMAND], '-P', '$in', '>', '$out' ],
+            [ [HagaKeyword.CLANG_COMMAND],
+              '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
         ],
         description: 'CPP $in',
     },
@@ -242,11 +244,16 @@ function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCo
     const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.CURRENT_INPUT_DIR);
     const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.CURRENT_OUTPUT_DIR);
     const implicits = resolvePaths(ctx, [HagaKeyword.INPUT_DIR], sweetTarget.implicits ?? []);
+    const vars = {
+        outfile: `${absOutput}`,
+        depfile: `${absOutput}.d`,
+    } as const satisfies HagaCoreVars;
     return {
         inputs: [ absInput ],
-        outputs: [ absOutput ],
+        outputs: [ vars.outfile, vars.depfile ],
         implicits,
         rule: 'cpp',
+        vars,
     };
 }
 

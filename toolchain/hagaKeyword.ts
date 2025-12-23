@@ -3,8 +3,8 @@
 //------------------------------------------------------------------------------
 type Keywords =
     'BASH_COMMAND' |
+    'CLANG_COMMAND' |
     'COPY_COMMAND' |
-    'CPP_COMMAND' |
     'CURRENT_INPUT_DIR' |
     'CURRENT_OUTPUT_DIR'|
     'HAGA_COMMAND' |
@@ -21,8 +21,8 @@ type KeywordObj<K extends Keywords> = { readonly keyword: K };
 //------------------------------------------------------------------------------
 const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     BASH_COMMAND: { keyword: 'BASH_COMMAND' },
+    CLANG_COMMAND: { keyword: 'CLANG_COMMAND' },
     COPY_COMMAND: { keyword: 'COPY_COMMAND' },
-    CPP_COMMAND: { keyword: 'CPP_COMMAND' },
     CURRENT_INPUT_DIR: { keyword: 'CURRENT_INPUT_DIR' },
     CURRENT_OUTPUT_DIR: { keyword: 'CURRENT_OUTPUT_DIR' },
     HAGA_COMMAND: { keyword: 'HAGA_COMMAND' },

@@ -7,30 +7,16 @@ export default HagaSweet.eatSugar({
             type: 'cpp',
             input: 'public/index.html.in',
             output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/index.html'],
-            // C-u M-! ./print-implicits.bash public/index.html.in
-            implicits: [
-                'public/body_footer.html',
-                'public/body_header.html',
-                'public/head_common.html',
-            ],
         },
         {
             type: 'cpp',
             input: 'public/travel.html.in',
             output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/travel.html'],
-            // C-u M-! ./print-implicits.bash public/travel.html.in
-            implicits: [
-                'public/body_footer.html',
-                'public/body_header.html',
-                'public/head_common.html',
-            ],
         },
         {
             type: 'cpp',
             input: 'public/rsvp.html.in',
             output: [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp/rsvp.html'],
-            // C-u M-! ./print-implicits.bash public/rsvp.html.in
-            implicits: [],
         },
         {
             type: 'minify',
