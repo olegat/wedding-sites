@@ -1,7 +1,7 @@
 .banner {
     width: 100%;
     aspect-ratio: 3/2;
-    background: url("./travel_3_2.jpeg") no-repeat center top;
+    background: url("./travelalt_3_2.jpeg") no-repeat center top;
     background-size: cover;
     position: absolute;
     z-index: -1000;

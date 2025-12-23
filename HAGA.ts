@@ -61,13 +61,8 @@ export default HagaSweet.eatSugar({
                 'public/systemofadown.svg',
                 'public/thecure.svg',
                 'public/travel_3_2.jpeg',
+                'public/travelalt_3_2.jpeg',
             ],
-        },
-        {
-            type: 'copy',
-            inputs: ['travelalt_3_2.png'],
-            inputDir: ['design'],
-            outputDir: ['public']
         },
         {
             type: 'zip',
@@ -98,6 +93,7 @@ export default HagaSweet.eatSugar({
                 'travel.css',
                 'travel.html',
                 'travel_3_2.jpeg',
+                'travelalt_3_2.jpeg',
             ],
             inputDir: OUTDIR_PUBLIC,
             output: 'site.zip',
