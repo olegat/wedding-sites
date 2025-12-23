@@ -30,14 +30,11 @@ body {
     text-decoration: underline;
 }
 
-span[lang] {
+/* Hide elements whose lang does NOT match the page lang */
+html[lang="en"] [lang]:not([lang="en"]),
+html[lang="es"] [lang]:not([lang="es"]),
+html[lang="fr"] [lang]:not([lang="fr"]) {
   display: none;
-}
-
-html[lang="en"] span[lang="en"],
-html[lang="es"] span[lang="es"],
-html[lang="fr"] span[lang="fr"] {
-  display: inline;
 }
 
 /* Floating burger menu */
