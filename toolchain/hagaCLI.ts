@@ -125,8 +125,6 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         COPY_COMMAND: 'cp',
         HAGA_COMMAND: './haga',
         HAGA_INPUT_HAGAFILE: hagaFile,
-        NODE_COMMAND: 'node',
-        NPX_COMMAND: 'npx',
     });
     HagaContext.setGlobalContext(ctx);
 
