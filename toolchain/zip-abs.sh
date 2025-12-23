@@ -23,7 +23,7 @@ for f in "${in[@]}"; do
 done
 
 # Zip the files with relative paths
-rm "$out"
+test ! -e "$out" || rm "$out"
 zip -r "$out" "${relative_paths[@]}"
 
 popd > /dev/null
