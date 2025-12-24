@@ -308,7 +308,7 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
         outputs:   resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], outputs),
         implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  implicits),
         rule: "regen",
-        restat: true,
+        vars: { generator: '1', restat: '1' },
     };
 }
 

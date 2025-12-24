@@ -18,7 +18,6 @@ type HagaCoreTarget = {
     implicits?: string[] | undefined;
     orderOnly?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
-    restat?: boolean;
     vars?: HagaCoreVars | undefined;
 };
 
@@ -79,9 +78,6 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
 
         outputStream(`\n`);
 
-        if (target.restat !== undefined) {
-            outputStream(`  restat = ${target.restat ? 1 : 0}\n`);
-        }
         if (target.vars) {
             for (const [key, val] of Object.entries(target.vars)) {
                 outputStream(`  ${key} = ${val}\n`);
