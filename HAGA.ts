@@ -43,6 +43,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'copy',
             inputs: [
+                'public/.htaccess',
                 'public/acdc.svg',
                 'public/airbourne.svg',
                 'public/alestorm.webp',
@@ -68,6 +69,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'zip',
             inputs: [
+                '.htaccess',
                 'acdc.svg',
                 'airbourne.svg',
                 'alestorm.webp',
