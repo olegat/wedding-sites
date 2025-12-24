@@ -60,7 +60,7 @@ type HagaSweetTargetMinify = {
     outputDir?: HagaSweetString;
 };
 
-export type HagaSweetTargetRegen = {
+type HagaSweetTargetRegen = {
     type: "regen";
     inputs?: HagaSweetString[]; // default [[HagaKeyword.HAGA_INPUT_HAGAFILE]]
     implicits?: HagaSweetString[]; // default ['./haga', 'toolchain/**.ts']
@@ -362,6 +362,7 @@ export type {
     HagaSweetStringComposition,
     HagaSweetTarget,
     HagaSweetTargetCPP,
+    HagaSweetTargetRegen,
 };
 
 export const HagaSweet = {
