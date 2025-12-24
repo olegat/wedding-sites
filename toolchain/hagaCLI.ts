@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "node:path";
 import process from "node:process";
 import { spawn } from "node:child_process";
+import rsync from './rsync';
 
 import {
     HagaCore,
@@ -129,6 +130,26 @@ Examples:
 `);
 }
 
+function printRsyncHelp() {
+    console.log(`Usage: haga rsync SRC DST [INPUTS...]
+
+Description:
+  "rsync" recursively deploys files from the SRC directory to the DST directory.
+  The commands sanity-checks that the SRC directory only contains files that are
+  explicitly listed in the INPUTS. This is to ensure that unexpected/ignored
+  (that may contain sensitive information) isn't accidentally deployed remotely.
+  Updated files from DST (which do not exist in SRC) are deleted.
+
+Arguments:
+  SRC         Source Directory (must be a local dir)
+  DST         Destination Directory (may be local or remote)
+  INPUTS...   List of subpaths, relative to SRC, that you want to deploy
+
+Examples:
+  haga rsync out/public user@myhost:/home/public index.html style.css code.js
+`);
+}
+
 //------------------------------------------------------------------------------
 // Subcommands
 //------------------------------------------------------------------------------
@@ -233,31 +254,48 @@ async function runBuild(hagaFile: string): Promise<void> {
     });
 }
 
+async function runRsync(argv: string[]): Promise<void> {
+    if (argv.length < 4) {
+        throw Error(`incorrect usage: see "./haga help rsync"`);
+    }
+    const srcDir: string   = argv[1]!;
+    const dstDir: string   = argv[2]!;
+    const inputs: string[] = argv.splice(3);
+
+    const status = await rsync.run({ srcDir, dstDir, inputs });
+    if (status !== 0) {
+        throw Error(`rsync command exited with status: ${status}`);
+    }
+}
+
 //------------------------------------------------------------------------------
 // Main dispatcher
 //------------------------------------------------------------------------------
 async function main(argv: string[]) {
     if (argv.length === 0 || argv[0] === "help") {
-        if (argv.length === 2 && argv[1] === "genin") {
-            printGeninHelp();
-        } else if (argv.length === 2 && argv[1] === "build") {
-            printBuildHelp();
-        } else {
-            printGlobalHelp();
+        if (argv.length > 1) {
+            switch (argv[1]) {
+                case "genin":
+                    return printGeninHelp();
+                case "build":
+                    return printBuildHelp();
+                case "rsync":
+                    return printRsyncHelp();
+            }
         }
-        return;
+        return printGlobalHelp();
     }
 
     const [subcommand, ...rest] = argv;
 
     const hagaFile = path.resolve(process.cwd(), rest[0] ?? 'HAGA.ts')
     switch (subcommand) {
-        case "genin": {
+        case "genin":
             return await runGenin(hagaFile, undefined);
-        }
-        case "build": {
+        case "build":
             return await runBuild(hagaFile);
-        }
+        case "rsync":
+            return await runRsync(argv);
         default:
             throw Error(`Unknown subcommand: ${subcommand}`);
     }
