@@ -25,32 +25,50 @@ import {
 //------------------------------------------------------------------------------
 // Context implementation
 //------------------------------------------------------------------------------
-class CLIContext implements HagaContext {
-    private errors: Error[] = [];
-    readonly ruleMap: Map<string, HagaCoreRule> = new Map();
+function createContext(hagaFile: string): HagaContext {
+    class CLIContext implements HagaContext {
+        private errors: Error[] = [];
+        readonly ruleMap: Map<string, HagaCoreRule> = new Map();
 
-    constructor(private readonly keywordMap: HagaKeywordMapping) {}
+        constructor(private readonly keywordMap: HagaKeywordMapping) {}
 
-    eatKeywork(kwObj: HagaKeyword): string {
-        return this.keywordMap[kwObj.keyword];
-    }
+        eatKeywork(kwObj: HagaKeyword): string {
+            return this.keywordMap[kwObj.keyword];
+        }
 
-    reportError(err: Error): void {
-        this.errors.push(err);
-    }
+        reportError(err: Error): void {
+            this.errors.push(err);
+        }
 
-    flushErrors(): void {
-        if (this.errors.length > 0) {
-            for (const err of this.errors) {
-                console.error(`[HAGA ERROR] ${err.message}`);
+        flushErrors(): void {
+            if (this.errors.length > 0) {
+                for (const err of this.errors) {
+                    console.error(`[HAGA ERROR] ${err.message}`);
+                }
+                this.errors = [];
             }
-            this.errors = [];
+        }
+
+        debugLog(): void {
+            console.log(this.keywordMap);
         }
     }
 
-    debugLog(): void {
-        console.log(this.keywordMap);
-    }
+    const cwd = process.cwd();
+    const absPath = path.resolve(cwd, hagaFile);
+    const inputSubDir = path.relative(cwd, path.dirname(absPath));
+
+    return new CLIContext({
+        INPUT_DIR: cwd,
+        OUTPUT_DIR: path.resolve(cwd, 'out'),
+        CURRENT_INPUT_DIR: path.resolve(cwd, inputSubDir),
+        CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
+        BASH_COMMAND: 'bash',
+        CLANG_COMMAND: 'clang',
+        COPY_COMMAND: 'cp',
+        HAGA_COMMAND: './haga',
+        HAGA_INPUT_HAGAFILE: hagaFile,
+    });
 }
 
 //------------------------------------------------------------------------------
@@ -102,8 +120,10 @@ Examples:
 // Subcommands
 //------------------------------------------------------------------------------
 async function runGenin(hagaFile: string, outDir: string | undefined): Promise<void> {
-    const cwd = process.cwd();
-    const absPath = path.resolve(cwd, hagaFile);
+    const ctx = createContext(hagaFile);
+    HagaContext.setGlobalContext(ctx);
+
+    const absPath = ctx.eatKeywork(HagaKeyword.HAGA_INPUT_HAGAFILE);
     if (absPath.endsWith(".ts")) {
         require("ts-node").register({
             transpileOnly: true, // faster, we trust the IDE/compiler for type errors
@@ -113,20 +133,6 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
             }
         });
     }
-
-    const inputSubDir = path.relative(cwd, path.dirname(absPath));
-    const ctx = new CLIContext({
-        INPUT_DIR: cwd,
-        OUTPUT_DIR: path.resolve(cwd, 'out'),
-        CURRENT_INPUT_DIR: path.resolve(cwd, inputSubDir),
-        CURRENT_OUTPUT_DIR: path.resolve(cwd, 'out', inputSubDir),
-        BASH_COMMAND: 'bash',
-        CLANG_COMMAND: 'clang',
-        COPY_COMMAND: 'cp',
-        HAGA_COMMAND: './haga',
-        HAGA_INPUT_HAGAFILE: hagaFile,
-    });
-    HagaContext.setGlobalContext(ctx);
 
     // Dynamic import of the HAGA.ts file
     let mod: unknown;
