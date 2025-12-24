@@ -78,7 +78,7 @@ function createContext(hagaFile: string): HagaContext {
         BASH_COMMAND: 'bash',
         CLANG_COMMAND: 'clang',
         COPY_COMMAND: 'cp',
-        HAGA_COMMAND: './haga',
+        HAGA_COMMAND: path.resolve(cwd, 'haga'),
         HAGA_INPUT_HAGAFILE: hagaFile,
         TOUCH_COMMAND: 'touch',
     });
@@ -259,9 +259,7 @@ async function main(argv: string[]) {
             return await runBuild(hagaFile);
         }
         default:
-            console.error(`Unknown subcommand: ${subcommand}`);
-            printGlobalHelp();
-            process.exit(1);
+            throw Error(`Unknown subcommand: ${subcommand}`);
     }
 }
 
