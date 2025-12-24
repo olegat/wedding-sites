@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Left ring border -->
+  <circle
+    cx="6"
+    cy="7"
+    r="4.2"
+    fill="none"
+    stroke="#000000"
+    stroke-width="2.1"
+  />
+
+  <!-- Left ring: yellow gold -->
+  <circle
+    cx="6"
+    cy="7"
+    r="4.2"
+    fill="none"
+    stroke="#FFCD3B"
+    stroke-width="1.95"
+  />
+
+  <!-- Right ring border -->
+  <circle
+    cx="10"
+    cy="9"
+    r="4.2"
+    fill="none"
+    stroke="#000000"
+    stroke-width="2.1"
+  />
+
+  <!-- Right ring: pink / rose gold -->
+  <circle
+    cx="10"
+    cy="9"
+    r="4.2"
+    fill="none"
+    stroke="#E7A1D6"
+    stroke-width="1.95"
+  />
+</svg>
