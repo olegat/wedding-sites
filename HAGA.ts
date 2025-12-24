@@ -67,7 +67,9 @@ export default HagaSweet.eatSugar({
             ],
         },
         {
-            type: 'zip',
+            type: 'rsync',
+            name: 'deploy_public',
+            config: 'deploy.json',
             inputs: [
                 '.htaccess',
                 'acdc.svg',
@@ -99,8 +101,7 @@ export default HagaSweet.eatSugar({
                 'travel_3_2.jpeg',
                 'travelalt_3_2.jpeg',
             ],
-            inputDir: OUTDIR_PUBLIC,
-            output: 'site.zip',
+            srcDir: OUTDIR_PUBLIC,
         },
     ],
 });

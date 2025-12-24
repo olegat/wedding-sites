@@ -1,4 +1,5 @@
 import path from 'node:path';
+import rsync from './rsync';
 
 import type {
     HagaCoreCommandArgs,
@@ -67,6 +68,14 @@ type HagaSweetTargetRegen = {
     outputs?: HagaSweetString[]; // default ["build.ninja"]
 };
 
+type HagaSweetTargetRsync = {
+    type: "rsync";
+    name: string;
+    inputs: string[];
+    srcDir: HagaSweetString;
+    config: HagaSweetString;
+};
+
 type HagaSweetTargetZip = {
     type: 'zip';
     inputs: HagaSweetString[];
@@ -80,6 +89,7 @@ type HagaSweetTarget =
     HagaSweetTargetCPPs |
     HagaSweetTargetMinify |
     HagaSweetTargetRegen |
+    HagaSweetTargetRsync |
     HagaSweetTargetZip |
     HagaCoreTarget;
 
@@ -127,6 +137,14 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         ],
         description: 'Regenerate build.ninja',
     },
+    'rsync': {
+        name: 'rsync',
+        commands: [
+            [ [HagaKeyword.HAGA_COMMAND], 'rsync', '$srcDir', '$dstDir', '$inputs'],
+            [ [HagaKeyword.TOUCH_COMMAND], '$out' ],
+        ],
+        description: 'Deploying',
+    },
     'zip': {
         name: 'zip',
         commands: [
@@ -155,6 +173,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
             case 'cpps':
             case 'minify':
             case 'regen':
+            case 'rsync':
             case 'zip':
                 if ( ! ctx.ruleMap.has(target.type)) {
                     const sweetRule : HagaSweetRule = SweetRules[target.type];
@@ -211,6 +230,13 @@ function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: Ha
 function resolvePaths(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString[]): string[] {
     const base = eatString(ctx, baseDir);
     return sweetString?.map((s) => path.resolve(base, eatString(ctx, s)));
+}
+
+function appendExtension<E extends `.${string}`>(ctx: HagaContext, sweetPath: HagaSweetString, ext: E): `${string}${E}` {
+    const corePath = eatString(ctx, sweetPath);
+    const base = path.basename(corePath);
+    const dir  = path.dirname(corePath);
+    return path.resolve(dir, `${base}${ext}`) as `${string}${E}`;
 }
 
 function eatCommands(ctx: HagaContext, sweetCommandArgs: HagaSweetCommandArgs[]): HagaCoreCommandArgs[] {
@@ -312,6 +338,38 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
     };
 }
 
+function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): HagaCoreTarget[] {
+    const configPath = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.config);
+    const status = rsync.readConfig(configPath);
+    if (status.errorCode === rsync.RSyncErrorCode.CONFIG_READ_ERROR) {
+        ctx.reportWarning(new Error(`cannot open ${configPath}, ignoring rsync target '${sweetTarget.name}'`));
+        return [];
+    }
+    if (status.errorCode !== rsync.RSyncErrorCode.SUCCESS) {
+        ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${status.errorCode})`));
+        return [];
+    }
+    for (const i of sweetTarget.inputs) {
+        if (i.includes(' ') || i.includes(`\n`)) {
+            throw new Error(`spaces and EOL in rsync input '${i}' is unsupported`);
+        }
+    }
+    const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
+    const dstDir: string = status.dstDir;
+    const out = appendExtension(ctx, srcDir, '.timestamp');
+    return [{
+        rule: "rsync",
+        inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
+        outputs: [out],
+        implicits: [configPath],
+        vars: {
+            srcDir,
+            dstDir,
+            inputs: sweetTarget.inputs.join(' '),
+        },
+    }];
+}
+
 function eatTargetZip(ctx: HagaContext, sweetTarget: HagaSweetTargetZip): HagaCoreTarget {
     const indir = eatString(ctx, sweetTarget.inputDir ?? [HagaKeyword.CURRENT_INPUT_DIR]);
     return {
@@ -340,6 +398,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetMinify(ctx, target);
                 case 'regen':
                     return eatTargetRegen(ctx, target);
+                case 'rsync':
+                    return eatTargetRsync(ctx, target);
                 case 'zip':
                     return eatTargetZip(ctx, target);
                 case undefined:

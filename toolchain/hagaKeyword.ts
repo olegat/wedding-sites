@@ -2,15 +2,17 @@
 // Types:
 //------------------------------------------------------------------------------
 type Keywords =
-    'BASH_COMMAND' |
-    'CLANG_COMMAND' |
-    'COPY_COMMAND' |
-    'CURRENT_INPUT_DIR' |
-    'CURRENT_OUTPUT_DIR'|
-    'HAGA_COMMAND' |
-    'HAGA_INPUT_HAGAFILE' |
-    'INPUT_DIR' |
-    'OUTPUT_DIR';
+    | 'BASH_COMMAND'
+    | 'CLANG_COMMAND'
+    | 'COPY_COMMAND'
+    | 'CURRENT_INPUT_DIR'
+    | 'CURRENT_OUTPUT_DIR'
+    | 'HAGA_COMMAND'
+    | 'HAGA_INPUT_HAGAFILE'
+    | 'INPUT_DIR'
+    | 'OUTPUT_DIR'
+    | 'TOUCH_COMMAND'
+;
 
 type KeywordObj<K extends Keywords> = { readonly keyword: K };
 
@@ -27,6 +29,7 @@ const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     HAGA_INPUT_HAGAFILE: { keyword: 'HAGA_INPUT_HAGAFILE' },
     INPUT_DIR: { keyword: 'INPUT_DIR' },
     OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
+    TOUCH_COMMAND: { keyword: 'TOUCH_COMMAND' },
 };
 
 type HagaKeyword = typeof HagaKeyword[Keywords];

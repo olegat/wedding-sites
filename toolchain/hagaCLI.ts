@@ -28,6 +28,7 @@ import {
 function createContext(hagaFile: string): HagaContext {
     class CLIContext implements HagaContext {
         private errors: Error[] = [];
+        private warnings: Error[] = [];
         readonly ruleMap: Map<string, HagaCoreRule> = new Map();
 
         constructor(private readonly keywordMap: HagaKeywordMapping) {}
@@ -40,13 +41,24 @@ function createContext(hagaFile: string): HagaContext {
             this.errors.push(err);
         }
 
-        flushErrors(): void {
-            if (this.errors.length > 0) {
-                for (const err of this.errors) {
-                    console.error(`[HAGA ERROR] ${err.message}`);
-                }
-                this.errors = [];
+        reportWarning(warn: Error): void {
+            this.warnings.push(warn);
+        }
+
+        flushReport(): boolean {
+            let success = true;
+
+            for (const err of this.errors) {
+                console.error(`[HAGA ERROR] ${err.message}`);
+                success = false;
             }
+            for (const warn of this.warnings) {
+                console.error(`[HAGA WARN] ${warn.message}`);
+            }
+
+            this.errors = [];
+            this.warnings = [];
+            return success;
         }
 
         debugLog(): void {
@@ -68,6 +80,7 @@ function createContext(hagaFile: string): HagaContext {
         COPY_COMMAND: 'cp',
         HAGA_COMMAND: './haga',
         HAGA_INPUT_HAGAFILE: hagaFile,
+        TOUCH_COMMAND: 'touch',
     });
 }
 
@@ -176,7 +189,9 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
     }
 
     // Flush errors collected during macro evaluation
-    ctx.flushErrors();
+    if( ! ctx.flushReport() ) {
+        process.exit(1);
+    }
 
     let outStream: (s: string) => void;
     if (outDir) {

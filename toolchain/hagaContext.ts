@@ -8,7 +8,8 @@ type HagaContext = {
     readonly ruleMap: Map<string, HagaCoreRule>;
     eatKeywork(sym: HagaKeyword): string;
     reportError(err: Error): void;
-    flushErrors(): void;
+    reportWarning(warn: Error): void;
+    flushReport(): boolean;
 };
 
 //------------------------------------------------------------------------------
