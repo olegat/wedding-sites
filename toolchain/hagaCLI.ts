@@ -95,6 +95,8 @@ Available subcommands:
   help              Show this help message
   genin             Generate Ninja build files from a HAGA.ts file
   build             Generate (if missing) and run Ninja in the out/ directory
+  deploy            Generate, Build and Deploy
+  rsync             Explicit rsync
 `);
 }
 
@@ -114,7 +116,7 @@ Examples:
 }
 
 function printBuildHelp() {
-    console.log(`Usage: haga build [INPUT_HAGA_FILE]
+    console.log(`Usage: haga build [INPUT_HAGA_FILE] [TARGETS...]
 
 Description:
   "build" ensures there is an out/build.ninja file, generating one if missing
@@ -123,10 +125,22 @@ Description:
 
 Arguments:
   INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: ./HAGA.ts)
+  TARGETS...        Optional targets to build
 
 Examples:
   haga build
   haga build my_path/HAGA.ts
+`);
+}
+
+function printDeployHelp() {
+    console.log(`Usage: haga deploy [INPUT_HAGA_FILE]
+
+Description:
+  Alias for 'haga build INPUT_HAGA_FILE deploy_public'.
+
+Arguments:
+  INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: ./HAGA.ts)
 `);
 }
 
@@ -226,7 +240,7 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
     HagaCore.writeNinjaBuild(exportData, outStream);
 }
 
-async function runBuild(hagaFile: string): Promise<void> {
+async function runBuild(hagaFile: string, targets: string[]): Promise<void> {
     const outDir = path.resolve("out");
     const ninjaFile = path.join(outDir, "build.ninja");
 
@@ -242,10 +256,7 @@ async function runBuild(hagaFile: string): Promise<void> {
 
     // Step 3. Invoke ninja
     await new Promise<void>((resolve, reject) => {
-        const proc = spawn("ninja", {
-            cwd: outDir,
-            stdio: "inherit",
-        });
+        const proc = spawn("ninja", targets, { cwd: outDir, stdio: "inherit" });
 
         proc.on("close", (code) => {
             if (code === 0) resolve();
@@ -279,6 +290,8 @@ async function main(argv: string[]) {
                     return printGeninHelp();
                 case "build":
                     return printBuildHelp();
+                case "deploy":
+                    return printDeployHelp();
                 case "rsync":
                     return printRsyncHelp();
             }
@@ -293,7 +306,9 @@ async function main(argv: string[]) {
         case "genin":
             return await runGenin(hagaFile, undefined);
         case "build":
-            return await runBuild(hagaFile);
+            return await runBuild(hagaFile, rest.slice(1));
+        case "deploy":
+            return await runBuild(hagaFile, ['deploy_public']);
         case "rsync":
             return await runRsync(argv);
         default:
