@@ -6,8 +6,10 @@
     This creates a far more asthetically pleasing visuals then default behaviour of browsers
     (which typically partially render the top of the image as is loads).
   -->
-#ifndef BANNER_HIGH_URL
-#error BANNER_HIGH_URL required
+#if ! defined(BANNER_HIGH_URL)
+#  error BANNER_HIGH_URL required
+#elif ! defined(BANNER_CSS_IN_include)
+#  error missing required "banner.css.in" include
 #endif
 <div class="banner banner-low"></div>
 <img class="banner banner-high" id="banner-high" src=BANNER_HIGH_URL >

@@ -1,0 +1,46 @@
+/*
+ * internal CSS: to speed up the download of BANNER_LOW_URL by cutting off 1 roundtrip HTTP request
+ * to download a CSS file, to only then the browser realising that it needs to download an img file too.
+ */
+#if defined(BANNER_CSS_IN_include)
+#  error "banner.css.in" already included
+#elif ! defined(BANNER_ASPECT_RATIO)
+#  error BANNER_ASPECT_RATIO required
+#elif ! defined(BANNER_LOW_URL)
+#  error BANNER_LOW_URL required
+#else
+#  define BANNER_CSS_IN_include
+#endif
+
+.banner {
+    width: 100%;
+    aspect-ratio: BANNER_ASPECT_RATIO;
+    position: absolute;
+
+    /* Fade mask: keeps RGB intact, fades alpha */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+}
+
+.banner-low {
+    background: url(BANNER_LOW_URL) no-repeat center top;
+    background-size: cover;
+    filter: blur(6px);
+    z-index: -1000;
+}
+
+.banner-high {
+    display: none;
+    z-index: -999;
+}
+
+.banner-bounds {
+    width: 100%;
+    aspect-ratio: 5/1;
+    background-size: cover;
+    z-index: -1000;
+}

@@ -1,12 +1,19 @@
+#define BANNER_ASPECT_RATIO  16/9
+#define BANNER_HIGH_URL      "./banner_16_9.jpeg"
+#define BANNER_LOW_URL       "./banner_16_9_low.jpeg"
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- start downloading BANNER_LOW_URL as soon as possible -->
+  <style>
+    #include "banner.css.in"
+  </style>
   #include "head_common.html"
   <title>Mary & Oli Wedding Festival</title>
   <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-  #define BANNER_HIGH_URL "./banner_16_9.jpeg"
   #include "body_header.html"
 
   <div class="poster">
