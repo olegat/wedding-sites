@@ -69,7 +69,7 @@ export default HagaSweet.eatSugar({
         },
         {
             type: 'rsync',
-            name: 'deploy_public',
+            name: 'deploy',
             srcDir: OUTDIR_PUBLIC,
             configTemplate: {
                 dstDir: OUTDIR_DEPLOY,

@@ -137,7 +137,7 @@ function printDeployHelp() {
     console.log(`Usage: haga deploy [INPUT_HAGA_FILE]
 
 Description:
-  Alias for 'haga build INPUT_HAGA_FILE deploy_public'.
+  Alias for 'haga build INPUT_HAGA_FILE deploy'.
 
 Arguments:
   INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: ./HAGA.ts)
@@ -308,7 +308,7 @@ async function main(argv: string[]) {
         case "build":
             return await runBuild(hagaFile, rest.slice(1));
         case "deploy":
-            return await runBuild(hagaFile, ['deploy_public']);
+            return await runBuild(hagaFile, ['deploy']);
         case "rsync":
             return await runRsync(argv);
         default:
