@@ -1,6 +1,33 @@
 <!-- Full-width banner -->
-<div class="banner"></div>
+<!--
+    banner-low downloads very fast but is very poor quality; it is blurred by CSS filter.
+    banner-high downloads slowly but is high quality; it is faded-in by JS on load.
+
+    This creates a far more asthetically pleasing visuals then default behaviour of browsers
+    (which typically partially render the top of the image as is loads).
+  -->
+#ifndef BANNER_HIGH_URL
+#error BANNER_HIGH_URL required
+#endif
+<div class="banner banner-low"></div>
+<img class="banner banner-high" id="banner-high" src=BANNER_HIGH_URL >
 <div class="banner-bounds"></div>
+<script>
+  document.getElementById('banner-high').onload = (event) => {
+    event.target.style.display = 'inline';
+    event.target.animate(
+      [
+        { opacity: 0 },
+        { opacity: 1 },
+      ],
+      {
+        duration: 400,
+        easing: 'ease-out',
+        fill: 'forwards',
+      }
+    );
+  };
+</script>
 
 <!-- Floating burger menu -->
 <div class="burger-menu" id="burgerMenu">

@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+  #define BANNER_HIGH_URL "./banner_16_9.jpeg"
   #include "body_header.html"
 
   <div class="poster">

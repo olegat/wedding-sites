@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./travel.css">
 </head>
 <body>
+  #define BANNER_HIGH_URL "./travelalt_3_2.jpeg"
   #include "body_header.html"
 
   <div lang="en" class="poster">

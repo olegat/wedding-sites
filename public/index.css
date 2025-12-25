@@ -1,10 +1,7 @@
 .banner {
     width: 100%;
     aspect-ratio: 16/9;
-    background: url("./banner_16_9.jpeg") no-repeat center top;
-    background-size: cover;
     position: absolute;
-    z-index: -1000;
 
     /* Fade mask: keeps RGB intact, fades alpha */
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
@@ -13,6 +10,18 @@
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
+}
+
+.banner-low {
+    background: url("./banner_16_9_low.jpeg") no-repeat center top;
+    background-size: cover;
+    filter: blur(6px);
+    z-index: -1000;
+}
+
+.banner-high {
+    display: none;
+    z-index: -999;
 }
 
 .banner-bounds {
