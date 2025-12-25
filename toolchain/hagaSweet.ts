@@ -64,6 +64,13 @@ type HagaSweetTargetCopy = {
     outputDir?: HagaSweetString;
 };
 
+type HagaSweetTargetMagick = {
+    type: 'magick';
+    input: HagaSweetString;
+    output: HagaSweetString;
+    args: HagaSweetCommandArgs;
+};
+
 type HagaSweetTargetMinify = {
     type: 'minify';
     inputs: HagaSweetString[];
@@ -98,6 +105,7 @@ type HagaSweetTarget =
     HagaSweetTargetCopy |
     HagaSweetTargetCPP |
     HagaSweetTargetCPPs |
+    HagaSweetTargetMagick |
     HagaSweetTargetMinify |
     HagaSweetTargetRegen |
     HagaSweetTargetRsync |
@@ -133,6 +141,13 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
     },
     'cpp': CPPRule,
     'cpps': CPPRule,
+    'magick': {
+        name: 'magick',
+        commands: [
+            [ [HagaKeyword.MAGICK_COMMAND], '$in', '$args', '$out' ],
+        ],
+        description: 'Magicking $out',
+    },
     'minify': {
         name: 'minify',
         commands: [
@@ -182,6 +197,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
             case 'copy':
             case 'cpp':
             case 'cpps':
+            case 'magick':
             case 'minify':
             case 'regen':
             case 'rsync':
@@ -227,6 +243,13 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
         }
     }
     return buffer.join('');
+}
+
+function eatArgs(ctx: HagaContext, sweetArgs: HagaSweetCommandArgs): string {
+    return sweetArgs.map((arg) => {
+        const s = eatString(ctx, arg).replaceAll('\"', '\\\"');
+        return `"${s}"`;
+    }).join(' ');
 }
 
 function eatRsyncConfig(ctx: HagaContext, sweetConfig: HagaSweetRsyncConfig): RsyncConfig {
@@ -323,6 +346,18 @@ function eatTargetCPPs(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs): Haga
         result.push(eatTargetCPP(ctx, { type: 'cpp', input, output }));
     }
     return result;
+}
+
+function eatTargetMagick(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick): HagaCoreTarget {
+    const input  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.input);
+    const output : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.output);
+    const args   : string = eatArgs(ctx, sweetTarget.args);
+    return {
+        rule: "magick",
+        inputs: [input],
+        outputs: [output],
+        vars: { args },
+    };
 }
 
 function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
@@ -435,6 +470,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetCPP(ctx, target);
                 case 'cpps':
                     return eatTargetCPPs(ctx, target);
+                case 'magick':
+                    return eatTargetMagick(ctx, target);
                 case 'minify':
                     return eatTargetMinify(ctx, target);
                 case 'regen':

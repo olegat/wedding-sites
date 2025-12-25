@@ -1,10 +1,12 @@
 import { HagaKeyword } from './toolchain/hagaKeyword';
-import { HagaSweet, HagaSweetString } from './toolchain/hagaSweet'
+import { HagaSweet, HagaSweetCommandArgs, HagaSweetString } from './toolchain/hagaSweet'
 
 const INDIR_PUBLIC  : HagaSweetString = [HagaKeyword.CURRENT_INPUT_DIR,  '/public'];
 const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
 const OUTDIR_PUBLIC : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'];
 const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deploy'];
+
+const LOW_OPTS: HagaSweetCommandArgs = ['-resize', 'x100', '-quality', '50'];
 
 export default HagaSweet.eatSugar({
     targets: [
@@ -40,6 +42,12 @@ export default HagaSweet.eatSugar({
                 'public/language.js',
                 'public/travel.css',
             ],
+        },
+        {
+            type: 'magick',
+            input:  'public/banner_16_9.jpeg',
+            output: 'public/banner_16_9_low.jpeg',
+            args: LOW_OPTS,
         },
         {
             type: 'copy',

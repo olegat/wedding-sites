@@ -81,6 +81,7 @@ function createContext(hagaFile: string): HagaContext {
         COPY_COMMAND: 'cp',
         HAGA_COMMAND: path.resolve(cwd, 'haga'),
         HAGA_INPUT_HAGAFILE: hagaFile,
+        MAGICK_COMMAND: 'magick',
         TOUCH_COMMAND: 'touch',
     });
 }

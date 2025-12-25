@@ -10,6 +10,7 @@ type Keywords =
     | 'HAGA_COMMAND'
     | 'HAGA_INPUT_HAGAFILE'
     | 'INPUT_DIR'
+    | 'MAGICK_COMMAND'
     | 'OUTPUT_DIR'
     | 'TOUCH_COMMAND'
 ;
@@ -28,6 +29,7 @@ const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     HAGA_COMMAND: { keyword: 'HAGA_COMMAND' },
     HAGA_INPUT_HAGAFILE: { keyword: 'HAGA_INPUT_HAGAFILE' },
     INPUT_DIR: { keyword: 'INPUT_DIR' },
+    MAGICK_COMMAND: { keyword: 'MAGICK_COMMAND' },
     OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
     TOUCH_COMMAND: { keyword: 'TOUCH_COMMAND' },
 };
