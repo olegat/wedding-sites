@@ -19,6 +19,7 @@ type HagaCoreTarget = {
     orderOnly?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
     vars?: HagaCoreVars | undefined;
+    all?: boolean; // include in "all" phony target? (default: true)
 };
 
 type HagaCoreExport = {
@@ -86,6 +87,16 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
 
         outputStream(`\n`);
     });
+
+    outputStream(`build all: phony`)
+    for (const tgt of coreExport.targets) {
+        if (tgt.all ?? true) {
+            for (const outfile of tgt.outputs) {
+                outputStream(` ${outfile}`);
+            }
+        }
+    }
+    outputStream(`\n\ndefault all\n`);
 }
 
 /**

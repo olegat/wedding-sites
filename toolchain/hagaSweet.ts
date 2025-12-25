@@ -388,18 +388,27 @@ function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): Ha
     if (dstDir == undefined) return [];
 
     const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
-    const out = appendExtension(ctx, srcDir, '.timestamp');
-    return [{
-        rule: "rsync",
-        inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
-        outputs: [out],
-        implicits: [configPath],
-        vars: {
-            srcDir,
-            dstDir,
-            inputs: sweetTarget.inputs.join(' '),
+    const rsyncOutput = [appendExtension(ctx, srcDir, '.timestamp')];
+    return [
+        {
+            rule: "rsync",
+            inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
+            outputs: rsyncOutput,
+            implicits: [configPath],
+            vars: {
+                srcDir,
+                dstDir,
+                inputs: sweetTarget.inputs.join(' '),
+            },
+            all: false,
         },
-    }];
+        {
+            rule: "phony",
+            inputs: rsyncOutput,
+            outputs: [sweetTarget.name],
+            all: false,
+        },
+    ];
 }
 
 function eatTargetZip(ctx: HagaContext, sweetTarget: HagaSweetTargetZip): HagaCoreTarget {
