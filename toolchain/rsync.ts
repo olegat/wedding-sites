@@ -6,13 +6,13 @@ import * as child_process from 'child_process';
 //------------------------------------------------------------------------------
 // Types:
 //------------------------------------------------------------------------------
-type RSyncOptions = {
+type RsyncOptions = {
     inputs: string[];
     srcDir: string;
     dstDir: string;
 };
 
-enum RSyncErrorCode {
+enum RsyncErrorCode {
     SUCCESS = 'SUCCESS',
 
     CONFIG_INVALID_SCHEMA = 'CONFIG_INVALID_SCHEMA',
@@ -27,32 +27,32 @@ enum RSyncErrorCode {
     UNEXPECTED_FILE = 'UNEXPECTED_FILE',
 }
 
-type RSyncError = {
-    errorCode: RSyncErrorCode;
+type RsyncError = {
+    errorCode: RsyncErrorCode;
     msg: string;
 };
 
-type RSyncConfig = {
+type RsyncConfig = {
     dstDir: string;
 };
 
-type RSyncReadConfigResult_Success = {
-    errorCode: RSyncErrorCode.SUCCESS;
-    config: RSyncConfig;
+type RsyncReadConfigResult_Success = {
+    errorCode: RsyncErrorCode.SUCCESS;
+    config: RsyncConfig;
 };
-type RSyncReadConfigResult_Failure = {
-    errorCode: Exclude<RSyncErrorCode, RSyncErrorCode.SUCCESS>;
+type RsyncReadConfigResult_Failure = {
+    errorCode: Exclude<RsyncErrorCode, RsyncErrorCode.SUCCESS>;
     config?: never;
 };
-type RSyncReadConfigResult =
-    | RSyncReadConfigResult_Success
-    | RSyncReadConfigResult_Failure
+type RsyncReadConfigResult =
+    | RsyncReadConfigResult_Success
+    | RsyncReadConfigResult_Failure
 ;
 
 //------------------------------------------------------------------------------
 // Implementation:
 //------------------------------------------------------------------------------
-async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
+async function validateOptions(opts: RsyncOptions): Promise<RsyncError[]> {
     async function noThrowStat(path: string): Promise<Stats | undefined> {
         try {
             return await fs.promises.stat(path);
@@ -61,20 +61,20 @@ async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
         }
     }
 
-    const errors: RSyncError[] = [];
+    const errors: RsyncError[] = [];
 
     // Validate srcDir
     const srcDir = path.resolve(opts.srcDir);
     const srcStat = await noThrowStat(srcDir);
     if (srcStat === undefined) {
         return [{
-            errorCode: RSyncErrorCode.SRC_DIR_NOT_FOUND,
+            errorCode: RsyncErrorCode.SRC_DIR_NOT_FOUND,
             msg: `Source directory does not exist: ${srcDir}`,
         }];
     }
     if (!srcStat.isDirectory()) {
         return [{
-            errorCode: RSyncErrorCode.SRC_DIR_NOT_DIRECTORY,
+            errorCode: RsyncErrorCode.SRC_DIR_NOT_DIRECTORY,
             msg: `Source path is not a directory: ${srcDir}`,
         }];
     }
@@ -104,7 +104,7 @@ async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
         // Prevent ../ escape
         if (!resolved.startsWith(srcDir + path.sep) && resolved !== srcDir) {
             errors.push({
-                errorCode: RSyncErrorCode.INPUT_OUTSIDE_SRC_DIR,
+                errorCode: RsyncErrorCode.INPUT_OUTSIDE_SRC_DIR,
                 msg: `Input path escapes srcDir: ${input}`,
             });
             continue;
@@ -113,14 +113,14 @@ async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
         const stat = await noThrowStat(resolved);
         if (stat === undefined) {
             errors.push({
-                errorCode: RSyncErrorCode.INPUT_NOT_FOUND,
+                errorCode: RsyncErrorCode.INPUT_NOT_FOUND,
                 msg: `Input does not exist: ${input}`,
             });
             continue;
         }
         if (stat.isDirectory()) {
             errors.push({
-                errorCode: RSyncErrorCode.INPUT_IS_DIRECTORY,
+                errorCode: RsyncErrorCode.INPUT_IS_DIRECTORY,
                 msg: `Input must be a file, not a directory: ${input}`,
             });
             continue;
@@ -128,7 +128,7 @@ async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
         if (!stat.isFile()) {
             // Non-regular files (FIFO, socket, etc.) are implicitly rejected
             errors.push({
-                errorCode: RSyncErrorCode.INPUT_NOT_FOUND,
+                errorCode: RsyncErrorCode.INPUT_NOT_FOUND,
                 msg: `Input is not a regular file: ${input}`,
             });
             continue;
@@ -141,7 +141,7 @@ async function validateOptions(opts: RSyncOptions): Promise<RSyncError[]> {
     const unexpectedFiles = [...allFiles].filter(f => !inputFiles.has(f));
     if (unexpectedFiles.length > 0) {
         errors.push({
-            errorCode: RSyncErrorCode.UNEXPECTED_FILE,
+            errorCode: RsyncErrorCode.UNEXPECTED_FILE,
             msg:
                 `Unexpected files found in srcDir that would be copied by rsync:\n` +
                 unexpectedFiles.map(f => `  - ${f}`).join('\n'),
@@ -155,7 +155,7 @@ function withTrailingSlash(p: string): string {
     return p.endsWith(path.sep) ? p : p + path.sep;
 }
 
-async function run(opts: RSyncOptions): Promise<number> {
+async function run(opts: RsyncOptions): Promise<number> {
     // Validate options
     const errors = await validateOptions(opts);
     if (errors.length > 0) {
@@ -183,13 +183,13 @@ async function run(opts: RSyncOptions): Promise<number> {
     return result.status ?? 1;
 }
 
-function readConfig(path: string): RSyncReadConfigResult {
+function readConfig(path: string): RsyncReadConfigResult {
     // Read file
     let raw: string;
     try {
         raw = fs.readFileSync(path, 'utf8');
     } catch {
-        return { errorCode: RSyncErrorCode.CONFIG_READ_ERROR };
+        return { errorCode: RsyncErrorCode.CONFIG_READ_ERROR };
     }
 
     // Parse JSON
@@ -197,12 +197,12 @@ function readConfig(path: string): RSyncReadConfigResult {
     try {
         data = JSON.parse(raw);
     } catch {
-        return { errorCode: RSyncErrorCode.CONFIG_PARSE_ERROR };
+        return { errorCode: RsyncErrorCode.CONFIG_PARSE_ERROR };
     }
 
     // Validate root object
     if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-        return { errorCode: RSyncErrorCode.CONFIG_INVALID_SCHEMA };
+        return { errorCode: RsyncErrorCode.CONFIG_INVALID_SCHEMA };
     }
 
     const obj = data as Record<string, unknown>;
@@ -210,39 +210,39 @@ function readConfig(path: string): RSyncReadConfigResult {
 
     // Reject unknown properties
     if (keys.length !== 1 || keys[0] !== 'dstDir') {
-        return { errorCode: RSyncErrorCode.CONFIG_INVALID_SCHEMA };
+        return { errorCode: RsyncErrorCode.CONFIG_INVALID_SCHEMA };
     }
 
     // Validate dstDir
     if (typeof obj.dstDir !== 'string') {
-        return { errorCode: RSyncErrorCode.CONFIG_INVALID_SCHEMA };
+        return { errorCode: RsyncErrorCode.CONFIG_INVALID_SCHEMA };
     }
 
     return {
-        errorCode: RSyncErrorCode.SUCCESS,
+        errorCode: RsyncErrorCode.SUCCESS,
         config: { dstDir: obj.dstDir },
     };
 }
 
-function writeConfig(path: string, config: RSyncConfig): RSyncErrorCode {
+function writeConfig(path: string, config: RsyncConfig): RsyncErrorCode {
     try {
         fs.writeFileSync(path, JSON.stringify(config, null, 2));
     } catch {
-        return RSyncErrorCode.CONFIG_WRITE_ERROR;
+        return RsyncErrorCode.CONFIG_WRITE_ERROR;
     }
-    return RSyncErrorCode.SUCCESS;
+    return RsyncErrorCode.SUCCESS;
 }
 
 //------------------------------------------------------------------------------
 // Exports:
 //------------------------------------------------------------------------------
 export type {
-    RSyncConfig,
-    RSyncErrorCode,
+    RsyncConfig,
+    RsyncErrorCode,
 };
 
 export default {
-    RSyncErrorCode,
+    RsyncErrorCode,
     run,
     readConfig,
     writeConfig,

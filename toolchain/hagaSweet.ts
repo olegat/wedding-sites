@@ -3,8 +3,8 @@ import path from 'node:path';
 import rsync from './rsync';
 
 import type {
-    RSyncConfig,
-    RSyncErrorCode
+    RsyncConfig,
+    RsyncErrorCode
 } from './rsync';
 
 import type {
@@ -33,7 +33,7 @@ type HagaSweetString = string | HagaSweetStringComposition;
 
 type HagaSweetCommandArgs = HagaSweetString[];
 
-type HagaSweetRSyncConfig = {
+type HagaSweetRsyncConfig = {
     dstDir: HagaSweetString;
 };
 
@@ -84,7 +84,7 @@ type HagaSweetTargetRsync = {
     inputs: string[];
     srcDir: HagaSweetString;
     config: HagaSweetString;
-    configTemplate: HagaSweetRSyncConfig;
+    configTemplate: HagaSweetRsyncConfig;
 };
 
 type HagaSweetTargetZip = {
@@ -229,7 +229,7 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
     return buffer.join('');
 }
 
-function eatRSyncConfig(ctx: HagaContext, sweetConfig: HagaSweetRSyncConfig): RSyncConfig {
+function eatRsyncConfig(ctx: HagaContext, sweetConfig: HagaSweetRsyncConfig): RsyncConfig {
     return {
         dstDir: eatString(ctx, sweetConfig.dstDir),
     };
@@ -360,9 +360,9 @@ function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): Ha
     const dstDir: string | void = (() => {
         // Initialise (write) config from template:
         if ( ! fs.existsSync(configPath) ) {
-            const config: RSyncConfig = eatRSyncConfig(ctx, sweetTarget.configTemplate);
-            const writeStatus: RSyncErrorCode = rsync.writeConfig(configPath, config);
-            if (writeStatus !== rsync.RSyncErrorCode.SUCCESS) {
+            const config: RsyncConfig = eatRsyncConfig(ctx, sweetTarget.configTemplate);
+            const writeStatus: RsyncErrorCode = rsync.writeConfig(configPath, config);
+            if (writeStatus !== rsync.RsyncErrorCode.SUCCESS) {
                 return ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
             } else {
                 return config.dstDir;
@@ -372,7 +372,7 @@ function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): Ha
         else {
             const readStatus = rsync.readConfig(configPath);
             let result = readStatus.config?.dstDir;
-            if (readStatus.errorCode !== rsync.RSyncErrorCode.SUCCESS) {
+            if (readStatus.errorCode !== rsync.RsyncErrorCode.SUCCESS) {
                 ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
                 result = undefined;
             }
