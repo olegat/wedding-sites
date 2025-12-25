@@ -50,6 +50,12 @@ export default HagaSweet.eatSugar({
             args: LOW_OPTS,
         },
         {
+            type: 'magick',
+            input:  'public/travelalt_3_2.jpeg',
+            output: 'public/travelalt_3_2_low.jpeg',
+            args: LOW_OPTS,
+        },
+        {
             type: 'copy',
             inputs: [
                 'public/.htaccess',
