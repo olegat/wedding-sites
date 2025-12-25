@@ -351,7 +351,8 @@ function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): Ha
     }
     for (const i of sweetTarget.inputs) {
         if (i.includes(' ') || i.includes(`\n`)) {
-            throw new Error(`spaces and EOL in rsync input '${i}' is unsupported`);
+            ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
+            return [];
         }
     }
     const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
