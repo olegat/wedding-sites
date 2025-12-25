@@ -18,6 +18,7 @@ enum RSyncErrorCode {
     CONFIG_INVALID_SCHEMA = 'CONFIG_INVALID_SCHEMA',
     CONFIG_PARSE_ERROR = 'CONFIG_PARSE_ERROR',
     CONFIG_READ_ERROR = 'CONFIG_READ_ERROR',
+    CONFIG_WRITE_ERROR = 'CONFIG_WRITE_ERROR',
     INPUT_IS_DIRECTORY = 'INPUT_IS_DIRECTORY',
     INPUT_NOT_FOUND = 'INPUT_NOT_FOUND',
     INPUT_OUTSIDE_SRC_DIR = 'INPUT_OUTSIDE_SRC_DIR',
@@ -31,15 +32,22 @@ type RSyncError = {
     msg: string;
 };
 
-type RSyncConfigResult_Success = {
-    errorCode: RSyncErrorCode.SUCCESS;
+type RSyncConfig = {
     dstDir: string;
 };
-type RSyncConfigResult_Failure = {
-    errorCode: Exclude<RSyncErrorCode, RSyncErrorCode.SUCCESS>;
-    dstDir?: never;
+
+type RSyncReadConfigResult_Success = {
+    errorCode: RSyncErrorCode.SUCCESS;
+    config: RSyncConfig;
 };
-type RSyncConfigResult = RSyncConfigResult_Success | RSyncConfigResult_Failure;
+type RSyncReadConfigResult_Failure = {
+    errorCode: Exclude<RSyncErrorCode, RSyncErrorCode.SUCCESS>;
+    config?: never;
+};
+type RSyncReadConfigResult =
+    | RSyncReadConfigResult_Success
+    | RSyncReadConfigResult_Failure
+;
 
 //------------------------------------------------------------------------------
 // Implementation:
@@ -175,7 +183,7 @@ async function run(opts: RSyncOptions): Promise<number> {
     return result.status ?? 1;
 }
 
-function readConfig(path: string): RSyncConfigResult {
+function readConfig(path: string): RSyncReadConfigResult {
     // Read file
     let raw: string;
     try {
@@ -212,14 +220,24 @@ function readConfig(path: string): RSyncConfigResult {
 
     return {
         errorCode: RSyncErrorCode.SUCCESS,
-        dstDir: obj.dstDir,
+        config: { dstDir: obj.dstDir },
     };
+}
+
+function writeConfig(path: string, config: RSyncConfig): RSyncErrorCode {
+    try {
+        fs.writeFileSync(path, JSON.stringify(config, null, 2));
+    } catch {
+        return RSyncErrorCode.CONFIG_WRITE_ERROR;
+    }
+    return RSyncErrorCode.SUCCESS;
 }
 
 //------------------------------------------------------------------------------
 // Exports:
 //------------------------------------------------------------------------------
 export type {
+    RSyncConfig,
     RSyncErrorCode,
 };
 
@@ -227,4 +245,5 @@ export default {
     RSyncErrorCode,
     run,
     readConfig,
+    writeConfig,
 };

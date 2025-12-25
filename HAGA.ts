@@ -4,6 +4,7 @@ import { HagaSweet, HagaSweetString } from './toolchain/hagaSweet'
 const INDIR_PUBLIC  : HagaSweetString = [HagaKeyword.CURRENT_INPUT_DIR,  '/public'];
 const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
 const OUTDIR_PUBLIC : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'];
+const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deploy'];
 
 export default HagaSweet.eatSugar({
     targets: [
@@ -69,6 +70,10 @@ export default HagaSweet.eatSugar({
         {
             type: 'rsync',
             name: 'deploy_public',
+            srcDir: OUTDIR_PUBLIC,
+            configTemplate: {
+                dstDir: OUTDIR_DEPLOY,
+            },
             config: 'deploy.json',
             inputs: [
                 '.htaccess',
@@ -101,7 +106,6 @@ export default HagaSweet.eatSugar({
                 'travel_3_2.jpeg',
                 'travelalt_3_2.jpeg',
             ],
-            srcDir: OUTDIR_PUBLIC,
         },
     ],
 });

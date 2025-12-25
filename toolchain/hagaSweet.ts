@@ -1,5 +1,11 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import rsync from './rsync';
+
+import type {
+    RSyncConfig,
+    RSyncErrorCode
+} from './rsync';
 
 import type {
     HagaCoreCommandArgs,
@@ -26,6 +32,10 @@ type HagaSweetStringComposition = (string | HagaKeyword)[];
 type HagaSweetString = string | HagaSweetStringComposition;
 
 type HagaSweetCommandArgs = HagaSweetString[];
+
+type HagaSweetRSyncConfig = {
+    dstDir: HagaSweetString;
+};
 
 type HagaSweetRule = {
     name: HagaSweetString;
@@ -74,6 +84,7 @@ type HagaSweetTargetRsync = {
     inputs: string[];
     srcDir: HagaSweetString;
     config: HagaSweetString;
+    configTemplate: HagaSweetRSyncConfig;
 };
 
 type HagaSweetTargetZip = {
@@ -218,6 +229,12 @@ function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): 
     return buffer.join('');
 }
 
+function eatRSyncConfig(ctx: HagaContext, sweetConfig: HagaSweetRSyncConfig): RSyncConfig {
+    return {
+        dstDir: eatString(ctx, sweetConfig.dstDir),
+    };
+}
+
 function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: undefined): undefined;
 function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString): string;
 function resolvePath(ctx: HagaContext, baseDir: HagaSweetString, sweetString: HagaSweetString | undefined): string | undefined;
@@ -340,23 +357,37 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
 
 function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): HagaCoreTarget[] {
     const configPath = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.config);
-    const status = rsync.readConfig(configPath);
-    if (status.errorCode === rsync.RSyncErrorCode.CONFIG_READ_ERROR) {
-        ctx.reportWarning(new Error(`cannot open ${configPath}, ignoring rsync target '${sweetTarget.name}'`));
-        return [];
-    }
-    if (status.errorCode !== rsync.RSyncErrorCode.SUCCESS) {
-        ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${status.errorCode})`));
-        return [];
-    }
-    for (const i of sweetTarget.inputs) {
-        if (i.includes(' ') || i.includes(`\n`)) {
-            ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
-            return [];
+    const dstDir: string | void = (() => {
+        // Initialise (write) config from template:
+        if ( ! fs.existsSync(configPath) ) {
+            const config: RSyncConfig = eatRSyncConfig(ctx, sweetTarget.configTemplate);
+            const writeStatus: RSyncErrorCode = rsync.writeConfig(configPath, config);
+            if (writeStatus !== rsync.RSyncErrorCode.SUCCESS) {
+                return ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
+            } else {
+                return config.dstDir;
+            }
         }
-    }
+        // Read existing config file:
+        else {
+            const readStatus = rsync.readConfig(configPath);
+            let result = readStatus.config?.dstDir;
+            if (readStatus.errorCode !== rsync.RSyncErrorCode.SUCCESS) {
+                ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
+                result = undefined;
+            }
+            for (const i of sweetTarget.inputs) {
+                if (i.includes(' ') || i.includes(`\n`)) {
+                    ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
+                    result = undefined;
+                }
+            }
+            return result;
+        }
+    })();
+    if (dstDir == undefined) return [];
+
     const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
-    const dstDir: string = status.dstDir;
     const out = appendExtension(ctx, srcDir, '.timestamp');
     return [{
         rule: "rsync",
