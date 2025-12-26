@@ -42,6 +42,7 @@ type HagaSweetRule = {
     commands: HagaSweetCommandArgs[];
     description?: HagaSweetString;
     generator?: boolean;
+    restat?: boolean;
 };
 
 type HagaSweetTargetCPP = {
@@ -164,6 +165,7 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         ],
         description: 'Regenerate build.ninja',
         generator: true,
+        restat: true,
     },
     'rsync': {
         name: 'rsync',
@@ -286,12 +288,18 @@ function eatCommands(ctx: HagaContext, sweetCommandArgs: HagaSweetCommandArgs[])
 }
 
 function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
-    return {
+    const result: HagaCoreRule = {
         name: eatString(ctx, sweetRule.name),
         commands: eatCommands(ctx, sweetRule.commands),
         description: eatString(ctx, sweetRule.description),
-        generator: sweetRule.generator,
     };
+    if (sweetRule.generator !== undefined) {
+        result.generator = sweetRule.generator;
+    }
+    if (sweetRule.restat !== undefined) {
+        result.restat = sweetRule.restat;
+    }
+    return result;
 }
 
 type InputsAndOutdir = {

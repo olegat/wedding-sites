@@ -9,6 +9,7 @@ type HagaCoreRule = {
     commands: HagaCoreCommandArgs[];  // multiple commands per rule
     description?: string | undefined; // optional human-readable description
     generator?: boolean;
+    restat?: boolean;
 };
 
 type HagaCoreTarget = {
@@ -54,9 +55,11 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
         if (rule.description) {
             outputStream(`  description = ${rule.description}\n`);
         }
-
         if (rule.generator !== undefined) {
             outputStream(`  generator = ${rule.generator ? 1 : 0}\n`);
+        }
+        if (rule.restat !== undefined) {
+            outputStream(`  restat = ${rule.restat ? 1 : 0}\n`);
         }
 
         outputStream(`\n`);
