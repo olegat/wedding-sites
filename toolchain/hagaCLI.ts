@@ -240,15 +240,27 @@ async function runGenin(hagaFile: string, ninjaFile: string | undefined): Promis
         return 1;
     }
 
+    let outFd: number | null = null;
     let outStream: (s: string) => void;
+
     if (ninjaFile) {
-        // Write Ninja to file
-        outStream = s => fs.writeFileSync(ninjaFile, s, { flag: "a" });
+        // Open file synchronously, truncate if it exists
+        outFd = fs.openSync(ninjaFile, "w");
+        outStream = (s: string) => fs.writeSync(outFd!, s);
     } else {
-        // Write Ninja to stdout
-        outStream = (s) => process.stdout.write(s);
+        outStream = (s: string) => {
+            process.stdout.write(s);
+        };
     }
-    HagaCore.writeNinjaBuild(exportData, outStream);
+
+    try {
+        HagaCore.writeNinjaBuild(exportData, outStream);
+    } finally {
+        if (outFd !== null) {
+            fs.closeSync(outFd);
+            outFd = null;
+        }
+    }
     return 0;
 }
 
