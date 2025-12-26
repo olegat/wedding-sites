@@ -245,7 +245,7 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
     HagaCore.writeNinjaBuild(exportData, outStream);
 }
 
-async function runBuild(hagaFile: string, targets: string[]): Promise<void> {
+async function runBuild(hagaFile: string, targets: string[]): Promise<number> {
     const outDir = path.resolve("out");
     const ninjaFile = path.join(outDir, "build.ninja");
 
@@ -260,12 +260,14 @@ async function runBuild(hagaFile: string, targets: string[]): Promise<void> {
     }
 
     // Step 3. Invoke ninja
-    await new Promise<void>((resolve, reject) => {
+    return await new Promise<number>((resolve) => {
         const proc = spawn("ninja", targets, { cwd: outDir, stdio: "inherit" });
 
         proc.on("close", (code) => {
-            if (code === 0) resolve();
-            else reject(new Error(`[HAGA ERROR] ninja exited with code ${code}`));
+            if (code !== 0) {
+                console.error(`[HAGA ERROR] ninja exited with code ${code}`);
+            }
+            resolve(code ?? 0);
         });
     });
 }
