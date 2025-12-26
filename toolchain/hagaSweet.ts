@@ -161,7 +161,7 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
         name: 'regen',
         commands: [
             [ 'cd', [HagaKeyword.INPUT_DIR] ],
-            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '>', '$out'],
+            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '$out'],
         ],
         description: 'Regenerate build.ninja',
         generator: true,

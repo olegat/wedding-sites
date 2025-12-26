@@ -103,7 +103,7 @@ Available subcommands:
 }
 
 function printGeninHelp(): 0 {
-    console.log(`Usage: haga genin INPUT_HAGA_FILE
+    console.log(`Usage: haga genin INPUT_HAGA_FILE [NINJA_FILE]
 
 Description:
   "genin" stands for "GEnerate NINja". It takes a HAGA.ts file,
@@ -111,9 +111,11 @@ Description:
 
 Arguments:
   INPUT_HAGA_FILE   Path to a HAGA.ts module that exports { HAGA }
+  NINJA_FILE        Path to write build.ninja to (default stdout).
 
 Examples:
-  haga genin HAGA.ts > build.ninja
+  haga genin HAGA.ts
+  haga genin HAGA.ts out/build.ninja
 `);
     return 0;
 }
@@ -173,7 +175,7 @@ Examples:
 //------------------------------------------------------------------------------
 // Subcommands
 //------------------------------------------------------------------------------
-async function runGenin(hagaFile: string, outDir: string | undefined): Promise<number> {
+async function runGenin(hagaFile: string, ninjaFile: string | undefined): Promise<number> {
     const ctx = createContext(hagaFile);
     HagaContext.setGlobalContext(ctx);
 
@@ -239,10 +241,9 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<n
     }
 
     let outStream: (s: string) => void;
-    if (outDir) {
+    if (ninjaFile) {
         // Write Ninja to file
-        const outPath = path.resolve(outDir, 'build.ninja');
-        outStream = s => fs.writeFileSync(outPath, s, { flag: "a" });
+        outStream = s => fs.writeFileSync(ninjaFile, s, { flag: "a" });
     } else {
         // Write Ninja to stdout
         outStream = (s) => process.stdout.write(s);
@@ -262,7 +263,7 @@ async function runBuild(hagaFile: string, targets: string[]): Promise<number> {
 
     // Step 2. Generate build.ninja if missing
     if (!fs.existsSync(ninjaFile)) {
-        await runGenin(hagaFile, outDir);
+        await runGenin(hagaFile, ninjaFile);
     }
 
     // Step 3. Invoke ninja
@@ -318,7 +319,7 @@ async function main(argv: string[]): Promise<number> {
     const hagaFile = path.resolve(process.cwd(), rest[0] ?? 'HAGA.ts')
     switch (subcommand) {
         case "genin":
-            return await runGenin(hagaFile, undefined);
+            return await runGenin(hagaFile, rest[1]);
         case "build":
             return await runBuild(hagaFile, rest.slice(1));
         case "deploy":
