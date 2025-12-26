@@ -50,11 +50,11 @@ function createContext(hagaFile: string): HagaContext {
             let success = true;
 
             for (const err of this.errors) {
-                console.error(`[HAGA ERROR] ${err.message}`);
+                console.error(`[HAGA ERROR]`, err);
                 success = false;
             }
             for (const warn of this.warnings) {
-                console.error(`[HAGA WARN] ${warn.message}`);
+                console.error(`[HAGA WARN]`, warn);
             }
 
             this.errors = [];
