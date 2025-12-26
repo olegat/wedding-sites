@@ -89,7 +89,7 @@ function createContext(hagaFile: string): HagaContext {
 //------------------------------------------------------------------------------
 // Help text
 //------------------------------------------------------------------------------
-function printGlobalHelp() {
+function printGlobalHelp(): 0 {
     console.log(`Usage: haga <subcommand> [options]
 
 Available subcommands:
@@ -99,9 +99,10 @@ Available subcommands:
   deploy            Generate, Build and Deploy
   rsync             Explicit rsync
 `);
+    return 0;
 }
 
-function printGeninHelp() {
+function printGeninHelp(): 0 {
     console.log(`Usage: haga genin INPUT_HAGA_FILE
 
 Description:
@@ -114,9 +115,10 @@ Arguments:
 Examples:
   haga genin HAGA.ts > build.ninja
 `);
+    return 0;
 }
 
-function printBuildHelp() {
+function printBuildHelp(): 0 {
     console.log(`Usage: haga build [INPUT_HAGA_FILE] [TARGETS...]
 
 Description:
@@ -132,9 +134,10 @@ Examples:
   haga build
   haga build my_path/HAGA.ts
 `);
+    return 0;
 }
 
-function printDeployHelp() {
+function printDeployHelp(): 0 {
     console.log(`Usage: haga deploy [INPUT_HAGA_FILE]
 
 Description:
@@ -143,9 +146,10 @@ Description:
 Arguments:
   INPUT_HAGA_FILE   Optional path to a HAGA.ts module (default: ./HAGA.ts)
 `);
+    return 0;
 }
 
-function printRsyncHelp() {
+function printRsyncHelp(): 0 {
     console.log(`Usage: haga rsync SRC DST [INPUTS...]
 
 Description:
@@ -163,12 +167,13 @@ Arguments:
 Examples:
   haga rsync out/public user@myhost:/home/public index.html style.css code.js
 `);
+    return 0;
 }
 
 //------------------------------------------------------------------------------
 // Subcommands
 //------------------------------------------------------------------------------
-async function runGenin(hagaFile: string, outDir: string | undefined): Promise<void> {
+async function runGenin(hagaFile: string, outDir: string | undefined): Promise<number> {
     const ctx = createContext(hagaFile);
     HagaContext.setGlobalContext(ctx);
 
@@ -189,13 +194,13 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         mod = require(absPath).default;
     } catch (err) {
         console.error(`[HAGA ERROR] Failed to import ${absPath}:`, err);
-        process.exit(1);
+        return 1;
     }
 
     // Dynamic import of the HAGA.ts file
     if (!mod) {
         console.error(`[HAGA ERROR] Module ${absPath} does have a default export`);
-        process.exit(1);
+        return 1;
     }
 
     const exportData: HagaCoreExport = mod as HagaCoreExport; // TODO: validate
@@ -230,7 +235,7 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
 
     // Flush errors collected during macro evaluation
     if( ! ctx.flushReport() ) {
-        process.exit(1);
+        return 1;
     }
 
     let outStream: (s: string) => void;
@@ -243,6 +248,7 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
         outStream = (s) => process.stdout.write(s);
     }
     HagaCore.writeNinjaBuild(exportData, outStream);
+    return 0;
 }
 
 async function runBuild(hagaFile: string, targets: string[]): Promise<number> {
@@ -272,7 +278,7 @@ async function runBuild(hagaFile: string, targets: string[]): Promise<number> {
     });
 }
 
-async function runRsync(argv: string[]): Promise<void> {
+async function runRsync(argv: string[]): Promise<number> {
     if (argv.length < 4) {
         throw Error(`incorrect usage: see "./haga help rsync"`);
     }
@@ -284,12 +290,13 @@ async function runRsync(argv: string[]): Promise<void> {
     if (status !== 0) {
         throw Error(`rsync command exited with status: ${status}`);
     }
+    return status;
 }
 
 //------------------------------------------------------------------------------
 // Main dispatcher
 //------------------------------------------------------------------------------
-async function main(argv: string[]) {
+async function main(argv: string[]): Promise<number> {
     if (argv.length === 0 || argv[0] === "help") {
         if (argv.length > 1) {
             switch (argv[1]) {
@@ -324,7 +331,10 @@ async function main(argv: string[]) {
 }
 
 // Entry point
-main(process.argv.slice(2)).catch((err) => {
-    console.error("[HAGA FATAL]", err);
-    process.exit(1);
+new Promise<number>(async () => {
+    const exitStatus = await main(process.argv.slice(2)).catch((err): number => {
+        console.error("[HAGA FATAL]", err);
+        return 1;
+    });
+    process.exit(exitStatus);
 });
