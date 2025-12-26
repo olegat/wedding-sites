@@ -1,4 +1,5 @@
 import type { Stats } from 'fs';
+import * as JSON5 from 'json5';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as child_process from 'child_process';
@@ -195,7 +196,7 @@ function readConfig(path: string): RsyncReadConfigResult {
     // Parse JSON
     let data: unknown;
     try {
-        data = JSON.parse(raw);
+        data = JSON5.parse(raw);
     } catch {
         return { errorCode: RsyncErrorCode.CONFIG_PARSE_ERROR };
     }
