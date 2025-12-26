@@ -84,7 +84,6 @@ type HagaSweetTargetRegen = {
     type: "regen";
     inputs?: HagaSweetString[]; // default [[HagaKeyword.HAGA_INPUT_HAGAFILE]]
     implicits?: HagaSweetString[]; // default ['./haga', 'toolchain/**.ts']
-    outputs?: HagaSweetString[]; // default ["build.ninja"]
 };
 
 type HagaSweetTargetRsync = {
@@ -160,8 +159,7 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
     'regen': {
         name: 'regen',
         commands: [
-            [ 'cd', [HagaKeyword.INPUT_DIR] ],
-            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '$out'],
+            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '$outdir/$out'],
         ],
         description: 'Regenerate build.ninja',
         generator: true,
@@ -383,7 +381,6 @@ function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): 
 
 function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
     const inputs    = sweetTarget.inputs ?? [[HagaKeyword.HAGA_INPUT_HAGAFILE]];
-    const outputs   = sweetTarget.outputs ?? resolvePaths(ctx, [HagaKeyword.OUTPUT_DIR], ['build.ninja'])
     const implicits = sweetTarget.implicits ?? resolvePaths(ctx, [HagaKeyword.INPUT_DIR], [
         'haga',
         'toolchain/hagaContext.ts',
@@ -393,10 +390,11 @@ function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): Ha
         'toolchain/hagaCore.ts',
     ]);
     return {
-        inputs:    resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  inputs),
-        outputs:   resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], outputs),
-        implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  implicits),
+        inputs:    resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], inputs),
+        implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], implicits),
+        outputs: ['build.ninja'],
         rule: "regen",
+        vars: { outdir: eatString(ctx, [HagaKeyword.OUTPUT_DIR]) },
     };
 }
 
