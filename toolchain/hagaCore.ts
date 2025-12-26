@@ -71,12 +71,12 @@ function writeNinjaBuild(coreExport: HagaCoreExport, outputStream: HagaOutputStr
         const outputs = target.outputs.join(" ");
         outputStream(`build ${outputs}: ${target.rule} ${inputs}`);
 
-        if (target.implicits != undefined) {
+        if (target.implicits != undefined && target.implicits.length > 0) {
             const implicits = target.implicits.join(" ");
             outputStream(` | ${implicits}`);
         }
 
-        if (target.orderOnly != undefined) {
+        if (target.orderOnly != undefined && target.orderOnly.length > 0) {
             const orderOnly = target.orderOnly.join(" ");
             outputStream(` || ${orderOnly}`);
         }
