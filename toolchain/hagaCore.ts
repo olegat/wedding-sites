@@ -17,6 +17,7 @@ type HagaCoreTarget = {
     outputs: string[];
     implicits?: string[] | undefined;
     orderOnly?: string[] | undefined;
+    regenImplicits?: string[] | undefined;
     rule: string; // must match a HagaCoreRule.name
     vars?: HagaCoreVars | undefined;
     all?: boolean; // include in "all" phony target? (default: true)

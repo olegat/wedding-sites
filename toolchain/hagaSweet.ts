@@ -429,7 +429,7 @@ function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): Ha
             rule: "rsync",
             inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
             outputs: rsyncOutput,
-            implicits: [configPath],
+            regenImplicits: [configPath],
             vars: {
                 srcDir,
                 dstDir,

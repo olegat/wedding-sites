@@ -221,6 +221,10 @@ async function runGenin(hagaFile: string, outDir: string | undefined): Promise<v
                 targ.orderOnly ??= [];
                 targ.orderOnly.push(...regenTarg.outputs);
             }
+            if (targ.regenImplicits) {
+                regenTarg.implicits ??= []
+                regenTarg.implicits?.push(...targ.regenImplicits);
+            }
         }
     }
 
