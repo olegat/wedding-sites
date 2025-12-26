@@ -6,7 +6,7 @@ const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp']
 const OUTDIR_PUBLIC : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'];
 const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deploy'];
 
-const LOW_OPTS: HagaSweetCommandArgs = ['-resize', 'x100', '-quality', '50'];
+const LOW_OPTS: HagaSweetCommandArgs = ['-resize', 'x100', '-qduality', '40'];
 
 export default HagaSweet.eatSugar({
     targets: [
