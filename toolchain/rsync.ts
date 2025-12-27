@@ -168,7 +168,7 @@ async function run(opts: RsyncOptions): Promise<number> {
 
     // Normalize paths to force rsync "content copy" semantics
     const srcDir = withTrailingSlash(path.resolve(opts.srcDir));
-    const dstDir = path.resolve(opts.dstDir);
+    const dstDir = opts.dstDir;
 
     // Execute rsync
     const result = child_process.spawnSync(
@@ -176,6 +176,7 @@ async function run(opts: RsyncOptions): Promise<number> {
         [ '-v', '--archive', '--delete', srcDir, dstDir ],
         { stdio: 'inherit' }
     );
+
     if (result.error) {
         console.error(`Failed to execute rsync: ${result.error.message}`);
         return 1;
