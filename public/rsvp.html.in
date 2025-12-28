@@ -193,8 +193,8 @@
           </legend>
           <div class="questioninfo">
             <span lang="en">The wedding is on: Saturday, 10th of October 2026.</span>
-            <span lang="es"><!-- ChatGPT: translate --></span>
-            <span lang="fr"><!-- ChatGPT: translate --></span>
+            <span lang="es">La boda será el sábado 10 de octubre de 2026.</span>
+            <span lang="fr">Le mariage aura lieu le samedi 10 octobre 2026.</span>
           </div>
           <label><input type="radio" name="attending" value="yes" required /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
           <label><input type="radio" name="attending" value="no" required /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
@@ -344,21 +344,21 @@
           </legend>
           <div class="questioninfo">
             <div lang="en">
-              <p>The "preboda" is on: Friday, 9th of October 2026.</span>
+              <p>The "preboda" is on: Friday, 9th of October 2026.</p>
               <p>
                 This is a casual and informal gathering the day before the wedding.
                 It&#39;s a great opportunity to mingle with other guests beforehand.
               </p>
             </div>
             <div lang="es">
-              <p><!-- ChatGPT: translate --></span>
+              <p>La "preboda" será el viernes 9 de octubre de 2026.</p>
               <p>
                 Es un encuentro informal y distendido el día antes de la boda.
                 Es una excelente oportunidad para conocer a otros invitados con antelación.
               </p>
             </div>
             <div lang="fr">
-              <p><!-- ChatGPT: translate --></span>
+              <p>La « preboda » aura lieu le vendredi 9 octobre 2026.</p>
               <p>
                 Il s'agit d'une rencontre informelle et conviviale la veille du mariage.
                 C'est une excellente occasion de faire connaissance avec les autres invités à l'avance.
