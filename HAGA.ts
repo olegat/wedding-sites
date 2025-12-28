@@ -16,6 +16,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'cpps',
             inputs: [
+                'hotels.html.in',
                 'index.html.in',
                 'travel.html.in',
                 'rsvp.html.in',
@@ -26,6 +27,7 @@ export default HagaSweet.eatSugar({
         {
             type: 'minify',
             inputs: [
+                'hotels.html',
                 'index.html',
                 'rsvp.html',
                 'travel.html',
@@ -47,6 +49,18 @@ export default HagaSweet.eatSugar({
             type: 'magick',
             input:  'public/banner_16_9.jpeg',
             output: 'public/banner_16_9_low.jpeg',
+            args: LOW_OPTS,
+        },
+        {
+            type: 'magick',
+            input: 'design/chalet.png',
+            output: 'public/hotels_3_2.jpeg',
+            args: ['-quality', '80'],
+        },
+        {
+            type: 'magick',
+            input: 'design/chalet.png',
+            output: 'public/hotels_3_2_low.jpeg',
             args: LOW_OPTS,
         },
         {

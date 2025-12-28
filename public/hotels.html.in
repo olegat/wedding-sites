@@ -1,0 +1,42 @@
+#define BANNER_ASPECT_RATIO  3/2
+#define BANNER_HIGH_URL      "./hotels_3_2.jpeg"
+#define BANNER_LOW_URL       "./hotels_3_2_low.jpeg"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- start downloading BANNER_LOW_URL as soon as possible -->
+  <style>
+    #include "banner.css.in"
+  </style>
+  #include "head_common.html"
+  <title>Mary & Oli Wedding Festival</title>
+  <link rel="stylesheet" href="./travel.css">
+</head>
+<body>
+  #include "body_header.html"
+
+  <div lang="en" class="poster">
+    <h1>Accomodation</h1>
+
+    <section>
+      <h2>Hotels</h2>
+      <!-- ChatGPT: proof-read / rewrite: -->
+      <p>We are currently discussing with various hotel chains to secure group discount codes. We first need to be able to give the hotels an accurate estimate of the number of guests to accomodate.</p>
+      <p>Once we've finalised that, we'll send out an update</p>
+      <p>We will also do our best to ensure that the "preboda" gathering (9th October) and that shuttle buses pickup point on the day of the wedding (10th Oct) are close as possible to this.</p>
+    </section>
+
+  </div>
+
+  <div lang="es" class="poster">
+    <!-- ChatGPT: translate -->
+  </div>
+
+  <div lang="fr" class="poster">
+    <!-- ChatGPT: translate -->
+  </div>
+
+  #include "body_footer.html"
+</body>
+</html>
