@@ -116,6 +116,12 @@
   </head>
 
   <body>
+    <!--
+        TODO:
+        [ ]  Repeat dates of wedding and preboda
+        [ ]  Add red * for required field
+        [ ]  Hook to Getform.io
+    -->
     <h1>
       <span lang="en">RSVP</span>
       <span lang="es">Confirmación</span>
