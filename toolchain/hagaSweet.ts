@@ -66,6 +66,13 @@ type HagaSweetTargetCopy = {
     outputDir?: HagaSweetString;
 };
 
+type HagaSweetTargetRsvgConvert = {
+    type: 'rsvg-convert';
+    input: HagaSweetString;
+    output: HagaSweetString;
+    args: HagaSweetCommandArgs;
+};
+
 type HagaSweetTargetMagick = {
     type: 'magick';
     input: HagaSweetString;
@@ -109,6 +116,7 @@ type HagaSweetTarget =
     HagaSweetTargetMagick |
     HagaSweetTargetMinify |
     HagaSweetTargetRegen |
+    HagaSweetTargetRsvgConvert |
     HagaSweetTargetRsync |
     HagaSweetTargetZip |
     HagaCoreTarget;
@@ -142,6 +150,13 @@ const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule }
     },
     'cpp': CPPRule,
     'cpps': CPPRule,
+    'rsvg-convert': {
+        name: 'rsvg-convert',
+        commands: [
+            [ [HagaKeyword.RSVG_COMMAND], '$args', '$in', '-o', '$out' ],
+        ],
+        description: 'Rasterizing SVG $out',
+    },
     'magick': {
         name: 'magick',
         commands: [
@@ -202,6 +217,7 @@ function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
             case 'magick':
             case 'minify':
             case 'regen':
+            case 'rsvg-convert':
             case 'rsync':
             case 'zip':
                 if ( ! ctx.ruleMap.has(target.type)) {
@@ -321,6 +337,23 @@ function eatTargetInputsWithRule(ctx: HagaContext, sweetTarget: InputsAndOutdir,
     });
 }
 
+type InputOutputArgs = {
+    input:  HagaSweetString;
+    output: HagaSweetString;
+    args: HagaSweetCommandArgs;
+};
+function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule: Rule): HagaCoreTarget {
+    const input  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.input);
+    const output : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.output);
+    const args   : string = eatArgs(ctx, sweetTarget.args);
+    return {
+        rule,
+        inputs: [input],
+        outputs: [output],
+        vars: { args },
+    };
+}
+
 function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
     return eatTargetInputsWithRule(ctx, sweetTarget, 'copy');
 }
@@ -357,16 +390,12 @@ function eatTargetCPPs(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs): Haga
     return result;
 }
 
+function eatTargetRsvgConvert(ctx: HagaContext, sweetTarget: HagaSweetTargetRsvgConvert): HagaCoreTarget {
+    return eatTargetWithArgs(ctx, sweetTarget, "rsvg-convert");
+}
+
 function eatTargetMagick(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick): HagaCoreTarget {
-    const input  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.input);
-    const output : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.output);
-    const args   : string = eatArgs(ctx, sweetTarget.args);
-    return {
-        rule: "magick",
-        inputs: [input],
-        outputs: [output],
-        vars: { args },
-    };
+    return eatTargetWithArgs(ctx, sweetTarget, "magick");
 }
 
 function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
@@ -479,6 +508,8 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
                     return eatTargetCPP(ctx, target);
                 case 'cpps':
                     return eatTargetCPPs(ctx, target);
+                case 'rsvg-convert':
+                    return eatTargetRsvgConvert(ctx, target);
                 case 'magick':
                     return eatTargetMagick(ctx, target);
                 case 'minify':
@@ -510,6 +541,8 @@ export type {
     HagaSweetTarget,
     HagaSweetTargetCPP,
     HagaSweetTargetRegen,
+    HagaSweetTargetRsvgConvert,
+    HagaSweetTargetMagick,
 };
 
 export const HagaSweet = {

@@ -12,6 +12,7 @@ type Keywords =
     | 'INPUT_DIR'
     | 'MAGICK_COMMAND'
     | 'OUTPUT_DIR'
+    | 'RSVG_COMMAND'
     | 'TOUCH_COMMAND'
 ;
 
@@ -32,6 +33,7 @@ const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     MAGICK_COMMAND: { keyword: 'MAGICK_COMMAND' },
     OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
     TOUCH_COMMAND: { keyword: 'TOUCH_COMMAND' },
+    RSVG_COMMAND: { keyword: 'RSVG_COMMAND' },
 };
 
 type HagaKeyword = typeof HagaKeyword[Keywords];

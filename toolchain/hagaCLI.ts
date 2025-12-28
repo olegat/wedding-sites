@@ -82,6 +82,7 @@ function createContext(hagaFile: string): HagaContext {
         HAGA_COMMAND: path.resolve(cwd, 'haga'),
         HAGA_INPUT_HAGAFILE: hagaFile,
         MAGICK_COMMAND: 'magick',
+        RSVG_COMMAND: 'rsvg-convert',
         TOUCH_COMMAND: 'touch',
     });
 }

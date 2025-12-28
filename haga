@@ -19,6 +19,7 @@ required_cmds=(
     "magick"
     "ninja"
     "npx"
+    "rsvg-convert"
     "touch"
     "yarn"
     "zip"

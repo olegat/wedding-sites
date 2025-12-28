@@ -1,5 +1,5 @@
 import { HagaKeyword } from './toolchain/hagaKeyword';
-import { HagaSweet, HagaSweetCommandArgs, HagaSweetString } from './toolchain/hagaSweet'
+import { HagaSweet, HagaSweetCommandArgs, HagaSweetString, HagaSweetTargetRsvgConvert } from './toolchain/hagaSweet'
 
 const INDIR_PUBLIC  : HagaSweetString = [HagaKeyword.CURRENT_INPUT_DIR,  '/public'];
 const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
@@ -55,6 +55,20 @@ export default HagaSweet.eatSugar({
             output: 'public/travelalt_3_2_low.jpeg',
             args: LOW_OPTS,
         },
+        ...[16, 32, 48, 96, 128, 180, 192].map((d: number): HagaSweetTargetRsvgConvert => {
+            return {
+                type: 'rsvg-convert',
+                input:  'public/favicon.svg',
+                output: `public/favicon-${d}x${d}.png`,
+                args: ['-w', `${d}`, '-h', `${d}`],
+            }
+        }),
+        {
+            type: 'magick',
+            input:  [HagaKeyword.CURRENT_OUTPUT_DIR, '/public/favicon-192x192.png'],
+            output: `public/favicon.ico`,
+            args: ['-background', 'none', '-define', 'icon:auto-resize=16,32,48'],
+        },
         {
             type: 'copy',
             inputs: [
@@ -101,6 +115,14 @@ export default HagaSweet.eatSugar({
                 'common.css',
                 'deadmaus.webp',
                 'favicon.svg',
+                'favicon.ico',
+                'favicon-16x16.png',
+                'favicon-32x32.png',
+                'favicon-48x48.png',
+                'favicon-96x96.png',
+                'favicon-128x128.png',
+                'favicon-180x180.png',
+                'favicon-192x192.png',
                 'guns-n-roses.webp',
                 'index.css',
                 'index.html',
