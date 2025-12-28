@@ -4,38 +4,87 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- start downloading BANNER_LOW_URL as soon as possible -->
-  <style>
-    #include "banner.css.in"
-  </style>
-  #include "head_common.html"
-  <title>Mary & Oli Wedding Festival</title>
-  <link rel="stylesheet" href="./travel.css">
-</head>
-<body>
-  #include "body_header.html"
+  <head>
+    <!-- start downloading BANNER_LOW_URL as soon as possible -->
+    <style>
+      #include "banner.css.in"
+    </style>
+    #include "head_common.html"
+    <title>Mary & Oli Wedding Festival</title>
+    <link rel="stylesheet" href="./travel.css">
+  </head>
+  <body>
+    #include "body_header.html"
 
-  <div lang="en" class="poster">
-    <h1>Accomodation</h1>
+    <div lang="en" class="poster">
+      <h1>Accommodation</h1>
 
-    <section>
-      <h2>Hotels</h2>
-      <!-- ChatGPT: proof-read / rewrite: -->
-      <p>We are currently discussing with various hotel chains to secure group discount codes. We first need to be able to give the hotels an accurate estimate of the number of guests to accomodate.</p>
-      <p>Once we've finalised that, we'll send out an update</p>
-      <p>We will also do our best to ensure that the "preboda" gathering (9th October) and that shuttle buses pickup point on the day of the wedding (10th Oct) are close as possible to this.</p>
-    </section>
+      <section>
+        <h2>Hotels</h2>
+        <p>
+          We are currently in discussions with several hotel chains to secure group
+          discount rates. Before confirming anything, we need a reasonably accurate
+          estimate of how many guests will require accommodation.
+        </p>
+        <p>
+          Once this is finalised, we’ll share an update with all the details.
+        </p>
+        <p>
+          We will also do our best to ensure that both the <em>preboda</em> gathering
+          (9th October) and the shuttle bus pickup points on the wedding day
+          (10th October) are as close as possible to the selected hotels.
+        </p>
+      </section>
+    </div>
 
-  </div>
+    <div lang="es" class="poster">
+      <h1>Alojamiento</h1>
 
-  <div lang="es" class="poster">
-    <!-- ChatGPT: translate -->
-  </div>
+      <section>
+        <h2>Hoteles</h2>
+        <p>
+          Actualmente estamos en conversaciones con varias cadenas hoteleras para
+          conseguir tarifas de grupo con descuento. Antes de poder confirmar nada,
+          necesitamos una estimación lo más precisa posible del número de invitados
+          que necesitarán alojamiento.
+        </p>
+        <p>
+          Una vez que esto esté cerrado, os enviaremos una actualización con todos
+          los detalles.
+        </p>
+        <p>
+          También haremos todo lo posible para que tanto la reunión de la
+          <em>preboda</em> (9 de octubre) como los puntos de recogida de los autobuses
+          lanzadera el día de la boda (10 de octubre) estén lo más cerca posible de
+          los hoteles seleccionados.
+        </p>
+      </section>
+    </div>
 
-  <div lang="fr" class="poster">
-    <!-- ChatGPT: translate -->
-  </div>
+    <div lang="fr" class="poster">
+      <h1>Hébergement</h1>
+
+      <section>
+        <h2>Hôtels</h2>
+        <p>
+          Nous sommes actuellement en discussion avec plusieurs chaînes hôtelières
+          afin d’obtenir des tarifs de groupe avantageux. Avant de pouvoir confirmer
+          quoi que ce soit, nous avons besoin d’une estimation aussi précise que
+          possible du nombre d’invités ayant besoin d’un hébergement.
+        </p>
+        <p>
+          Une fois ces informations finalisées, nous vous communiquerons une mise à
+          jour avec tous les détails.
+        </p>
+        <p>
+          Nous ferons également de notre mieux pour que la soirée de
+          <em>pré-boda</em> (le 9 octobre) ainsi que les points de départ des navettes
+          le jour du mariage (le 10 octobre) soient situés aussi près que possible
+          des hôtels sélectionnés.
+        </p>
+      </section>
+    </div>
+
 
   #include "body_footer.html"
 </body>
