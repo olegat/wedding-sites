@@ -132,7 +132,7 @@ type TargetMap = {
 type TargetType = keyof TargetMap;
 
 type TargetSpecEntry<T extends TargetType> = {
-    getRules(): readonly Readonly<HagaSweetRule>[];
+    getRules(): ReadonlySweetRules;
     eatTarget(ctx: HagaContext, sweetTarget: TargetMap[T]): HagaCoreTarget | HagaCoreTarget[];
 }
 
@@ -140,11 +140,13 @@ type TargetSpec = {
     [K in TargetType]: TargetSpecEntry<K>;
 };
 
+type ReadonlySweetRules = readonly Readonly<HagaSweetRule>[];
+
 
 //------------------------------------------------------------------------------
 // Util
 //------------------------------------------------------------------------------
-function rulesGetter(...input: readonly Readonly<HagaSweetRule>[]): () => typeof input {
+function rulesGetter(...input: ReadonlySweetRules): () => typeof input {
     return () => input;
 }
 
@@ -260,7 +262,7 @@ function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule:
 const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
 const ZipAbs: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/zip-abs.sh'];
 
-const SweetTargetSpec: TargetSpec = {
+const SweetTargetSpec = {
     'copy': {
         getRules: rulesGetter({
             name: 'copy',
@@ -269,8 +271,8 @@ const SweetTargetSpec: TargetSpec = {
             ],
             description: 'Copying $in',
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy) {
-            return eatTargetCopy(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
+            return eatTargetInputsWithRule(ctx, sweetTarget, 'copy');
         },
     },
 
@@ -283,15 +285,39 @@ const SweetTargetSpec: TargetSpec = {
             ],
             description: 'CPP $in',
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP) {
-            return eatTargetCPP(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
+            const input      : string = eatString(ctx, sweetTarget.input)
+            const output     : string = eatString(ctx, sweetTarget.output ?? dropExtension(input, '.in'));
+            const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.CURRENT_INPUT_DIR);
+            const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.CURRENT_OUTPUT_DIR);
+            const implicits = resolvePaths(ctx, [HagaKeyword.INPUT_DIR], sweetTarget.implicits ?? []);
+            const vars = {
+                outfile: `${absOutput}`,
+                depfile: `${absOutput}.d`,
+            } as const satisfies HagaCoreVars;
+            return {
+                inputs: [ absInput ],
+                outputs: [ vars.outfile, vars.depfile ],
+                implicits,
+                rule: 'cpp',
+                vars,
+            };
         },
     },
 
     'cpps': {
-        getRules: () => SweetTargetSpec['cpp'].getRules(),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs) {
-            return eatTargetCPPs(ctx, sweetTarget);
+        getRules: (): ReadonlySweetRules => SweetTargetSpec.cpp.getRules(),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs): HagaCoreTarget[] {
+            const result: HagaCoreTarget[] = [];
+            const inputDir  = sweetTarget.inputDir  ?? [HagaKeyword.CURRENT_INPUT_DIR];
+            const outputDir = sweetTarget.outputDir ?? [HagaKeyword.CURRENT_OUTPUT_DIR];
+            for (const baseInput of sweetTarget.inputs) {
+                const baseName : string = dropExtension(eatString(ctx, baseInput), '.in');
+                const input    : string = resolvePath(ctx, inputDir,  baseInput);
+                const output   : string = resolvePath(ctx, outputDir, baseName);
+                result.push(SweetTargetSpec.cpp.eatTarget(ctx, { type: 'cpp', input, output }));
+            }
+            return result;
         },
     },
 
@@ -303,8 +329,8 @@ const SweetTargetSpec: TargetSpec = {
             ],
             description: 'Magicking $out',
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick) {
-            return eatTargetMagick(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick): HagaCoreTarget {
+            return eatTargetWithArgs(ctx, sweetTarget, "magick");
         },
     },
 
@@ -316,8 +342,14 @@ const SweetTargetSpec: TargetSpec = {
             ],
             description: 'Minifying $in',
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify) {
-            return eatTargetMinify(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
+            const result = eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
+            const minifyAnyJs = eatString(ctx, MinifyAny);
+            for (const targ of result) {
+                targ.implicits ??= [];
+                targ.implicits.push(minifyAnyJs);
+            }
+            return result;
         },
     },
 
@@ -331,8 +363,23 @@ const SweetTargetSpec: TargetSpec = {
             generator: true,
             restat: true,
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen) {
-            return eatTargetRegen(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
+            const inputs    = sweetTarget.inputs ?? [[HagaKeyword.HAGA_INPUT_HAGAFILE]];
+            const implicits = sweetTarget.implicits ?? resolvePaths(ctx, [HagaKeyword.INPUT_DIR], [
+                'haga',
+                'toolchain/hagaContext.ts',
+                'toolchain/hagaKeyword.ts',
+                'toolchain/hagaSweet.ts',
+                'toolchain/hagaCLI.ts',
+                'toolchain/hagaCore.ts',
+            ]);
+            return {
+                inputs:    resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], inputs),
+                implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], implicits),
+                outputs: ['build.ninja'],
+                rule: "regen",
+                vars: { outdir: eatString(ctx, [HagaKeyword.OUTPUT_DIR]) },
+            };
         },
     },
 
@@ -344,8 +391,8 @@ const SweetTargetSpec: TargetSpec = {
             ],
             description: 'Rasterizing SVG $out',
         }),
-        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsvgConvert) {
-            return eatTargetRsvgConvert(ctx, sweetTarget);
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsvgConvert): HagaCoreTarget {
+            return eatTargetWithArgs(ctx, sweetTarget, "rsvg-convert");
         },
     },
 
@@ -359,7 +406,60 @@ const SweetTargetSpec: TargetSpec = {
             description: 'Deploying',
         }),
         eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync) {
-            return eatTargetRsync(ctx, sweetTarget);
+            const configPath = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.config);
+            const dstDir: string | void = (() => {
+                // Initialise (write) config from template:
+                if ( ! fs.existsSync(configPath) ) {
+                    const config: RsyncConfig = eatRsyncConfig(ctx, sweetTarget.configTemplate);
+                    const writeStatus: RsyncErrorCode = rsync.writeConfig(configPath, config);
+                    if (writeStatus !== rsync.RsyncErrorCode.SUCCESS) {
+                        return ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
+                    } else {
+                        return config.dstDir;
+                    }
+                }
+                // Read existing config file:
+                else {
+                    const readStatus = rsync.readConfig(configPath);
+                    let result = readStatus.config?.dstDir;
+                    if (readStatus.errorCode !== rsync.RsyncErrorCode.SUCCESS) {
+                        ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
+                        result = undefined;
+                    }
+                    for (const i of sweetTarget.inputs) {
+                        if (i.includes(' ') || i.includes(`\n`)) {
+                            ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
+                            result = undefined;
+                        }
+                    }
+                    return result;
+                }
+            })();
+            if (dstDir == undefined) return [];
+
+            const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
+            const rsyncOutput = [appendExtension(ctx, srcDir, '.timestamp')];
+            return [
+                {
+                    rule: "rsync",
+                    inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
+                    outputs: rsyncOutput,
+                    implicits: resolvePaths(ctx, [HagaKeyword.INPUT_DIR], ['toolchain/rsync.ts']),
+                    regenImplicits: [configPath],
+                    vars: {
+                        srcDir,
+                        dstDir,
+                        inputs: sweetTarget.inputs.join(' '),
+                    },
+                    all: false,
+                },
+        {
+            rule: "phony",
+            inputs: rsyncOutput,
+            outputs: [sweetTarget.name],
+            all: false,
+        },
+    ];
         },
     },
 
@@ -372,10 +472,17 @@ const SweetTargetSpec: TargetSpec = {
             description: 'Zipping $out',
         }),
         eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetZip) {
-            return eatTargetZip(ctx, sweetTarget);
+            const indir = eatString(ctx, sweetTarget.inputDir ?? [HagaKeyword.CURRENT_INPUT_DIR]);
+            return {
+                inputs:  resolvePaths(ctx, indir, sweetTarget.inputs),
+                outputs: resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], [sweetTarget.output]),
+                rule: "zip",
+                implicits:  [ eatString(ctx, ZipAbs) ],
+                vars: { indir },
+            };
         },
     },
-}
+} as const satisfies TargetSpec;
 
 
 //------------------------------------------------------------------------------
@@ -422,148 +529,6 @@ function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
         result.restat = sweetRule.restat;
     }
     return result;
-}
-
-
-function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
-    return eatTargetInputsWithRule(ctx, sweetTarget, 'copy');
-}
-
-function eatTargetCPP(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP): HagaCoreTarget {
-    const input      : string = eatString(ctx, sweetTarget.input)
-    const output     : string = eatString(ctx, sweetTarget.output ?? dropExtension(input, '.in'));
-    const absInput   : string = toAbsolutePath(ctx, input,  HagaKeyword.CURRENT_INPUT_DIR);
-    const absOutput  : string = toAbsolutePath(ctx, output, HagaKeyword.CURRENT_OUTPUT_DIR);
-    const implicits = resolvePaths(ctx, [HagaKeyword.INPUT_DIR], sweetTarget.implicits ?? []);
-    const vars = {
-        outfile: `${absOutput}`,
-        depfile: `${absOutput}.d`,
-    } as const satisfies HagaCoreVars;
-    return {
-        inputs: [ absInput ],
-        outputs: [ vars.outfile, vars.depfile ],
-        implicits,
-        rule: 'cpp',
-        vars,
-    };
-}
-
-function eatTargetCPPs(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs): HagaCoreTarget[] {
-    const result: HagaCoreTarget[] = [];
-    const inputDir  = sweetTarget.inputDir  ?? [HagaKeyword.CURRENT_INPUT_DIR];
-    const outputDir = sweetTarget.outputDir ?? [HagaKeyword.CURRENT_OUTPUT_DIR];
-    for (const baseInput of sweetTarget.inputs) {
-        const baseName : string = dropExtension(eatString(ctx, baseInput), '.in');
-        const input    : string = resolvePath(ctx, inputDir,  baseInput);
-        const output   : string = resolvePath(ctx, outputDir, baseName);
-        result.push(eatTargetCPP(ctx, { type: 'cpp', input, output }));
-    }
-    return result;
-}
-
-function eatTargetRsvgConvert(ctx: HagaContext, sweetTarget: HagaSweetTargetRsvgConvert): HagaCoreTarget {
-    return eatTargetWithArgs(ctx, sweetTarget, "rsvg-convert");
-}
-
-function eatTargetMagick(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick): HagaCoreTarget {
-    return eatTargetWithArgs(ctx, sweetTarget, "magick");
-}
-
-function eatTargetMinify(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify): HagaCoreTarget[] {
-    const result = eatTargetInputsWithRule(ctx, sweetTarget, 'minify');
-    const minifyAnyJs = eatString(ctx, MinifyAny);
-    for (const targ of result) {
-        targ.implicits ??= [];
-        targ.implicits.push(minifyAnyJs);
-    }
-    return result;
-}
-
-function eatTargetRegen(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen): HagaCoreTarget {
-    const inputs    = sweetTarget.inputs ?? [[HagaKeyword.HAGA_INPUT_HAGAFILE]];
-    const implicits = sweetTarget.implicits ?? resolvePaths(ctx, [HagaKeyword.INPUT_DIR], [
-        'haga',
-        'toolchain/hagaContext.ts',
-        'toolchain/hagaKeyword.ts',
-        'toolchain/hagaSweet.ts',
-        'toolchain/hagaCLI.ts',
-        'toolchain/hagaCore.ts',
-    ]);
-    return {
-        inputs:    resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], inputs),
-        implicits: resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], implicits),
-        outputs: ['build.ninja'],
-        rule: "regen",
-        vars: { outdir: eatString(ctx, [HagaKeyword.OUTPUT_DIR]) },
-    };
-}
-
-function eatTargetRsync(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync): HagaCoreTarget[] {
-    const configPath = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.config);
-    const dstDir: string | void = (() => {
-        // Initialise (write) config from template:
-        if ( ! fs.existsSync(configPath) ) {
-            const config: RsyncConfig = eatRsyncConfig(ctx, sweetTarget.configTemplate);
-            const writeStatus: RsyncErrorCode = rsync.writeConfig(configPath, config);
-            if (writeStatus !== rsync.RsyncErrorCode.SUCCESS) {
-                return ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
-            } else {
-                return config.dstDir;
-            }
-        }
-        // Read existing config file:
-        else {
-            const readStatus = rsync.readConfig(configPath);
-            let result = readStatus.config?.dstDir;
-            if (readStatus.errorCode !== rsync.RsyncErrorCode.SUCCESS) {
-                ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
-                result = undefined;
-            }
-            for (const i of sweetTarget.inputs) {
-                if (i.includes(' ') || i.includes(`\n`)) {
-                    ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
-                    result = undefined;
-                }
-            }
-            return result;
-        }
-    })();
-    if (dstDir == undefined) return [];
-
-    const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
-    const rsyncOutput = [appendExtension(ctx, srcDir, '.timestamp')];
-    return [
-        {
-            rule: "rsync",
-            inputs: resolvePaths(ctx, srcDir, sweetTarget.inputs),
-            outputs: rsyncOutput,
-            implicits: resolvePaths(ctx, [HagaKeyword.INPUT_DIR], ['toolchain/rsync.ts']),
-            regenImplicits: [configPath],
-            vars: {
-                srcDir,
-                dstDir,
-                inputs: sweetTarget.inputs.join(' '),
-            },
-            all: false,
-        },
-        {
-            rule: "phony",
-            inputs: rsyncOutput,
-            outputs: [sweetTarget.name],
-            all: false,
-        },
-    ];
-}
-
-function eatTargetZip(ctx: HagaContext, sweetTarget: HagaSweetTargetZip): HagaCoreTarget {
-    const indir = eatString(ctx, sweetTarget.inputDir ?? [HagaKeyword.CURRENT_INPUT_DIR]);
-    return {
-        inputs:  resolvePaths(ctx, indir, sweetTarget.inputs),
-        outputs: resolvePaths(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], [sweetTarget.output]),
-        rule: "zip",
-        implicits:  [ eatString(ctx, ZipAbs) ],
-        vars: { indir },
-    };
 }
 
 function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
