@@ -267,7 +267,7 @@ const SweetTargetSpec: TargetSpec = {
             commands: [
                 [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ],
             ],
-            description: 'CPP $in',
+            description: 'Copying $in',
         }),
         eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy) {
             return eatTargetCopy(ctx, sweetTarget);
