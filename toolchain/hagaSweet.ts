@@ -40,6 +40,7 @@ type HagaSweetRsyncConfig = {
 type HagaSweetRule = {
     name: HagaSweetString;
     commands: HagaSweetCommandArgs[];
+    implicits?: HagaSweetString[];
     description?: HagaSweetString;
     generator?: boolean;
     restat?: boolean;
@@ -109,127 +110,42 @@ type HagaSweetTargetZip = {
     output: HagaSweetString;
 };
 
-type HagaSweetTarget =
-    HagaSweetTargetCopy |
-    HagaSweetTargetCPP |
-    HagaSweetTargetCPPs |
-    HagaSweetTargetMagick |
-    HagaSweetTargetMinify |
-    HagaSweetTargetRegen |
-    HagaSweetTargetRsvgConvert |
-    HagaSweetTargetRsync |
-    HagaSweetTargetZip |
-    HagaCoreTarget;
+type HagaSweetTarget = TargetMap[TargetType] | HagaCoreTarget;
 
 type HagaSweetExport = {
     rules?: HagaCoreRule[],
     targets: HagaSweetTarget[];
 };
 
-//------------------------------------------------------------------------------
-// Constants:
-//------------------------------------------------------------------------------
-const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
-const ZipAbs: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/zip-abs.sh'];
-
-const CPPRule: HagaSweetRule = {
-    name: 'cpp',
-    commands: [
-        [ [HagaKeyword.CLANG_COMMAND],
-          '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
-    ],
-    description: 'CPP $in',
-};
-const SweetRules: { [K in NonNullable<HagaSweetTarget['type']>]: HagaSweetRule } = {
-    'copy': {
-        name: 'copy',
-        commands: [
-            [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ],
-        ],
-        description: 'Copying $in',
-    },
-    'cpp': CPPRule,
-    'cpps': CPPRule,
-    'rsvg-convert': {
-        name: 'rsvg-convert',
-        commands: [
-            [ [HagaKeyword.RSVG_COMMAND], '$args', '$in', '-o', '$out' ],
-        ],
-        description: 'Rasterizing SVG $out',
-    },
-    'magick': {
-        name: 'magick',
-        commands: [
-            [ [HagaKeyword.MAGICK_COMMAND], '$in', '$args', '$out' ],
-        ],
-        description: 'Magicking $out',
-    },
-    'minify': {
-        name: 'minify',
-        commands: [
-            [ [HagaKeyword.BASH_COMMAND], MinifyAny, '$in', '$out', ],
-        ],
-        description: 'Minifying $in',
-    },
-    'regen': {
-        name: 'regen',
-        commands: [
-            [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '$outdir/$out'],
-        ],
-        description: 'Regenerate build.ninja',
-        generator: true,
-        restat: true,
-    },
-    'rsync': {
-        name: 'rsync',
-        commands: [
-            [ [HagaKeyword.HAGA_COMMAND], 'rsync', '$srcDir', '$dstDir', '$inputs'],
-            [ [HagaKeyword.TOUCH_COMMAND], '$out' ],
-        ],
-        description: 'Deploying',
-    },
-    'zip': {
-        name: 'zip',
-        commands: [
-            [ [HagaKeyword.BASH_COMMAND], ZipAbs, '$out', '$indir', '$in', ],
-        ],
-        description: 'Zipping $out',
-    },
+type TargetMap = {
+    'copy': HagaSweetTargetCopy;
+    'cpp': HagaSweetTargetCPP;
+    'cpps': HagaSweetTargetCPPs;
+    'magick': HagaSweetTargetMagick;
+    'minify': HagaSweetTargetMinify;
+    'regen': HagaSweetTargetRegen;
+    'rsvg-convert': HagaSweetTargetRsvgConvert;
+    'rsync': HagaSweetTargetRsync;
+    'zip': HagaSweetTargetZip;
 };
 
-//------------------------------------------------------------------------------
-// Implementation:
-//------------------------------------------------------------------------------
-function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
-    for (const sweetRule of sweetExport.rules ?? []) {
-        if (ctx.ruleMap.has(sweetRule.name)) {
-            ctx.reportError(new Error(`duplicate rule found: ${sweetRule.name}. ignoring`));
-        } else {
-            ctx.ruleMap.set(sweetRule.name, sweetRule);
-        }
-    }
+type TargetType = keyof TargetMap;
 
-    for (const target of sweetExport.targets) {
-        switch (target.type) {
-            case 'copy':
-            case 'cpp':
-            case 'cpps':
-            case 'magick':
-            case 'minify':
-            case 'regen':
-            case 'rsvg-convert':
-            case 'rsync':
-            case 'zip':
-                if ( ! ctx.ruleMap.has(target.type)) {
-                    const sweetRule : HagaSweetRule = SweetRules[target.type];
-                    const coreRule  : HagaCoreRule  = eatRule(ctx,sweetRule);
-                    ctx.ruleMap.set(target.type, coreRule);
-                }
-                break;
-            default:
-                target satisfies HagaCoreTarget;
-        }
-    }
+type TargetSpecEntry<T extends TargetType> = {
+    getRules(): readonly Readonly<HagaSweetRule>[];
+    eatTarget(ctx: HagaContext, sweetTarget: TargetMap[T]): HagaCoreTarget | HagaCoreTarget[];
+}
+
+type TargetSpec = {
+    [K in TargetType]: TargetSpecEntry<K>;
+};
+
+
+//------------------------------------------------------------------------------
+// Util
+//------------------------------------------------------------------------------
+function rulesGetter(...input: readonly Readonly<HagaSweetRule>[]): () => typeof input {
+    return () => input;
 }
 
 function toAbsolutePath(ctx: HagaContext, filepath: string, baseKeyword: HagaKeyword): string {
@@ -243,7 +159,6 @@ function dropExtension(filepath: string, extToDrop: `.${string}`): string {
     }
     return filepath;
 }
-
 function eatString(ctx: HagaContext, sweetString: undefined): undefined;
 function eatString(ctx: HagaContext, sweetString: HagaSweetString): string;
 function eatString(ctx: HagaContext, sweetString: HagaSweetString | undefined): string | undefined;
@@ -301,28 +216,12 @@ function eatCommands(ctx: HagaContext, sweetCommandArgs: HagaSweetCommandArgs[])
     return sweetCommandArgs.map((sweetArgs) => sweetArgs.map((s) => eatString(ctx, s)));
 }
 
-function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
-    const result: HagaCoreRule = {
-        name: eatString(ctx, sweetRule.name),
-        commands: eatCommands(ctx, sweetRule.commands),
-        description: eatString(ctx, sweetRule.description),
-    };
-    if (sweetRule.generator !== undefined) {
-        result.generator = sweetRule.generator;
-    }
-    if (sweetRule.restat !== undefined) {
-        result.restat = sweetRule.restat;
-    }
-    return result;
-}
-
 type InputsAndOutdir = {
     inputs: HagaSweetString[],
     outputDir?: HagaSweetString,
     inputDir?: HagaSweetString
 };
-type Rule = keyof typeof SweetRules;
-function eatTargetInputsWithRule(ctx: HagaContext, sweetTarget: InputsAndOutdir, rule: Rule): HagaCoreTarget[] {
+function eatTargetInputsWithRule(ctx: HagaContext, sweetTarget: InputsAndOutdir, rule: string /* TODO change to HagaSweetRule */): HagaCoreTarget[] {
     const outDir : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir ?? '');
     const inDir  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.inputDir ?? '');
     return sweetTarget.inputs.map(sweetInput => {
@@ -342,7 +241,7 @@ type InputOutputArgs = {
     output: HagaSweetString;
     args: HagaSweetCommandArgs;
 };
-function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule: Rule): HagaCoreTarget {
+function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule: string /* TODO change to HagaSweetRule */): HagaCoreTarget {
     const input  : string = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR],  sweetTarget.input);
     const output : string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.output);
     const args   : string = eatArgs(ctx, sweetTarget.args);
@@ -353,6 +252,178 @@ function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule:
         vars: { args },
     };
 }
+
+
+//------------------------------------------------------------------------------
+// Constants:
+//------------------------------------------------------------------------------
+const MinifyAny: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/minify-any.sh'];
+const ZipAbs: HagaSweetString = [HagaKeyword.INPUT_DIR, '/toolchain/zip-abs.sh'];
+
+const SweetTargetSpec: TargetSpec = {
+    'copy': {
+        getRules: rulesGetter({
+            name: 'copy',
+            commands: [
+                [ [HagaKeyword.COPY_COMMAND], '$in', '$out' ],
+            ],
+            description: 'CPP $in',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy) {
+            return eatTargetCopy(ctx, sweetTarget);
+        },
+    },
+
+    'cpp': {
+        getRules: rulesGetter({
+            name: 'cpp',
+            commands: [
+                [ [HagaKeyword.CLANG_COMMAND],
+                  '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
+            ],
+            description: 'CPP $in',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPP) {
+            return eatTargetCPP(ctx, sweetTarget);
+        },
+    },
+
+    'cpps': {
+        getRules: () => SweetTargetSpec['cpp'].getRules(),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetCPPs) {
+            return eatTargetCPPs(ctx, sweetTarget);
+        },
+    },
+
+    'magick': {
+        getRules: rulesGetter({
+            name: 'magick',
+            commands: [
+                [ [HagaKeyword.MAGICK_COMMAND], '$in', '$args', '$out' ],
+            ],
+            description: 'Magicking $out',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMagick) {
+            return eatTargetMagick(ctx, sweetTarget);
+        },
+    },
+
+    'minify': {
+        getRules: rulesGetter({
+            name: 'minify',
+            commands: [
+                [ [HagaKeyword.BASH_COMMAND], MinifyAny, '$in', '$out', ],
+            ],
+            description: 'Minifying $in',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetMinify) {
+            return eatTargetMinify(ctx, sweetTarget);
+        },
+    },
+
+    'regen': {
+        getRules: rulesGetter({
+            name: 'regen',
+            commands: [
+                [ [HagaKeyword.HAGA_COMMAND], 'genin', '$in', '$outdir/$out'],
+            ],
+            description: 'Regenerate build.ninja',
+            generator: true,
+            restat: true,
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRegen) {
+            return eatTargetRegen(ctx, sweetTarget);
+        },
+    },
+
+    'rsvg-convert': {
+        getRules: rulesGetter({
+            name: 'rsvg-convert',
+            commands: [
+                [ [HagaKeyword.RSVG_COMMAND], '$args', '$in', '-o', '$out' ],
+            ],
+            description: 'Rasterizing SVG $out',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsvgConvert) {
+            return eatTargetRsvgConvert(ctx, sweetTarget);
+        },
+    },
+
+    'rsync': {
+        getRules: rulesGetter({
+            name: 'rsync',
+            commands: [
+                [ [HagaKeyword.HAGA_COMMAND], 'rsync', '$srcDir', '$dstDir', '$inputs'],
+                [ [HagaKeyword.TOUCH_COMMAND], '$out' ],
+            ],
+            description: 'Deploying',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync) {
+            return eatTargetRsync(ctx, sweetTarget);
+        },
+    },
+
+    'zip': {
+        getRules: rulesGetter( {
+            name: 'zip',
+            commands: [
+                [ [HagaKeyword.BASH_COMMAND], ZipAbs, '$out', '$indir', '$in', ],
+            ],
+            description: 'Zipping $out',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetZip) {
+            return eatTargetZip(ctx, sweetTarget);
+        },
+    },
+}
+
+
+//------------------------------------------------------------------------------
+// Implementation:
+//------------------------------------------------------------------------------
+function addRules(ctx: HagaContext, sweetExport: HagaSweetExport) {
+    for (const sweetRule of sweetExport.rules ?? []) {
+        if (ctx.ruleMap.has(sweetRule.name)) {
+            ctx.reportError(new Error(`duplicate rule found: ${sweetRule.name}. ignoring`));
+        } else {
+            ctx.ruleMap.set(sweetRule.name, sweetRule);
+        }
+    }
+
+    for (const target of sweetExport.targets) {
+        if (target.type === undefined) {
+            target satisfies HagaCoreTarget; // skip
+        } else {
+            const targetSpec = SweetTargetSpec[target.type];
+            addSpecRules(ctx, target.type, targetSpec);
+        }
+    }
+}
+
+function addSpecRules<T extends TargetType>(ctx: HagaContext, type: T, spec: TargetSpecEntry<T>) {
+    for (const sweetRule of spec.getRules()) {
+        if ( ! ctx.ruleMap.has(type)) {
+            const coreRule  : HagaCoreRule = eatRule(ctx, sweetRule);
+            ctx.ruleMap.set(type, coreRule);
+        }
+    }
+}
+
+function eatRule(ctx: HagaContext, sweetRule: HagaSweetRule): HagaCoreRule {
+    const result: HagaCoreRule = {
+        name: eatString(ctx, sweetRule.name),
+        commands: eatCommands(ctx, sweetRule.commands),
+        description: eatString(ctx, sweetRule.description),
+    };
+    if (sweetRule.generator !== undefined) {
+        result.generator = sweetRule.generator;
+    }
+    if (sweetRule.restat !== undefined) {
+        result.restat = sweetRule.restat;
+    }
+    return result;
+}
+
 
 function eatTargetCopy(ctx: HagaContext, sweetTarget: HagaSweetTargetCopy): HagaCoreTarget[] {
     return eatTargetInputsWithRule(ctx, sweetTarget, 'copy');
@@ -503,23 +574,23 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
         targets: sweetExport.targets.map((target) => {
             switch (target.type) {
                 case 'copy':
-                    return eatTargetCopy(ctx, target);
+                    return SweetTargetSpec['copy'].eatTarget(ctx, target);
                 case 'cpp':
-                    return eatTargetCPP(ctx, target);
+                    return SweetTargetSpec['cpp'].eatTarget(ctx, target);
                 case 'cpps':
-                    return eatTargetCPPs(ctx, target);
+                    return SweetTargetSpec['cpps'].eatTarget(ctx, target);
                 case 'rsvg-convert':
-                    return eatTargetRsvgConvert(ctx, target);
+                    return SweetTargetSpec['rsvg-convert'].eatTarget(ctx, target);
                 case 'magick':
-                    return eatTargetMagick(ctx, target);
+                    return SweetTargetSpec['magick'].eatTarget(ctx, target);
                 case 'minify':
-                    return eatTargetMinify(ctx, target);
+                    return SweetTargetSpec['minify'].eatTarget(ctx, target);
                 case 'regen':
-                    return eatTargetRegen(ctx, target);
+                    return SweetTargetSpec['regen'].eatTarget(ctx, target);
                 case 'rsync':
-                    return eatTargetRsync(ctx, target);
+                    return SweetTargetSpec['rsync'].eatTarget(ctx, target);
                 case 'zip':
-                    return eatTargetZip(ctx, target);
+                    return SweetTargetSpec['zip'].eatTarget(ctx, target);
                 case undefined:
                     return target satisfies HagaCoreTarget;
                 default:
