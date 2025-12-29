@@ -538,28 +538,22 @@ function eatSugar(sweetExport: HagaSweetExport): HagaCoreExport {
         rules: Array.from(ctx.ruleMap.values()),
         targets: sweetExport.targets.map((target) => {
             switch (target.type) {
-                case 'copy':
-                    return SweetTargetSpec['copy'].eatTarget(ctx, target);
-                case 'cpp':
-                    return SweetTargetSpec['cpp'].eatTarget(ctx, target);
-                case 'cpps':
-                    return SweetTargetSpec['cpps'].eatTarget(ctx, target);
-                case 'rsvg-convert':
-                    return SweetTargetSpec['rsvg-convert'].eatTarget(ctx, target);
-                case 'magick':
-                    return SweetTargetSpec['magick'].eatTarget(ctx, target);
-                case 'minify':
-                    return SweetTargetSpec['minify'].eatTarget(ctx, target);
-                case 'regen':
-                    return SweetTargetSpec['regen'].eatTarget(ctx, target);
-                case 'rsync':
-                    return SweetTargetSpec['rsync'].eatTarget(ctx, target);
-                case 'zip':
-                    return SweetTargetSpec['zip'].eatTarget(ctx, target);
                 case undefined:
                     return target satisfies HagaCoreTarget;
                 default:
-                    return target satisfies never;
+                    type EatTarget<TArg> = (ctx: HagaContext, target: TArg) => HagaCoreTarget | HagaCoreTarget[];
+                    const eatTarget = (
+                        // Double-check that the eatTarget(...) `target` arg type and brandings match:
+                        SweetTargetSpec satisfies {
+                            [T in TargetType]: {
+                                eatTarget: EatTarget<TargetMap[T]>
+                            }
+                        }
+                    )[
+                        // Double-check that local var `target` is theoretically assignable to the `eatTarget(...)` `target` arg:
+                        (target satisfies TargetMap[TargetType]).type
+                    ].eatTarget as EatTarget<unknown>;
+                    return eatTarget(ctx, target);
             }
         }).flat(),
     };
