@@ -255,6 +255,48 @@ function eatTargetWithArgs(ctx: HagaContext, sweetTarget: InputOutputArgs, rule:
     };
 }
 
+type SetOnce<V> = { get(): V } | { set(value: V): { get(): V } };
+function setOnce<V>(): { set(value: V): { get(): V } } {
+    return {
+        set(value: V): { get(): V } {
+            return { get: () => value };
+        }
+    };
+}
+
+function initRsyncDstDir(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync, configPath: string): string | undefined {
+    let dstDir: SetOnce<string | undefined> = setOnce();
+    // Initialise (write) config from template:
+    if ( ! fs.existsSync(configPath) ) {
+        const config: RsyncConfig = eatRsyncConfig(ctx, sweetTarget.configTemplate);
+        const writeStatus: RsyncErrorCode = rsync.writeConfig(configPath, config);
+        if (writeStatus !== rsync.RsyncErrorCode.SUCCESS) {
+            ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
+            dstDir = dstDir.set(undefined);
+        } else {
+            dstDir = dstDir.set(config.dstDir);
+        }
+    }
+    // Read existing config file:
+    else {
+        const readStatus = rsync.readConfig(configPath);
+        let configDstDir = readStatus.config?.dstDir;
+        if (readStatus.errorCode !== rsync.RsyncErrorCode.SUCCESS) {
+            ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
+            configDstDir = undefined;
+        }
+        for (const i of sweetTarget.inputs) {
+            if (i.includes(' ') || i.includes(`\n`)) {
+                ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
+                configDstDir = undefined;
+            }
+        }
+        dstDir = dstDir.set(configDstDir);
+    }
+    return dstDir.get();
+}
+
+
 
 //------------------------------------------------------------------------------
 // Constants:
@@ -407,34 +449,7 @@ const SweetTargetSpec = {
         }),
         eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetRsync) {
             const configPath = resolvePath(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.config);
-            const dstDir: string | void = (() => {
-                // Initialise (write) config from template:
-                if ( ! fs.existsSync(configPath) ) {
-                    const config: RsyncConfig = eatRsyncConfig(ctx, sweetTarget.configTemplate);
-                    const writeStatus: RsyncErrorCode = rsync.writeConfig(configPath, config);
-                    if (writeStatus !== rsync.RsyncErrorCode.SUCCESS) {
-                        return ctx.reportError(new Error(`cannot write template ${configPath} (error-code: ${writeStatus})`));
-                    } else {
-                        return config.dstDir;
-                    }
-                }
-                // Read existing config file:
-                else {
-                    const readStatus = rsync.readConfig(configPath);
-                    let result = readStatus.config?.dstDir;
-                    if (readStatus.errorCode !== rsync.RsyncErrorCode.SUCCESS) {
-                        ctx.reportError(new Error(`cannot read ${configPath} (error-code: ${readStatus.errorCode})`));
-                        result = undefined;
-                    }
-                    for (const i of sweetTarget.inputs) {
-                        if (i.includes(' ') || i.includes(`\n`)) {
-                            ctx.reportWarning(new Error(`spaces and EOL in rsync input '${i}' is unsupported`));
-                            result = undefined;
-                        }
-                    }
-                    return result;
-                }
-            })();
+            const dstDir: string | undefined = initRsyncDstDir(ctx, sweetTarget, configPath);
             if (dstDir == undefined) return [];
 
             const srcDir: string = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.srcDir);
@@ -453,13 +468,13 @@ const SweetTargetSpec = {
                     },
                     all: false,
                 },
-        {
-            rule: "phony",
-            inputs: rsyncOutput,
-            outputs: [sweetTarget.name],
-            all: false,
-        },
-    ];
+                {
+                    rule: "phony",
+                    inputs: rsyncOutput,
+                    outputs: [sweetTarget.name],
+                    all: false,
+                },
+            ];
         },
     },
 
