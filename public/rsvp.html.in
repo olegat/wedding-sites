@@ -512,10 +512,9 @@
         document.documentElement.lang = currentLang;
       });
 
+      // Add handlers for disabling some fields:
       plus1Radios.forEach(r => r.addEventListener('change', updatePlus1Fields));
-      attendingRadios.forEach(r =>
-        r.addEventListener('change', updateAttendingFields)
-      );
+      attendingRadios.forEach(r => r.addEventListener('change', updateAttendingFields));
 
       // Form submit
       form.addEventListener('submit', async e => {
