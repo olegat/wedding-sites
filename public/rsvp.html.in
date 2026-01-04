@@ -538,20 +538,22 @@
 
       function updateKidsVisibility(event) {
         let visibility;
-        if (event.target.value === '1') {
-          visibility = [true, false, false, false];
-        }
-        else if (event.target.value === '2') {
-          visibility = [true, true, false, false];
-        }
-        else if (event.target.value === '3') {
-          visibility = [true, true, true, false];
-        }
-        else if (event.target.value === '4') {
-          visibility = [true, true, true, true];
-        }
-        else {
-          visibility = [false, false, false, false];
+        switch (event.target.value) {
+          case '1':
+            visibility = [true , false, false, false];
+            break;
+          case '2':
+            visibility = [true , true , false, false];
+            break;
+          case '3':
+            visibility = [true , true , true , false];
+            break;
+          case '4':
+            visibility = [true , true , true , true ];
+            break;
+          default:
+            visibility = [false, false, false, false];
+            break;
         }
 
         const setVisibility = (id, visible) => {
