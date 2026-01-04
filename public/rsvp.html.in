@@ -121,6 +121,7 @@
       }
 
       /* Hide the "Required" star if an ancestor is disabled */
+      .disabled  .redstar,
       [disabled] .redstar {
           display: none;
       }
@@ -227,6 +228,27 @@
           <span id="plus1-name-placeholder-en" class="placeholder" lang="en">Optional</span>
           <span id="plus1-name-placeholder-es" class="placeholder" lang="es">Opcional</span>
           <span id="plus1-name-placeholder-fr" class="placeholder" lang="fr">Optionnel</span>
+        </label>
+      </div>
+
+      <!-- Kids -->
+      <div class="mainq">
+        <label id="kid-count-label">
+          <span lang="en">How many child guests will you be bringing?</span>
+          <span lang="es"></span>
+          <span lang="fr"></span>
+          <span class="redstar"></span>
+          <select name="lang" id="kid-count-input">
+            <option value="0">
+              <span lang="en">None</span>
+              <span lang="es"></span>
+              <span lang="fr"></span>
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
         </label>
       </div>
 
@@ -458,6 +480,8 @@
 #if USE_PREBODA_PROMPT
         'preboda-fieldset',
 #endif
+        'kid-count-label',
+        'kid-count-input',
         'songrequest-label',
         'songrequest-input',
         ...PLUS1_TOGGLEABLE_IDS,
