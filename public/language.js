@@ -1,32 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   const langLinks = document.querySelectorAll('.lang-menu a');
+  let currentLang;
 
-  // Get persisted language, default to 'en'
-  let currentLang = localStorage.getItem('lang') || 'en';
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    updateMenuHighlight(lang);
+    document.documentElement.lang = lang;
+  }
 
-  // Apply initial highlight
-  updateMenuHighlight();
-
-  // Add click handlers
-  langLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const selectedLang = link.dataset.lang;
-
-      if (selectedLang === currentLang) return;
-
-      currentLang = selectedLang;
-      localStorage.setItem('lang', currentLang);
-
-      // Here you would trigger content translation logic
-      // For now, just update highlight
-      updateMenuHighlight();
-    });
-  });
-
-  function updateMenuHighlight() {
+  function updateMenuHighlight(lang) {
     langLinks.forEach(link => {
-      if (link.dataset.lang === currentLang) {
+      if (link.dataset.lang === lang) {
         link.style.fontWeight = 'bold';
         link.style.textDecoration = 'underline';
       } else {
@@ -34,7 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.textDecoration = '';
       }
     });
-
-    document.documentElement.lang = currentLang;
+    return lang;
   }
+
+  // Get persisted language, default to 'en'
+  currentLang = (() => {
+    const lang = localStorage.getItem('lang') || 'en';
+    return updateMenuHighlight(lang);
+  })();
+
+  // Add click handlers
+  langLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const selectedLang = link.dataset.lang;
+      if (selectedLang !== currentLang) {
+        applyLanguage(selectedLang);
+      }
+    });
+  });
+
 });
