@@ -1,7 +1,7 @@
 #define BANNER_ASPECT_RATIO  3/2
 #define BANNER_HIGH_URL      "./hotels_3_2.jpeg"
 #define BANNER_LOW_URL       "./hotels_3_2_low.jpeg"
-#define USE_PREBODA_PROMPT   0
+#include "defines.h"
 
 <!DOCTYPE html>
 <html lang="en">
