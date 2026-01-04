@@ -2,10 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Playfair+Display:wght@600&display=swap');
 
 body {
+    display: flex;
+    flex-direction: column;
+    max-width:  100vw;
+    min-height: 100vh;
     margin: 0;
     font-family: 'Oswald', sans-serif;
     background: linear-gradient(to bottom, #ffb347, #ffcc33, #e17a47);
     color: #1c1c1c;
+}
+
+main {
+    flex: 1;
 }
 
 /* Floating language menu */

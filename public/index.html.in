@@ -14,108 +14,112 @@
   <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-  #include "body_header.html"
+  <main>
 
-  <div class="poster">
-    <h1>Mary & Oli</h1>
-    <h2>Wedding Festival</h2>
-    <div class="date-location">
-      <span lang="en">Saturday 10th October 2026 · Zaragoza, Spain</span>
-      <span lang="es">Sábado 10 de Octubre de 2026 · Zaragoza, España</span>
-      <span lang="fr">Samedi 10 Octobre 2026 · Saragosse, Espagne</span>
-    </div>
+    #include "body_header.html"
 
-    <!-- Seamless logo marquee -->
-    <div class="logo-marquee">
-      <div class="marquee-track">
+    <div class="poster">
+      <h1>Mary & Oli</h1>
+      <h2>Wedding Festival</h2>
+      <div class="date-location">
+        <span lang="en">Saturday 10th October 2026 · Zaragoza, Spain</span>
+        <span lang="es">Sábado 10 de Octubre de 2026 · Zaragoza, España</span>
+        <span lang="fr">Samedi 10 Octobre 2026 · Saragosse, Espagne</span>
+      </div>
+
+      <!-- Seamless logo marquee -->
+      <div class="logo-marquee">
+        <div class="marquee-track">
 #define BANDS \
-        <img src="./linkinpark.svg" width="116" height="80" alt="Linkin Park"> \
-        <img src="./oasis.svg" width="173" height="80" alt="Oasis"> \
-        <img src="./thecure.svg" style="height: 60px; margin-top: 10px" width="127" height="60" alt="The Cure"> \
-        <img src="./acdc.svg" width="206" height="80" alt="AC/DC"> \
-        <img src="./skindred.webp" style="height: 50px; margin-top: 15px" width="176" height="50" alt="Skindred"> \
-        <img src="./ironmaiden.svg" width="143" height="80" alt="Iron Maiden"> \
-        <img src="./rosalia.svg" width="125" height="80" alt="Rosalía"> \
-        <img src="./badbunny.svg" width="172" height="80" alt="Bad Bunny"> \
-        <img src="./guns-n-roses.webp" width="142" height="80" alt="Gun N Roses"> \
-        <img src="./deadmaus.webp" width="134" height="80" alt="Dead Maus"> \
-        <img src="./metallica.svg" width="191" height="80" alt="Metallica"> \
-        <img src="./systemofadown.svg" width="80" height="80" alt="System Of A Down"> \
-        <img src="./publicenemy.svg" width="224" height="80" alt="Public Enemy"> \
-        <img src="./blacksabbath.svg" width="160" height="80" alt="Black Sabbath"> \
-        <img src="./alestorm.webp" width="124" height="80" alt="Alestorm"> \
-        <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" width="188" height="50" alt="Airbourne"> \
+          <img src="./linkinpark.svg" width="116" height="80" alt="Linkin Park"> \
+          <img src="./oasis.svg" width="173" height="80" alt="Oasis"> \
+          <img src="./thecure.svg" style="height: 60px; margin-top: 10px" width="127" height="60" alt="The Cure"> \
+          <img src="./acdc.svg" width="206" height="80" alt="AC/DC"> \
+          <img src="./skindred.webp" style="height: 50px; margin-top: 15px" width="176" height="50" alt="Skindred"> \
+          <img src="./ironmaiden.svg" width="143" height="80" alt="Iron Maiden"> \
+          <img src="./rosalia.svg" width="125" height="80" alt="Rosalía"> \
+          <img src="./badbunny.svg" width="172" height="80" alt="Bad Bunny"> \
+          <img src="./guns-n-roses.webp" width="142" height="80" alt="Gun N Roses"> \
+          <img src="./deadmaus.webp" width="134" height="80" alt="Dead Maus"> \
+          <img src="./metallica.svg" width="191" height="80" alt="Metallica"> \
+          <img src="./systemofadown.svg" width="80" height="80" alt="System Of A Down"> \
+          <img src="./publicenemy.svg" width="224" height="80" alt="Public Enemy"> \
+          <img src="./blacksabbath.svg" width="160" height="80" alt="Black Sabbath"> \
+          <img src="./alestorm.webp" width="124" height="80" alt="Alestorm"> \
+          <img src="./airbourne.svg" style="height: 50px; margin-top: 15px" width="188" height="50" alt="Airbourne"> \
 
-        <!-- Duplicate for seamless looping -->
-        BANDS
-        BANDS
+          <!-- Duplicate for seamless looping -->
+          BANDS
+          BANDS
+        </div>
+      </div>
+
+      <div class="lineup">
+        <h3>
+          <span lang="en">Full Lineup</span>
+          <span lang="es">Programa Completo</span>
+          <span lang="fr">Programme Complet</span>
+        </h3>
+        <div class="bands">
+          <strong>Main Stage</strong>
+          ✨
+          <span lang="en">Ceremony</span>
+          <span lang="es">Ceremonia</span>
+          <span lang="fr">Cérémonie</span>
+          · 16:00 <br>
+          🍷
+          <span lang="en">Cocktail Hour</span>
+          <span lang="es">Hora del Cóctel</span>
+          <span lang="fr">Heure du Cocktail</span>
+          · 17:30 <br>
+
+          <strong>Harvest Tent</strong>
+          🍽️
+          <span lang="en">Dinner</span>
+          <span lang="es">Cena</span>
+          <span lang="fr">Dîner</span>
+          · 19:00 <br>
+
+          <strong>Rock Arena</strong>
+          🎸
+          <span lang="en">Party</span>
+          <span lang="es">Fiesta</span>
+          <span lang="fr">Fête</span>
+          (Rock, Metal, Reggaeton, Hip-Hop) · 21:00<br>
+
+          <strong>Bonfire Stage</strong>
+          🔥 Afterparty · 04:00
+        </div>
+      </div>
+
+      <div class="big-quote">
+        <span lang="en">"Not just a wedding — a festival of love, rhythm, and autumn firelight."</span>
+        <span lang="es">"No solo una boda — un festival de amor, ritmo y fuego otoñal."</span>
+        <span lang="fr">"Pas seulement un mariage — un festival d'amour, de rythme et de feu d'automne."</span>
+      </div>
+
+      <div class="rsvp-block">
+        <h2>
+          <span lang="en">🎟️ Grab Your Wristband</span>
+          <span lang="es">🎟️ Consigue tu Pulsera</span>
+          <span lang="fr">🎟️ Obtenez votre Bracelet</span>
+        </h2>
+        <p>
+          <span lang="en">Join us for a once-in-a-lifetime celebration</span>
+          <span lang="es">Únete a nosotros para una celebración única</span>
+          <span lang="fr">Rejoignez-nous pour une célébration unique</span>
+        </p>
+        <a href="./rsvp.html" target="_blank" rel="noopener">
+          <button type="button">
+            <span lang="en">RSVP Now</span>
+            <span lang="es">Confirmar Asistencia</span>
+            <span lang="fr">RSVP</span>
+          </button>
+        </a>
       </div>
     </div>
 
-    <div class="lineup">
-      <h3>
-        <span lang="en">Full Lineup</span>
-        <span lang="es">Programa Completo</span>
-        <span lang="fr">Programme Complet</span>
-      </h3>
-      <div class="bands">
-        <strong>Main Stage</strong>
-        ✨
-        <span lang="en">Ceremony</span>
-        <span lang="es">Ceremonia</span>
-        <span lang="fr">Cérémonie</span>
-        · 16:00 <br>
-        🍷
-        <span lang="en">Cocktail Hour</span>
-        <span lang="es">Hora del Cóctel</span>
-        <span lang="fr">Heure du Cocktail</span>
-        · 17:30 <br>
-
-        <strong>Harvest Tent</strong>
-        🍽️
-        <span lang="en">Dinner</span>
-        <span lang="es">Cena</span>
-        <span lang="fr">Dîner</span>
-        · 19:00 <br>
-
-        <strong>Rock Arena</strong>
-        🎸
-        <span lang="en">Party</span>
-        <span lang="es">Fiesta</span>
-        <span lang="fr">Fête</span>
-        (Rock, Metal, Reggaeton, Hip-Hop) · 21:00<br>
-
-        <strong>Bonfire Stage</strong>
-        🔥 Afterparty · 04:00
-      </div>
-    </div>
-
-    <div class="big-quote">
-      <span lang="en">"Not just a wedding — a festival of love, rhythm, and autumn firelight."</span>
-      <span lang="es">"No solo una boda — un festival de amor, ritmo y fuego otoñal."</span>
-      <span lang="fr">"Pas seulement un mariage — un festival d'amour, de rythme et de feu d'automne."</span>
-    </div>
-
-    <div class="rsvp-block">
-      <h2>
-        <span lang="en">🎟️ Grab Your Wristband</span>
-        <span lang="es">🎟️ Consigue tu Pulsera</span>
-        <span lang="fr">🎟️ Obtenez votre Bracelet</span>
-      </h2>
-      <p>
-        <span lang="en">Join us for a once-in-a-lifetime celebration</span>
-        <span lang="es">Únete a nosotros para una celebración única</span>
-        <span lang="fr">Rejoignez-nous pour une célébration unique</span>
-      </p>
-      <a href="./rsvp.html" target="_blank" rel="noopener">
-        <button type="button">
-          <span lang="en">RSVP Now</span>
-          <span lang="es">Confirmar Asistencia</span>
-          <span lang="fr">RSVP</span>
-        </button>
-      </a>
-    </div>
-  </div>
+  </main>
 
   #include "body_footer.html"
 </body>

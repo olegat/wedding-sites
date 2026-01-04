@@ -14,104 +14,108 @@
   <link rel="stylesheet" href="./travel.css">
 </head>
 <body>
-  #include "body_header.html"
+  <main>
 
-  <div lang="en" class="poster">
-    <h1>Travel Info</h1>
+    #include "body_header.html"
 
-    <section>
-      <h2>Flights</h2>
-      <p>Direct flights into Zaragoza (ZAZ) are limited. Ryanair flies to Zaragoza from London Stansted (STN) and from Charleroi (CRL), but services run only on certain days of the week. Zaragoza Airport has taxis available at all times; a taxi to the city centre costs around €27. There are also cheaper public bus options.</p>
-      <p>Many more flight options are available to Madrid (MAD) and Barcelona (BCN). From either city, Zaragoza can be reached via high-speed AVE trains (fast and comfortable, but more expensive) or Alsa intercity buses (slower, but cheaper). Both arrive at Zaragoza-Delicias, the city’s main station.</p>
-      <p>Renting a car in Madrid or Barcelona is also an option; driving to Zaragoza takes roughly 3–3.5 hours from either city.</p>
-    </section>
+    <div lang="en" class="poster">
+      <h1>Travel Info</h1>
 
-    <section>
-      <h2>Getting Around Zaragoza</h2>
-      <p>Zaragoza is a compact and very walkable city. For most visitors, there is no need to rent a car: many hotels, restaurants, and sights are within easy walking distance. For slightly longer journeys, taxis and city buses are plentiful, affordable, and easy to use. Taxis can be hailed on the street or found at taxi ranks.</p>
-      <p>The wedding takes place during the Fiestas del Pilar, when the city is busier than usual and some streets may be closed or pedestrianised. Public transport and taxis continue to operate during the festivities, though journeys may occasionally take a little longer.</p>
-      <h3>Transport Card</h3>
-      <p>If you plan to use buses or the tram more than once, it’s very common for locals and frequent visitors to carry a rechargeable transport card — often called a <strong>Tarjeta Bus</strong>. Digital versions are also available on the App Store and Play Store.</p>
-      <p>These cards let you pay as you go for both buses and the tram at a discounted fare compared with buying single tickets on board. You can buy and top up these cards at tobacco/newsagent shops and other authorised points around the city, and there are also machines at major tram stops for checking your balance and recharging. The card is valid on most urban buses and tram lines.</p>
-      <p>
-        <a href="https://zaragoza-avanzagrupo-com.translate.goog/tarifas-y-titulos/?_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en-GB" target="_blank" rel="noopener">
-          Official Website
-        </a>
-      </p>
-    </section>
+      <section>
+        <h2>Flights</h2>
+        <p>Direct flights into Zaragoza (ZAZ) are limited. Ryanair flies to Zaragoza from London Stansted (STN) and from Charleroi (CRL), but services run only on certain days of the week. Zaragoza Airport has taxis available at all times; a taxi to the city centre costs around €27. There are also cheaper public bus options.</p>
+        <p>Many more flight options are available to Madrid (MAD) and Barcelona (BCN). From either city, Zaragoza can be reached via high-speed AVE trains (fast and comfortable, but more expensive) or Alsa intercity buses (slower, but cheaper). Both arrive at Zaragoza-Delicias, the city’s main station.</p>
+        <p>Renting a car in Madrid or Barcelona is also an option; driving to Zaragoza takes roughly 3–3.5 hours from either city.</p>
+      </section>
 
-    <section>
-      <h2>Venue</h2>
-      <p>Our wedding will be held entirely at <strong>Soto de Bruil</strong>, located in Alfajarín (50172).</p>
-      <p>Dedicated shuttle buses will be provided between Zaragoza and the venue. Full details and schedules will be shared closer to the date.</p>
-      <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-    </section>
+      <section>
+        <h2>Getting Around Zaragoza</h2>
+        <p>Zaragoza is a compact and very walkable city. For most visitors, there is no need to rent a car: many hotels, restaurants, and sights are within easy walking distance. For slightly longer journeys, taxis and city buses are plentiful, affordable, and easy to use. Taxis can be hailed on the street or found at taxi ranks.</p>
+        <p>The wedding takes place during the Fiestas del Pilar, when the city is busier than usual and some streets may be closed or pedestrianised. Public transport and taxis continue to operate during the festivities, though journeys may occasionally take a little longer.</p>
+        <h3>Transport Card</h3>
+        <p>If you plan to use buses or the tram more than once, it’s very common for locals and frequent visitors to carry a rechargeable transport card — often called a <strong>Tarjeta Bus</strong>. Digital versions are also available on the App Store and Play Store.</p>
+        <p>These cards let you pay as you go for both buses and the tram at a discounted fare compared with buying single tickets on board. You can buy and top up these cards at tobacco/newsagent shops and other authorised points around the city, and there are also machines at major tram stops for checking your balance and recharging. The card is valid on most urban buses and tram lines.</p>
+        <p>
+          <a href="https://zaragoza-avanzagrupo-com.translate.goog/tarifas-y-titulos/?_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en-GB" target="_blank" rel="noopener">
+            Official Website
+          </a>
+        </p>
+      </section>
 
-  </div>
+      <section>
+        <h2>Venue</h2>
+        <p>Our wedding will be held entirely at <strong>Soto de Bruil</strong>, located in Alfajarín (50172).</p>
+        <p>Dedicated shuttle buses will be provided between Zaragoza and the venue. Full details and schedules will be shared closer to the date.</p>
+        <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </section>
 
-  <div lang="es" class="poster">
-    <h1>Información de viaje</h1>
+    </div>
 
-    <section>
-      <h2>Vuelos</h2>
-      <p>Los vuelos directos a Zaragoza (ZAZ) son limitados. Ryanair vuela a Zaragoza desde London Stansted (STN) y desde Charleroi (CRL), pero los servicios operan solo ciertos días de la semana. El aeropuerto de Zaragoza dispone de taxis en todo momento; un trayecto en taxi hasta el centro de la ciudad cuesta alrededor de 27 €. También hay opciones de autobús público más económicas.</p>
-      <p>Hay muchas más opciones de vuelo a Madrid (MAD) y Barcelona (BCN). Desde cualquiera de estas ciudades se puede llegar a Zaragoza en trenes AVE de alta velocidad (rápidos y cómodos, pero más caros) o en autobuses interurbanos de Alsa (más lentos, pero más baratos). Ambos llegan a Zaragoza-Delicias, la estación principal de la ciudad.</p>
-      <p>También es posible alquilar un coche en Madrid o Barcelona; el trayecto en coche hasta Zaragoza dura aproximadamente entre 3 y 3,5 horas desde ambas ciudades.</p>
-    </section>
+    <div lang="es" class="poster">
+      <h1>Información de viaje</h1>
 
-    <section>
-      <h2>Moverse por Zaragoza</h2>
-      <p>Zaragoza es una ciudad compacta y muy fácil de recorrer a pie. Para la mayoría de los visitantes no es necesario alquilar un coche: muchos hoteles, restaurantes y lugares de interés están a poca distancia caminando. Para trayectos un poco más largos, los taxis y los autobuses urbanos son abundantes, asequibles y fáciles de usar. Los taxis se pueden parar en la calle o encontrar en paradas habilitadas.</p>
-      <p>La boda se celebra durante las Fiestas del Pilar, cuando la ciudad está más concurrida de lo habitual y algunas calles pueden estar cerradas o ser peatonales. El transporte público y los taxis siguen funcionando durante las fiestas, aunque algunos trayectos pueden tardar un poco más.</p>
-      <h3>Tarjeta de transporte</h3>
-      <p>Si tienes pensado usar el autobús o el tranvía más de una vez, es muy habitual que los residentes y visitantes frecuentes utilicen una tarjeta de transporte recargable, conocida comúnmente como <strong>Tarjeta Bus</strong>. También existen versiones digitales disponibles en App Store y Play Store.</p>
-      <p>Estas tarjetas permiten pagar por viaje tanto en autobuses como en el tranvía con una tarifa reducida en comparación con los billetes sencillos comprados a bordo. Se pueden comprar y recargar en estancos, quioscos y otros puntos autorizados de la ciudad, y también hay máquinas en las principales paradas del tranvía para consultar el saldo y recargar. La tarjeta es válida en la mayoría de las líneas urbanas de autobús y tranvía.</p>
-      <p>
-        <a href="https://zaragoza.avanzagrupo.com/tarifas-y-titulos/" target="_blank" rel="noopener">
-          Sitio web oficial
-        </a>
-      </p>
-    </section>
+      <section>
+        <h2>Vuelos</h2>
+        <p>Los vuelos directos a Zaragoza (ZAZ) son limitados. Ryanair vuela a Zaragoza desde London Stansted (STN) y desde Charleroi (CRL), pero los servicios operan solo ciertos días de la semana. El aeropuerto de Zaragoza dispone de taxis en todo momento; un trayecto en taxi hasta el centro de la ciudad cuesta alrededor de 27 €. También hay opciones de autobús público más económicas.</p>
+        <p>Hay muchas más opciones de vuelo a Madrid (MAD) y Barcelona (BCN). Desde cualquiera de estas ciudades se puede llegar a Zaragoza en trenes AVE de alta velocidad (rápidos y cómodos, pero más caros) o en autobuses interurbanos de Alsa (más lentos, pero más baratos). Ambos llegan a Zaragoza-Delicias, la estación principal de la ciudad.</p>
+        <p>También es posible alquilar un coche en Madrid o Barcelona; el trayecto en coche hasta Zaragoza dura aproximadamente entre 3 y 3,5 horas desde ambas ciudades.</p>
+      </section>
 
-    <section>
-      <h2>Lugar de la celebración</h2>
-      <p>Nuestra boda se celebrará íntegramente en <strong>Soto de Bruil</strong>, situado en Alfajarín (50172).</p>
-      <p>Habrá autobuses lanzadera dedicados entre Zaragoza y el lugar de la celebración. Compartiremos todos los detalles y horarios más cerca de la fecha.</p>
-      <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-    </section>
-  </div>
+      <section>
+        <h2>Moverse por Zaragoza</h2>
+        <p>Zaragoza es una ciudad compacta y muy fácil de recorrer a pie. Para la mayoría de los visitantes no es necesario alquilar un coche: muchos hoteles, restaurantes y lugares de interés están a poca distancia caminando. Para trayectos un poco más largos, los taxis y los autobuses urbanos son abundantes, asequibles y fáciles de usar. Los taxis se pueden parar en la calle o encontrar en paradas habilitadas.</p>
+        <p>La boda se celebra durante las Fiestas del Pilar, cuando la ciudad está más concurrida de lo habitual y algunas calles pueden estar cerradas o ser peatonales. El transporte público y los taxis siguen funcionando durante las fiestas, aunque algunos trayectos pueden tardar un poco más.</p>
+        <h3>Tarjeta de transporte</h3>
+        <p>Si tienes pensado usar el autobús o el tranvía más de una vez, es muy habitual que los residentes y visitantes frecuentes utilicen una tarjeta de transporte recargable, conocida comúnmente como <strong>Tarjeta Bus</strong>. También existen versiones digitales disponibles en App Store y Play Store.</p>
+        <p>Estas tarjetas permiten pagar por viaje tanto en autobuses como en el tranvía con una tarifa reducida en comparación con los billetes sencillos comprados a bordo. Se pueden comprar y recargar en estancos, quioscos y otros puntos autorizados de la ciudad, y también hay máquinas en las principales paradas del tranvía para consultar el saldo y recargar. La tarjeta es válida en la mayoría de las líneas urbanas de autobús y tranvía.</p>
+        <p>
+          <a href="https://zaragoza.avanzagrupo.com/tarifas-y-titulos/" target="_blank" rel="noopener">
+            Sitio web oficial
+          </a>
+        </p>
+      </section>
 
-  <div lang="fr" class="poster">
-    <h1>Informations de voyage</h1>
+      <section>
+        <h2>Lugar de la celebración</h2>
+        <p>Nuestra boda se celebrará íntegramente en <strong>Soto de Bruil</strong>, situado en Alfajarín (50172).</p>
+        <p>Habrá autobuses lanzadera dedicados entre Zaragoza y el lugar de la celebración. Compartiremos todos los detalles y horarios más cerca de la fecha.</p>
+        <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </section>
+    </div>
 
-    <section>
-      <h2>Vols</h2>
-      <p>Les vols directs vers Saragosse (ZAZ) sont limités. Ryanair dessert Saragosse depuis London Stansted (STN) et Charleroi (CRL), mais uniquement certains jours de la semaine. L’aéroport de Saragosse dispose de taxis en permanence ; un trajet en taxi jusqu’au centre-ville coûte environ 27 €. Il existe également des options de bus publics moins chères.</p>
-      <p>De nombreuses autres options de vol sont disponibles vers Madrid (MAD) et Barcelone (BCN). Depuis l’une ou l’autre de ces villes, Saragosse est accessible en trains AVE à grande vitesse (rapides et confortables, mais plus chers) ou en bus interurbains Alsa (plus lents, mais plus économiques). Les deux arrivent à Zaragoza-Delicias, la gare principale de la ville.</p>
-      <p>Il est également possible de louer une voiture à Madrid ou Barcelone ; le trajet jusqu’à Saragosse dure environ 3 à 3,5 heures depuis ces deux villes.</p>
-    </section>
+    <div lang="fr" class="poster">
+      <h1>Informations de voyage</h1>
 
-    <section>
-      <h2>Se déplacer à Saragosse</h2>
-      <p>Saragosse est une ville compacte et très agréable à parcourir à pied. Pour la plupart des visiteurs, il n’est pas nécessaire de louer une voiture : de nombreux hôtels, restaurants et sites d’intérêt sont facilement accessibles à pied. Pour des trajets un peu plus longs, les taxis et les bus urbains sont nombreux, abordables et faciles à utiliser. Les taxis peuvent être hélés dans la rue ou trouvés aux stations prévues à cet effet.</p>
-      <p>Le mariage a lieu pendant les Fiestas del Pilar, une période où la ville est plus animée que d’habitude et où certaines rues peuvent être fermées ou piétonnisées. Les transports publics et les taxis continuent de fonctionner pendant les festivités, mais certains trajets peuvent prendre un peu plus de temps.</p>
-      <h3>Carte de transport</h3>
-      <p>Si vous prévoyez d’utiliser le bus ou le tram plus d’une fois, il est très courant pour les habitants et les visiteurs réguliers d’utiliser une carte de transport rechargeable, souvent appelée <strong>Tarjeta Bus</strong>. Des versions numériques sont également disponibles sur l’App Store et le Play Store.</p>
-      <p>Ces cartes permettent de payer à l’usage aussi bien dans les bus que dans le tramway, avec un tarif réduit par rapport à l’achat de tickets unitaires à bord. Elles peuvent être achetées et rechargées dans les bureaux de tabac, kiosques et autres points agréés de la ville, et des distributeurs sont également disponibles aux principales stations de tramway pour consulter le solde et recharger. La carte est valable sur la plupart des lignes urbaines de bus et de tram.</p>
-      <p>
-        <a href="https://zaragoza-avanzagrupo-com.translate.goog/tarifas-y-titulos/?_x_tr_sl=es&_x_tr_tl=fr&_x_tr_hl=fr" target="_blank" rel="noopener">
-          Site officiel
-        </a>
-      </p>
-    </section>
+      <section>
+        <h2>Vols</h2>
+        <p>Les vols directs vers Saragosse (ZAZ) sont limités. Ryanair dessert Saragosse depuis London Stansted (STN) et Charleroi (CRL), mais uniquement certains jours de la semaine. L’aéroport de Saragosse dispose de taxis en permanence ; un trajet en taxi jusqu’au centre-ville coûte environ 27 €. Il existe également des options de bus publics moins chères.</p>
+        <p>De nombreuses autres options de vol sont disponibles vers Madrid (MAD) et Barcelone (BCN). Depuis l’une ou l’autre de ces villes, Saragosse est accessible en trains AVE à grande vitesse (rapides et confortables, mais plus chers) ou en bus interurbains Alsa (plus lents, mais plus économiques). Les deux arrivent à Zaragoza-Delicias, la gare principale de la ville.</p>
+        <p>Il est également possible de louer une voiture à Madrid ou Barcelone ; le trajet jusqu’à Saragosse dure environ 3 à 3,5 heures depuis ces deux villes.</p>
+      </section>
 
-    <section>
-      <h2>Lieu</h2>
-      <p>Notre mariage aura lieu entièrement à <strong>Soto de Bruil</strong>, situé à Alfajarín (50172).</p>
-      <p>Des bus navettes dédiés seront mis en place entre Saragosse et le lieu de réception. Tous les détails et horaires seront communiqués à l’approche de la date.</p>
-      <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-    </section>
-  </div>
+      <section>
+        <h2>Se déplacer à Saragosse</h2>
+        <p>Saragosse est une ville compacte et très agréable à parcourir à pied. Pour la plupart des visiteurs, il n’est pas nécessaire de louer une voiture : de nombreux hôtels, restaurants et sites d’intérêt sont facilement accessibles à pied. Pour des trajets un peu plus longs, les taxis et les bus urbains sont nombreux, abordables et faciles à utiliser. Les taxis peuvent être hélés dans la rue ou trouvés aux stations prévues à cet effet.</p>
+        <p>Le mariage a lieu pendant les Fiestas del Pilar, une période où la ville est plus animée que d’habitude et où certaines rues peuvent être fermées ou piétonnisées. Les transports publics et les taxis continuent de fonctionner pendant les festivités, mais certains trajets peuvent prendre un peu plus de temps.</p>
+        <h3>Carte de transport</h3>
+        <p>Si vous prévoyez d’utiliser le bus ou le tram plus d’une fois, il est très courant pour les habitants et les visiteurs réguliers d’utiliser une carte de transport rechargeable, souvent appelée <strong>Tarjeta Bus</strong>. Des versions numériques sont également disponibles sur l’App Store et le Play Store.</p>
+        <p>Ces cartes permettent de payer à l’usage aussi bien dans les bus que dans le tramway, avec un tarif réduit par rapport à l’achat de tickets unitaires à bord. Elles peuvent être achetées et rechargées dans les bureaux de tabac, kiosques et autres points agréés de la ville, et des distributeurs sont également disponibles aux principales stations de tramway pour consulter le solde et recharger. La carte est valable sur la plupart des lignes urbaines de bus et de tram.</p>
+        <p>
+          <a href="https://zaragoza-avanzagrupo-com.translate.goog/tarifas-y-titulos/?_x_tr_sl=es&_x_tr_tl=fr&_x_tr_hl=fr" target="_blank" rel="noopener">
+            Site officiel
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Lieu</h2>
+        <p>Notre mariage aura lieu entièrement à <strong>Soto de Bruil</strong>, situé à Alfajarín (50172).</p>
+        <p>Des bus navettes dédiés seront mis en place entre Saragosse et le lieu de réception. Tous les détails et horaires seront communiqués à l’approche de la date.</p>
+        <iframe class="gmaps" src="https://maps.google.com/maps?q=Soto%20de%20Bruil%2C%2050172%20Alfajar%C3%ADn&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </section>
+    </div>
+
+  </main>
 
   #include "body_footer.html"
 </body>
