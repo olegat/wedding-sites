@@ -235,20 +235,30 @@
       <div class="mainq">
         <label id="kid-count-label">
           <span lang="en">How many child guests will you be bringing?</span>
-          <span lang="es"></span>
-          <span lang="fr"></span>
+          <span lang="es">¿Cuántos niños traerás?</span>
+          <span lang="fr">Combien d’enfants amènerez-vous&nbsp;?</span>
           <span class="redstar"></span>
           <select name="lang" id="kid-count-input">
-            <option value="0">
-              <span lang="en">None</span>
-              <span lang="es"></span>
-              <span lang="fr"></span>
-            </option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
           </select>
+        </label>
+      </div>
+
+      <!-- Kid names -->
+      <div class="mainq" id="kid-names-div" style="display: none">
+        <label id="kid-names-label">
+          <span lang="en">Child names</span>
+          <span lang="es">Nombres de los niños</span>
+          <span lang="fr">Noms des enfants</span>
+          <span class="redstar"></span>
+          <input id="kid-name-1" name="kid_name_1" type="text" disabled />
+          <input id="kid-name-2" name="kid_name_2" type="text" disabled />
+          <input id="kid-name-3" name="kid_name_3" type="text" disabled />
+          <input id="kid-name-4" name="kid_name_4" type="text" disabled />
         </label>
       </div>
 
@@ -466,6 +476,10 @@
 #endif
       ];
 
+      const KID_INDEXABLE_IDS = [
+        'kid-name-',
+      ];
+
       const ATTENDING_TOGGLEABLE_IDS = [
         'plus1-fieldset',
         'allergies-main',
@@ -482,6 +496,8 @@
 #endif
         'kid-count-label',
         'kid-count-input',
+        'kid-names-label',
+        ...[1, 2, 3, 4].map(i => KID_INDEXABLE_IDS.map(s => `${s}${i}`)).flat(),
         'songrequest-label',
         'songrequest-input',
         ...PLUS1_TOGGLEABLE_IDS,
@@ -520,6 +536,36 @@
         }
       }
 
+      function updateKidsVisibility(event) {
+        let visibility;
+        if (event.target.value === '1') {
+          visibility = [true, false, false, false];
+        }
+        else if (event.target.value === '2') {
+          visibility = [true, true, false, false];
+        }
+        else if (event.target.value === '3') {
+          visibility = [true, true, true, false];
+        }
+        else if (event.target.value === '4') {
+          visibility = [true, true, true, true];
+        }
+        else {
+          visibility = [false, false, false, false];
+        }
+
+        const setVisibility = (id, visible) => {
+          document.getElementById(id).style.display = visible ? "" : 'none';
+        };
+
+        setVisibility('kid-names-div', visibility[0]);
+        for (const i of [0, 1, 2, 3]) {
+          for (const s of KID_INDEXABLE_IDS) {
+            setVisibility(`${s}${i+1}`, visibility[i]);
+          }
+        }
+      }
+
       function serializeForm() {
         const formData = new FormData(form);
         const obj = {};
@@ -540,6 +586,7 @@
       // Add handlers for disabling some fields:
       plus1Radios.forEach(r => r.addEventListener('change', updatePlus1Fields));
       attendingRadios.forEach(r => r.addEventListener('change', updateAttendingFields));
+      document.getElementById('kid-count-input').addEventListener('change', updateKidsVisibility);
 
       // Form submit
       form.addEventListener('submit', async e => {
