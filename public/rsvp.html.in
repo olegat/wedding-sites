@@ -125,6 +125,7 @@
           display: none;
       }
     </style>
+    <script src="./language.js"></script>
   </head>
 
   <body>
@@ -411,7 +412,6 @@
       const fakeGetformio = true;
       const form = document.getElementById("rsvp-form");
       const success = document.getElementById("success");
-      const langSelect = document.getElementById("lang-select");
 
       const attendingRadios = document.querySelectorAll('input[name="attending"]');
       const plus1Radios = document.querySelectorAll('input[name="plus1"]');
@@ -500,17 +500,6 @@
         });
         return obj;
       }
-
-      // Initialize language
-      let currentLang = localStorage.getItem('lang') || 'en';
-      langSelect.value = currentLang;
-      document.documentElement.lang = currentLang;
-
-      langSelect.addEventListener("change", e => {
-        currentLang = e.target.value;
-        localStorage.setItem('lang', currentLang);
-        document.documentElement.lang = currentLang;
-      });
 
       // Add handlers for disabling some fields:
       plus1Radios.forEach(r => r.addEventListener('change', updatePlus1Fields));

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const langLinks = document.querySelectorAll('.lang-menu a');
-  let currentLang;
+  const langSelect = document.getElementById("lang-select");
+  let currentLang = undefined;
 
   function getLangFromHash() {
     const match = location.hash.match(/lang=([a-z]{2})/i);
@@ -12,14 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function applyLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    updateMenuHighlight(lang);
-    document.documentElement.lang = lang;
+    if (lang !== currentLang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      updateMenuHighlight(lang);
+      document.documentElement.lang = lang;
+    }
     return lang;
   }
 
   function updateMenuHighlight(lang) {
+    // For rsvp.html:
+    if (langSelect) {
+      langSelect.value = lang;
+    }
+    // For all other HTML pages:
     langLinks.forEach(link => {
       if (link.dataset.lang === lang) {
         link.style.fontWeight = 'bold';
@@ -47,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
   langLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const selectedLang = link.dataset.lang;
-      if (selectedLang !== currentLang) {
-        applyLanguage(selectedLang);
-      }
+      applyLanguage(link.dataset.lang);
     });
   });
-
+  // Add change-listener for drop-down (in rsvp.html):
+  langSelect && langSelect.addEventListener("change", e => {
+    applyLanguage(e.target.value);
+  });
 });
