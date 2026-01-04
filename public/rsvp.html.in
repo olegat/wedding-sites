@@ -382,6 +382,16 @@
       </div>
 #endif
 
+      <!-- Song request -->
+      <div class="mainq">
+        <label id="songrequest-label">
+          <span lang="en">Any song requests?</span>
+          <span lang="es">¿Alguna petición de canción?</span>
+          <span lang="fr">Des demandes de chansons&nbsp;?</span>
+          <input id="songrequest-input" name="songrequest" type="text" />
+        </label>
+      </div>
+
       <!-- 5. Anything else -->
       <div class="mainq">
         <label>
@@ -448,6 +458,8 @@
 #if USE_PREBODA_PROMPT
         'preboda-fieldset',
 #endif
+        'songrequest-label',
+        'songrequest-input',
         ...PLUS1_TOGGLEABLE_IDS,
       ];
 
