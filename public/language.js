@@ -2,11 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const langLinks = document.querySelectorAll('.lang-menu a');
   let currentLang;
 
+  function getLangFromHash() {
+    const match = location.hash.match(/lang=([a-z]{2})/i);
+    return match ? match[1].toLowerCase() : null;
+  }
+
+  function setLangHash(lang) {
+    history.replaceState(null, '', `#lang=${lang}`);
+  }
+
   function applyLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     updateMenuHighlight(lang);
     document.documentElement.lang = lang;
+    return lang;
   }
 
   function updateMenuHighlight(lang) {
@@ -23,10 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Get persisted language, default to 'en'
-  currentLang = (() => {
-    const lang = localStorage.getItem('lang') || 'en';
-    return updateMenuHighlight(lang);
-  })();
+  applyLanguage(getLangFromHash() || localStorage.getItem('lang') || 'en');
+
+  // Add listener for URL # hash changes
+  window.addEventListener('hashchange', () => {
+    const hashLang = getLangFromHash();
+    if (hashLang && hashLang !== currentLang) {
+      applyLanguage(hashLang);
+    }
+  });
 
   // Add click handlers
   langLinks.forEach(link => {
