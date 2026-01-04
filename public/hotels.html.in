@@ -1,6 +1,7 @@
 #define BANNER_ASPECT_RATIO  3/2
 #define BANNER_HIGH_URL      "./hotels_3_2.jpeg"
 #define BANNER_LOW_URL       "./hotels_3_2_low.jpeg"
+#define USE_PREBODA_PROMPT   0
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,13 @@
         <p>
           Once this is finalised, we’ll share an update with all the details.
         </p>
+#if USE_PREBODA_PROMPT
         <p>
           We will also do our best to ensure that both the <em>preboda</em> gathering
           (9th October) and the shuttle bus pickup points on the wedding day
           (10th October) are as close as possible to the selected hotels.
         </p>
+#endif
       </section>
     </div>
 
@@ -52,12 +55,14 @@
           Una vez que esto esté cerrado, os enviaremos una actualización con todos
           los detalles.
         </p>
+#if USE_PREBODA_PROMPT
         <p>
           También haremos todo lo posible para que tanto la reunión de la
           <em>preboda</em> (9 de octubre) como los puntos de recogida de los autobuses
           lanzadera el día de la boda (10 de octubre) estén lo más cerca posible de
           los hoteles seleccionados.
         </p>
+#endif
       </section>
     </div>
 
@@ -76,12 +81,14 @@
           Une fois ces informations finalisées, nous vous communiquerons une mise à
           jour avec tous les détails.
         </p>
+#if USE_PREBODA_PROMPT
         <p>
           Nous ferons également de notre mieux pour que la soirée de
           <em>pré-boda</em> (le 9 octobre) ainsi que les points de départ des navettes
           le jour du mariage (le 10 octobre) soient situés aussi près que possible
           des hôtels sélectionnés.
         </p>
+#endif
       </section>
     </div>
 
