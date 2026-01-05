@@ -8,6 +8,8 @@ const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deplo
 
 const LOW_OPTS: HagaSweetCommandArgs = ['-resize', 'x100', '-quality', '50'];
 
+/*
+// Full Website
 export default HagaSweet.eatSugar({
     targets: [
         // Two steps for *.html.in files:
@@ -162,3 +164,74 @@ export default HagaSweet.eatSugar({
         },
     ],
 });
+//*/
+
+//*
+// WIP Under construction version:
+export default HagaSweet.eatSugar({
+  targets: [
+    {
+      type: 'cpps',
+      inputs: [ 'index.html.in', 'rsvp.html.in' ],
+      inputDir: INDIR_PUBLIC,
+      outputDir: OUTDIR_CPP,
+      defines: ['USE_UNDER_CONSTRUCTION=1'],
+    },
+    {
+      type: 'minify',
+      inputs: [ 'index.html', 'rsvp.html' ],
+      inputDir: OUTDIR_CPP,
+      outputDir: OUTDIR_PUBLIC,
+    },
+    {
+      type: 'minify',
+      inputs: ['public/language.js'],
+    },
+    ...[16, 32, 48, 96, 128, 180, 192].map((d: number): HagaSweetTargetRsvgConvert => {
+      return {
+        type: 'rsvg-convert',
+        input:  'public/favicon.svg',
+        output: `public/favicon-${d}x${d}.png`,
+        args: ['-w', `${d}`, '-h', `${d}`],
+      }
+    }),
+    {
+      type: 'magick',
+      input:  [HagaKeyword.CURRENT_OUTPUT_DIR, '/public/favicon-192x192.png'],
+      output: `public/favicon.ico`,
+      args: ['-background', 'none', '-define', 'icon:auto-resize=16,32,48'],
+    },
+    {
+      type: 'copy',
+      inputs: [
+        'public/.htaccess',
+        'public/favicon.svg',
+      ],
+    },
+    {
+      type: 'rsync',
+      name: 'deploy',
+      srcDir: OUTDIR_PUBLIC,
+      configTemplate: {
+        dstDir: OUTDIR_DEPLOY,
+      },
+      config: 'deploy.json',
+      inputs: [
+        '.htaccess',
+        'favicon.svg',
+        'favicon.ico',
+        'favicon-16x16.png',
+        'favicon-32x32.png',
+        'favicon-48x48.png',
+        'favicon-96x96.png',
+        'favicon-128x128.png',
+        'favicon-180x180.png',
+        'favicon-192x192.png',
+        'index.html',
+        'language.js',
+        'rsvp.html',
+      ],
+    },
+  ],
+});
+//*/
