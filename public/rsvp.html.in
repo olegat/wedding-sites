@@ -1,5 +1,19 @@
 #include "defines.h"
 
+#define PLUS1_NAME_SPANS \
+(<span lang="en" class="plus1name" data-defaultname="+1">+1</span><span lang="es" class="plus1name" data-defaultname="acompañante">acompañante</span><span lang="fr" class="plus1name" data-defaultname="+1">+1</span>)
+
+#define DIET_EXAMPLES_DIV \
+ <div class="diet-row">\
+   <span class="placeholder" lang="en">e.g. nuts, gluten</span>\
+   <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>\
+   <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>\
+   <span class="placeholder" lang="es">p.ej. nueces, gluten</span>\
+   <span class="placeholder" lang="fr">ex. noix, gluten</span>\
+   <span class="placeholder" lang="fr">ex. végan, végétarien</span>\
+ </div>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -273,57 +287,45 @@
 
           <div class="diet-row">
             <legend id="allergies-main-label">
-              <span lang="en">Allergies</span>
-              <span lang="es">Alergias</span>
-              <span lang="fr">Allergies</span>
+              <span lang="en">Allergies (you)</span>
+              <span lang="es">Alergias (usted)</span>
+              <span lang="fr">Allergies (vous)</span>
             </legend>
-            <legend id="allergies-plus1-label">
-              <span lang="en">+1 Allergies</span>
-              <span lang="es">Alergias del acompañante</span>
-              <span lang="fr">Allergies du +1</span>
+            <legend id="diet-main-label">
+              <span lang="en">Dietary choice (you)</span>
+              <span lang="es">Dieta (usted)</span>
+              <span lang="fr">Régime (vous)</span>
             </legend>
           </div>
 
           <div class="diet-row">
             <input id="allergies-main" name="allergies_main" type="text" />
-            <input id="allergies-plus1" name="allergies_plus1" type="text" disabled />
+            <input id="diet-main" name="diet_main" type="text" />
           </div>
 
-          <div class="diet-row">
-            <span class="placeholder" lang="en">e.g. nuts, gluten</span>
-            <span class="placeholder" lang="en">e.g. nuts, gluten</span>
-            <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
-            <span class="placeholder" lang="es">p.ej. nueces, gluten</span>
-            <span class="placeholder" lang="fr">ex. noix, gluten</span>
-            <span class="placeholder" lang="fr">ex. noix, gluten</span>
-          </div>
+          DIET_EXAMPLES_DIV
 
           <div class="diet-row">
-            <legend id="diet-main-label">
+            <legend id="allergies-plus1-label">
+              <span lang="en">Allergies</span>
+              <span lang="es">Alergias</span>
+              <span lang="fr">Allergies</span>
+              PLUS1_NAME_SPANS
+            </legend>
+            <legend id="diet-plus1-label">
               <span lang="en">Dietary choice</span>
               <span lang="es">Dieta</span>
               <span lang="fr">Régime</span>
-            </legend>
-            <legend id="diet-plus1-label">
-              <span lang="en">+1 Dietary choice</span>
-              <span lang="es">Dieta del acompañante</span>
-              <span lang="fr">Régime du +1</span>
+              PLUS1_NAME_SPANS
             </legend>
           </div>
 
           <div class="diet-row">
-            <input id="diet-main" name="diet_main" type="text" />
+            <input id="allergies-plus1" name="allergies_plus1" type="text" disabled />
             <input id="diet-plus1" name="diet_plus1" type="text" disabled />
           </div>
 
-          <div class="diet-row">
-            <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
-            <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>
-            <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
-            <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>
-            <span class="placeholder" lang="fr">ex. végan, végétarien</span>
-            <span class="placeholder" lang="fr">ex. végan, végétarien</span>
-          </div>
+          DIET_EXAMPLES_DIV
 
 #if USE_ALCOHOL_PROMPT
           <div class="diet-row">
