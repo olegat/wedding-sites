@@ -51,6 +51,7 @@ type HagaSweetTargetCPP = {
     input: HagaSweetString;
     output?: HagaSweetString;
     implicits?: HagaSweetString[];
+    defines?: HagaSweetCommandArgs;
 };
 
 type HagaSweetTargetCPPs = {
@@ -58,6 +59,7 @@ type HagaSweetTargetCPPs = {
     inputs: HagaSweetString[];
     inputDir?: HagaSweetString;
     outputDir?: HagaSweetString;
+    defines?: HagaSweetCommandArgs;
 };
 
 type HagaSweetTargetCopy = {
@@ -184,6 +186,21 @@ function eatArgs(ctx: HagaContext, sweetArgs: HagaSweetCommandArgs): string {
     return sweetArgs.map((arg) => {
         const s = eatString(ctx, arg).replaceAll('\"', '\\\"');
         return `"${s}"`;
+    }).join(' ');
+}
+
+function eatDefines(ctx: HagaContext, sweetArgs: undefined): undefined;
+function eatDefines(ctx: HagaContext, sweetArgs: HagaSweetCommandArgs): string;
+function eatDefines(ctx: HagaContext, sweetArgs: HagaSweetCommandArgs | undefined): string | undefined;
+function eatDefines(ctx: HagaContext, sweetArgs: HagaSweetCommandArgs | undefined): string | undefined {
+    if (sweetArgs == undefined) return undefined;
+    return sweetArgs.map((arg: HagaSweetString): string => {
+        const s = eatString(ctx, arg).replaceAll('\"', '\\\"');
+        if (s.startsWith('-D')) {
+            return `"${s}"`;
+        } else {
+            return `"-D${s}"`;
+        }
     }).join(' ');
 }
 
@@ -323,7 +340,14 @@ const SweetTargetSpec = {
             name: 'cpp',
             commands: [
                 [ [HagaKeyword.CLANG_COMMAND],
-                  '-x', 'c', '$in', '-E', '-P', '-MMD', '-MF', '$depfile', '-MT', '$outfile', '-o', '$outfile' ],
+                  '-x', 'c',
+                  '$in',
+                  '-E', '-P',
+                  '$defines',
+                  '-MMD', '-MF', '$depfile',
+                  '-MT', '$outfile',
+                  '-o', '$outfile',
+                ],
             ],
             description: 'CPP $in',
         }),
@@ -336,6 +360,7 @@ const SweetTargetSpec = {
             const vars = {
                 outfile: `${absOutput}`,
                 depfile: `${absOutput}.d`,
+                defines: eatDefines(ctx, sweetTarget.defines) ?? '',
             } as const satisfies HagaCoreVars;
             return {
                 inputs: [ absInput ],
@@ -357,7 +382,12 @@ const SweetTargetSpec = {
                 const baseName : string = dropExtension(eatString(ctx, baseInput), '.in');
                 const input    : string = resolvePath(ctx, inputDir,  baseInput);
                 const output   : string = resolvePath(ctx, outputDir, baseName);
-                result.push(SweetTargetSpec.cpp.eatTarget(ctx, { type: 'cpp', input, output }));
+
+                const cppTarget: HagaSweetTargetCPP = { type: 'cpp', input, output };
+                if (sweetTarget.defines) {
+                    cppTarget.defines = sweetTarget.defines;
+                }
+                result.push(SweetTargetSpec.cpp.eatTarget(ctx, cppTarget));
             }
             return result;
         },
