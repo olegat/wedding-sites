@@ -1,2 +1,1 @@
-#define USE_ALCOHOL_PROMPT 0
 #define USE_PREBODA_PROMPT 0

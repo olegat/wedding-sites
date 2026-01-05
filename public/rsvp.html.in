@@ -327,45 +327,6 @@
 
           DIET_EXAMPLES_DIV
 
-#if USE_ALCOHOL_PROMPT
-          <div class="diet-row">
-            <legend id="alcohol-main-label">
-              <span lang="en">Will you drink alcohol?</span>
-              <span lang="es">¿Beberá alcohol?</span>
-              <span lang="fr">Alcool ?</span>
-              <span class="redstar"></span>
-            </legend>
-            <legend id="alcohol-plus1-label">
-              <span lang="en">+1 Will drink alcohol?</span>
-              <span lang="es">El acompañante beberá alcohol?</span>
-              <span lang="fr">+1 Alcool ?</span>
-              <span class="redstar"></span>
-            </legend>
-          </div>
-
-          <div class="diet-row">
-            <fieldset id="alcohol-main-fieldset" class="radio-group no-margin-top">
-              <label>
-                <input id="alcohol-main-yes" type="radio" name="alcohol_main" value="yes" />
-                <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span>
-              </label>
-              <label>
-                <input id="alcohol-main-yes" type="radio" name="alcohol_main" value="no" />
-                <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span>
-              </label>
-            </fieldset>
-            <fieldset id="alcohol-plus1-fieldset" class="radio-group no-margin-top disabled">
-              <label>
-                <input id="alcohol-plus1-yes" type="radio" name="alcohol_plus1" value="yes" disabled />
-                <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span>
-              </label>
-              <label>
-                <input id="alcohol-plus1-no" type="radio" name="alcohol_plus1" value="no" disabled />
-                <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span>
-              </label>
-            </fieldset>
-          </div>
-#endif
         </fieldset>
       </div>
 
@@ -470,12 +431,6 @@
         'allergies-plus1',
         'diet-plus1-label',
         'diet-plus1',
-#if USE_ALCOHOL_PROMPT
-        'alcohol-plus1-label',
-        'alcohol-plus1-fieldset',
-        'alcohol-plus1-yes',
-        'alcohol-plus1-no',
-#endif
       ];
 
       const KID_INDEXABLE_IDS = [
@@ -487,12 +442,6 @@
         'allergies-main',
         'diet-fieldset',
         'diet-main',
-#if USE_ALCOHOL_PROMPT
-        'alcohol-main-label',
-        'alcohol-main-fieldset',
-        'alcohol-main-yes',
-        'alcohol-main-no',
-#endif
 #if USE_PREBODA_PROMPT
         'preboda-fieldset',
 #endif
