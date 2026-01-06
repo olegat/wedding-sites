@@ -1,7 +1,17 @@
 #include "defines.h"
 
+#define XSTRINGIFY(s) STRINGIFY(s)
+#define STRINGIFY(s) #s
+
+#define NAME_SPAN_LANG(CLASSNAME, LANG, DEFAULT) \
+  <span lang=STRINGIFY(LANG) class=STRINGIFY(CLASSNAME) data-defaultname=STRINGIFY(DEFAULT)>DEFAULT</span>
+
+#define NAME_SPANS(CLASSNAME, EN, ES, FR) \
+  (NAME_SPAN_LANG(CLASSNAME,en,EN)NAME_SPAN_LANG(CLASSNAME,es,ES)NAME_SPAN_LANG(CLASSNAME,fr,FR))
+
+#define PLUS1_NAME_CLASSNAME plus1name
 #define PLUS1_NAME_SPANS \
-(<span lang="en" class="plus1name" data-defaultname="+1">+1</span><span lang="es" class="plus1name" data-defaultname="acompañante">acompañante</span><span lang="fr" class="plus1name" data-defaultname="+1">+1</span>)
+  NAME_SPANS(PLUS1_NAME_CLASSNAME, +1, acompañante, +1)
 
 #define DIET_EXAMPLES_SPANS \
    <span class="placeholder" lang="en">e.g. nuts, gluten</span>\
@@ -555,7 +565,7 @@
       const onPlus1Change = () => updatePlus1Fields(isAttendingTicked() && isPlus1Ticked());
       const onAttendingChange = () => updateAttendingFields(isAttendingTicked());
       const onKidCountChange = (event) => updateKidsFields(event.target.value);
-      const onPlus1NameChange = (event) => updateNames(event.target.value, document.querySelectorAll('.plus1name'));
+      const onPlus1NameChange = (event) => updateNames(event.target.value, document.querySelectorAll(XSTRINGIFY(.PLUS1_NAME_CLASSNAME)));
       plus1Radios.forEach(r => r.addEventListener('change', onPlus1Change));
       attendingRadios.forEach(r => r.addEventListener('change', onAttendingChange));
       kidCountSelect.addEventListener('change', onKidCountChange);
