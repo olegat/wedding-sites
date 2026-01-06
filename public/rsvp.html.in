@@ -3,16 +3,13 @@
 #define PLUS1_NAME_SPANS \
 (<span lang="en" class="plus1name" data-defaultname="+1">+1</span><span lang="es" class="plus1name" data-defaultname="acompañante">acompañante</span><span lang="fr" class="plus1name" data-defaultname="+1">+1</span>)
 
-#define DIET_EXAMPLES_DIV \
- <div class="diet-row">\
+#define DIET_EXAMPLES_SPANS \
    <span class="placeholder" lang="en">e.g. nuts, gluten</span>\
    <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>\
    <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>\
    <span class="placeholder" lang="es">p.ej. nueces, gluten</span>\
    <span class="placeholder" lang="fr">ex. noix, gluten</span>\
    <span class="placeholder" lang="fr">ex. végan, végétarien</span>\
- </div>
-
 
 <!doctype html>
 <html lang="en">
@@ -214,7 +211,7 @@
             <span lang="fr">Le mariage aura lieu le samedi 10 octobre 2026 à Saragosse en Espagne.</span>
           </div>
           <label><input type="radio" name="attending" value="yes" required /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-          <label><input type="radio" name="attending" value="no" required /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+          <label><input type="radio" name="attending" value="no" checked required /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
         </fieldset>
       </div>
 
@@ -228,17 +225,17 @@
             <span class="redstar"></span>
           </legend>
           <label><input type="radio" name="plus1" value="yes" /> <span lang="en">Yes</span><span lang="es">Sí</span><span lang="fr">Oui</span></label>
-          <label><input type="radio" name="plus1" value="no" /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
+          <label><input type="radio" name="plus1" value="no" checked /> <span lang="en">No</span><span lang="es">No</span><span lang="fr">Non</span></label>
         </fieldset>
       </div>
 
       <!-- 2. +1 Name -->
-      <div class="mainq">
+      <div class="mainq plus1-row">
         <label id="plus1-name-label">
           <span lang="en">+1 Name</span>
           <span lang="es">Nombre del acompañante</span>
           <span lang="fr">Nom du +1</span>
-          <input id="plus1-name-input" name="plus1_name" type="text" disabled />
+          <input id="plus1-name-input" name="plus1_name" type="text" />
           <span id="plus1-name-placeholder-en" class="placeholder" lang="en">Optional</span>
           <span id="plus1-name-placeholder-es" class="placeholder" lang="es">Opcional</span>
           <span id="plus1-name-placeholder-fr" class="placeholder" lang="fr">Optionnel</span>
@@ -303,9 +300,11 @@
             <input id="diet-main" name="diet_main" type="text" />
           </div>
 
-          DIET_EXAMPLES_DIV
-
           <div class="diet-row">
+            DIET_EXAMPLES_SPANS
+          </div>
+
+          <div class="diet-row plus1-row">
             <legend id="allergies-plus1-label">
               <span lang="en">Allergies</span>
               <span lang="es">Alergias</span>
@@ -320,12 +319,14 @@
             </legend>
           </div>
 
-          <div class="diet-row">
+          <div class="diet-row plus1-row">
             <input id="allergies-plus1" name="allergies_plus1" type="text" disabled />
             <input id="diet-plus1" name="diet_plus1" type="text" disabled />
           </div>
 
-          DIET_EXAMPLES_DIV
+          <div class="diet-row plus1-row">
+            DIET_EXAMPLES_SPANS
+          </div>
 
         </fieldset>
       </div>
@@ -420,18 +421,7 @@
 
       const attendingRadios = document.querySelectorAll('input[name="attending"]');
       const plus1Radios = document.querySelectorAll('input[name="plus1"]');
-
-      const PLUS1_TOGGLEABLE_IDS = [
-        'plus1-name-label',
-        'plus1-name-input',
-        'plus1-name-placeholder-en',
-        'plus1-name-placeholder-es',
-        'plus1-name-placeholder-fr',
-        'allergies-plus1-label',
-        'allergies-plus1',
-        'diet-plus1-label',
-        'diet-plus1',
-      ];
+      const kidCountSelect = document.getElementById('kid-count-input');
 
       const KID_INDEXABLE_IDS = [
         'kid-name-',
@@ -451,8 +441,27 @@
         ...[1, 2, 3, 4].map(i => KID_INDEXABLE_IDS.map(s => `${s}${i}`)).flat(),
         'songrequest-label',
         'songrequest-input',
-        ...PLUS1_TOGGLEABLE_IDS,
       ];
+
+      function setVisibilityId(id, visible) {
+        setVisibilityElem(document.getElementById(id), visible);
+      }
+
+      function setVisibilityElem(elem, visible) {
+        elem && (elem.style.display = visible ? "" : 'none');
+      }
+
+      function isAttendingTicked() {
+        return document.querySelector('input[name="attending"]:checked')?.value === 'yes';
+      }
+
+      function isPlus1Ticked() {
+        return document.querySelector('input[name="plus1"]:checked')?.value === 'yes';
+      }
+
+      function getKidCount() {
+        return kidCountSelect.value;
+      }
 
       function updateElements(enabled, ids) {
         ids.forEach(id => {
@@ -467,29 +476,21 @@
         });
       }
 
-      function updatePlus1Fields() {
-        const plus1Yes =
-          document.querySelector('input[name="plus1"]:checked')?.value === 'yes';
-
-        updateElements(plus1Yes, PLUS1_TOGGLEABLE_IDS);
-      }
-
-      function updateAttendingFields() {
-        const attendingYes =
-          document.querySelector('input[name="attending"]:checked')?.value === 'yes';
-
-        updateElements(attendingYes, ATTENDING_TOGGLEABLE_IDS);
-
-        if (!attendingYes) {
-          updateElements(false, PLUS1_TOGGLEABLE_IDS);
-        } else {
-          updatePlus1Fields();
+      function updatePlus1Fields(visible) {
+        for (const row of document.querySelectorAll('.plus1-row')) {
+          setVisibilityElem(row, visible);
         }
       }
 
-      function updateKidsVisibility(event) {
+      function updateAttendingFields(attending) {
+        updateElements(attending, ATTENDING_TOGGLEABLE_IDS);
+        updatePlus1Fields(attending && isPlus1Ticked());
+        updateKidsFields(getKidCount());
+      }
+
+      function updateKidsFields(value) {
         let visibility;
-        switch (event.target.value) {
+        switch (value) {
           case '1':
             visibility = [true , false, false, false];
             break;
@@ -507,14 +508,10 @@
             break;
         }
 
-        const setVisibility = (id, visible) => {
-          document.getElementById(id).style.display = visible ? "" : 'none';
-        };
-
-        setVisibility('kid-names-div', visibility[0]);
+        setVisibilityId('kid-names-div', visibility[0]);
         for (const i of [0, 1, 2, 3]) {
           for (const s of KID_INDEXABLE_IDS) {
-            setVisibility(`${s}${i+1}`, visibility[i]);
+            setVisibilityId(`${s}${i+1}`, visibility[i]);
           }
         }
       }
@@ -537,9 +534,12 @@
       }
 
       // Add handlers for disabling some fields:
-      plus1Radios.forEach(r => r.addEventListener('change', updatePlus1Fields));
-      attendingRadios.forEach(r => r.addEventListener('change', updateAttendingFields));
-      document.getElementById('kid-count-input').addEventListener('change', updateKidsVisibility);
+      const onPlus1Change = () => updatePlus1Fields(isAttendingTicked() && isPlus1Ticked());
+      const onAttendingChange = () => updateAttendingFields(isAttendingTicked());
+      const onKidCountChange = (event) => updateKidsFields(event.target.value);
+      plus1Radios.forEach(r => r.addEventListener('change', onPlus1Change));
+      attendingRadios.forEach(r => r.addEventListener('change', onAttendingChange));
+      kidCountSelect.addEventListener('change', onKidCountChange);
 
       // Form submit
       form.addEventListener('submit', async e => {
@@ -569,8 +569,7 @@
       });
 
       // Initialize state
-      updateAttendingFields();
-      updatePlus1Fields();
+      updateAttendingFields(isAttendingTicked());
     </script>
   </body>
 </html>
