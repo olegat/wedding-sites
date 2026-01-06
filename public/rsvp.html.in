@@ -32,8 +32,8 @@
 #define DIET_EXAMPLES_SPANS \
    <span class="placeholder" lang="en">e.g. nuts, gluten</span>\
    <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>\
-   <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>\
    <span class="placeholder" lang="es">p.ej. nueces, gluten</span>\
+   <span class="placeholder" lang="es">p.ej. vegano, vegetariano</span>\
    <span class="placeholder" lang="fr">ex. noix, gluten</span>\
    <span class="placeholder" lang="fr">ex. végan, végétarien</span>\
 
