@@ -273,13 +273,13 @@
         </label>
       </div>
 
-      <!-- 3. Dietary & Alcohol -->
+      <!-- 3. Dietary -->
       <div class="mainq">
         <fieldset class="diet-group" id="diet-fieldset">
           <legend>
-            <span lang="en">Dietary Requirements & Alcohol</span>
-            <span lang="es">Requisitos alimentarios y alcohol</span>
-            <span lang="fr">Régimes alimentaires et alcool</span>
+            <span lang="en">Dietary Requirements</span>
+            <span lang="es">Requisitos alimentarios</span>
+            <span lang="fr">Régimes alimentaires</span>
           </legend>
 
           <div class="diet-row">
