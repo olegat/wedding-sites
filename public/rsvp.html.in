@@ -13,6 +13,22 @@
 #define PLUS1_NAME_SPANS \
   NAME_SPANS(PLUS1_NAME_CLASSNAME, +1, acompañante, +1)
 
+#define KID1_NAME_CLASSNAME kid1name
+#define KID1_NAME_SPANS \
+  NAME_SPANS(KID1_NAME_CLASSNAME, Child 1, niño 1, enfant 1)
+
+#define KID2_NAME_CLASSNAME kid2name
+#define KID2_NAME_SPANS \
+  NAME_SPANS(KID2_NAME_CLASSNAME, Child 2, niño 2, enfant 2)
+
+#define KID3_NAME_CLASSNAME kid3name
+#define KID3_NAME_SPANS \
+  NAME_SPANS(KID3_NAME_CLASSNAME, Child 3, niño 3, enfant 3)
+
+#define KID4_NAME_CLASSNAME kid4name
+#define KID4_NAME_SPANS \
+  NAME_SPANS(KID4_NAME_CLASSNAME, Child 4, niño 4, enfant 4)
+
 #define DIET_EXAMPLES_SPANS \
    <span class="placeholder" lang="en">e.g. nuts, gluten</span>\
    <span class="placeholder" lang="en">e.g. vegan, vegetarian</span>\
@@ -336,6 +352,36 @@
             DIET_EXAMPLES_SPANS
           </div>
 
+#define KID_DIET( INDEX, KID_NAMES_SPANS ) \
+          <div class=STRINGIFY(diet-row kid-row-INDEX)> \
+            <legend id=STRINGIFY(kid-allergies-label-INDEX)> \
+              <span lang="en">Allergies</span> \
+              <span lang="es">Alergias</span> \
+              <span lang="fr">Allergies</span> \
+              KID_NAMES_SPANS \
+            </legend> \
+            <legend id=STRINGIFY(kid-diet-label-INDEX)> \
+              <span lang="en">Dietary choice</span> \
+              <span lang="es">Dieta</span> \
+              <span lang="fr">Régime</span> \
+              KID_NAMES_SPANS \
+            </legend> \
+          </div> \
+\
+          <div class=STRINGIFY(diet-row kid-row-INDEX)> \
+            <input id=STRINGIFY(kid-allergies-INDEX) name=STRINGIFY(kid_allergies-INDEX) type="text" disabled /> \
+            <input id=STRINGIFY(kid-diet-INDEX) name=STRINGIFY(kid_diet-INDEX) type="text" disabled /> \
+          </div> \
+\
+          <div id=STRINGIFY(kid-diet-placeholder-INDEX) class=STRINGIFY(diet-row kid-row-INDEX)>\
+            DIET_EXAMPLES_SPANS \
+          </div>
+
+          KID_DIET( 1, KID1_NAME_SPANS )
+          KID_DIET( 2, KID2_NAME_SPANS )
+          KID_DIET( 3, KID3_NAME_SPANS )
+          KID_DIET( 4, KID4_NAME_SPANS )
+
         </fieldset>
       </div>
 
@@ -430,10 +476,14 @@
       const attendingRadios = document.querySelectorAll('input[name="attending"]');
       const plus1Radios = document.querySelectorAll('input[name="plus1"]');
       const kidCountSelect = document.getElementById('kid-count-input');
-      const plus1NameInput = document.getElementById('plus1-name-input');
 
       const KID_INDEXABLE_IDS = [
         'kid-name-',
+        'kid-diet-label-',
+        'kid-diet-placeholder-',
+        'kid-diet-',
+        'kid-allergies-label-',
+        'kid-allergies-',
       ];
 
       const ATTENDING_TOGGLEABLE_IDS = [
@@ -531,8 +581,8 @@
         }
       }
 
-      function updateNames(value, elems) {
-        for (const e of elems) {
+      function updateNames(value, selectors) {
+        for (const e of document.querySelectorAll(selectors)) {
           if (value === "") {
             e.textContent = e.dataset['defaultname'];
           } else {
@@ -562,11 +612,14 @@
       const onPlus1Change = () => updatePlus1Fields(isAttendingTicked() && isPlus1Ticked());
       const onAttendingChange = () => updateAttendingFields(isAttendingTicked());
       const onKidCountChange = (event) => updateKidsFields(event.target.value);
-      const onPlus1NameChange = (event) => updateNames(event.target.value, document.querySelectorAll(XSTRINGIFY(.PLUS1_NAME_CLASSNAME)));
       plus1Radios.forEach(r => r.addEventListener('change', onPlus1Change));
       attendingRadios.forEach(r => r.addEventListener('change', onAttendingChange));
       kidCountSelect.addEventListener('change', onKidCountChange);
-      plus1NameInput.addEventListener('change', onPlus1NameChange);
+      document.getElementById('plus1-name-input').addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.PLUS1_NAME_CLASSNAME)));
+      document.getElementById('kid-name-1')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID1_NAME_CLASSNAME)) );
+      document.getElementById('kid-name-2')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID2_NAME_CLASSNAME)) );
+      document.getElementById('kid-name-3')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID3_NAME_CLASSNAME)) );
+      document.getElementById('kid-name-4')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID4_NAME_CLASSNAME)) );
 
       // Form submit
       form.addEventListener('submit', async e => {
