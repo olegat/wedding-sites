@@ -420,6 +420,7 @@
       const attendingRadios = document.querySelectorAll('input[name="attending"]');
       const plus1Radios = document.querySelectorAll('input[name="plus1"]');
       const kidCountSelect = document.getElementById('kid-count-input');
+      const plus1NameInput = document.getElementById('plus1-name-input');
 
       const KID_INDEXABLE_IDS = [
         'kid-name-',
@@ -439,6 +440,15 @@
         ...[1, 2, 3, 4].map(i => KID_INDEXABLE_IDS.map(s => `${s}${i}`)).flat(),
         'songrequest-label',
         'songrequest-input',
+        'plus1-name-label',
+        'plus1-name-input',
+        'plus1-name-placeholder-en',
+        'plus1-name-placeholder-es',
+        'plus1-name-placeholder-fr',
+        'allergies-plus1-label',
+        'allergies-plus1',
+        'diet-plus1-label',
+        'diet-plus1',
       ];
 
       function setVisibilityId(id, visible) {
@@ -482,7 +492,7 @@
 
       function updateAttendingFields(attending) {
         updateElements(attending, ATTENDING_TOGGLEABLE_IDS);
-        updatePlus1Fields(attending && isPlus1Ticked());
+        updatePlus1Fields(isPlus1Ticked());
         updateKidsFields(getKidCount());
       }
 
@@ -514,6 +524,16 @@
         }
       }
 
+      function updateNames(value, elems) {
+        for (const e of elems) {
+          if (value === "") {
+            e.textContent = e.dataset['defaultname'];
+          } else {
+            e.textContent = value;
+          }
+        }
+      }
+
       function serializeForm() {
         const formData = new FormData(form);
         const obj = {};
@@ -535,9 +555,11 @@
       const onPlus1Change = () => updatePlus1Fields(isAttendingTicked() && isPlus1Ticked());
       const onAttendingChange = () => updateAttendingFields(isAttendingTicked());
       const onKidCountChange = (event) => updateKidsFields(event.target.value);
+      const onPlus1NameChange = (event) => updateNames(event.target.value, document.querySelectorAll('.plus1name'));
       plus1Radios.forEach(r => r.addEventListener('change', onPlus1Change));
       attendingRadios.forEach(r => r.addEventListener('change', onAttendingChange));
       kidCountSelect.addEventListener('change', onKidCountChange);
+      plus1NameInput.addEventListener('change', onPlus1NameChange);
 
       // Form submit
       form.addEventListener('submit', async e => {
