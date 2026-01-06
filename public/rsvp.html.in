@@ -235,10 +235,8 @@
           <span lang="en">+1 Name</span>
           <span lang="es">Nombre del acompañante</span>
           <span lang="fr">Nom du +1</span>
-          <input id="plus1-name-input" name="plus1_name" type="text" />
-          <span id="plus1-name-placeholder-en" class="placeholder" lang="en">Optional</span>
-          <span id="plus1-name-placeholder-es" class="placeholder" lang="es">Opcional</span>
-          <span id="plus1-name-placeholder-fr" class="placeholder" lang="fr">Optionnel</span>
+          <span class="redstar"></span>
+          <input id="plus1-name-input" name="plus1_name" type="text" required />
         </label>
       </div>
 
@@ -266,10 +264,10 @@
           <span lang="es">Nombres de los niños</span>
           <span lang="fr">Noms des enfants</span>
           <span class="redstar"></span>
-          <input id="kid-name-1" name="kid_name_1" type="text" disabled />
-          <input id="kid-name-2" name="kid_name_2" type="text" disabled />
-          <input id="kid-name-3" name="kid_name_3" type="text" disabled />
-          <input id="kid-name-4" name="kid_name_4" type="text" disabled />
+          <input id="kid-name-1" name="kid_name_1" type="text" required />
+          <input id="kid-name-2" name="kid_name_2" type="text" required />
+          <input id="kid-name-3" name="kid_name_3" type="text" required />
+          <input id="kid-name-4" name="kid_name_4" type="text" required />
         </label>
       </div>
 
