@@ -469,7 +469,7 @@
     </div>
 
     <script>
-      const fakeGetformio = true;
+      const fakeGetformio = false;
       const form = document.getElementById("rsvp-form");
       const success = document.getElementById("success");
 
