@@ -284,7 +284,7 @@
       </div>
 
       <!-- Kid names -->
-      <div class="mainq" id="kid-names-div" style="display: none">
+      <div class="mainq" id="kid-names-div">
         <label id="kid-names-label">
           <span lang="en">Child names</span>
           <span lang="es">Nombres de los niños</span>
@@ -513,7 +513,12 @@
       }
 
       function setVisibilityElem(elem, visible) {
-        elem && (elem.style.display = visible ? "" : 'none');
+        if (elem) {
+          elem.style.display = visible ? "" : 'none'
+          if (elem instanceof HTMLInputElement) {
+            elem.disabled = !visible;
+          }
+        }
       }
 
       function isAttendingTicked() {
@@ -545,6 +550,7 @@
         for (const row of document.querySelectorAll('.plus1-row')) {
           setVisibilityElem(row, visible);
         }
+        document.getElementById('plus1-name-input').disabled = !visible;
       }
 
       function updateAttendingFields(attending) {
