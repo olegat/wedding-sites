@@ -105,6 +105,12 @@ type HagaSweetTargetRsync = {
     configTemplate: HagaSweetRsyncConfig;
 };
 
+type HagaSweetTargetTsc = {
+    type: 'tsc';
+    inputs: string[];
+    outputDir: HagaSweetString;
+};
+
 type HagaSweetTargetZip = {
     type: 'zip';
     inputs: HagaSweetString[];
@@ -128,6 +134,7 @@ type TargetMap = {
     'regen': HagaSweetTargetRegen;
     'rsvg-convert': HagaSweetTargetRsvgConvert;
     'rsync': HagaSweetTargetRsync;
+    'tsc': HagaSweetTargetTsc;
     'zip': HagaSweetTargetZip;
 };
 
@@ -505,6 +512,30 @@ const SweetTargetSpec = {
                     all: false,
                 },
             ];
+        },
+    },
+
+    'tsc': {
+        getRules: rulesGetter({
+            name: 'tsc',
+            commands: [
+                [ [HagaKeyword.NPX_COMMAND], 'tsc', '$in', '--outDir', '$outdir'],
+            ],
+            description: 'Compiling $in',
+        }),
+        eatTarget(ctx: HagaContext, sweetTarget: HagaSweetTargetTsc) {
+            const outdir: string   = resolvePath(ctx, [HagaKeyword.CURRENT_OUTPUT_DIR], sweetTarget.outputDir);
+            const inputs: string[] = resolvePaths(ctx, [HagaKeyword.CURRENT_INPUT_DIR], sweetTarget.inputs);
+            const outputs: string[] = inputs.map((input: string) => {
+                const base = path.basename(input, '.ts');
+                return `${outdir}/${base}.js`;
+            });
+            return {
+                inputs,
+                outputs,
+                rule: "tsc",
+                vars: { outdir },
+            };
         },
     },
 

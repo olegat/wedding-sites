@@ -11,6 +11,7 @@ type Keywords =
     | 'HAGA_INPUT_HAGAFILE'
     | 'INPUT_DIR'
     | 'MAGICK_COMMAND'
+    | 'NPX_COMMAND'
     | 'OUTPUT_DIR'
     | 'RSVG_COMMAND'
     | 'TOUCH_COMMAND'
@@ -31,6 +32,7 @@ const HagaKeyword: { readonly [K in Keywords]: KeywordObj<K> } = {
     HAGA_INPUT_HAGAFILE: { keyword: 'HAGA_INPUT_HAGAFILE' },
     INPUT_DIR: { keyword: 'INPUT_DIR' },
     MAGICK_COMMAND: { keyword: 'MAGICK_COMMAND' },
+    NPX_COMMAND: { keyword: 'NPX_COMMAND' },
     OUTPUT_DIR: { keyword: 'OUTPUT_DIR' },
     TOUCH_COMMAND: { keyword: 'TOUCH_COMMAND' },
     RSVG_COMMAND: { keyword: 'RSVG_COMMAND' },
