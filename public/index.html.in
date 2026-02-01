@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary & Oli Wedding</title>
+    #include "favicon.html.in"
+    <style>
+      /* Reset some default styles */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.5;
+      }
+
+      /* Hero Section */
+      .hero {
+          position: relative;
+          height: 80vh;
+          background: url('https://images.squarespace-cdn.com/content/v1/624b503ddcc7d27c1e0e5cfe/8e25e088-5952-4093-88a3-ce7668dbfd0e/profile-full-top-01-copy%2Bcopy.jpg') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+      }
+
+      .hero-text {
+          background-color: rgba(0, 0, 0, 0.4);
+          padding: 1rem 2rem;
+          border-radius: 8px;
+      }
+
+      .hero h1 {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .hero p {
+          font-size: 1.2rem;
+      }
+
+      /* Sections */
+      section {
+          padding: 3rem 1rem;
+          text-align: center;
+      }
+
+      .white-bg {
+          background-color: white;
+      }
+
+      .gray-bg {
+          background-color: #f2f2f2;
+      }
+
+      h2 {
+          margin-bottom: 1rem;
+      }
+
+      /* Schedule list */
+      .schedule {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          max-width: 400px;
+          margin: 0 auto;
+          text-align: left;
+      }
+
+      /* RSVP Button */
+      .rsvp-button {
+          display: inline-block;
+          padding: 1rem 2rem;
+          background-color: #333;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: bold;
+          margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (min-width: 768px) {
+          .schedule {
+              max-width: 600px;
+          }
+
+          .hero h1 {
+              font-size: 4rem;
+          }
+
+          .hero p {
+              font-size: 1.5rem;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Mary & Oli</h1>
+        <p>10-October-2025</p>
+      </div>
+    </section>
+
+    <section class="white-bg">
+      <h2>Where?</h2>
+      <p>Zaragoza, Spain</p>
+
+      <h2>Venue</h2>
+      <p>Soto De Bruil</p>
+    </section>
+
+    <section class="gray-bg">
+      <h2>Schedule</h2>
+      <div class="schedule">
+        <p>12:00 Shuttle Bus Pickup from Zaragoza centre</p>
+        <p>12:30 Arrival at Venue</p>
+        <p>13:00 Ceremony</p>
+        <p>14:00 PLACEHOLDER (schedule not complete yet)</p>
+        <p>00:05 Shuttle Bus Return to Zaragoza centre</p>
+      </div>
+    </section>
+
+    <section class="white-bg">
+      <a href="#" class="rsvp-button">RSVP</a>
+    </section>
+  </body>
+</html>
+
