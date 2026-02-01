@@ -1,3 +1,4 @@
+// -*- Mode: typescript; typescript-indent-level: 2; -*-
 import { HagaKeyword } from './toolchain/hagaKeyword';
 import { HagaSweet, HagaSweetString, HagaSweetTargetRsvgConvert } from './toolchain/hagaSweet'
 
@@ -10,14 +11,20 @@ export default HagaSweet.eatSugar({
   targets: [
     {
       type: 'cpps',
-      inputs: [ 'index.html.in' ],
+      inputs: [
+        'index.html.in',
+        'travel.html.in',
+      ],
       inputDir: INDIR_PUBLIC,
       outputDir: OUTDIR_CPP,
       defines: ['USE_UNDER_CONSTRUCTION=1'],
     },
     {
       type: 'minify',
-      inputs: [ 'index.html' ],
+      inputs: [
+        'index.html',
+        'travel.html',
+      ],
       inputDir: OUTDIR_CPP,
       outputDir: OUTDIR_PUBLIC,
     },

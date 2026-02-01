@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary & Oli Wedding</title>
+    #include "favicon.html.in"
+    <style>
+      /* Reset some default styles */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.5;
+      }
+
+      /* Hero Section */
+      .hero {
+          position: relative;
+          height: 80vh;
+          background: url('https://images.squarespace-cdn.com/content/v1/624b503ddcc7d27c1e0e5cfe/8e25e088-5952-4093-88a3-ce7668dbfd0e/profile-full-top-01-copy%2Bcopy.jpg') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+      }
+
+      .hero-text {
+          background-color: rgba(0, 0, 0, 0.4);
+          padding: 1rem 2rem;
+          border-radius: 8px;
+      }
+
+      .hero h1 {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .hero p {
+          font-size: 1.2rem;
+      }
+
+      /* Sections */
+      section {
+          padding: 3rem 1rem;
+          text-align: center;
+      }
+
+      .white-bg {
+          background-color: white;
+      }
+
+      .gray-bg {
+          background-color: #f2f2f2;
+      }
+
+      h2 {
+          margin-bottom: 1rem;
+      }
+
+      /* Schedule list */
+      .schedule {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          max-width: 400px;
+          margin: 0 auto;
+          text-align: left;
+      }
+
+      /* RSVP Button */
+      .rsvp-button {
+          display: inline-block;
+          padding: 1rem 2rem;
+          background-color: #333;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: bold;
+          margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (min-width: 768px) {
+          .schedule {
+              max-width: 600px;
+          }
+
+          .hero h1 {
+              font-size: 4rem;
+          }
+
+          .hero p {
+              font-size: 1.5rem;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Travel Tips</h1>
+        <p>How to get it and around Zaragoza</p>
+      </div>
+    </section>
+
+    <section class="white-bg">
+      <h2>Flights</h2>
+      <p>Direct flights into Zaragoza (ZAZ) are limited. Ryanair flies to Zaragoza from London Stansted (STN) and from Charleroi (CRL), but services run only on certain days of the week. Zaragoza Airport has taxis available at all times; a taxi to the city centre costs around €27. There are also cheaper public bus options.</p>
+      <p>Many more flight options are available to Madrid (MAD) and Barcelona (BCN). From either city, Zaragoza can be reached via high-speed AVE trains (fast and comfortable, but more expensive) or Alsa intercity buses (slower, but cheaper). Both arrive at Zaragoza-Delicias, the city’s main station.</p>
+      <p>Renting a car in Madrid or Barcelona is also an option; driving to Zaragoza takes roughly 3–3.5 hours from either city.</p>
+    </section>
+
+    <section class="gray-bg">
+      <h2>Getting Around Zaragoza</h2>
+      <p>Zaragoza is a compact and very walkable city. For most visitors, there is no need to rent a car: many hotels, restaurants, and sights are within easy walking distance. For slightly longer journeys, taxis and city buses are plentiful, affordable, and easy to use. Taxis can be hailed on the street or found at taxi ranks.</p>
+      <p>The wedding takes place during the Fiestas del Pilar, when the city is busier than usual and some streets may be closed or pedestrianised. Public transport and taxis continue to operate during the festivities, though journeys may occasionally take a little longer.</p>
+      <h3>Transport Card</h3>
+      <p>If you plan to use buses or the tram more than once, it’s very common for locals and frequent visitors to carry a rechargeable transport card — often called a <strong>Tarjeta Bus</strong>. Digital versions are also available on the App Store and Play Store.</p>
+      <p>These cards let you pay as you go for both buses and the tram at a discounted fare compared with buying single tickets on board. You can buy and top up these cards at tobacco/newsagent shops and other authorised points around the city, and there are also machines at major tram stops for checking your balance and recharging. The card is valid on most urban buses and tram lines.</p>
+      <p>
+        <a href="https://zaragoza-avanzagrupo-com.translate.goog/tarifas-y-titulos/?_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en-GB" target="_blank" rel="noopener">
+          Official Website
+        </a>
+      </p>
+    </section>
+
+    <section class="white-bg">
+      <br/>
+    </section>
+  </body>
+</html>
+
