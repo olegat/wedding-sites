@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary & Oli Wedding</title>
+    #include "favicon.html.in"
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.5;
+      }
+
+      .hero {
+          position: relative;
+          height: 80vh;
+          background: url('https://images.squarespace-cdn.com/content/v1/624b503ddcc7d27c1e0e5cfe/8e25e088-5952-4093-88a3-ce7668dbfd0e/profile-full-top-01-copy%2Bcopy.jpg') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+      }
+
+      .hero-text {
+          background-color: rgba(0, 0, 0, 0.4);
+          padding: 1rem 2rem;
+          border-radius: 8px;
+      }
+
+      .hero h1 {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .hero p {
+          font-size: 1.2rem;
+      }
+
+      section {
+          padding: 3rem 1rem;
+          text-align: center;
+      }
+
+      .white-bg {
+          background-color: white;
+      }
+
+      .gray-bg {
+          background-color: #f2f2f2;
+      }
+
+      h2 {
+          margin-bottom: 1rem;
+      }
+
+      @media (min-width: 768px) {
+          .hero h1 {
+              font-size: 4rem;
+          }
+
+          .hero p {
+              font-size: 1.5rem;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Accomodation</h1>
+      </div>
+    </section>
+
+    <div lang="en" class="poster">
+      <section>
+        <h2>Hotels</h2>
+        <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
+        <p>We have a discount code (WEDD2026) with Palafox Hotel chain, they have a few options available near the pick up point</p>
+        <ul>
+          <li>Hotel Palafox</li>
+          <li>Hotel Goya</li>
+          <li>Hotel Alfonso</li>
+        </ul>
+        <p>There are other good alternatives around Paseo de Pamplona too</p>
+        <ul>
+          <li>INNSiDE by Meliá</li>
+          <li>Hotel Oriente</li>
+          <li>Hotel Gran Via</li>
+          <li>Cesaraugusta</li>
+          <li>Hotel Exe Boston</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

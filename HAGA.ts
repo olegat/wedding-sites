@@ -14,6 +14,7 @@ export default HagaSweet.eatSugar({
       inputs: [
         'index.html.in',
         'travel.html.in',
+        'hotels.html.in',
       ],
       inputDir: INDIR_PUBLIC,
       outputDir: OUTDIR_CPP,
@@ -24,6 +25,7 @@ export default HagaSweet.eatSugar({
       inputs: [
         'index.html',
         'travel.html',
+        'hotels.html',
       ],
       inputDir: OUTDIR_CPP,
       outputDir: OUTDIR_PUBLIC,
