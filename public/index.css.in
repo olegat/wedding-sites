@@ -10,36 +10,43 @@ body {
 }
 
 .banner-section {
+    display: flex;
     align-items: center;
     background: var(--banner-bg);
     color: var(--text-fg);
-    display: flex;
     justify-content: center;
     min-height: 60vh;
     text-align: center;
 }
 
-
-.banner-name {
-    font-family: 'New Icon Serif Regular';
-}
-
+.banner-name,
 .banner-conjunction {
-    font-family: 'Pinyon Script';
-}
-
-.banner-date {
-    font-family: 'Aileron Bold';
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .banner-name {
     font-family: 'New Icon Serif Regular';
-    font-size: clamp(3rem, 10vw, 8rem);
+    font-size: clamp(5rem, 18vw, 14rem);
+    padding-top: 0.22em;
 }
 
 .banner-conjunction {
     font-family: 'Pinyon Script';
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(4rem, 12vw, 8rem);
+    padding-left: 0.31em;
+}
+
+.banner-conjunction[lang="en"] {
+    padding-right: 0.62em;
+}
+
+.banner-conjunction[lang="es"] {
+    padding-right: 0.31em;
+}
+
+.banner-conjunction[lang="fr"] {
+    padding-right: 0.50em;
 }
 
 .banner-date {
