@@ -10,12 +10,15 @@ body {
 }
 
 .banner-section {
+    align-items: center;
     background: var(--banner-bg);
-    font-size: 1em;
-    font-weight: 400;
-    font-style: normal;
     color: var(--text-fg);
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
 }
+
 
 .banner-name {
     font-family: 'New Icon Serif Regular';
@@ -27,4 +30,19 @@ body {
 
 .banner-date {
     font-family: 'Aileron Bold';
+}
+
+.banner-name {
+    font-family: 'New Icon Serif Regular';
+    font-size: clamp(3rem, 10vw, 8rem);
+}
+
+.banner-conjunction {
+    font-family: 'Pinyon Script';
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.banner-date {
+    font-family: 'Aileron Bold';
+    font-size: clamp(1rem, 2vw, 1.5rem);
 }

@@ -10,10 +10,10 @@
   <body>
     <section class="banner-section">
       <div class="banner-text">
-        <span class="banner-name">Mary</span>
+        <span class="banner-name">mary</span>
         <span class="banner-conjunction">and</span>
-        <span class="banner-name">Oli</span>
-        <p class="banner-date">10-October-2026</p>
+        <span class="banner-name">oli</span>
+        <p class="banner-date">10 OCTOBER 2026</p>
       </div>
     </section>
 
