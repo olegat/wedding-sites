@@ -3,6 +3,7 @@ import { HagaKeyword } from './toolchain/hagaKeyword';
 import { HagaSweet, HagaSweetString, HagaSweetTargetRsvgConvert } from './toolchain/hagaSweet'
 
 const INDIR_PUBLIC  : HagaSweetString = [HagaKeyword.CURRENT_INPUT_DIR,  '/public'];
+const OUTDIR_TSC    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/tsc'];
 const OUTDIR_CPP    : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/cpp'];
 const OUTDIR_PUBLIC : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/public'];
 const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deploy'];
@@ -10,8 +11,24 @@ const OUTDIR_DEPLOY : HagaSweetString = [HagaKeyword.CURRENT_OUTPUT_DIR, '/deplo
 export default HagaSweet.eatSugar({
   targets: [
     {
+      type: 'tsc',
+      inputs: [
+        'public/language.ts',
+      ],
+      outputDir: OUTDIR_TSC,
+    },
+    {
+      type: 'minify',
+      inputs: [
+        'language.js',
+      ],
+      inputDir: OUTDIR_TSC,
+      outputDir: OUTDIR_PUBLIC,
+    },
+    {
       type: 'cpps',
       inputs: [
+        'index.css.in',
         'index.html.in',
         'travel.html.in',
         'hotels.html.in',
@@ -23,6 +40,7 @@ export default HagaSweet.eatSugar({
     {
       type: 'minify',
       inputs: [
+        'index.css',
         'index.html',
         'travel.html',
         'hotels.html',
@@ -49,6 +67,10 @@ export default HagaSweet.eatSugar({
       inputs: [
         'public/.htaccess',
         'public/favicon.svg',
+        'public/Aileron.woff2',
+        'public/AileronBold.woff2',
+        'public/NewIconSerifRegular.woff2',
+        'public/PinyonScript.woff2',
       ],
     },
     {

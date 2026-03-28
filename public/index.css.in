@@ -1,0 +1,30 @@
+#include "fonts.css"
+
+:root {
+    --banner-bg: rgb(179, 178, 158);
+    --text-fg: rgb(41, 55, 39);
+}
+
+body {
+    margin: 0;
+}
+
+.banner-section {
+    background: var(--banner-bg);
+    font-size: 1em;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-fg);
+}
+
+.banner-name {
+    font-family: 'New Icon Serif Regular';
+}
+
+.banner-conjunction {
+    font-family: 'Pinyon Script';
+}
+
+.banner-date {
+    font-family: 'Aileron Bold';
+}

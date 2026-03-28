@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Aileron';
+    src: url(./Aileron.woff2);
+}
+
+@font-face {
+    font-family: 'Aileron Bold';
+    src: url(./AileronBold.woff2);
+}
+
+@font-face {
+    font-family: 'New Icon Serif Regular';
+    src: url(./NewIconSerifRegular.woff2);
+}
+
+@font-face {
+    font-family: 'Pinyon Script';
+    src: url(./PinyonScript.woff2);
+}
