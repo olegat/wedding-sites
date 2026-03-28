@@ -1,4 +1,5 @@
 #include "fonts.css"
+#include "language.css"
 
 :root {
     --banner-bg: rgb(179, 178, 158);
@@ -51,5 +52,10 @@ body {
 
 .banner-date {
     font-family: 'Aileron Bold';
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.banner-location {
+    font-family: 'Aileron';
     font-size: clamp(1rem, 2vw, 1.5rem);
 }

@@ -1,0 +1,28 @@
+/* Floating language menu */
+.lang-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.8);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    z-index: 1000;
+}
+.lang-menu a {
+    margin: 0 5px;
+    color: #2e1d12;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+.lang-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Hide elements whose lang does NOT match the page lang */
+html[lang="en"] [lang]:not([lang="en"]),
+html[lang="es"] [lang]:not([lang="es"]),
+html[lang="fr"] [lang]:not([lang="fr"]) {
+  display: none;
+}

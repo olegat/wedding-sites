@@ -1,0 +1,6 @@
+<!-- Floating language menu -->
+<div class="lang-menu">
+  <a href="#" data-lang="en">EN</a> |
+  <a href="#" data-lang="es">ES</a> |
+  <a href="#" data-lang="fr">FR</a>
+</div>
