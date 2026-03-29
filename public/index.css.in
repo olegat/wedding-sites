@@ -16,7 +16,8 @@ body {
     background: var(--banner-bg);
     color: var(--text-fg);
     justify-content: center;
-    min-height: 60vh;
+    padding-top: 4em;
+    padding-bottom: 4em;
     text-align: center;
 }
 
