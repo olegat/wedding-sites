@@ -19,6 +19,21 @@
           <span lang="fr" class="banner-conjunction">et</span>
           <span class="banner-name">oli</span>
         </div>
+
+        <img
+          src="./flowers1.webp"
+          style="width:250px; height:auto; transform: scale(1, -1) rotate(90deg)"
+          >
+        <img
+          src="./placeholder.jpeg"
+          width="508"
+          height="323"
+          >
+        <img
+          src="./flowers1.webp"
+          style="width:250px; height:auto; transform: rotate(-90deg)"
+          >
+
         <p class="banner-date" lang="en">Saturday 10th October 2026</span>
         <p class="banner-date" lang="es">Sábado 10 de Octubre de 2026</span>
         <p class="banner-date" lang="fr">Samedi 10 Octobre 2026</span>

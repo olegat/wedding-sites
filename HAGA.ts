@@ -67,6 +67,7 @@ export default HagaSweet.eatSugar({
       inputs: [
         'public/.htaccess',
         'public/favicon.svg',
+        'public/flowers1.webp',
         'public/Aileron.woff2',
         'public/AileronBold.woff2',
         'public/NewIconSerifRegular.woff2',
