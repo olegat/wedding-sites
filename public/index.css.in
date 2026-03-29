@@ -21,12 +21,13 @@ body {
     text-align: center;
 }
 
-.banner-names {
+.section-row {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
+    max-width: 100%;
 }
 
 .banner-name,

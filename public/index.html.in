@@ -11,8 +11,8 @@
   <body>
     #include "language.html.in"
     <section class="banner-section">
-      <div class="banner-content">
-        <div class="banner-names">
+      <div class="section-content">
+        <div class="section-row">
           <span class="banner-name">mary</span>
           <span lang="en" class="banner-conjunction">and</span>
           <span lang="es" class="banner-conjunction">y</span>
