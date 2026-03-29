@@ -21,6 +21,14 @@ body {
     text-align: center;
 }
 
+.banner-names {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
 .banner-name,
 .banner-conjunction {
     display: inline-block;
@@ -29,13 +37,13 @@ body {
 
 .banner-name {
     font-family: 'New Icon Serif Regular';
-    font-size: clamp(5rem, 18vw, 14rem);
+    font-size: clamp(2.5rem, 18vw, 14rem);
     padding-top: 0.22em;
 }
 
 .banner-conjunction {
     font-family: 'Pinyon Script';
-    font-size: clamp(4rem, 12vw, 8rem);
+    font-size: clamp(2rem, 12vw, 8rem);
     padding-left: 0.31em;
 }
 
