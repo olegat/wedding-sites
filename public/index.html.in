@@ -21,19 +21,9 @@
         </div>
 
         <div class="section-row">
-          <img
-            src="./flowers1.webp"
-            style="min-width:45px; max-width:250px; height:auto; transform: scale(1, -1) rotate(90deg)"
-            >
-          <img
-            src="./placeholder.jpeg"
-            width="508"
-            height="323"
-            >
-          <img
-            src="./flowers1.webp"
-            style="min-width:45px; max-width:250px; height:auto; transform: rotate(-90deg)"
-            >
+          <img class="banner-flower1" src="./flowers1.webp" style="transform: scale(1, -1) rotate(90deg)">
+          <img src="./placeholder1.jpeg">
+          <img class="banner-flower1" src="./flowers1.webp" style="transform: rotate(-90deg)">
         </div>
 
         <p class="banner-date" lang="en">Saturday 10th October 2026</p>

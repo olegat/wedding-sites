@@ -60,6 +60,12 @@ body {
     padding-right: 0.50em;
 }
 
+.banner-flower1 {
+    min-width: 45px;
+    max-width: 250px;
+    height: auto;
+}
+
 .banner-date {
     font-family: 'Aileron Bold';
     font-size: clamp(1rem, 2vw, 1.5rem);
