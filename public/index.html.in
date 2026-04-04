@@ -23,7 +23,7 @@
         <div class="section-row">
           <div class="banner-image-triplet">
             <img src="./flowers1.webp">
-            <img src="./placeholder1.jpeg">
+            <img src="./placeholder1.jpeg" class="rounded-framing">
             <img src="./flowers1.webp">
           </div>
         </div>

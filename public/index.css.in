@@ -10,6 +10,12 @@ body {
     margin: 0;
 }
 
+.rounded-framing {
+    border-radius: 35px;
+    border: 4px solid var(--text-fg);
+    box-sizing: border-box;
+}
+
 .banner-section {
     display: flex;
     align-items: center;
