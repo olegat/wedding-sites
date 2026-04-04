@@ -107,3 +107,16 @@ body {
     font-family: 'Aileron';
     font-size: clamp(1rem, 2vw, 1.5rem);
 }
+
+.photo-section {
+    height: clamp(300px, 60vh, 800px);
+    overflow: hidden;
+}
+
+.photo-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}

@@ -37,6 +37,12 @@
       </div>
     </section>
 
+    <section class="photo-section">
+      <div class="section-content">
+          <img src="placeholder2.jpeg">
+      </div>
+    </section>
+
     <section class="hero-section">
       <h2>Where?</h2>
       <p>Zaragoza, Spain</p>
