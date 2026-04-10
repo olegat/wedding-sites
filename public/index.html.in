@@ -66,14 +66,96 @@
       </div>
     </section>
 
-    <section class="gray-bg">
-      <h2>Schedule</h2>
-      <div class="schedule">
-        <p>12:00 Shuttle Bus Pickup from Zaragoza centre</p>
-        <p>12:30 Arrival at Venue</p>
-        <p>13:00 Ceremony</p>
-        <p>14:00 PLACEHOLDER (schedule not complete yet)</p>
-        <p>00:05 Shuttle Bus Return to Zaragoza centre</p>
+    <section class="schedule-section">
+      <div class="section-column">
+        <img src="placeholder4.jpeg" style="width: 30vw">
+      </div>
+      <div class="section-column">
+        <h2>Schedule</h2>
+        <ul class="schedule">
+          <li>
+            <time>12:00</time>
+            <div lang="en">
+              <strong>Shuttle Bus Departure</strong>
+              <p>Pickup from Paraninfo in Zaragoza centre.</p>
+            </div>
+            <div lang="es">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER</p>
+            </div>
+            <div lang="fr">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER.</p>
+            </div>
+          </li>
+          <li>
+            <time>13:00</time>
+            <div lang="en">
+              <strong>Ceremony</strong>
+              <p>Join Mary and Oli as they exchange their vows.</p>
+            </div>
+            <div lang="es">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER</p>
+            </div>
+            <div lang="fr">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER.</p>
+            </div>
+          </li>
+          <li>
+            <time>14:00</time>
+            <div lang="en">
+              <strong>Cocktail</strong>
+              <p>PLACEHOLDER (in spain, they serve drinks, appertizers, and jamon at this part).</p>
+            </div>
+            <div lang="es">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER</p>
+            </div>
+            <div lang="fr">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER.</p>
+            </div>
+          </li>
+          <li>
+            <time>18:00</time>
+            <div lang="en">
+              <strong>Dinner</strong>
+              <p>PLACEHOLDER (you get the gist, four-course meal, yum yum).</p>
+            </div>
+            <div lang="es">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER</p>
+            </div>
+            <div lang="fr">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER.</p>
+            </div>
+          </li>
+          <li>
+            <time>20:00</time>
+            <div lang="en">
+              <strong>Reception</strong>
+              <p>PLACEHOLDER (party time, dance drink and party all night long).</p>
+            </div>
+          </li>
+          <li>
+            <time>00:05</time>
+            <div lang="en">
+              <strong>Shuttle Bus Return</strong>
+              <p>PLACEHOLDER (back to Zaragoza city-centre).</p>
+            </div>
+            <div lang="es">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER</p>
+            </div>
+            <div lang="fr">
+              <strong>PLACEHOLDER</strong>
+              <p>PLACEHOLDER.</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
