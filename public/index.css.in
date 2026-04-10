@@ -179,7 +179,7 @@ body {
 }
 
 .placeholder3-container {
-    width: 45vw;
+    max-width: 45vw;
     margin-top: 1em;
     margin-bottom: 1em;
 }
