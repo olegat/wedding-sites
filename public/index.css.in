@@ -5,6 +5,7 @@
     --banner-bg: rgb(179, 178, 158);
     --where-bg: rgb(237, 232, 226);
     --text-fg: rgb(41, 55, 39);
+    --section-vpadding: 4em;
 }
 
 body {
@@ -17,8 +18,8 @@ body {
     background: var(--banner-bg);
     color: var(--text-fg);
     justify-content: center;
-    padding-top: 4em;
-    padding-bottom: 4em;
+    padding-top: var(--section-vpadding);
+    padding-bottom: var(--section-vpadding);
     text-align: center;
 }
 
@@ -128,6 +129,8 @@ body {
     background: var(--where-bg);
     color: var(--text-fg);
     justify-content: center;
+    padding-top: var(--section-vpadding);
+    padding-bottom: var(--section-vpadding);
 }
 
 .where-row-title {
@@ -173,4 +176,10 @@ body {
 
 .stamp-border > img {
     width: 100%;
+}
+
+.placeholder3-container {
+    width: 45vw;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }

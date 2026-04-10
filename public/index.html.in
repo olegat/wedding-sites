@@ -51,7 +51,7 @@
           <span lang="fr">Saragosse, Espagne</span>
         </div>
         <div class="section-row">
-          <div class="stamp-border" style="width: 45vw">
+          <div class="stamp-border placeholder3-container">
             <img src="./placeholder3.jpeg">
           </div>
         </div>
