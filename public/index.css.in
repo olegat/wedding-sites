@@ -2,9 +2,9 @@
 #include "language.css"
 
 :root {
-    --banner-bg: rgb(179, 178, 158);
-    --where-bg: rgb(237, 232, 226);
-    --text-fg: rgb(41, 55, 39);
+    --color-light: rgb(237, 232, 226);
+    --color-mid: rgb(179, 178, 158);
+    --color-dark: rgb(41, 55, 39);
     --section-vpadding: 4em;
 }
 
@@ -15,8 +15,8 @@ body {
 .banner-section {
     display: flex;
     align-items: center;
-    background: var(--banner-bg);
-    color: var(--text-fg);
+    background: var(--color-mid);
+    color: var(--color-dark);
     justify-content: center;
     padding-top: var(--section-vpadding);
     padding-bottom: var(--section-vpadding);
@@ -126,8 +126,8 @@ body {
 .where-section {
     display: flex;
     align-items: center;
-    background: var(--where-bg);
-    color: var(--text-fg);
+    background: var(--color-light);
+    color: var(--color-dark);
     justify-content: center;
     padding-top: var(--section-vpadding);
     padding-bottom: var(--section-vpadding);
