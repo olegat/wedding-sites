@@ -130,14 +130,14 @@ body {
     justify-content: center;
 }
 
-.where-title {
+.where-row-title {
     font-family: 'Pinyon Script';
     font-size: clamp(2rem, 12vw, 8rem);
     font-weight: normal;
     justify-content: left;
 }
 
-.where-p {
+.where-row-p {
     font-family: 'New Icon Serif Regular';
     font-size: clamp(2rem, 12vw, 8rem);
 }
