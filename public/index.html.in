@@ -68,7 +68,7 @@
 
     <section class="schedule-section">
       <div class="section-column">
-        <img src="placeholder4.jpeg" style="width: 30vw">
+        <img src="placeholder4.jpeg">
       </div>
       <div class="section-column">
         <h2>Schedule</h2>

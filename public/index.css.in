@@ -190,6 +190,11 @@ body {
     color: var(--color-mid);
 }
 
+.schedule-section img[src='placeholder4.jpeg'] {
+    max-width: 30vw;
+    max-height: 360px;
+}
+
 .schedule {
     list-style: none;
     padding: 0;
