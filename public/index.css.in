@@ -192,12 +192,37 @@ body {
 
 .schedule-section img[src='placeholder4.jpeg'] {
     max-width: 30vw;
-    max-height: 360px;
+    max-height: 385px;
+}
+
+.schedule-title .wedding {
+    font-family: 'Pinyon Script';
+    font-size: 3.3rem;
+    font-weight: normal;
+    justify-content: left;
+}
+
+.schedule-title .program {
+    font-family: 'New Icon Serif Regular';
+    font-size: 2rem;
+    font-weight: normal;
+    justify-content: left;
+}
+
+.schedule-title {
+    text-align: left;
+    margin-left: 3rem;
+    margin-bottom: 3rem;
 }
 
 .schedule {
     list-style: none;
     padding: 0;
+    font-family: 'Aileron';
+}
+
+.schedule strong {
+    font-family: 'Aileron Bold';
 }
 
 .schedule li {

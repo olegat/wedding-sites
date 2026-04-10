@@ -71,7 +71,19 @@
         <img src="placeholder4.jpeg">
       </div>
       <div class="section-column">
-        <h2>Schedule</h2>
+
+        <div class="schedule-title">
+          <div lang="en">
+            <div class="wedding">Wedding</div><div class="program">program</div>
+          </div>
+          <div lang="es">
+            <div class="program">programa de</div><div class="wedding">La Boba</div>
+          </div>
+          <div lang="fr">
+            <div class="program">programme du</div><div class="wedding">Marriage</div>
+          </div>
+        </div>
+
         <ul class="schedule">
           <li>
             <time>12:00</time>
