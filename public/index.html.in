@@ -11,7 +11,7 @@
   <body>
     #include "language.html.in"
     <section class="banner-section">
-      <div class="section-content">
+      <div class="section-column">
         <div class="section-row">
           <span class="banner-name">mary</span>
           <span lang="en" class="banner-conjunction">and</span>
@@ -43,12 +43,22 @@
       </div>
     </section>
 
-    <section class="hero-section">
-      <h2>Where?</h2>
-      <p>Zaragoza, Spain</p>
-
-      <h2>Venue</h2>
-      <p>Soto De Bruil</p>
+    <section class="where-section">
+      <div class="section-column">
+        <div class="section-row">
+          <span class="where-title" lang="en">Venue</span>
+          <span class="where-title" lang="es">Finca</span>
+          <span class="where-title" lang="fr">Lieu</span>
+        </div>
+        <div class="section-row">
+          <span class="where-p" lang="en">Zaragoza, Spain</span>
+          <span class="where-p" lang="es">Zaragoza, España</span>
+          <span class="where-p" lang="fr">Saragosse, Espagne</span>
+        </div>
+        <div class="section-row">
+          <span class="where-p" >Soto De Bruil</span>
+        </div>
+      </div>
     </section>
 
     <section class="gray-bg">

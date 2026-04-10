@@ -3,6 +3,7 @@
 
 :root {
     --banner-bg: rgb(179, 178, 158);
+    --where-bg: rgb(237, 232, 226);
     --text-fg: rgb(41, 55, 39);
 }
 
@@ -119,4 +120,23 @@ body {
     object-fit: cover;
     object-position: center;
     display: block;
+}
+
+.where-section {
+    display: flex;
+    align-items: center;
+    background: var(--where-bg);
+    color: var(--text-fg);
+    justify-content: center;
+}
+
+.where-title {
+    font-family: 'Pinyon Script';
+    font-size: clamp(2rem, 12vw, 8rem);
+    font-weight: normal;
+}
+
+.where-p {
+    font-family: 'New Icon Serif Regular';
+    font-size: clamp(2rem, 12vw, 8rem);
 }
