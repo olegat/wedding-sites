@@ -1,101 +1,102 @@
-#define BANNER_ASPECT_RATIO  3/2
-#define BANNER_HIGH_URL      "./hotels_3_2.jpeg"
-#define BANNER_LOW_URL       "./hotels_3_2_low.jpeg"
-#include "defines.h"
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- start downloading BANNER_LOW_URL as soon as possible -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary & Oli Wedding</title>
+    #include "favicon.html.in"
     <style>
-      #include "banner.css.in"
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.5;
+      }
+
+      .hero {
+          position: relative;
+          height: 80vh;
+          background: url('https://images.squarespace-cdn.com/content/v1/624b503ddcc7d27c1e0e5cfe/8e25e088-5952-4093-88a3-ce7668dbfd0e/profile-full-top-01-copy%2Bcopy.jpg') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+      }
+
+      .hero-text {
+          background-color: rgba(0, 0, 0, 0.4);
+          padding: 1rem 2rem;
+          border-radius: 8px;
+      }
+
+      .hero h1 {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .hero p {
+          font-size: 1.2rem;
+      }
+
+      section {
+          padding: 3rem 1rem;
+          text-align: center;
+      }
+
+      .white-bg {
+          background-color: white;
+      }
+
+      .gray-bg {
+          background-color: #f2f2f2;
+      }
+
+      h2 {
+          margin-bottom: 1rem;
+      }
+
+      @media (min-width: 768px) {
+          .hero h1 {
+              font-size: 4rem;
+          }
+
+          .hero p {
+              font-size: 1.5rem;
+          }
+      }
     </style>
-    #include "head_common.html"
-    <title>Mary & Oli Wedding Festival</title>
-    <link rel="stylesheet" href="./travel.css">
   </head>
   <body>
-    <main>
-
-      #include "body_header.html"
-
-      <div lang="en" class="poster">
-        <h1>Accommodation</h1>
-
-        <section>
-          <h2>Hotels</h2>
-          <p>
-            We are currently in discussions with several hotel chains to secure group
-            discount rates. Before confirming anything, we need a reasonably accurate
-            estimate of how many guests will require accommodation.
-          </p>
-          <p>
-            Once this is finalised, we’ll share an update with all the details.
-          </p>
-#if USE_PREBODA_PROMPT
-          <p>
-            We will also do our best to ensure that both the <em>preboda</em> gathering
-            (9th October) and the shuttle bus pickup points on the wedding day
-            (10th October) are as close as possible to the selected hotels.
-          </p>
-#endif
-        </section>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Accomodation</h1>
       </div>
+    </section>
 
-      <div lang="es" class="poster">
-        <h1>Alojamiento</h1>
-
-        <section>
-          <h2>Hoteles</h2>
-          <p>
-            Actualmente estamos en conversaciones con varias cadenas hoteleras para
-            conseguir tarifas de grupo con descuento. Antes de poder confirmar nada,
-            necesitamos una estimación lo más precisa posible del número de invitados
-            que necesitarán alojamiento.
-          </p>
-          <p>
-            Una vez que esto esté cerrado, os enviaremos una actualización con todos
-            los detalles.
-          </p>
-#if USE_PREBODA_PROMPT
-          <p>
-            También haremos todo lo posible para que tanto la reunión de la
-            <em>preboda</em> (9 de octubre) como los puntos de recogida de los autobuses
-            lanzadera el día de la boda (10 de octubre) estén lo más cerca posible de
-            los hoteles seleccionados.
-          </p>
-#endif
-        </section>
-      </div>
-
-      <div lang="fr" class="poster">
-        <h1>Hébergement</h1>
-
-        <section>
-          <h2>Hôtels</h2>
-          <p>
-            Nous sommes actuellement en discussion avec plusieurs chaînes hôtelières
-            afin d’obtenir des tarifs de groupe avantageux. Avant de pouvoir confirmer
-            quoi que ce soit, nous avons besoin d’une estimation aussi précise que
-            possible du nombre d’invités ayant besoin d’un hébergement.
-          </p>
-          <p>
-            Une fois ces informations finalisées, nous vous communiquerons une mise à
-            jour avec tous les détails.
-          </p>
-#if USE_PREBODA_PROMPT
-          <p>
-            Nous ferons également de notre mieux pour que la soirée de
-            <em>pré-boda</em> (le 9 octobre) ainsi que les points de départ des navettes
-            le jour du mariage (le 10 octobre) soient situés aussi près que possible
-            des hôtels sélectionnés.
-          </p>
-#endif
-        </section>
-      </div>
-
-    </main>
-
-  #include "body_footer.html"
-</body>
+    <div lang="en" class="poster">
+      <section>
+        <h2>Hotels</h2>
+        <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
+        <p>We have a discount code (WEDD2026) with Palafox Hotel chain:</p>
+        <ul>
+          <li>Hotel Palafox</li>
+          <li>Hotel Goya</li>
+          <li>Hotel Alfonso</li>
+        </ul>
+        <p>There are other good alternatives around Paseo de Pamplona too</p>
+        <ul>
+          <li>INNSiDE by Meliá</li>
+          <li>Hotel Oriente</li>
+          <li>Hotel Gran Via</li>
+          <li>Cesaraugusta</li>
+          <li>Hotel Exe Boston</li>
+        </ul>
+      </section>
+    </div>
+  </body>
 </html>
