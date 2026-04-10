@@ -46,14 +46,19 @@
     <section class="where-section">
       <div class="section-column">
         <div class="section-row">
-          <span class="where-title" lang="en">Venue</span>
-          <span class="where-title" lang="es">Finca</span>
-          <span class="where-title" lang="fr">Lieu</span>
-        </div>
-        <div class="section-row">
           <span class="where-p" lang="en">Zaragoza, Spain</span>
           <span class="where-p" lang="es">Zaragoza, España</span>
           <span class="where-p" lang="fr">Saragosse, Espagne</span>
+        </div>
+        <div class="section-row">
+          <div class="stamp-border" style="width: 45vw">
+            <img src="./placeholder3.jpeg">
+          </div>
+        </div>
+        <div class="section-row">
+          <span class="where-title" lang="en">Venue</span>
+          <span class="where-title" lang="es">Finca</span>
+          <span class="where-title" lang="fr">Lieu</span>
         </div>
         <div class="section-row">
           <span class="where-p" >Soto De Bruil</span>

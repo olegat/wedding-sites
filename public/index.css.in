@@ -134,9 +134,43 @@ body {
     font-family: 'Pinyon Script';
     font-size: clamp(2rem, 12vw, 8rem);
     font-weight: normal;
+    justify-content: left;
 }
 
 .where-p {
     font-family: 'New Icon Serif Regular';
     font-size: clamp(2rem, 12vw, 8rem);
+}
+
+/*
+ * Source:
+ *   https://freefrontend.com/css-borders/
+ *   https://codepen.io/joshwcomeau/pen/VwRqQGP
+ */
+.stamp-border {
+  /* Change this value to adjust the stamp perforation size: */
+  --radius: 8px;
+  padding: calc(var(--radius) * 2.5);
+  padding-bottom: calc(var(--radius) * 2);
+
+  background-image:
+    radial-gradient(
+      var(--radius),
+      transparent 98%,
+      white
+    ),
+    linear-gradient(white 0 0);
+  background-repeat:
+    round,
+    no-repeat;
+  background-position:
+    calc(var(--radius) * -1.5) calc(var(--radius) * -1.5),
+    50%;
+  background-size:
+    calc(var(--radius) * 3) calc(var(--radius) * 3),
+    calc(100% - var(--radius) * 3) calc(100% - var(--radius) * 3);
+}
+
+.stamp-border > img {
+    width: 100%;
 }
