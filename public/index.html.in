@@ -67,9 +67,8 @@
     </section>
 
     <section class="schedule-section">
-      <div class="section-column">
-        <img src="placeholder4.jpeg">
-      </div>
+      <img src="placeholder4.jpeg">
+
       <div class="section-column">
 
         <div class="schedule-title">
