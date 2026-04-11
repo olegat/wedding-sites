@@ -22,9 +22,9 @@
 
         <div class="section-row">
           <div class="banner-image-triplet">
-            <img src="./flowers1.webp">
+            <img src="./flowers1-dark.webp">
             <img src="./placeholder1.jpeg">
-            <img src="./flowers1.webp">
+            <img src="./flowers1-dark.webp">
           </div>
         </div>
 
@@ -82,6 +82,7 @@
           <div lang="fr">
             <div class="program">programme du</div><div class="wedding">Marriage</div>
           </div>
+          <img src="flowers1-light.webp">
         </div>
 
         <ul class="schedule">

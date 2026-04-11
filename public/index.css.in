@@ -209,6 +209,10 @@ body {
     justify-content: left;
 }
 
+.schedule-section img[src='flowers1-light.webp'] {
+    max-height: 155px;
+}
+
 .schedule-title {
     text-align: left;
     margin-left: 3rem;
