@@ -192,7 +192,7 @@ body {
 
 .schedule-section img[src='placeholder4.jpeg'] {
     max-width: 30vw;
-    max-height: 385px;
+    max-height: 450px;
 }
 
 .schedule-title .wedding {
