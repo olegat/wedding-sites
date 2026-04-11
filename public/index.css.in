@@ -214,6 +214,9 @@ body {
 }
 
 .schedule-title {
+    display: flex;
+    align-items: center;
+    gap: 25px;
     text-align: left;
     margin-left: 3rem;
     margin-bottom: 3rem;
