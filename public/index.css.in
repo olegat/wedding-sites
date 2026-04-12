@@ -15,6 +15,7 @@
     --color-mid: rgb(179, 178, 158);
     --color-dark: rgb(41, 55, 39);
     --section-vpadding: 4em;
+    background: var(--color-mid);
 }
 
 body {
