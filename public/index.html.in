@@ -178,9 +178,16 @@
         </ul>
       </div>
     </section>
-
-    <section class="white-bg">
-      <a href="#" class="rsvp-button">RSVP</a>
+    <section class="rsvp-section">
+      <div class="section-column">
+        <div class="section-row">
+          <div class="rsvp-triplet">
+            <img src="./flowers3-dark.webp">
+            <a href="#">R.S.V.P.</a>
+            <img src="./flowers3-dark.webp">
+          </div>
+        </div>
+      </div>
     </section>
   </body>
 </html>

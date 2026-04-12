@@ -250,3 +250,59 @@ body {
 .schedule p {
     margin: 0;
 }
+
+.rsvp-section {
+    SECTION_DEFAULTS();
+    display: block;
+    background: var(--color-mid);
+    color: var(--color-light);
+}
+
+.rsvp-triplet {
+    position: relative;
+    min-width: 50vw;
+    max-width: 95vw;
+    aspect-ratio: 3 / 1;
+    margin: 0 auto;
+    --flower-scale: 0.7;
+}
+
+.rsvp-triplet img,
+.rsvp-triplet a {
+    position: absolute;
+    object-fit: contain;
+}
+
+.rsvp-triplet img {
+    height: calc(var(--flower-scale) * 100%);
+    top: calc((1 - var(--flower-scale)) * 50%);
+}
+
+.rsvp-triplet img:nth-child(1) {
+    left: 0;
+    transform: scale(-1, 1);
+}
+
+.rsvp-triplet a:nth-child(2) {
+    display: inline-block;
+
+    font-family: 'New Icon Serif Regular';
+    font-size: 2rem;
+    background: var(--color-light);
+    border-radius: 9999px;
+    border: 2px solid var(--color-mid);
+    box-shadow: 0 4px 3px var(--color-dark);
+    color: var(--color-dark);
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.6em 1.2em;
+    text-decoration: none;
+    transition: all 0.1s ease;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.rsvp-triplet img:nth-child(3) {
+    right: 0;
+}
