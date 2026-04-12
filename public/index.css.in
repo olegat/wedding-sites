@@ -194,7 +194,7 @@ body {
 }
 
 .schedule-section img[src='placeholder4.jpeg'] {
-    max-width: 30vw;
+    max-width: 55vw;
     max-height: 450px;
 
     /* Polaroid frame */
