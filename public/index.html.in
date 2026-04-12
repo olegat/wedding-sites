@@ -179,14 +179,10 @@
       </div>
     </section>
     <section class="rsvp-section">
-      <div class="section-column">
-        <div class="section-row">
-          <div class="rsvp-triplet">
-            <img src="./flowers3-dark.webp">
-            <a href="#">R.S.V.P.</a>
-            <img src="./flowers3-dark.webp">
-          </div>
-        </div>
+      <div class="rsvp-button-triplet">
+        <img src="./flowers3-dark.webp">
+        <a href="#" class="capsule">R.S.V.P.</a>
+        <img src="./flowers3-dark.webp">
       </div>
     </section>
   </body>
