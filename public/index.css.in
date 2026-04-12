@@ -196,6 +196,22 @@ body {
 .schedule-section img[src='placeholder4.jpeg'] {
     max-width: 30vw;
     max-height: 450px;
+
+    /* Polaroid frame */
+    background: white;
+    padding: 12px 12px 40px 12px; /* bottom padding bigger = classic Polaroid look */
+
+    border: 1px solid rgba(0,0,0,0.15);
+
+    /* shadow for "floating photo" effect */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+    /* slight tilt makes it feel more real */
+    transform: rotate(-2deg);
+
+    /* important so padding behaves nicely */
+    display: block;
+
 }
 
 .schedule-title .wedding {
