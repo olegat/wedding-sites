@@ -13,6 +13,7 @@ export default HagaSweet.eatSugar({
     {
       type: 'tsc',
       inputs: [
+        'public/burger.ts',
         'public/language.ts',
       ],
       outputDir: OUTDIR_TSC,
@@ -20,6 +21,7 @@ export default HagaSweet.eatSugar({
     {
       type: 'minify',
       inputs: [
+        'burger.js',
         'language.js',
       ],
       inputDir: OUTDIR_TSC,
@@ -90,6 +92,7 @@ export default HagaSweet.eatSugar({
       config: 'deploy.json',
       inputs: [
         '.htaccess',
+        'burger.js',
         'favicon.svg',
         'favicon.ico',
         'favicon-16x16.png',

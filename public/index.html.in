@@ -6,9 +6,11 @@
     <title>Mary & Oli Wedding</title>
     #include "favicon.html.in"
     <link rel="stylesheet" href="./index.css">
+    <script src="./burger.js"></script>
     <script src="./language.js"></script>
   </head>
   <body>
+    #include "burger.html.in"
     #include "language.html.in"
     <section class="banner-section">
       <div class="section-column">
