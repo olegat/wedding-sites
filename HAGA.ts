@@ -44,7 +44,7 @@ export default HagaSweet.eatSugar({
       inputs: [
         'index.css',
         'index.html',
-        // 'travel.html',
+        'travel.html',
         // 'hotels.html',
       ],
       inputDir: OUTDIR_CPP,
@@ -104,6 +104,7 @@ export default HagaSweet.eatSugar({
         'favicon-192x192.png',
         'index.css',
         'index.html',
+        'travel.html',
         'language.js',
         'flowers1-dark.webp',
         'flowers1-light.webp',

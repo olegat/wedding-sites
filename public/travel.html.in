@@ -6,6 +6,9 @@
     <title>Mary & Oli Wedding</title>
     #include "favicon.html.in"
     <style>
+      #include "burger.css"
+      #include "language.css"
+
       /* Reset some default styles */
       * {
           margin: 0;
@@ -72,8 +75,13 @@
           }
       }
     </style>
+    <script src="./burger.js"></script>
+    <script src="./language.js"></script>
   </head>
   <body>
+    #include "burger.html.in"
+    #include "language.html.in"
+
     <section class="hero">
       <div class="hero-text">
         <h1>Travel Tips</h1>
