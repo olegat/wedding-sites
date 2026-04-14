@@ -1,9 +1,22 @@
+#include "burger.css"
 #include "fonts.css"
 #include "language.css"
 
+#define SECTION_DEFAULTS()                   \
+    display: flex;                           \
+    align-items: center;                     \
+    justify-content: center;                 \
+    padding-top: var(--section-vpadding);    \
+    padding-bottom: var(--section-vpadding); \
+    text-align: center;                      \
+
+
 :root {
-    --banner-bg: rgb(179, 178, 158);
-    --text-fg: rgb(41, 55, 39);
+    --color-light: rgb(237, 232, 226);
+    --color-mid: rgb(179, 178, 158);
+    --color-dark: rgb(41, 55, 39);
+    --section-vpadding: 4em;
+    background: var(--color-mid);
 }
 
 body {
@@ -17,14 +30,9 @@ body {
 }
 
 .banner-section {
-    display: flex;
-    align-items: center;
-    background: var(--banner-bg);
-    color: var(--text-fg);
-    justify-content: center;
-    padding-top: 4em;
-    padding-bottom: 4em;
-    text-align: center;
+    SECTION_DEFAULTS();
+    background: var(--color-mid);
+    color: var(--color-dark);
 }
 
 .section-row {
@@ -124,4 +132,182 @@ body {
     object-fit: cover;
     object-position: center;
     display: block;
+}
+
+.where-section {
+    SECTION_DEFAULTS();
+    background: var(--color-light);
+    color: var(--color-dark);
+}
+
+.where-row-title {
+    font-family: 'Pinyon Script';
+    font-size: clamp(2rem, 12vw, 8rem);
+    font-weight: normal;
+    justify-content: left;
+}
+
+.where-row-p {
+    font-family: 'New Icon Serif Regular';
+    font-size: clamp(2rem, 12vw, 8rem);
+}
+
+/*
+ * Source:
+ *   https://freefrontend.com/css-borders/
+ *   https://codepen.io/joshwcomeau/pen/VwRqQGP
+ */
+.stamp-border {
+  /* Change this value to adjust the stamp perforation size: */
+  --radius: 8px;
+  padding: calc(var(--radius) * 2.5);
+  padding-bottom: calc(var(--radius) * 2);
+
+  background-image:
+    radial-gradient(
+      var(--radius),
+      transparent 98%,
+      white
+    ),
+    linear-gradient(white 0 0);
+  background-repeat:
+    round,
+    no-repeat;
+  background-position:
+    calc(var(--radius) * -1.5) calc(var(--radius) * -1.5),
+    50%;
+  background-size:
+    calc(var(--radius) * 3) calc(var(--radius) * 3),
+    calc(100% - var(--radius) * 3) calc(100% - var(--radius) * 3);
+}
+
+.stamp-border > img {
+    width: 100%;
+}
+
+.placeholder3-container {
+    max-width: 45vw;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.schedule-section {
+    SECTION_DEFAULTS();
+    flex-wrap: wrap;
+    gap: 3rem;
+    background: var(--color-dark);
+    color: var(--color-mid);
+}
+
+.schedule-section img[src='placeholder4.jpeg'] {
+    max-width: 55vw;
+    max-height: 450px;
+
+    /* Polaroid frame */
+    background: white;
+    padding: 12px 12px 40px 12px; /* bottom padding bigger = classic Polaroid look */
+
+    border: 1px solid rgba(0,0,0,0.15);
+
+    /* shadow for "floating photo" effect */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+    /* slight tilt makes it feel more real */
+    transform: rotate(-2deg);
+
+    /* important so padding behaves nicely */
+    display: block;
+
+}
+
+.schedule-title .wedding {
+    font-family: 'Pinyon Script';
+    font-size: 3.3rem;
+    font-weight: normal;
+    justify-content: left;
+}
+
+.schedule-title .program {
+    font-family: 'New Icon Serif Regular';
+    font-size: 2rem;
+    font-weight: normal;
+    justify-content: left;
+}
+
+.schedule-section img[src='flowers1-light.webp'] {
+    max-height: 155px;
+}
+
+.schedule-title {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-align: left;
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+}
+
+.schedule {
+    list-style: none;
+    padding: 0;
+    font-family: 'Aileron';
+}
+
+.schedule strong {
+    font-family: 'Aileron Bold';
+}
+
+.schedule li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin: 1em;
+}
+
+.schedule time {
+    grid-column: 1;
+}
+
+.schedule div[lang] {
+    grid-column: 2;
+    margin: 0;
+    text-align: left;
+}
+.schedule p {
+    margin: 0;
+}
+
+.rsvp-section {
+    SECTION_DEFAULTS();
+    background: var(--color-mid);
+    color: var(--color-light);
+}
+
+.rsvp-button-triplet {
+    --max-padding: 5rem;
+    display: flex;
+    align-items: center;
+    gap: clamp(0px, 5vw, var(--max-padding));
+}
+
+.rsvp-button-triplet img {
+    height: clamp(60px, 30vw, 200px);
+}
+
+.rsvp-button-triplet img:nth-child(1) {
+    transform: scale(-1, 1);
+}
+
+.capsule {
+    display: inline-block;
+    font-family: 'New Icon Serif Regular';
+    font-size: 2rem;
+    background: var(--color-light);
+    border-radius: 9999px;
+    border: 2px solid var(--color-mid);
+    box-shadow: 0 4px 3px var(--color-dark);
+    color: var(--color-dark);
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.6em 1.2em;
+    text-decoration: none;
 }

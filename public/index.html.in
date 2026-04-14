@@ -6,12 +6,14 @@
     <title>Mary & Oli Wedding</title>
     #include "favicon.html.in"
     <link rel="stylesheet" href="./index.css">
+    <script src="./burger.js"></script>
     <script src="./language.js"></script>
   </head>
   <body>
+    #include "burger.html.in"
     #include "language.html.in"
     <section class="banner-section">
-      <div class="section-content">
+      <div class="section-column">
         <div class="section-row">
           <span class="banner-name">mary</span>
           <span lang="en" class="banner-conjunction">and</span>
@@ -22,9 +24,9 @@
 
         <div class="section-row">
           <div class="banner-image-triplet">
-            <img src="./flowers1.webp">
+            <img src="./flowers1-dark.webp">
             <img src="./placeholder1.jpeg" class="rounded-framing">
-            <img src="./flowers1.webp">
+            <img src="./flowers1-dark.webp">
           </div>
         </div>
 
@@ -45,27 +47,147 @@
       </div>
     </section>
 
-    <section class="hero-section">
-      <h2>Where?</h2>
-      <p>Zaragoza, Spain</p>
-
-      <h2>Venue</h2>
-      <p>Soto De Bruil</p>
-    </section>
-
-    <section class="gray-bg">
-      <h2>Schedule</h2>
-      <div class="schedule">
-        <p>12:00 Shuttle Bus Pickup from Zaragoza centre</p>
-        <p>12:30 Arrival at Venue</p>
-        <p>13:00 Ceremony</p>
-        <p>14:00 PLACEHOLDER (schedule not complete yet)</p>
-        <p>00:05 Shuttle Bus Return to Zaragoza centre</p>
+    <section class="where-section">
+      <div class="section-column">
+        <div class="section-row where-row-p">
+          <span lang="en">Zaragoza, Spain</span>
+          <span lang="es">Zaragoza, España</span>
+          <span lang="fr">Saragosse, Espagne</span>
+        </div>
+        <div class="section-row">
+          <div class="stamp-border placeholder3-container">
+            <img src="./placeholder3.jpeg">
+          </div>
+        </div>
+        <div class="section-row where-row-title">
+          <span lang="en">Venue</span>
+          <span lang="es">Finca</span>
+          <span lang="fr">Lieu</span>
+        </div>
+        <div class="section-row where-row-p">
+          <span class="where-p" >Soto De Bruil</span>
+        </div>
       </div>
     </section>
 
-    <section class="white-bg">
-      <a href="#" class="rsvp-button">RSVP</a>
+    <section class="schedule-section">
+      <img src="placeholder4.jpeg">
+
+      <div class="section-column">
+
+        <div class="schedule-title">
+          <div lang="en">
+            <div class="wedding">Wedding</div><div class="program">program</div>
+          </div>
+          <div lang="es">
+            <div class="program">programa de</div><div class="wedding">La Boba</div>
+          </div>
+          <div lang="fr">
+            <div class="program">programme du</div><div class="wedding">Marriage</div>
+          </div>
+          <img src="flowers1-light.webp">
+        </div>
+
+        <ul class="schedule">
+          <li>
+            <time>12:00</time>
+            <div lang="en">
+              <strong>Shuttle Bus Departure</strong>
+              <p>Pickup from Paraninfo in Zaragoza centre.</p>
+            </div>
+            <div lang="es">
+              <strong>Salida del autobús</strong>
+              <p>Recogida en el Paraninfo, en el centro de Zaragoza.</p>
+            </div>
+            <div lang="fr">
+              <strong>Départ de la navette</strong>
+              <p>Prise en charge au Paraninfo, dans le centre de Saragosse.</p>
+            </div>
+          </li>
+          <li>
+            <time>13:00</time>
+            <div lang="en">
+              <strong>Ceremony</strong>
+              <p>Join Mary and Oli as they exchange their vows.</p>
+            </div>
+            <div lang="es">
+              <strong>Ceremonia</strong>
+              <p>Acompañad a Mary y Oli mientras intercambian sus votos.</p>
+            </div>
+            <div lang="fr">
+              <strong>Cérémonie</strong>
+              <p>Rejoignez Mary et Oli pour l’échange de leurs vœux.</p>
+            </div>
+          </li>
+          <li>
+            <time>14:00</time>
+            <div lang="en">
+              <strong>Cocktail</strong>
+              <p>Enjoy drinks, appetizers, and jamón as we celebrate together.</p>
+            </div>
+            <div lang="es">
+              <strong>Cóctel</strong>
+              <p>Disfrutad de bebidas, aperitivos y jamón mientras celebramos juntos.</p>
+            </div>
+            <div lang="fr">
+              <strong>Cocktail</strong>
+              <p>Profitez de boissons, d’amuse-bouches et de jambon tout en célébrant ensemble.</p>
+            </div>
+          </li>
+          <li>
+            <time>18:00</time>
+            <div lang="en">
+              <strong>Dinner</strong>
+              <p>A four-course meal to enjoy together.</p>
+            </div>
+            <div lang="es">
+              <strong>Cena</strong>
+              <p>Un menú de cuatro platos para disfrutar juntos.</p>
+            </div>
+            <div lang="fr">
+              <strong>Dîner</strong>
+              <p>Un repas en quatre plats à savourer ensemble.</p>
+            </div>
+          </li>
+          <li>
+            <time>20:00</time>
+            <div lang="en">
+              <strong>Reception</strong>
+              <p>Time to celebrate—music, dancing, and drinks all night long.</p>
+            </div>
+            <div lang="es">
+              <strong>Fiesta</strong>
+              <p>¡Hora de celebrar! Música, baile y copas toda la noche.</p>
+            </div>
+            <div lang="fr">
+              <strong>Soirée</strong>
+              <p>Place à la fête : musique, danse et boissons toute la nuit.</p>
+            </div>
+          </li>
+          <li>
+            <time>00:05</time>
+            <div lang="en">
+              <strong>Shuttle Bus Return</strong>
+              <p>Return to Zaragoza city centre.</p>
+            </div>
+            <div lang="es">
+              <strong>Regreso en autobús</strong>
+              <p>Vuelta al centro de Zaragoza.</p>
+            </div>
+            <div lang="fr">
+              <strong>Retour en navette</strong>
+              <p>Retour vers le centre de Saragosse.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="rsvp-section">
+      <div class="rsvp-button-triplet">
+        <img src="./flowers3-dark.webp">
+        <a href="#" class="capsule">R.S.V.P.</a>
+        <img src="./flowers3-dark.webp">
+      </div>
     </section>
   </body>
 </html>

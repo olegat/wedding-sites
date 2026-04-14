@@ -273,7 +273,7 @@
           <span lang="es">¿Cuántos niños traerás?</span>
           <span lang="fr">Combien d’enfants amènerez-vous&nbsp;?</span>
           <span class="redstar"></span>
-          <select name="lang" id="kid-count-input">
+          <select name="kid_count" id="kid-count-input">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -469,7 +469,7 @@
     </div>
 
     <script>
-      const fakeGetformio = true;
+      const fakeGetformio = false;
       const form = document.getElementById("rsvp-form");
       const success = document.getElementById("success");
 

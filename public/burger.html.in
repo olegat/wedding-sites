@@ -1,0 +1,27 @@
+<!-- Floating burger menu -->
+<div class="burger-menu" id="burgerMenu">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" width="24" height="24" fill="currentColor">
+    <rect y="4" width="20" height="2" rx="1"/>
+    <rect y="11" width="20" height="2" rx="1"/>
+    <rect y="18" width="20" height="2" rx="1"/>
+  </svg>
+</div>
+
+<!-- Burger menu links -->
+<div class="burger-links" id="burgerLinks">
+  <a href="./index.html">
+    <span lang="en">Home</span>
+    <span lang="es">Inicio</span>
+    <span lang="fr">Accueil</span>
+  </a>
+  <a href="./travel.html">
+    <span lang="en">Travel</span>
+    <span lang="es">Viajar</span>
+    <span lang="fr">Voyage</span>
+  </a>
+  <a href="./hotels.html">
+    <span lang="en">Hotels</span>
+    <span lang="es">Hoteles</span>
+    <span lang="fr">Hôtels</span>
+  </a>
+</div>
