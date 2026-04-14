@@ -42,9 +42,7 @@
     </section>
 
     <section class="photo-section">
-      <div class="section-content">
-          <img src="placeholder2.jpeg">
-      </div>
+      <img src="placeholder2.jpeg">
     </section>
 
     <section class="where-section">
