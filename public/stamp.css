@@ -5,13 +5,13 @@
  */
 .stamp-border {
   /* Change this value to adjust the stamp perforation size: */
-  --radius: 8px;
-  padding: calc(var(--radius) * 2.5);
-  padding-bottom: calc(var(--radius) * 2);
+  --stamp-border-radius: 8px;
+  padding: calc(var(--stamp-border-radius) * 2.5);
+  padding-bottom: calc(var(--stamp-border-radius) * 2);
 
   background-image:
     radial-gradient(
-      var(--radius),
+      var(--stamp-border-radius),
       transparent 98%,
       white
     ),
@@ -20,11 +20,11 @@
     round,
     no-repeat;
   background-position:
-    calc(var(--radius) * -1.5) calc(var(--radius) * -1.5),
+    calc(var(--stamp-border-radius) * -1.5) calc(var(--stamp-border-radius) * -1.5),
     50%;
   background-size:
-    calc(var(--radius) * 3) calc(var(--radius) * 3),
-    calc(100% - var(--radius) * 3) calc(100% - var(--radius) * 3);
+    calc(var(--stamp-border-radius) * 3) calc(var(--stamp-border-radius) * 3),
+    calc(100% - var(--stamp-border-radius) * 3) calc(100% - var(--stamp-border-radius) * 3);
 }
 
 .stamp-border > img {
