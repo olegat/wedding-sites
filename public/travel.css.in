@@ -22,10 +22,12 @@
 
 .banner-section {
     background: var(--color-mid);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.airmail-envelope {
-    margin: 2rem;
+.airmail-border {
     padding: var(--airmail-stripe-width);
     border-image-source: repeating-linear-gradient(
         142deg,
@@ -39,3 +41,17 @@
     background-color: var(--airmail-background);
 }
 
+.airmail-positioning {
+    margin: 2rem;
+    aspect-ratio: 2.3 / 1;
+    width: 85vw;
+}
+
+.airmail-positioning > * {
+    position: absolute;
+}
+
+.airmail-positioning .stamp-border {
+    --stamp-border-radius: 0.25vw;
+    width: 15vw;
+}

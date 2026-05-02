@@ -14,7 +14,7 @@
     #include "language.html.in"
 
     <section class="banner-section">
-      <div class="airmail-envelope">
+      <div class="airmail-border airmail-positioning">
         <span>AIR MAIL - PAR AVION</span>
         <h1 lang="en">Travel Tips</h1>
         <p lang="en">How to get it and around Zaragoza</p>
