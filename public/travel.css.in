@@ -1,5 +1,6 @@
 #include "burger.css"
 #include "language.css"
+#include "stamp.css"
 
 /* Reset some default styles */
 * {
@@ -8,61 +9,33 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
+:root {
+    --airmail-stripe-color1: #d22f47;
+    --airmail-stripe-color2: #315f9b;
+    --airmail-stripe-width: 2.4rem;
+    --airmail-background: #eee6d3;
+    --color-light: rgb(237, 232, 226);
+    --color-mid: rgb(179, 178, 158);
+    --color-dark: rgb(41, 55, 39);
+    background: var(--color-mid);
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    height: 80vh;
-    background: url('https://images.squarespace-cdn.com/content/v1/624b503ddcc7d27c1e0e5cfe/8e25e088-5952-4093-88a3-ce7668dbfd0e/profile-full-top-01-copy%2Bcopy.jpg') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+.banner-section {
+    background: var(--color-mid);
 }
 
-.hero-text {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 1rem 2rem;
-    border-radius: 8px;
+.airmail-envelope {
+    margin: 2rem;
+    padding: var(--airmail-stripe-width);
+    border-image-source: repeating-linear-gradient(
+        142deg,
+        var(--airmail-stripe-color1) 0px 30px,
+        transparent 30px 50px,
+        var(--airmail-stripe-color2) 50px 80px,
+        transparent 80px 100px
+    );
+    border-image-slice: 40;
+    border-image-width: var(--airmail-stripe-width);
+    background-color: var(--airmail-background);
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-}
-
-section {
-    padding: 3rem 1rem;
-    text-align: center;
-}
-
-.white-bg {
-    background-color: white;
-}
-
-.gray-bg {
-    background-color: #f2f2f2;
-}
-
-h2 {
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
-    .hero h1 {
-        font-size: 4rem;
-    }
-
-    .hero p {
-        font-size: 1.5rem;
-    }
-}

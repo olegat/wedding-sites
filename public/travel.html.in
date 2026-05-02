@@ -13,10 +13,14 @@
     #include "burger.html.in"
     #include "language.html.in"
 
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Travel Tips</h1>
-        <p>How to get it and around Zaragoza</p>
+    <section class="banner-section">
+      <div class="airmail-envelope">
+        <span>AIR MAIL - PAR AVION</span>
+        <h1 lang="en">Travel Tips</h1>
+        <p lang="en">How to get it and around Zaragoza</p>
+        <div class="stamp-border">
+          <img src="./travel-stamp-image.jpeg">
+        </div>
       </div>
     </section>
 
