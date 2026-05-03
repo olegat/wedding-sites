@@ -87,11 +87,7 @@
     </text>
 
     <!-- Simple airplane icon -->
- <!--   <g transform="translate(100 95)">
-      <polygon points="0,-30 8,10 0,0 -8,10" fill="#2f5fa3"/>
-      <line x1="-25" y1="5" x2="25" y2="5" stroke-width="2"/>
-    </g> !-->
-<g transform="translate(100 100) scale(1.37 1.37)">
+<g transform="translate(100 109) scale(1.73 1.73)">
   <!-- fuselage -->
   <rect x="-4" y="-28" width="8" height="40" rx="1" />
 
@@ -103,12 +99,8 @@
 
   <!-- tail wings -->
   <polygon points="-11,11 -10,14 -5,12 5,12 10,14 11,11 6,8 -6,8" />
-<!--
-    <polygon points="-10,10 10,10 6,16 -6,16" />
--->
 
   <!-- vertical stabilizer -->
-<!--  <polygon points="0,10 4,18 -4,18" /> -->
   <polygon points="0,16 4,10 -4,10" />
 </g>
     
