@@ -12,7 +12,6 @@
 :root {
     --airmail-stripe-color1: #d22f47;
     --airmail-stripe-color2: #315f9b;
-    --airmail-stripe-width: 2.4rem;
     --airmail-background: #eee6d3;
     --color-light: rgb(237, 232, 226);
     --color-mid: rgb(179, 178, 158);
@@ -28,8 +27,12 @@
 }
 
 @media (min-width: 769px) {
-    .airmail-border {
-        padding: var(--airmail-stripe-width);
+    .airmail {
+        margin: 2rem;
+        padding: 40px;
+        aspect-ratio: 2.3 / 1;
+        width: 85vw;
+
         border-image-source: repeating-linear-gradient(
             142deg,
             var(--airmail-stripe-color1) 0px 30px,
@@ -38,22 +41,16 @@
             transparent 80px 100px
         );
         border-image-slice: 40;
-        border-image-width: var(--airmail-stripe-width);
+        border-image-width: 40px;
         background-color: var(--airmail-background);
         box-shadow: 5px 5px 33px -1px rgba(0, 0, 0, 0.70);
     }
 
-    .airmail-positioning {
-        margin: 2rem;
-        aspect-ratio: 2.3 / 1;
-        width: 85vw;
-    }
-
-    .airmail-positioning > * {
+    .airmail > * {
         position: absolute;
     }
 
-    .airmail-positioning .stamp-border {
+    .airmail .stamp-border {
         --stamp-border-radius: 0.25vw;
         width: 15vw;
     }
