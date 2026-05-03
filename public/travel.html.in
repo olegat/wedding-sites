@@ -46,12 +46,10 @@
   <!-- DEFINITIONS -->
   <defs>
     <!-- Rough ink filter -->
-<!--
     <filter id="ink-rough">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="1" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.1"/>
     </filter>
-!-->
     <!-- Circular paths for text -->
     <path id="topArc" d="M 30 100 A 70 70 0 0 1 170 100"/>
     <path id="bottomArc" d="M 20 100 A 80 80 0 0 0 180 100"/>
