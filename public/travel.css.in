@@ -40,6 +40,7 @@
         border-image-slice: 40;
         border-image-width: var(--airmail-stripe-width);
         background-color: var(--airmail-background);
+        box-shadow: 5px 5px 33px -1px rgba(0, 0, 0, 0.70);
     }
 
     .airmail-positioning {
