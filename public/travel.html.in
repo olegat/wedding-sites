@@ -54,7 +54,7 @@
 !-->
     <!-- Circular paths for text -->
     <path id="topArc" d="M 30 100 A 70 70 0 0 1 170 100"/>
-    <path id="bottomArc" d="M 30 100 A 70 70 0 0 0 170 100"/>
+    <path id="bottomArc" d="M 20 100 A 80 80 0 0 0 180 100"/>
   </defs>
 
   <!-- STAMP GROUP -->
@@ -67,20 +67,20 @@
             stroke-dasharray="2 4"/>
 
     <!-- Inner circle -->
-    <circle cx="100" cy="100" r="70"
+    <circle cx="100" cy="100" r="63"
             fill="none"
             stroke-width="2"
             stroke-dasharray="3 5"/>
 
     <!-- Top text -->
-    <text font-size="12" letter-spacing="2">
+    <text font-size="14" letter-spacing="2">
       <textPath href="#topArc" startOffset="50%" text-anchor="middle">
         EXPRESS MAIL
       </textPath>
     </text>
 
     <!-- Bottom text -->
-    <text font-size="10" letter-spacing="1.5">
+    <text font-size="14" letter-spacing="1.5">
       <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
         NEXT DAY DELIVERY
       </textPath>
