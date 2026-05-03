@@ -15,13 +15,31 @@
 
     <section class="banner-section">
       <div class="airmail">
-        <span>AIR MAIL - PAR AVION</span>
-        <h1 lang="en">Travel Tips</h1>
-        <p lang="en">How to get it and around Zaragoza</p>
+        <span class="par-avion">AIR MAIL &mdash;PAR AVION</span>
+
+        <h1 lang="en">
+          travel<br>
+          <span class="line2">Tips</span>
+        </h1>
+
+        <h1 lang="es">
+          consejos<br>
+          <span class="line2">de viaje</span>
+        </h1>
+
+        <h1 lang="fr">
+          conseils<br>
+          <span class="line2">de voyage</span>
+        </h1>
+
         <div class="stamp-border">
           <img src="./travel-stamp-image.jpeg">
         </div>
       </div>
+
+      <p lang="en">How to get it and around <strong>Zaragoza</strong></p>
+      <p lang="es">Cómo llegar y moverse por <strong>Zaragoza</strong></p>
+      <p lang="fr">Comment s’y rendre et se déplacer à <strong>Saragosse</strong></p>
     </section>
 
     <section class="white-bg">
