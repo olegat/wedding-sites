@@ -27,6 +27,7 @@
     align-items: center;
 }
 
+/* Desktop */
 @media (min-width: 769px) {
     .airmail {
         margin: 2rem;
@@ -62,6 +63,61 @@
         transform: translateX(17.63vw) translateY(6.7vw);
         font-family: 'New Icon Serif Regular';
         font-size: 8.5vw;
+    }
+    .airmail h1 > .line2 {
+        display: inline-block;
+        margin-left: 13.8vw;
+        font-family: 'Pinyon Script';
+    }
+
+    .airmail .stamp-border {
+        --stamp-border-radius: 0.25vw;
+        width: 15vw;
+        transform: translateX(62vw) translateY(2vw);
+    }
+
+    .airmail svg {
+        width: 13vw;
+        margin-top: 3.1vw;
+    }
+}
+
+/* Mobile */
+@media (max-width: 769px) {
+    .airmail {
+        margin: 2rem;
+        padding: 10px;
+        aspect-ratio: 1.7 / 1;
+        width: 85vw;
+
+        border-image-source: repeating-linear-gradient(
+            142deg,
+            var(--airmail-stripe-color1) 0px 7.5px,
+            transparent 7.5px 12.5px,
+            var(--airmail-stripe-color2) 12.5px 20px,
+            transparent 20px 25px
+        );
+        border-image-slice: 10;
+        border-image-width: 10px;
+        background-color: var(--airmail-background);
+        box-shadow: 5px 5px 33px -1px rgba(0, 0, 0, 0.70);
+    }
+
+    .airmail > * {
+        position: absolute;
+    }
+
+    .airmail .par-avion {
+        color: var(--airmail-stripe-color2);
+        font-family: 'Aileron Bold';
+        font-size: 1.95vw;
+        transform: translateX(1vw) translateY(1vw);
+    }
+
+    .airmail h1 {
+        transform: translateX(17.63vw) translateY(10vw);
+        font-family: 'New Icon Serif Regular';
+        font-size: 10.2vw;
     }
     .airmail h1 > .line2 {
         display: inline-block;
