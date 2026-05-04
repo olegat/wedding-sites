@@ -1,0 +1,36 @@
+/*
+ * Source:
+ *   https://freefrontend.com/code/retro-airmail-envelope-border-2026-04-27/
+ *   https://codepen.io/robjoeol/pen/zxBqxrB
+ */
+.airmail {
+    --airmail-stripe-slice: 40;
+    --airmail-stripe-width: calc(var(--airmail-stripe-slice) * 1px);
+    margin: 2rem;
+    padding: var(--airmail-stripe-width);
+    aspect-ratio: 2.3 / 1;
+    width: 85vw;
+
+    /* modified the original version such that the gradient-color stops depend on --airmail-stripe-width.
+     * this allows me to use viewport reliant units like `vw` */
+    border-image-source: repeating-linear-gradient(
+        142deg,
+        var(--airmail-stripe-color1)
+           0px
+           calc(3 * var(--airmail-stripe-width) / 4),
+        transparent
+            calc(3 * var(--airmail-stripe-width) / 4)
+            calc(5 * var(--airmail-stripe-width) / 4),
+        var(--airmail-stripe-color2)
+           calc(5 * var(--airmail-stripe-width) / 4)
+           calc(8 * var(--airmail-stripe-width) / 4),
+        transparent
+            calc(8 * var(--airmail-stripe-width) / 4)
+            calc(10 * var(--airmail-stripe-width) / 4)
+    );
+    border-image-slice: var(--airmail-stripe-slice);
+    border-image-width: var(--airmail-stripe-width);
+    background-color: var(--airmail-background);
+    box-shadow: 5px 5px 33px -1px rgba(0, 0, 0, 0.70);
+}
+
