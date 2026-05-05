@@ -4,6 +4,9 @@
  *   https://codepen.io/robjoeol/pen/zxBqxrB
  */
 .airmail {
+    --airmail-stripe-color1: #d22f47;
+    --airmail-stripe-color2: #315f9b;
+    --airmail-background: #eee6d3;
     --airmail-stripe-slice: 40;
     --airmail-stripe-width: calc(var(--airmail-stripe-slice) * 1px);
     margin: 2rem;

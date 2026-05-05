@@ -13,9 +13,6 @@
 }
 
 :root {
-    --airmail-stripe-color1: #d22f47;
-    --airmail-stripe-color2: #315f9b;
-    --airmail-background: #eee6d3;
     ROOT_DEFINES();
 }
 
