@@ -1,0 +1,13 @@
+#pragma once
+
+#define ROOT_DEFINES()                    \
+    --color-light: rgb(237, 232, 226);    \
+    --color-mid: rgb(179, 178, 158);      \
+    --color-dark: rgb(41, 55, 39);        \
+    --section-vpadding: 4em;              \
+    background: var(--color-mid);         \
+
+#define SECTION_PADDING()                    \
+    padding-top: var(--section-vpadding);    \
+    padding-bottom: var(--section-vpadding); \
+

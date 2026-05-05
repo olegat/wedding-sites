@@ -2,22 +2,17 @@
 #include "fonts.css"
 #include "language.css"
 #include "stamp.css"
+#include "defines.css.in"
 
 #define SECTION_DEFAULTS()                   \
     display: flex;                           \
     align-items: center;                     \
     justify-content: center;                 \
-    padding-top: var(--section-vpadding);    \
-    padding-bottom: var(--section-vpadding); \
     text-align: center;                      \
-
+    SECTION_PADDING();                       \
 
 :root {
-    --color-light: rgb(237, 232, 226);
-    --color-mid: rgb(179, 178, 158);
-    --color-dark: rgb(41, 55, 39);
-    --section-vpadding: 4em;
-    background: var(--color-mid);
+    ROOT_DEFINES();
 }
 
 body {
