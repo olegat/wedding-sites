@@ -28,3 +28,27 @@
     color: var(--color-dark);
 }
 
+.hero-section {
+    background: var(--color-dark);
+    padding: 6em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6em;
+}
+
+img[src='rose-light.webp'] {
+    width: clamp(40px, 17vw, 100px);
+}
+
+img[src='hotels-hero.jpeg'] {
+    /* Polaroid look like in index.html */
+    background: white;
+    padding: 30px 30px 125px 30px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    transform: rotate(-2deg);
+    filter: sepia(1);
+    display: block;
+}
+
