@@ -105,3 +105,35 @@
     font-family: 'Pinyon Script';
     font-size: 3.3rem;
 }
+
+.local-transport-section {
+    SECTION_PADDING();
+    color: var(--color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-dark);
+    font-family: 'Aileron';
+    padding-left: 3rem;
+    padding-right: 3rem;
+    gap: 0.5rem;
+}
+.local-transport-section p {
+    max-width: 950px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.local-transport-section h2 {
+    font-family: 'Pinyon Script';
+    font-size: 3.3rem;
+}
+.local-transport-section h2 em {
+    font-family: 'New Icon Serif Regular';
+}
+.local-transport-section h3 {
+    font-family: 'Pinyon Script';
+    font-size: 2.8rem;
+}
+.local-transport-section a {
+    color: beige;
+}
