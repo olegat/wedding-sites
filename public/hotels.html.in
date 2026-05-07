@@ -17,11 +17,11 @@
       <h1 lang="en">Accomodation</h1>
       <h1 lang="es">Alojamiento</h1>
       <h1 lang="fr">Logement</h1>
+      <img src="hotels-hero.jpeg">
     </section>
 
     <section class="hero-section">
       <img src="rose-light.webp">
-      <img src="hotels-hero.jpeg">
     </section>
 
     <div class="info-section">
