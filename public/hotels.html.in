@@ -13,24 +13,27 @@
     #include "burger.html.in"
     #include "language.html.in"
 
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Accomodation</h1>
-        <img src="./hotels-hero.jpeg">
-      </div>
+    <section class="banner-section">
+      <h1 lang="en">Accomodation</h1>
     </section>
 
-    <div lang="en" class="poster">
+    <section class="hero-section">
+        <img src="./hotels-hero.jpeg">
+    </section>
+
+    <div class="info-section">
       <section>
-        <h2>Hotels</h2>
-        <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
-        <p>We have a discount code (WEDD2026) with the Palafox Hotel chain:</p>
+        <h2 lang="en">Hotels</h2>
+        <div class="essay">
+          <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
+          <p>We have a discount code (WEDD2026) with the Palafox Hotel chain:</p>
+        </div>
         <ul>
           <li>Hotel Palafox</li>
           <li>Hotel Goya</li>
           <li>Hotel Alfonso</li>
         </ul>
-        <p>There are other good alternatives around Paseo de Pamplona too</p>
+        <p lang="en">There are other good alternatives around Paseo de Pamplona too</p>
         <ul>
           <li>INNSiDE by Meliá</li>
           <li>Hotel Oriente</li>
@@ -38,6 +41,7 @@
           <li>Cesaraugusta</li>
           <li>Hotel Exe Boston</li>
         </ul>
+        <p lang="en">Be sure to book well ahead of time! The demand will be high because of the Pilares Festival</p>
       </section>
     </div>
   </body>
