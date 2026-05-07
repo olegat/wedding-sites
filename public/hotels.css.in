@@ -42,9 +42,18 @@ img[src='rose-light.webp'] {
 }
 
 img[src='hotels-hero.jpeg'] {
+    --width: 50vw;
+    --top-ratio: 0.046;
+    --bot-ratio: 0.191;
+    width: var(--width);
+
     /* Polaroid look like in index.html */
     background: white;
-    padding: 30px 30px 125px 30px;
+    padding:
+        calc(var(--top-ratio) * var(--width))
+        calc(var(--top-ratio) * var(--width))
+        calc(var(--bot-ratio) * var(--width))
+        calc(var(--top-ratio) * var(--width));
     border: 1px solid rgba(0,0,0,0.15);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     transform: rotate(-2deg);
