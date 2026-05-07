@@ -15,6 +15,8 @@
 
     <section class="banner-section">
       <h1 lang="en">Accomodation</h1>
+      <h1 lang="es">Alojamiento</h1>
+      <h1 lang="fr">Logement</h1>
     </section>
 
     <section class="hero-section">
@@ -24,16 +26,34 @@
     <div class="info-section">
       <section>
         <h2 lang="en">Hotels</h2>
-        <div class="essay">
+        <h2 lang="es">Hoteles</h2>
+        <h2 lang="fr">Hôtels</h2>
+
+        <div lang="en" class="essay">
           <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
           <p>We have a discount code (WEDD2026) with the Palafox Hotel chain:</p>
         </div>
+
+        <div lang="es" class="essay">
+          <p>El punto de recogida de los autobuses lanzadera estará en <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Por lo tanto, recomendamos reservar un hotel cerca de allí.</p>
+          <p>Tenemos un código de descuento (WEDD2026) con la cadena de hoteles Palafox:</p>
+        </div>
+
+        <div lang="fr" class="essay">
+          <p>Le point de prise en charge des navettes sera situé sur <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Nous vous recommandons donc de réserver un hôtel à proximité.</p>
+          <p>Nous avons un code de réduction (WEDD2026) avec la chaîne d’hôtels Palafox :</p>
+        </div>
+
         <ul>
           <li>Hotel Palafox</li>
           <li>Hotel Goya</li>
           <li>Hotel Alfonso</li>
         </ul>
+
         <p lang="en">There are other good alternatives around Paseo de Pamplona too</p>
+        <p lang="es">También hay otras buenas opciones alrededor del Paseo de Pamplona</p>
+        <p lang="fr">Il existe également d’autres bonnes options autour du Paseo de Pamplona</p>
+
         <ul>
           <li>INNSiDE by Meliá</li>
           <li>Hotel Oriente</li>
@@ -41,7 +61,10 @@
           <li>Cesaraugusta</li>
           <li>Hotel Exe Boston</li>
         </ul>
+
         <p lang="en">Be sure to book well ahead of time! The demand will be high because of the Pilares Festival</p>
+        <p lang="es">¡Aseguraos de reservar con bastante antelación! La demanda será alta debido a las Fiestas del Pilar</p>
+        <p lang="fr">Assurez-vous de réserver bien à l’avance ! La demande sera élevée en raison des Fêtes du Pilar</p>
       </section>
     </div>
   </body>
