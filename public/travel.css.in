@@ -149,5 +149,5 @@ p {
     H3_DEFAULTS();
 }
 .local-transport-section a {
-    color: beige;
+    color: var(--color-link-light);
 }

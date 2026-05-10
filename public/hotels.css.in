@@ -63,17 +63,32 @@ img[src='hotels-hero.jpeg'] {
 
 .info-section {
     SECTION_PADDING();
+    color: var(--color-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-left: 3rem;
     padding-right: 3rem;
+    font-family: 'Aileron';
 }
 
 .info-section h2 {
-    color: var(--color-dark);
     font-family: 'Pinyon Script';
     font-size: clamp(2.2rem, 10vw, 3.3rem);
 }
+.info-section a {
+    color: var(--color-link-light);
+}
+.info-section .essay {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.info-section ul {
+    margin-left: 2em;
+}
+
+
 
 
