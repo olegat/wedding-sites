@@ -5,6 +5,14 @@
 #include "airmail.css"
 #include "defines.css.in"
 
+#define H2_DEFAULTS()                        \
+    font-family: 'Pinyon Script';            \
+    font-size: clamp(2.2rem, 10vw, 3.3rem);  \
+
+#define H3_DEFAULTS()                        \
+    font-family: 'Pinyon Script';            \
+    font-size: clamp(1.76rem, 9vw, 2.8rem);  \
+
 /* Reset some default styles */
 * {
     margin: 0;
@@ -111,8 +119,7 @@ p {
     padding-bottom: 0.5rem;
 }
 .flights-section h2 {
-    font-family: 'Pinyon Script';
-    font-size: 3.3rem;
+    H2_DEFAULTS();
 }
 
 .local-transport-section {
@@ -133,15 +140,13 @@ p {
     padding-bottom: 0.5rem;
 }
 .local-transport-section h2 {
-    font-family: 'Pinyon Script';
-    font-size: 3.3rem;
+    H2_DEFAULTS();
 }
 .local-transport-section h2 em {
     font-family: 'New Icon Serif Regular';
 }
 .local-transport-section h3 {
-    font-family: 'Pinyon Script';
-    font-size: 2.8rem;
+    H3_DEFAULTS();
 }
 .local-transport-section a {
     color: beige;
