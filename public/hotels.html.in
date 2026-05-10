@@ -20,14 +20,14 @@
       <img src="hotels-hero.jpeg">
     </section>
 
-    <section class="hero-section">
-      <img src="rose-light.webp">
-    </section>
-
     <section class="info-section">
-      <h2 lang="en">Hotels</h2>
-      <h2 lang="es">Hoteles</h2>
-      <h2 lang="fr">Hôtels</h2>
+      <div class="info-title">
+        <img src="flowers1-light.webp">
+        <h2 lang="en">Hotels</h2>
+        <h2 lang="es">Hoteles</h2>
+        <h2 lang="fr">Hôtels</h2>
+        <img src="flowers1-light.webp" class="mirror">
+      </div>
 
       <div lang="en" class="essay">
         <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
@@ -76,10 +76,8 @@
       </div>
 
       <div lang="fr" class="essay">
-        <div lang="fr">
-          <p>Le point de prise en charge des navettes sera situé sur <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Nous vous recommandons donc de réserver un hôtel à proximité.</p>
-          <p>Nous avons un code de réduction (<strong>WEDD2026</strong>) avec la chaîne d’hôtels Palafox :</p>
-        </div>
+        <p>Le point de prise en charge des navettes sera situé sur <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Nous vous recommandons donc de réserver un hôtel à proximité.</p>
+        <p>Nous avons un code de réduction (<strong>WEDD2026</strong>) avec la chaîne d’hôtels Palafox :</p>
 
         <ul>
           <li>Hotel Palafox</li>
@@ -99,6 +97,8 @@
 
         <p>Assurez-vous de réserver bien à l’avance ! La demande sera élevée en raison des Fêtes du Pilar</p>
       </div>
+
+      <img src="rose-light.webp">
     </section>
   </body>
 </html>

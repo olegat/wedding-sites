@@ -29,14 +29,6 @@
     color: var(--color-dark);
 }
 
-.hero-section {
-    background: var(--color-dark);
-    padding: 3.1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 img[src='rose-light.webp'] {
     width: clamp(40px, 17vw, 100px);
 }
@@ -63,16 +55,33 @@ img[src='hotels-hero.jpeg'] {
 
 .info-section {
     SECTION_PADDING();
-    color: var(--color-dark);
+    background: var(--color-dark);
+    color: var(--color-light);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-left: 3rem;
     padding-right: 3rem;
     font-family: 'Aileron';
+    gap: 2.45em;
+}
+
+.info-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+}
+.info-title img {
+    height: calc(1.86 * clamp(2.2rem, 10vw, 3.3rem));
+    width: auto;
+}
+.mirror {
+    transform: scale(-1, 1);
 }
 
 .info-section h2 {
+    color: var(--color-mid);
     font-family: 'Pinyon Script';
     font-size: clamp(2.2rem, 10vw, 3.3rem);
 }
@@ -84,7 +93,6 @@ img[src='hotels-hero.jpeg'] {
     flex-direction: column;
     gap: 0.75em;
 }
-
 .info-section ul {
     margin-left: 2em;
 }
