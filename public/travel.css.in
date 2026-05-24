@@ -32,6 +32,12 @@ p {
     text-align: justify;
 }
 
+.rounded-framing-light {
+    border-radius: clamp(0px, 5vw, 35px);
+    border: 1.5px solid var(--color-light);
+    box-sizing: border-box;
+}
+
 .banner-section {
     background: var(--color-mid);
     display: flex;
@@ -133,6 +139,9 @@ p {
     padding-left: 3rem;
     padding-right: 3rem;
     gap: 0.5rem;
+}
+.local-transport-section > img {
+    width: clamp(150px, 20vw, 300px);
 }
 .local-transport-section p {
     max-width: 950px;
