@@ -43,13 +43,13 @@ body {
 
 .banner-name {
     font-family: 'New Icon Serif Regular';
-    font-size: clamp(2.5rem, 18vw, 14rem);
+    font-size: clamp(2.5rem, 18vw, 10rem);
     padding-top: 0.22em;
 }
 
 .banner-conjunction {
     font-family: 'Pinyon Script';
-    font-size: clamp(2rem, 12vw, 8rem);
+    font-size: clamp(2rem, 12vw, 6rem);
     padding-left: 0.31em;
 }
 
@@ -67,7 +67,7 @@ body {
 
 .banner-image-triplet {
     position: relative;
-    width: 75vw;
+    width: clamp(0px, 75vw, 900px);
     aspect-ratio: 3 / 1;
     margin: 0 auto;
     --flower-scale: 0.7;

@@ -25,14 +25,14 @@
 .octagon-wrapper img {
     display: block;
     clip-path: polygon(
-        2px calc(var(--octagon-offset) + 2px),
-        calc(var(--octagon-offset) + 2px) 2px,
-        calc(100% - var(--octagon-offset) - 2px) 2px,
-        calc(100% - 2px) calc(var(--octagon-offset) + 2px),
-        calc(100% - 2px) calc(100% - var(--octagon-offset) - 2px),
-        calc(100% - var(--octagon-offset) - 2px) calc(100% - 2px),
-        calc(var(--octagon-offset) + 2px) calc(100% - 2px),
-        2px calc(100% - var(--octagon-offset) - 2px)
+        1.5px calc(var(--octagon-offset) + 1.5px),
+        calc(var(--octagon-offset) + 1.5px) 1.5px,
+        calc(100% - var(--octagon-offset) - 1.5px) 1.5px,
+        calc(100% - 1.5px) calc(var(--octagon-offset) + 1.5px),
+        calc(100% - 1.5px) calc(100% - var(--octagon-offset) - 1.5px),
+        calc(100% - var(--octagon-offset) - 1.5px) calc(100% - 1.5px),
+        calc(var(--octagon-offset) + 1.5px) calc(100% - 1.5px),
+        1.5px calc(100% - var(--octagon-offset) - 1.5px)
     );
     position: relative;
     z-index: 1;
