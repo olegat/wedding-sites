@@ -21,7 +21,7 @@ body {
 
 .rounded-framing {
     border-radius: clamp(0px, 5vw, 35px);
-    border: clamp(2px, 0.35vw, 4px) solid var(--color-dark);
+    border: 2px solid var(--color-dark);
     box-sizing: border-box;
 }
 
