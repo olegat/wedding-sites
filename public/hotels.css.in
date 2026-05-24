@@ -26,6 +26,7 @@
 .banner-section h1 {
     font-family: 'New Icon Serif Regular';
     font-size: clamp(2.5rem, 13.1vw, 8rem);
+    font-weight: normal;
     color: var(--color-dark);
 }
 
@@ -33,8 +34,8 @@ img[src='rose-light.webp'] {
     width: clamp(40px, 17vw, 100px);
 }
 
-img[src='hotels-hero.jpeg'] {
-    --width: clamp(0px, 60vw, 440px);
+.polaroid {
+    --width: clamp(200px, 35vw, 380px);
     --top-ratio: 0.046;
     --bot-ratio: 0.191;
     width: var(--width);
@@ -49,8 +50,12 @@ img[src='hotels-hero.jpeg'] {
     border: 1px solid rgba(0,0,0,0.15);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     transform: rotate(-2deg);
-    filter: sepia(1);
     display: block;
+}
+
+.polaroid img {
+    width: 100%;
+    filter: sepia(1);
 }
 
 .info-section {
