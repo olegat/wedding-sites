@@ -76,6 +76,8 @@
       <div class="bigday-middle">
         <img src="./flowers2-dark.webp">
         <span lang="en">our <em>Big</em> day</span>
+        <span lang="es">nuestro <em>Gran</em> día</span>
+        <span lang="fr">notre <em>Grand</em> jour</span>
       </div>
 
       <img class="rounded-framing" src="./londonmemory1.jpeg">
