@@ -198,7 +198,7 @@
     <section class="rsvp-section">
       <div class="rsvp-button-triplet">
         <img src="./flowers3-dark.webp">
-        <a href="#" class="capsule">R.S.V.P.</a>
+        <a href="./rsvp.html" class="capsule">R.S.V.P.</a>
         <img src="./flowers3-dark.webp">
       </div>
     </section>
