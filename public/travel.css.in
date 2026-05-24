@@ -141,7 +141,8 @@ p {
     gap: 0.5rem;
 }
 .local-transport-section > img {
-    width: clamp(150px, 20vw, 300px);
+    width: clamp(250px, 20vw, 300px);
+    margin-bottom: 1.8rem;
 }
 .local-transport-section p {
     max-width: 950px;

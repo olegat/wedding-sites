@@ -131,11 +131,11 @@
     </section>
 
     <section class="local-transport-section">
+      <img class="rounded-framing-light" src="./londonmemory3.jpeg">
+
       <h2 lang="en">Getting Around <em>Zaragoza</em></h2>
       <h2 lang="es">Moverse por <em>Zaragoza<em></h2>
       <h2 lang="fr">Se déplacer à <em>Saragosse<em></h2>
-
-      <img class="rounded-framing-light" src="./londonmemory3.jpeg">
 
       <div lang="en" class="essay">
         <p>Zaragoza is a compact and very walkable city. For most visitors, there is no need to rent a car: many hotels, restaurants, and sights are within easy walking distance. For slightly longer journeys, taxis and city buses are plentiful, affordable, and easy to use. Taxis can be hailed on the street or found at taxi ranks.</p>
