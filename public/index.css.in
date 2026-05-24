@@ -139,17 +139,17 @@ body {
 
 .where-row-title {
     font-family: 'Pinyon Script';
-    font-size: clamp(2rem, 12vw, 8rem);
+    font-size: clamp(2rem, 12vw, 6rem);
     font-weight: normal;
     justify-content: left;
 }
 
 .where-row-p {
     font-family: 'New Icon Serif Regular';
-    font-size: clamp(2rem, 12vw, 8rem);
+    font-size: clamp(2rem, 12vw, 6rem);
 }
 
-.placeholder3-container {
+.where-stamp-container {
     max-width: 45vw;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -163,7 +163,7 @@ body {
     color: var(--color-mid);
 }
 
-.schedule-section img[src='placeholder4.jpeg'] {
+.schedule-section .polaroid {
     max-width: 55vw;
     max-height: 450px;
 

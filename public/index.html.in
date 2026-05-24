@@ -55,7 +55,7 @@
           <span lang="fr">Saragosse, Espagne</span>
         </div>
         <div class="section-row">
-          <div class="stamp-border placeholder3-container">
+          <div class="stamp-border where-stamp-container">
             <img src="./placeholder3.jpeg">
           </div>
         </div>
@@ -65,13 +65,13 @@
           <span lang="fr">Lieu</span>
         </div>
         <div class="section-row where-row-p">
-          <span class="where-p" >Soto De Bruil</span>
+          <span>Soto De Bruil</span>
         </div>
       </div>
     </section>
 
     <section class="schedule-section">
-      <img src="placeholder4.jpeg">
+      <img class="polaroid" src="placeholder4.jpeg">
 
       <div class="section-column">
 
