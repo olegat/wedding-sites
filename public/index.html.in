@@ -70,6 +70,17 @@
       </div>
     </section>
 
+    <section class="bigday-section">
+      <img class="rounded-framing" src="./londonmemory2.jpeg">
+
+      <div class="bigday-middle">
+        <img src="./flowers2-dark.webp">
+        <span lang="en">our <em>Big</em> day</span>
+      </div>
+
+      <img class="rounded-framing" src="./londonmemory1.jpeg">
+    </section>
+
     <section class="schedule-section">
       <img class="polaroid" src="placeholder4.jpeg">
 

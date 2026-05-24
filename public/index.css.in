@@ -12,6 +12,14 @@
     text-align: center;                      \
     SECTION_PADDING();                       \
 
+#define MODEST_NEW_ICON_SERIF_REGULAR()      \
+    font-family: 'New Icon Serif Regular';   \
+    font-size: clamp(2rem, 11vw, 5rem);      \
+
+#define MODEST_PINYON_SCRIPT()               \
+    font-family: 'Pinyon Script';            \
+    font-size: clamp(2rem, 11vw, 5rem);      \
+
 :root {
     ROOT_DEFINES();
 }
@@ -138,21 +146,54 @@ body {
 }
 
 .where-row-title {
-    font-family: 'Pinyon Script';
-    font-size: clamp(2rem, 12vw, 6rem);
+    MODEST_PINYON_SCRIPT();
     font-weight: normal;
     justify-content: left;
 }
 
 .where-row-p {
-    font-family: 'New Icon Serif Regular';
-    font-size: clamp(2rem, 12vw, 6rem);
+    MODEST_NEW_ICON_SERIF_REGULAR();
 }
 
 .where-stamp-container {
     max-width: 45vw;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.rounded-framing {
+    border-radius: clamp(0px, 5vw, 35px);
+    border: 1.5px solid var(--color-dark);
+    box-sizing: border-box;
+}
+
+.bigday-section {
+    SECTION_DEFAULTS();
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.bigday-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    width: 20vw;
+    color: var(--color-dark);
+    MODEST_NEW_ICON_SERIF_REGULAR();
+}
+.bigday-middle img { /* image of flower2*/
+    width: 50%;
+}
+.bigday-middle em {
+    MODEST_PINYON_SCRIPT();
+}
+
+.bigday-section > img { /* photos of mary&oli*/
+    width: clamp(100px, 17.2vw, 250px);
+    display: block;
 }
 
 .schedule-section {
