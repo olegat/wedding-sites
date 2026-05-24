@@ -3,6 +3,7 @@
 #include "language.css"
 #include "stamp.css"
 #include "defines.css.in"
+#include "octagon.css.in"
 
 #define SECTION_DEFAULTS()                   \
     display: flex;                           \
@@ -17,12 +18,6 @@
 
 body {
     margin: 0;
-}
-
-.rounded-framing {
-    border-radius: clamp(0px, 5vw, 35px);
-    border: 2px solid var(--color-dark);
-    box-sizing: border-box;
 }
 
 .banner-section {
@@ -78,31 +73,37 @@ body {
     --flower-scale: 0.7;
 }
 
-.banner-image-triplet img {
+.banner-image-triplet > * {
     position: absolute;
     width: auto;
     object-fit: contain;
 }
 
-.banner-image-triplet img:nth-child(1) {
+.banner-image-triplet > *:nth-child(1) {
     left: 0;
     transform: scale(1, -1) rotate(90deg);
 }
 
-.banner-image-triplet img:nth-child(2) {
+.banner-image-triplet > *:nth-child(2) {
     height: 100%;
+    aspect-ratio: 626 / 416;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.banner-image-triplet img:nth-child(3) {
+.banner-image-triplet > *:nth-child(2) > img {
+    height: 100%;
+    width: 100%;
+}
+
+.banner-image-triplet > *:nth-child(3) {
     right: 0;
     transform: rotate(-90deg);
 }
 
 /* scale the flowers on the side of picture of Mary & Oli by --flower-scale */
-.banner-image-triplet img:nth-child(1),
-.banner-image-triplet img:nth-child(3) {
+.banner-image-triplet > *:nth-child(1),
+.banner-image-triplet > *:nth-child(3) {
     height: calc(var(--flower-scale) * 100%);
     top: calc((1 - var(--flower-scale)) * 50%);
 }

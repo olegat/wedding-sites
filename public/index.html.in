@@ -25,7 +25,9 @@
         <div class="section-row">
           <div class="banner-image-triplet">
             <img src="./flowers1-dark.webp">
-            <img src="./placeholder1.jpeg" class="rounded-framing">
+            <div class="octagon-wrapper">
+              <img src="./placeholder1.jpeg">
+              </div>
             <img src="./flowers1-dark.webp">
           </div>
         </div>

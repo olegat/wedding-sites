@@ -1,0 +1,39 @@
+.octagon-wrapper {
+    --octagon-offset: 15%;
+    position: relative;
+    display: inline-block;
+}
+
+.octagon-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-dark);
+    clip-path: polygon(
+        0 var(--octagon-offset),
+        var(--octagon-offset) 0,
+        calc(100% - var(--octagon-offset)) 0,
+        100% var(--octagon-offset),
+        100% calc(100% - var(--octagon-offset)),
+        calc(100% - var(--octagon-offset)) 100%,
+        var(--octagon-offset) 100%,
+        0 calc(100% - var(--octagon-offset))
+    );
+    z-index: 0;
+}
+
+.octagon-wrapper img {
+    display: block;
+    clip-path: polygon(
+        2px calc(var(--octagon-offset) + 2px),
+        calc(var(--octagon-offset) + 2px) 2px,
+        calc(100% - var(--octagon-offset) - 2px) 2px,
+        calc(100% - 2px) calc(var(--octagon-offset) + 2px),
+        calc(100% - 2px) calc(100% - var(--octagon-offset) - 2px),
+        calc(100% - var(--octagon-offset) - 2px) calc(100% - 2px),
+        calc(var(--octagon-offset) + 2px) calc(100% - 2px),
+        2px calc(100% - var(--octagon-offset) - 2px)
+    );
+    position: relative;
+    z-index: 1;
+}
