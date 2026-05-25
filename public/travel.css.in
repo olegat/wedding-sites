@@ -62,6 +62,7 @@ p {
     transform: translateX(17.63vw) translateY(6.7vw);
     font-family: 'New Icon Serif Regular';
     font-size: 8.5vw;
+    color: var(--color-dark);
 }
 .airmail h1 > .line2 {
     display: inline-block;
