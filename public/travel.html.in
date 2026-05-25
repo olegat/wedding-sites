@@ -221,73 +221,73 @@
     </section>
 
     <section class="thingstodo-section">
-      <h2 lang="en">BLANK</h2>
+      <h2 lang="en">Things to do in Zaragoza during the Pilar Festival</h2>
       <h2 lang="es">Qué hacer en Zaragoza durante las Fiestas del Pilar</h2>
-      <h2 lang="fr">BLANK</h2>
+      <h2 lang="fr">Que faire à Saragosse pendant les Fêtes du Pilar</h2>
       <div class="section-row">
         <ol class="things-list">
           <li>
             <div class="thing-name">
-              <span lang="en">BLANK</span>
+              <span lang="en">Go for tapas in El Tubo</span>
               <span lang="es">Ir de tapas por El Tubo</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Faire des tapas dans El Tubo</span>
             </div>
             <div class="thing-desc">
-              <span lang="en">BLANK</span>
+              <span lang="en">The most typical area to eat and go out. Streets full of bars, tapas, beer, and a great atmosphere all day and night. Some popular spots include La Ternasca, BAR EL CHAMPI, Taberna Doña Casta, Meli del Tubo…</span>
               <span lang="es">La zona más típica para comer y salir. Calles llenas de bares, tapas, cerveza y muchísimo ambiente durante todo el día y la noche. Algunos sitios famosos son La Ternasca, BAR EL CHAMPI, Taberna Doña Casta, Meli del tubo…</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Le quartier le plus typique pour manger et sortir. Des rues pleines de bars, de tapas, de bière et une ambiance incroyable toute la journée et la nuit. Parmi les lieux connus : La Ternasca, BAR EL CHAMPI, Taberna Doña Casta, Meli del Tubo…</span>
             </div>
           </li>
 
           <li>
             <div class="thing-name">
-              <span lang="en">BLANK</span>
+              <span lang="en">Walk around Plaza del Pilar</span>
               <span lang="es">Pasear por la Plaza del Pilar</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Se promener sur la Plaza del Pilar</span>
             </div>
             <div class="thing-desc">
-              <span lang="en">BLANK</span>
+              <span lang="en">It’s the heart of the festivities. You’ll find the Basilica, concerts, shows, stalls, markets, and crowds of people dressed in traditional outfits and wearing cachirulos. It’s worth visiting both during the day and at night. The Pilar Festival takes place from 10 to 18 October 2026.</span>
               <span lang="es">Es el corazón de las fiestas. Allí están la Basílica, conciertos, espectáculos, puestos, mercadillos y muchísima gente vestida con trajes regionales y cachirulo. Merece la pena ir tanto de día como de noche. Las Fiestas del Pilar se celebran del 10 al 18 de octubre de 2026.</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">C’est le cœur des fêtes. On y trouve la basilique, des concerts, des spectacles, des stands, des marchés et beaucoup de monde en costumes traditionnels avec le cachirulo. Cela vaut la peine d’y aller de jour comme de nuit. Les Fêtes du Pilar ont lieu du 10 au 18 octobre 2026.</span>
             </div>
           </li>
 
           <li>
             <div class="thing-name">
-              <span lang="en">BLANK</span>
+              <span lang="en">Eat at food trucks and food areas</span>
               <span lang="es">Comer en las food trucks y zonas gastronómicas</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Manger dans les food trucks et zones gastronomiques</span>
             </div>
             <div class="thing-desc">
-              <span lang="en">BLANK</span>
+              <span lang="en">During the festival there are usually food truck areas and terraces by the river and around the city, perfect for grabbing a quick bite and enjoying the festive atmosphere.</span>
               <span lang="es">Durante las fiestas suele haber zonas de food trucks y terrazas junto al río y otras áreas de la ciudad, perfectas para cenar algo rápido y seguir el ambiente festivo.</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Pendant les fêtes, il y a généralement des zones de food trucks et des terrasses près du fleuve et dans d’autres parties de la ville, parfaites pour manger rapidement et profiter de l’ambiance festive.</span>
             </div>
           </li>
 
           <li>
             <div class="thing-name">
-              <span lang="en">BLANK</span>
+              <span lang="en">Go up to Valdespartera</span>
               <span lang="es">Subir a Valdespartera</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Aller à Valdespartera</span>
             </div>
             <div class="thing-desc">
-              <span lang="en">BLANK</span>
+              <span lang="en">(Take a taxi or tram) The Valdespartera Fairgrounds host rides, attractions, stalls, concerts, and the famous Espacio Zity. It’s one of the liveliest nightlife areas during the festival.</span>
               <span lang="es">(Usar taxi o tranvía) En Recinto Ferial de Valdespartera están las ferias, atracciones, casetas, conciertos y el famoso Espacio Zity. Es una de las zonas con más ambiente nocturno durante las fiestas.</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">(Prendre un taxi ou le tram) Le parc des expositions de Valdespartera accueille les fêtes foraines, attractions, stands, concerts et le célèbre Espacio Zity. C’est l’une des zones les plus animées la nuit pendant les fêtes.</span>
             </div>
           </li>
 
           <li>
             <div class="thing-name">
-              <span lang="en">BLANK</span>
+              <span lang="en">See the Flower Offering (12 October)</span>
               <span lang="es">Ver la Ofrenda de Flores (12 de octubre)</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">Voir l’Offrande de fleurs (12 octobre)</span>
             </div>
             <div class="thing-desc">
-              <span lang="en">BLANK</span>
+              <span lang="en">This is the most important and moving event of the festival: thousands of people bring flowers to the Virgin of the Pilar wearing traditional Aragonese costumes.</span>
               <span lang="es">Es el acto más importante y emocionante de las fiestas: miles de personas llevan flores a la Virgen del Pilar con trajes tradicionales aragoneses.</span>
-              <span lang="fr">BLANK</span>
+              <span lang="fr">C’est l’événement le plus important et le plus émouvant des fêtes : des milliers de personnes apportent des fleurs à la Vierge du Pilar en costumes traditionnels aragonais.</span>
             </div>
           </li>
         </ol>
