@@ -1,5 +1,6 @@
 .octagon-wrapper {
     --octagon-offset: 15%;
+    --octagon-border-color: var(--color-dark);
     position: relative;
     display: inline-block;
 }
@@ -8,7 +9,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--color-dark);
+    background: var(--octagon-border-color);
     clip-path: polygon(
         0 var(--octagon-offset),
         var(--octagon-offset) 0,

@@ -190,16 +190,9 @@
       </div>
     </section>
 
-    <!--
-    <section class="white-bg">
-      <h2>Things to do in Zaragoza</h2>
-      <p>Get married; party; eat food; sleep.</p>
-    </section>
-    -->
-
     <section class="pilares-section">
       <div class="section-column">
-        <div class="octagon-wrapper" style="width: clamp(250px,20vw,300px);">
+        <div class="octagon-wrapper" style="--octagon-border-color: var(--color-mid); width: clamp(250px,20vw,300px);">
           <img src="./londonmemory8.jpeg">
         </div>
       </div>
@@ -224,6 +217,87 @@
         <p>L’événement le plus célèbre est l’Offrande de fleurs (le 12 octobre)&nbsp;: des milliers de personnes apportent des fleurs à la Vierge, formant un immense manteau floral, vêtues des costumes traditionnels «&nbsp;baturros&nbsp;».</p>
         <p>Les «&nbsp;cachirulos&nbsp;» sont les foulards traditionnels à carreaux rouges et noirs portés autour du cou pendant les fêtes. Ils sont un symbole très typique de l’Aragon et des fêtes du Pilar.</p>
         <img src="./flowers2-dark.webp">
+      </div>
+    </section>
+
+    <section class="thingstodo-section">
+      <h2 lang="en">BLANK</h2>
+      <h2 lang="es">Qué hacer en Zaragoza durante las Fiestas del Pilar</h2>
+      <h2 lang="fr">BLANK</h2>
+      <div class="section-row">
+        <ol class="things-list">
+          <li>
+            <div class="thing-name">
+              <span lang="en">BLANK</span>
+              <span lang="es">Ir de tapas por El Tubo</span>
+              <span lang="fr">BLANK</span>
+            </div>
+            <div class="thing-desc">
+              <span lang="en">BLANK</span>
+              <span lang="es">La zona más típica para comer y salir. Calles llenas de bares, tapas, cerveza y muchísimo ambiente durante todo el día y la noche. Algunos sitios famosos son La Ternasca, BAR EL CHAMPI, Taberna Doña Casta, Meli del tubo…</span>
+              <span lang="fr">BLANK</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="thing-name">
+              <span lang="en">BLANK</span>
+              <span lang="es">Pasear por la Plaza del Pilar</span>
+              <span lang="fr">BLANK</span>
+            </div>
+            <div class="thing-desc">
+              <span lang="en">BLANK</span>
+              <span lang="es">Es el corazón de las fiestas. Allí están la Basílica, conciertos, espectáculos, puestos, mercadillos y muchísima gente vestida con trajes regionales y cachirulo. Merece la pena ir tanto de día como de noche. Las Fiestas del Pilar se celebran del 10 al 18 de octubre de 2026.</span>
+              <span lang="fr">BLANK</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="thing-name">
+              <span lang="en">BLANK</span>
+              <span lang="es">Comer en las food trucks y zonas gastronómicas</span>
+              <span lang="fr">BLANK</span>
+            </div>
+            <div class="thing-desc">
+              <span lang="en">BLANK</span>
+              <span lang="es">Durante las fiestas suele haber zonas de food trucks y terrazas junto al río y otras áreas de la ciudad, perfectas para cenar algo rápido y seguir el ambiente festivo.</span>
+              <span lang="fr">BLANK</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="thing-name">
+              <span lang="en">BLANK</span>
+              <span lang="es">Subir a Valdespartera</span>
+              <span lang="fr">BLANK</span>
+            </div>
+            <div class="thing-desc">
+              <span lang="en">BLANK</span>
+              <span lang="es">(Usar taxi o tranvía) En Recinto Ferial de Valdespartera están las ferias, atracciones, casetas, conciertos y el famoso Espacio Zity. Es una de las zonas con más ambiente nocturno durante las fiestas.</span>
+              <span lang="fr">BLANK</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="thing-name">
+              <span lang="en">BLANK</span>
+              <span lang="es">Ver la Ofrenda de Flores (12 de octubre)</span>
+              <span lang="fr">BLANK</span>
+            </div>
+            <div class="thing-desc">
+              <span lang="en">BLANK</span>
+              <span lang="es">Es el acto más importante y emocionante de las fiestas: miles de personas llevan flores a la Virgen del Pilar con trajes tradicionales aragoneses.</span>
+              <span lang="fr">BLANK</span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="section-column">
+          <img src="./flowers1-dark.webp">
+          <div class="octagon-wrapper" style="--octagon-border-color: white; width: clamp(250px,20vw,300px);">
+            <img src="./londonmemory9.jpeg">
+          </div>
+        </div>
       </div>
     </section>
 

@@ -186,12 +186,13 @@ p {
     padding-left: 3rem;
     padding-right: 3rem;
     gap: 3rem;
+    background: var(--color-light);
     color: var(--color-dark);
 }
 .pilares-section h2 {
     font-family: 'New Icon Serif Regular';
     font-size: clamp(1.78rem, 8.2vw, 2.5rem);
-    font-weight: strong;
+    font-weight: bold;
 }
 .pilares-section .essay {
     display: flex;
@@ -206,4 +207,57 @@ p {
 .pilares-section .essay img {
     width: 150px;
     padding-top: 1.8rem;
+}
+
+.thingstodo-section {
+    SECTION_PADDING();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Aileron';
+    padding-left: 3rem;
+    padding-right: 3rem;
+    gap: 3rem;
+    color: var(--color-dark);
+}
+.thingstodo-section h2 {
+    font-family: 'New Icon Serif Regular';
+    font-size: clamp(1.78rem, 8.2vw, 2.5rem);
+    font-weight: bold;
+}
+.thingstodo-section .section-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    align-items: center;
+    gap: 3rem;
+}
+.thingstodo-section .section-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.thingstodo-section .section-column img[src='./flowers1-dark.webp'] {
+    transform: scale(1, -1) rotate(90deg);
+    width: 150px;
+}
+.thingstodo-section .section-row ol {
+    max-width: 500px;
+}
+.thingstodo-section li {
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+.thing-desc span {
+    font-weight: normal;
+    font-size: 0.8em;
+}
+.thingstodo-section li + li {
+    margin-top: 1.5em;
+}
+octagon-wrapper-white::before {
+    background: white;
 }

@@ -163,6 +163,12 @@ export default HagaSweet.eatSugar({
       ],
     },
     {
+      type: 'magick',
+      input: 'design/20260511-A7408431.jpg',
+      output: 'public/londonmemory9.jpeg',
+      args: ['-resize', '12.5%', '-quality', '90'],
+    },
+    {
       type: 'copy',
       inputs: [
         'public/.htaccess',
