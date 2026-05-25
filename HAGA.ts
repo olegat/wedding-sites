@@ -149,6 +149,20 @@ export default HagaSweet.eatSugar({
       args: ['-resize', '12.5%', '-quality', '90'],
     },
     {
+      type: 'magick',
+      input: 'design/20260511-A7408366.jpg',
+      output: 'public/londonmemory8.jpeg',
+      args: [
+        '-resize', '12.5%',
+        '-crop', '100%x78%+0+0',
+        '-gravity', 'west',
+        '-crop', '95%x100%+0+0',
+        '-gravity', 'east',
+        '-crop', '83%x100%+0+0',
+        '-quality', '90',
+      ],
+    },
+    {
       type: 'copy',
       inputs: [
         'public/.htaccess',
@@ -204,6 +218,7 @@ export default HagaSweet.eatSugar({
         'londonmemory5.jpeg',
         'londonmemory6.jpeg',
         'londonmemory7.jpeg',
+        'londonmemory8.jpeg',
         'travel-stamp-image.jpeg',
         'hotels-hero.jpeg',
         'Aileron.woff2',

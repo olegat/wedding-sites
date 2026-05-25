@@ -195,12 +195,37 @@
       <h2>Things to do in Zaragoza</h2>
       <p>Get married; party; eat food; sleep.</p>
     </section>
-
-    <section class="gray-bg">
-      <h2>What is Pilares?</h2>
-      <p>It’s something</p>
-    </section>
     -->
+
+    <section class="pilares-section">
+      <div class="section-column">
+        <div class="octagon-wrapper" style="width: clamp(250px,20vw,300px);">
+          <img src="./londonmemory8.jpeg">
+        </div>
+      </div>
+      <div lang="en" class="essay">
+        <h2>What is the Pilar Festival?</h2>
+        <p>The Fiestas del Pilar are Zaragoza’s most important celebration, held in October in honour of the Virgin of the Pillar, patron saint of the city and of Aragón. For a whole week, the city fills with concerts, parades, food, fairs, and street activities.</p>
+        <p>The most famous event is the Flower Offering (12 October): thousands of people bring flowers to the Virgin, forming a huge floral mantle, dressed in traditional “baturro” costumes.</p>
+        <p>“Cachirulos” are the traditional red-and-black checked scarves worn around the neck during the festivities. They are a very typical symbol of Aragón and the Pilar celebrations.</p>
+        <img src="./flowers2-dark.webp">
+      </div>
+      <div lang="es" class="essay">
+        <h2>¿Qué es la fiesta del pilar?</h2>
+        <p>Las Fiestas del Pilar son la fiesta más importante de Zaragoza y se celebran en octubre en honor a la Virgen del Pilar, patrona de la ciudad y de Aragón. Durante una semana hay conciertos, desfiles, comida, feria, actividades en la calle.</p>
+        <p>Lo más famoso es la Ofrenda de Flores (12 de octubre): miles de personas llevan flores a la Virgen formando un enorme manto floral, vestidos con los trajes tradicionales “baturros”.</p>
+        <p>Los “cachirulos” son los pañuelos tradicionales de cuadros negros y rojos que la gente lleva al cuello durante las fiestas. Son un símbolo muy típico de Aragón y de las fiestas del Pilar.</p>
+        <img src="./flowers2-dark.webp">
+
+      </div>
+      <div lang="fr" class="essay">
+        <h2>Qu’est-ce que la fête du Pilar&nbsp;?</h2>
+        <p>Les Fêtes du Pilar sont la célébration la plus importante de Saragosse. Elles ont lieu en octobre en l’honneur de la Vierge du Pilar, patronne de la ville et de l’Aragon. Pendant une semaine, la ville s’anime avec des concerts, des défilés, de la nourriture, une fête foraine et de nombreuses activités de rue.</p>
+        <p>L’événement le plus célèbre est l’Offrande de fleurs (le 12 octobre)&nbsp;: des milliers de personnes apportent des fleurs à la Vierge, formant un immense manteau floral, vêtues des costumes traditionnels «&nbsp;baturros&nbsp;».</p>
+        <p>Les «&nbsp;cachirulos&nbsp;» sont les foulards traditionnels à carreaux rouges et noirs portés autour du cou pendant les fêtes. Ils sont un symbole très typique de l’Aragon et des fêtes du Pilar.</p>
+        <img src="./flowers2-dark.webp">
+      </div>
+    </section>
 
   </body>
 </html>

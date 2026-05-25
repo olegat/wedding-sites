@@ -4,6 +4,7 @@
 #include "stamp.css"
 #include "airmail.css"
 #include "defines.css.in"
+#include "octagon.css.in"
 
 #define H2_DEFAULTS()                        \
     font-family: 'Pinyon Script';            \
@@ -168,4 +169,36 @@ p {
 }
 .local-transport-section a {
     color: var(--color-link-light);
+}
+
+.pilares-section {
+    SECTION_PADDING();
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Aileron';
+    padding-left: 3rem;
+    padding-right: 3rem;
+    gap: 3rem;
+    color: var(--color-dark);
+}
+.pilares-section h2 {
+    font-family: 'New Icon Serif Regular';
+    font-size: clamp(1.78rem, 8.2vw, 2.5rem);
+    font-weight: strong;
+}
+.pilares-section .essay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+}
+.pilares-section p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.pilares-section .essay img {
+    width: 150px;
+    padding-top: 1.8rem;
 }
