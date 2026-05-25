@@ -107,23 +107,24 @@
     </section>
 
     <section class="flights-section">
-      <h2 lang="en">Flights</h2>
-      <h2 lang="es">Vuelos</h2>
-      <h2 lang="fr">Vols</h2>
+      <img src="./butterfly-dark.webp">
 
       <div lang="en" class="essay">
+        <h2 lang="en">Flights</h2>
         <p>Direct flights into Zaragoza (ZAZ) are limited. Ryanair flies to Zaragoza from London Stansted (STN) and from Charleroi (CRL), but services run only on certain days of the week. Zaragoza Airport has taxis available at all times; a taxi to the city centre costs around €27. There are also cheaper public bus options.</p>
         <p>Many more flight options are available to Madrid (MAD) and Barcelona (BCN). From either city, Zaragoza can be reached via high-speed AVE trains (fast and comfortable, but more expensive) or Alsa intercity buses (slower, but cheaper). Both arrive at Zaragoza-Delicias, the city’s main station.</p>
         <p>Renting a car in Madrid or Barcelona is also an option; driving to Zaragoza takes roughly 3–3.5 hours from either city.</p>
       </div>
 
       <div lang="es" class="essay">
+        <h2 lang="es">Vuelos</h2>
         <p>Los vuelos directos a Zaragoza (ZAZ) son limitados. Ryanair vuela a Zaragoza desde London Stansted (STN) y desde Charleroi (CRL), pero los servicios operan solo ciertos días de la semana. El aeropuerto de Zaragoza dispone de taxis en todo momento; un trayecto en taxi hasta el centro de la ciudad cuesta alrededor de 27 €. También hay opciones de autobús público más económicas.</p>
         <p>Hay muchas más opciones de vuelo a Madrid (MAD) y Barcelona (BCN). Desde cualquiera de estas ciudades se puede llegar a Zaragoza en trenes AVE de alta velocidad (rápidos y cómodos, pero más caros) o en autobuses interurbanos de Alsa (más lentos, pero más baratos). Ambos llegan a Zaragoza-Delicias, la estación principal de la ciudad.</p>
         <p>También es posible alquilar un coche en Madrid o Barcelona; el trayecto en coche hasta Zaragoza dura aproximadamente entre 3 y 3,5 horas desde ambas ciudades.</p>
       </div>
 
       <div lang="fr" class="essay">
+        <h2 lang="fr">Vols</h2>
         <p>Les vols directs vers Saragosse (ZAZ) sont limités. Ryanair dessert Saragosse depuis London Stansted (STN) et Charleroi (CRL), mais uniquement certains jours de la semaine. L’aéroport de Saragosse dispose de taxis en permanence ; un trajet en taxi jusqu’au centre-ville coûte environ 27 €. Il existe également des options de bus publics moins chères.</p>
         <p>De nombreuses autres options de vol sont disponibles vers Madrid (MAD) et Barcelone (BCN). Depuis l’une ou l’autre de ces villes, Saragosse est accessible en trains AVE à grande vitesse (rapides et confortables, mais plus chers) ou en bus interurbains Alsa (plus lents, mais plus économiques). Les deux arrivent à Zaragoza-Delicias, la gare principale de la ville.</p>
         <p>Il est également possible de louer une voiture à Madrid ou Barcelone ; le trajet jusqu’à Saragosse dure environ 3 à 3,5 heures depuis ces deux villes.</p>
@@ -133,6 +134,7 @@
     <section class="local-transport-section">
       <img class="rounded-framing-light" src="./londonmemory3.jpeg">
 
+      <div class="section-column">
       <h2 lang="en">Getting Around <em>Zaragoza</em></h2>
       <h2 lang="es">Moverse por <em>Zaragoza<em></h2>
       <h2 lang="fr">Se déplacer à <em>Saragosse<em></h2>
@@ -184,6 +186,7 @@
             Site officiel
           </a>
         </p>
+      </div>
       </div>
     </section>
 

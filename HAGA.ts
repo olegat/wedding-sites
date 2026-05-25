@@ -75,6 +75,7 @@ export default HagaSweet.eatSugar({
       inputs: [
         'public/.htaccess',
         'public/favicon.svg',
+        'public/butterfly-dark.webp',
         'public/flowers1-dark.webp',
         'public/flowers1-light.webp',
         'public/flowers2-dark.webp',
@@ -123,6 +124,7 @@ export default HagaSweet.eatSugar({
         'hotels.html',
         'rsvp.html',
         'language.js',
+        'butterfly-dark.webp',
         'flowers1-dark.webp',
         'flowers1-light.webp',
         'flowers3-dark.webp',
