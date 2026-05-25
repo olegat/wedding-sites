@@ -26,7 +26,7 @@
           <div class="banner-image-triplet">
             <img src="./flowers1-dark.webp">
             <div class="octagon-wrapper">
-              <img src="./placeholder1.jpeg">
+              <img src="./londonmemory6.jpeg">
             </div>
             <img src="./flowers1-dark.webp">
           </div>
@@ -44,7 +44,7 @@
     </section>
 
     <section class="photo-section">
-      <img src="placeholder2.jpeg">
+      <img src="./londonmemory4.jpeg">
     </section>
 
     <section class="where-section">
@@ -84,7 +84,7 @@
     </section>
 
     <section class="schedule-section">
-      <img class="polaroid" src="placeholder4.jpeg">
+      <img class="polaroid" src="./londonmemory5.jpeg">
 
       <div class="section-column">
 
@@ -212,7 +212,7 @@
         </div>
       </div>
       <div class="octagon-wrapper">
-        <img src="./londonmemory4.jpeg">
+        <img src="./londonmemory7.jpeg">
       </div>
     </section>
   </body>
