@@ -75,7 +75,7 @@ body {
 
 .banner-image-triplet {
     position: relative;
-    width: clamp(0px, 75vw, 900px);
+    width: clamp(400px, 75vw, 900px);
     aspect-ratio: 3 / 1;
     margin: 0 auto;
     --flower-scale: 0.7;
@@ -94,14 +94,9 @@ body {
 
 .banner-image-triplet > *:nth-child(2) {
     height: 100%;
-    aspect-ratio: 626 / 416;
+    aspect-ratio: 5 / 4;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.banner-image-triplet > *:nth-child(2) > img {
-    height: 100%;
-    width: 100%;
 }
 
 .banner-image-triplet > *:nth-child(3) {
@@ -156,9 +151,13 @@ body {
 }
 
 .where-stamp-container {
-    max-width: 45vw;
+    width: clamp(325px, 45vw, 730px);
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.where-stamp-container > img {
+    filter: sepia(1);
 }
 
 .rounded-framing {
@@ -283,8 +282,15 @@ body {
 
 .rsvp-section {
     SECTION_DEFAULTS();
+    flex-direction: column;
+    gap: 2rem;
     background: var(--color-mid);
     color: var(--color-light);
+}
+
+.rsvp-section .section-row {
+    display: flex;
+    flex-direction: row;
 }
 
 .rsvp-button-triplet {
@@ -300,6 +306,10 @@ body {
 
 .rsvp-button-triplet img:nth-child(1) {
     transform: scale(-1, 1);
+}
+
+.rsvp-section .octagon-wrapper {
+    width: clamp(180px, 20vw, 325px) ;
 }
 
 .capsule {

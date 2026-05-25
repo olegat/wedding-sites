@@ -27,7 +27,7 @@
             <img src="./flowers1-dark.webp">
             <div class="octagon-wrapper">
               <img src="./placeholder1.jpeg">
-              </div>
+            </div>
             <img src="./flowers1-dark.webp">
           </div>
         </div>
@@ -100,6 +100,14 @@
           </div>
           <img src="flowers1-light.webp">
         </div>
+
+        <p>
+          <em>
+            <span lang="en">(Provisional. Subject to change.)</span>
+            <span lang="es">(Provisional. Sujeto a cambios.)</span>
+            <span lang="fr">(Provisoire. Susceptible de modification.)</span>
+          </em>
+        </p>
 
         <ul class="schedule">
           <li>
@@ -196,10 +204,15 @@
       </div>
     </section>
     <section class="rsvp-section">
-      <div class="rsvp-button-triplet">
-        <img src="./flowers3-dark.webp">
-        <a href="./rsvp.html" class="capsule">R.S.V.P.</a>
-        <img src="./flowers3-dark.webp">
+      <div class="section-row">
+        <div class="rsvp-button-triplet">
+          <img src="./flowers3-dark.webp">
+          <a href="./rsvp.html" class="capsule">R.S.V.P.</a>
+          <img src="./flowers3-dark.webp">
+        </div>
+      </div>
+      <div class="octagon-wrapper">
+        <img src="./londonmemory4.jpeg">
       </div>
     </section>
   </body>
