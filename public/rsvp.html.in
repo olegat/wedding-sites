@@ -469,7 +469,6 @@
     </div>
 
     <script>
-      const fakeGetformio = false;
       const form = document.getElementById("rsvp-form");
       const success = document.getElementById("success");
 
@@ -631,16 +630,16 @@
       form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        if (fakeGetformio) {
-          form.classList.add('hidden');
-          success.classList.remove('hidden');
+#if 1 // fake Getform.io
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
 
-          // (Debug) Render form content as JSON
-          const pre = document.createElement('pre');
-          pre.textContent = JSON.stringify(serializeForm(), null, 2);
-          success.appendChild(pre);
-          return;
-        }
+        // (Debug) Render form content as JSON
+        const pre = document.createElement('pre');
+        pre.textContent = JSON.stringify(serializeForm(), null, 2);
+        success.appendChild(pre);
+        return;
+#endif
 
         const formData = new FormData(form);
         try {
