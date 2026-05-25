@@ -225,6 +225,7 @@ export default HagaSweet.eatSugar({
         'londonmemory6.jpeg',
         'londonmemory7.jpeg',
         'londonmemory8.jpeg',
+        'londonmemory9.jpeg',
         'travel-stamp-image.jpeg',
         'hotels-hero.jpeg',
         'Aileron.woff2',
