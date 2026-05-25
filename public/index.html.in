@@ -201,6 +201,15 @@
             </div>
           </li>
         </ul>
+
+        <p style="padding-top:1.5em; font-size: 0.92em; max-width: 500px; text-align: justify">
+          <em>
+            <span lang="en">On the day of our wedding, Zaragoza may be warm during the day but can get a little chilly at night, so we recommend bringing a light jumper, blazer, cardigan… just in case.</span>
+            <span lang="es">El día de nuestra boda, Zaragoza puede ser cálida durante el día, pero refrescar un poco por la noche, así que recomendamos traer una chaqueta ligera, americana o cárdigan… por si acaso.</span>
+            <span lang="fr">Le jour de notre mariage, Saragosse peut être chaude pendant la journée, mais devenir un peu fraîche le soir, nous vous recommandons donc d’apporter un pull léger, un blazer ou un cardigan… au cas où.</span>
+          </em>
+        </p>
+
       </div>
     </section>
     <section class="rsvp-section">
