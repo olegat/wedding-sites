@@ -46,6 +46,12 @@ p {
     align-items: center;
     SECTION_PADDING();
 }
+.banner-section h2 strong {
+    font-family: 'New Icon Serif Regular';
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 1.5em;
+}
 
 /* Airmail defaults */
 .airmail > * {
