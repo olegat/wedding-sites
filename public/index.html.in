@@ -238,9 +238,21 @@
         <div class="tab-panel">
           <!-- Tab buttons -->
           <div>
-            <button data-tab="pay-link">Link</button>
-            <button data-tab="pay-uk">Local (UK)</button>
-            <button data-tab="pay-intl">International</button>
+            <button data-tab="pay-link">
+              <span lang="en">Link</span>
+              <span lang="es">BLANK</span>
+              <span lang="fr">BLANK</span>
+            </button>
+            <button data-tab="pay-uk">
+              <span lang="en">Local (UK)</span>
+              <span lang="es">BLANK</span>
+              <span lang="fr">BLANK</span>
+            </button>
+            <button data-tab="pay-intl">
+              <span lang="en">International</span>
+              <span lang="es">BLANK</span>
+              <span lang="fr">BLANK</span>
+            </button>
           </div>
 
           <!-- Tab content -->
@@ -264,6 +276,11 @@
           </div>
 
           <div id="pay-intl" class="tab-content" hidden>
+            <p>
+              <em lang="en">Virtual e-Money Account: Accepts all currencies without fees.</em>
+              <em lang="es">BLANK</em>
+              <em lang="es">BLANK</em>
+            </p>
             <p>
               <strong lang="en">Beneficiary:</strong>
               <strong lang="es">BLANK</strong>
