@@ -214,10 +214,10 @@
             <div>Practical</div><div><em>Info</em></div>
           </div>
           <div lang="es" class="faq-title">
-            BLANK
+            <div>Información</div><div><em>práctica</em></div>
           </div>
           <div lang="fr" class="faq-title">
-            BLANK
+            <div>Infos</div><div><em>pratiques</em></div>
           </div>
         </div>
 
@@ -231,8 +231,8 @@
 
         <p>
           <span lang="en">Your presence at our wedding is the greatest gift of all! However, if you would like to give us a gift, a contribution to our honeymoon fund would be deeply appreciated.</span>
-          <span lang="es">BLANK</span>
-          <span lang="fr">BLANK</span>
+          <span lang="es">¡Vuestra presencia en nuestra boda es el mejor regalo de todos! No obstante, si os apetece hacernos un regalo, agradeceríamos mucho una contribución para nuestra luna de miel.</span>
+          <span lang="fr">Votre présence à notre mariage est le plus beau des cadeaux ! Cependant, si vous souhaitez nous faire un cadeau, une contribution à notre voyage de noces serait grandement appréciée.</span>
         </p>
 
         <div class="tab-panel">
@@ -240,18 +240,18 @@
           <div>
             <button data-tab="pay-link">
               <span lang="en">Link</span>
-              <span lang="es">BLANK</span>
-              <span lang="fr">BLANK</span>
+              <span lang="es">Enlace</span>
+              <span lang="fr">Lien</span>
             </button>
             <button data-tab="pay-uk">
               <span lang="en">Local (UK)</span>
-              <span lang="es">BLANK</span>
-              <span lang="fr">BLANK</span>
+              <span lang="es">Local (Reino Unido)</span>
+              <span lang="fr">Local (Royaume-Uni)</span>
             </button>
             <button data-tab="pay-intl">
               <span lang="en">International</span>
-              <span lang="es">BLANK</span>
-              <span lang="fr">BLANK</span>
+              <span lang="es">Internacional</span>
+              <span lang="fr">International</span>
             </button>
           </div>
 
@@ -278,36 +278,36 @@
           <div id="pay-intl" class="tab-content" hidden>
             <p>
               <em lang="en">Virtual e-Money Account: Accepts all currencies without fees.</em>
-              <em lang="es">BLANK</em>
-              <em lang="es">BLANK</em>
+              <em lang="es">Cuenta virtual de dinero electrónico: acepta todas las divisas sin comisiones.</em>
+              <em lang="fr">Compte de monnaie électronique virtuel : accepte toutes les devises sans frais.</em>
             </p>
             <p>
               <strong lang="en">Beneficiary:</strong>
-              <strong lang="es">BLANK</strong>
-              <strong lang="fr">BLANK</strong>
+              <strong lang="es">Beneficiario:</strong>
+              <strong lang="fr">Bénéficiaire :</strong>
               Olivier Legat<br>
 
               <strong lang="en">IBAN:</strong>
-              <strong lang="es">BLANK</strong>
-              <strong lang="fr">BLANK</strong>
+              <strong lang="es">IBAN:</strong>
+              <strong lang="fr">IBAN :</strong>
               GB87 REVO 0099 7019 3220 74<br>
 
               <strong lang="en">BIC / SWIFT:</strong>
-              <strong lang="es">BLANK</strong>
-              <strong lang="fr">BLANK</strong>
+              <strong lang="es">BIC / SWIFT:</strong>
+              <strong lang="fr">BIC / SWIFT :</strong>
               REVOGB21<br>
 
               <strong lang="en">Address:</strong>
-              <strong lang="es">BLANK</strong>
-              <strong lang="fr">BLANK</strong>
+              <strong lang="es">Dirección:</strong>
+              <strong lang="fr">Adresse :</strong>
               <span lang="en">Revolut Ltd, 30 South Colonnade, E14 5HX, London, United Kingdom</span>
-              <span lang="es">BLANK (translate city/country)</span>
-              <span lang="fr">BLANK (translate city/country)</span>
+              <span lang="es">Revolut Ltd, 30 South Colonnade, E14 5HX, Londres, Reino Unido</span>
+              <span lang="fr">Revolut Ltd, 30 South Colonnade, E14 5HX, Londres, Royaume-Uni</span>
               <br>
 
               <strong lang="en">Correspondent BIC:</strong>
-              <strong lang="es">BLANK</strong>
-              <strong lang="fr">BLANK</strong>
+              <strong lang="es">BIC corresponsal:</strong>
+              <strong lang="fr">BIC correspondant :</strong>
               CHASGB2L
             </p>
           </div>
@@ -341,8 +341,8 @@
 
         <p>
           <span lang="en">If you need to get in touch with us, the best way is through phone or WhatsApp:</span>
-          <span lang="es">BLANK</span>
-          <span lang="fr">BLANK</span>
+          <span lang="es">Si necesitas ponerte en contacto con nosotros, la mejor forma es por teléfono o WhatsApp:</span>
+          <span lang="fr">Si vous devez nous contacter, le plus simple est par téléphone ou WhatsApp :</span>
           <ul>
             <li>
               <strong>Oli:</strong>
