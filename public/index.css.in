@@ -319,7 +319,7 @@ body {
 .faq-section p {
     margin: 0;
     font-size: 0.92em;
-    max-width: min(90vw, 550px);
+    width: min(90vw, 550px);
     text-align: justify;
 }
 .faq-section ul {
@@ -327,8 +327,10 @@ body {
     text-align: left;
 }
 .faq-section .tab-panel {
+    width: min(90vw, 550px);
     border: 1px solid var(--color-dark);
     padding: 1rem;
+    box-sizing: border-box;
 }
 .faq-section .tab-panel > div:first-child {
     display: flex;
@@ -352,10 +354,17 @@ body {
     opacity: 0.85;
 }
 .faq-section .tab-panel .tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     text-align: left;
+}
+.faq-section .tab-panel .tab-content[hidden] {
+    display: none;
 }
 .faq-section .tab-content p {
     text-align: left;
+    width: unset;
 }
 
 .rsvp-section {
