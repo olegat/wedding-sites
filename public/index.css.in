@@ -354,6 +354,9 @@ body {
 .faq-section .tab-panel .tab-content {
     text-align: left;
 }
+.faq-section .tab-content p {
+    text-align: left;
+}
 
 .rsvp-section {
     SECTION_DEFAULTS();
