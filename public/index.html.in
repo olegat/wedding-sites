@@ -101,6 +101,7 @@
           <img src="flowers1-light.webp">
         </div>
 
+        #if 0
         <p>
           <em>
             <span lang="en">(Provisional. Subject to change.)</span>
@@ -108,6 +109,7 @@
             <span lang="fr">(Provisoire. Susceptible de modification.)</span>
           </em>
         </p>
+        #endif
 
         <ul class="schedule">
           <li>
@@ -201,8 +203,25 @@
             </div>
           </li>
         </ul>
+      </div>
+    </section>
 
-        <p style="padding-top:1.5em; font-size: 0.92em; max-width: 500px; text-align: justify">
+    <section class="faq-section">
+      <div class="section-column">
+        <div class="section-row">
+          <img src="./flowers1-dark.webp">
+          <div lang="en" class="faq-title">
+            <div>Practical</div><div><em>Info</em></div>
+          </div>
+          <div lang="es" class="faq-title">
+            BLANK
+          </div>
+          <div lang="fr" class="faq-title">
+            BLANK
+          </div>
+        </div>
+
+        <p>
           <em>
             <span lang="en">On the day of our wedding, Zaragoza may be warm during the day but can get a little chilly at night, so we recommend bringing a light jumper, blazer, cardigan… just in case.</span>
             <span lang="es">El día de nuestra boda, Zaragoza puede ser cálida durante el día, pero refrescar un poco por la noche, así que recomendamos traer una chaqueta ligera, americana o cárdigan… por si acaso.</span>
@@ -210,8 +229,60 @@
           </em>
         </p>
 
+        <p>
+          <span lang="en">Your presence at our wedding is the greatest gift of all! However, if you would like to give us a gift, a contribution to our honeymoon fund would be deeply appreciated.</span>
+          <span lang="es">BLANK</span>
+          <span lang="fr">BLANK</span>
+        </p>
+
+        <p>
+          <strong lang="en">Beneficiary:</strong>
+          <strong lang="es">BLANK</strong>
+          <strong lang="fr">BLANK</strong>
+          Olivier Legat<br>
+
+          <strong lang="en">IBAN:</strong>
+          <strong lang="es">BLANK</strong>
+          <strong lang="fr">BLANK</strong>
+          GB87 REVO 0099 7019 3220 74<br>
+
+          <strong lang="en">BIC / SWIFT:</strong>
+          <strong lang="es">BLANK</strong>
+          <strong lang="fr">BLANK</strong>
+          REVOGB21<br>
+
+          <strong lang="en">Address:</strong>
+          <strong lang="es">BLANK</strong>
+          <strong lang="fr">BLANK</strong>
+          <span lang="en">Revolut Ltd, 30 South Colonnade, E14 5HX, London, United Kingdom</span>
+          <span lang="es">BLANK (translate city/country)</span>
+          <span lang="fr">BLANK (translate city/country)</span>
+          <br>
+
+          <strong lang="en">Correspondent BIC:</strong>
+          <strong lang="es">BLANK</strong>
+          <strong lang="fr">BLANK</strong>
+          CHASGB2L<br>
+        </p>
+
+        <p>
+          <span lang="en">If you need to get in touch with us, the best way is through phone or WhatsApp</span>
+          <span lang="es">BLANK</span>
+          <span lang="fr">BLANK</span>
+          <ul>
+            <li>
+              <strong>Oli:</strong>
+              +44 7833 356860
+            </li>
+            <li>
+              <strong>Mary:</strong>
+              +44 7387 671863
+            </li>
+          </ul>
+        </p>
       </div>
     </section>
+
     <section class="rsvp-section">
       <div class="section-row">
         <div class="rsvp-button-triplet">
