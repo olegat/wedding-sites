@@ -326,6 +326,34 @@ body {
     margin: 0;
     text-align: left;
 }
+.faq-section .tab-panel {
+    border: 1px solid var(--color-dark);
+    padding: 1rem;
+}
+.faq-section .tab-panel > div:first-child {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.faq-section .tab-panel button[data-tab] {
+    background: var(--color-light);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+.faq-section .tab-panel button[data-tab][data-active="true"] {
+    background: var(--color-dark);
+    color: var(--color-light);
+}
+.faq-section .tab-panel button[data-tab]:hover {
+    opacity: 0.85;
+}
+.faq-section .tab-panel .tab-content {
+    text-align: left;
+}
 
 .rsvp-section {
     SECTION_DEFAULTS();

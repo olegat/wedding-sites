@@ -306,9 +306,18 @@
                   tab.hidden = true;
                 });
 
+                buttons.forEach(btn => {
+                  btn.removeAttribute("data-active");
+                });
+
                 document.getElementById(target).hidden = false;
+                button.setAttribute("data-active", "true");
               });
             });
+
+            // Set default active tab
+            document.querySelector('button[data-tab="pay-link"]')
+  .setAttribute("data-active", "true");
           </script>
         </div>
 
