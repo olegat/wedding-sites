@@ -244,9 +244,7 @@
               <span lang="fr">Lien</span>
             </button>
             <button data-tab="pay-uk">
-              <span lang="en">Local (UK)</span>
-              <span lang="es">Local (Reino Unido)</span>
-              <span lang="fr">Local (Royaume-Uni)</span>
+              Local (UK)
             </button>
             <button data-tab="pay-intl">
               <span lang="en">International</span>
@@ -276,7 +274,7 @@
           </div>
 
           <div id="pay-intl" class="tab-content" hidden>
-            <p>
+            <p style="padding-bottom:0.5em">
               <em lang="en">Virtual e-Money Account: Accepts all currencies without fees.</em>
               <em lang="es">Cuenta virtual de dinero electrónico: acepta todas las divisas sin comisiones.</em>
               <em lang="fr">Compte de monnaie électronique virtuel : accepte toutes les devises sans frais.</em>
