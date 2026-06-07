@@ -246,9 +246,9 @@
           <!-- Tab content -->
           <div id="pay-link" class="tab-content">
             <p>
-              Send money via Revolut:
-              <a href="https://revolut.me/johndoe" target="_blank">
-                https://revolut.me/johndoe
+              Send money via Revolut:<br>
+              <a href="https://revolut.me/legato" target="_blank">
+                https:&#47;&#47;revolut.me&#47;legato
               </a>
             </p>
           </div>
@@ -291,6 +291,7 @@
               <strong lang="en">Correspondent BIC:</strong>
               <strong lang="es">BLANK</strong>
               <strong lang="fr">BLANK</strong>
+              CHASGB2L
             </p>
           </div>
 
@@ -322,7 +323,7 @@
         </div>
 
         <p>
-          <span lang="en">If you need to get in touch with us, the best way is through phone or WhatsApp</span>
+          <span lang="en">If you need to get in touch with us, the best way is through phone or WhatsApp:</span>
           <span lang="es">BLANK</span>
           <span lang="fr">BLANK</span>
           <ul>
