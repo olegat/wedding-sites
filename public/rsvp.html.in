@@ -179,7 +179,7 @@
       <span lang="fr">RSVP</span>
     </h1>
 
-    <form id="rsvp-form" method="POST" action="https://forminit.com/f/zbqefni2ng2">
+    <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
       <!-- LANGUAGE SELECT -->
       <div class="mainq">
         <label>
@@ -637,7 +637,7 @@
       form.addEventListener('submit', async e => {
         e.preventDefault();
 
-#if 1 // fake Getform.io
+#if 0 // fake Getform.io
         form.classList.add('hidden');
         success.classList.remove('hidden');
 
