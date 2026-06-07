@@ -171,7 +171,7 @@
         TODO:
         [v]  Repeat dates of wedding and preboda
         [v]  Add red * for required field
-        [ ]  Hook to Getform.io
+        [v]  Hook to Forminit.com (formerly Getform.io)
     -->
     <h1>
       <span lang="en">RSVP</span>
@@ -179,7 +179,7 @@
       <span lang="fr">RSVP</span>
     </h1>
 
-    <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
+    <form id="rsvp-form" method="POST" action="https://forminit.com/f/zbqefni2ng2">
       <!-- LANGUAGE SELECT -->
       <div class="mainq">
         <label>
@@ -625,6 +625,13 @@
       document.getElementById('kid-name-2')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID2_NAME_CLASSNAME)) );
       document.getElementById('kid-name-3')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID3_NAME_CLASSNAME)) );
       document.getElementById('kid-name-4')      .addEventListener('change', (event) => updateNames(event.target.value, XSTRINGIFY(.KID4_NAME_CLASSNAME)) );
+
+      // Prevent accidental submission when pressing Enter
+      form.addEventListener('keydown', e => {
+        if (e.code === 'Enter' && e.target.type !== 'submit') {
+          e.preventDefault();
+        }
+      });
 
       // Form submit
       form.addEventListener('submit', async e => {
