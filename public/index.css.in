@@ -287,6 +287,9 @@ body {
     background: var(--color-light);
     color: var(--color-dark);
 }
+.faq-section a {
+    color: var(--color-dark);
+}
 .faq-section .section-column {
     display: flex;
     flex-direction: column;
