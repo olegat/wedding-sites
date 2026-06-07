@@ -157,7 +157,7 @@ body {
 }
 
 .where-stamp-container > img {
-    filter: sepia(1);
+    /* filter: sepia(1); */
 }
 
 .rounded-framing {

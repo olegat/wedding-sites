@@ -79,8 +79,8 @@ p {
 
 .airmail .stamp-border {
     --stamp-border-radius: 0.25vw;
-    width: 15vw;
-    transform: translateX(62vw) translateY(2vw);
+    width: 13vw;
+    transform: translateX(65vw) translateY(2vw);
 }
 
 .airmail svg {

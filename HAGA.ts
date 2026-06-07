@@ -138,7 +138,7 @@ export default HagaSweet.eatSugar({
     },
     {
       type: 'magick',
-      input: 'design/20260511-A7408103-5-4.jpg',
+      input: 'design/20260511-A7408109-5-4.jpg',
       output: 'public/londonmemory6.jpeg',
       args: ['-resize', '12.5%', '-quality', '90'],
     },
@@ -169,12 +169,32 @@ export default HagaSweet.eatSugar({
       args: ['-resize', '12.5%', '-quality', '90'],
     },
     {
+      type: 'magick',
+      input: 'design/WhatsApp_Image_2026-06-07_at_17.11.36.jpeg',
+      output: 'public/zaragoza.jpeg',
+      args: [
+        '-gravity', 'south',
+        '-crop', '100%x80%+0+0',
+        '-gravity', 'north',
+        '-crop', '100%x90%+0+0',
+        '-resize', '25%',
+        '-quality', '90',
+      ],
+    },
+    {
+      type: 'magick',
+      input: 'design/WhatsApp_Image_2026-06-07_at_17.18.21.jpeg',
+      output: 'public/travel-stamp-image.jpeg',
+      args: [
+        '-resize', '12%',
+        '-quality', '90',
+      ],
+    },
+    {
       type: 'copy',
       inputs: [
         'public/.htaccess',
         'public/favicon.svg',
-        'public/placeholder3.jpeg',
-        'public/travel-stamp-image.jpeg',
         'public/hotels-hero.jpeg',
         'public/Aileron.woff2',
         'public/AileronBold.woff2',
@@ -216,7 +236,7 @@ export default HagaSweet.eatSugar({
         'flowers2-dark.webp',
         'flowers3-dark.webp',
         'rose-light.webp',
-        'placeholder3.jpeg',
+        'zaragoza.jpeg',
         'londonmemory1.jpeg',
         'londonmemory2.jpeg',
         'londonmemory3.jpeg',
