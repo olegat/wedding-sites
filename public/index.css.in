@@ -390,6 +390,12 @@ body {
     gap: clamp(0px, 5vw, var(--max-padding));
 }
 
+.rsvp-section p {
+    color: var(--color-dark);
+    font-style: italic;
+    max-width: 80vw;
+}
+
 .rsvp-button-triplet img {
     height: clamp(60px, 30vw, 200px);
 }
