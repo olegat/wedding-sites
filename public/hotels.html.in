@@ -32,74 +32,109 @@
       </div>
 
       <div lang="en" class="essay">
-        <p>The Pick-Up Point for the Shuttle Buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. So we recommend you to get a hotel close to that.</p>
-        <p>We have a discount code (<strong>WEDD2026</strong>) with the Palafox Hotel chain:</p>
+        <p>The pick-up point for the shuttle buses will be on <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>, so we recommend booking a hotel nearby.</p>
+        <p>We have discount codes for some hotels. Use these codes when booking directly through their websites:</p>
 
         <ul>
-          <li>Hotel Palafox</li>
-          <li>Hotel Goya</li>
-          <li>Hotel Alfonso</li>
+          <li>
+            Palafox Hotel chain (Hotel Palafox, Hotel Goya, Hotel Alfonso)
+            <ul>
+              <li>
+                Use code <span class="discount-code">WEDD2026</span> (10% discount).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Hotel Exe Boston
+            <ul>
+              <li>
+                Use code <span class="discount-code">BODAMO</span> (15% discount).
+              </li>
+            </ul>
+          </li>
         </ul>
 
-        <p>There are other good alternatives around Paseo de Pamplona too:</p>
+        <p>There are also other good alternatives around Paseo de Pamplona:</p>
 
         <ul>
           <li>INNSiDE by Meliá</li>
           <li>Hotel Oriente</li>
           <li>Hotel Gran Via</li>
           <li>Cesaraugusta</li>
-          <li>Hotel Exe Boston</li>
         </ul>
 
-        <p>Be sure to book well ahead of time! The demand will be high because of the Pilares Festival</p>
+        <p>Be sure to book well in advance! Demand will be high due to the Pilares Festival.</p>
       </div>
 
       <div lang="es" class="essay">
-        <p>El punto de recogida de los autobuses lanzadera estará en <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Por lo tanto, recomendamos reservar un hotel cerca de allí.</p>
-        <p>Tenemos un código de descuento (<strong>WEDD2026</strong>) con la cadena de hoteles Palafox:</p>
+        <p>El punto de recogida de los autobuses lanzadera estará en <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>, por lo que recomendamos reservar un hotel cerca.</p>
+        <p>Disponemos de códigos de descuento para algunos hoteles. Utilizadlos al reservar directamente a través de sus páginas web:</p>
 
         <ul>
-          <li>Hotel Palafox</li>
-          <li>Hotel Goya</li>
-          <li>Hotel Alfonso</li>
+          <li>
+            Cadena de hoteles Palafox (Hotel Palafox, Hotel Goya, Hotel Alfonso)
+            <ul>
+              <li>
+                Código <span class="discount-code">WEDD2026</span> (10% de descuento).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Hotel Exe Boston
+            <ul>
+              <li>
+                Código <span class="discount-code">BODAMO</span> (15% de descuento).
+              </li>
+            </ul>
+          </li>
         </ul>
 
-        <p>También hay otras buenas opciones alrededor del Paseo de Pamplona:</p>
+        <p>También hay otras buenas opciones cerca del Paseo de Pamplona:</p>
 
         <ul>
           <li>INNSiDE by Meliá</li>
           <li>Hotel Oriente</li>
           <li>Hotel Gran Via</li>
           <li>Cesaraugusta</li>
-          <li>Hotel Exe Boston</li>
         </ul>
 
-        <p>¡Aseguraos de reservar con bastante antelación! La demanda será alta debido a las Fiestas del Pilar</p>
+        <p>¡Aseguraos de reservar con bastante antelación! La demanda será alta debido a las Fiestas del Pilar.</p>
       </div>
 
       <div lang="fr" class="essay">
-        <p>Le point de prise en charge des navettes sera situé sur <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>. Nous vous recommandons donc de réserver un hôtel à proximité.</p>
-        <p>Nous avons un code de réduction (<strong>WEDD2026</strong>) avec la chaîne d’hôtels Palafox :</p>
+        <p>Le point de prise en charge des navettes sera situé sur le <a target="_blank" href="https://maps.app.goo.gl/pP2LBF3Lv9djR8Pt7">Paseo de Pamplona</a>, nous vous recommandons donc de réserver un hôtel à proximité.</p>
+        <p>Nous disposons de codes de réduction pour certains hôtels. Utilisez-les lors de la réservation directe sur leurs sites web :</p>
 
         <ul>
-          <li>Hotel Palafox</li>
-          <li>Hotel Goya</li>
-          <li>Hotel Alfonso</li>
+          <li>
+            Chaîne d’hôtels Palafox (Hotel Palafox, Hotel Goya, Hotel Alfonso)
+            <ul>
+              <li>
+                Code <span class="discount-code">WEDD2026</span> (réduction de 10&nbsp;%).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Hotel Exe Boston
+            <ul>
+              <li>
+                Code <span class="discount-code">BODAMO</span> (réduction de 15&nbsp;%).
+              </li>
+            </ul>
+          </li>
         </ul>
 
-        <p>Il existe également d’autres bonnes options autour du Paseo de Pamplona :</p>
+        <p>Il existe également d’autres bonnes options à proximité du Paseo de Pamplona :</p>
 
         <ul>
           <li>INNSiDE by Meliá</li>
           <li>Hotel Oriente</li>
           <li>Hotel Gran Via</li>
           <li>Cesaraugusta</li>
-          <li>Hotel Exe Boston</li>
         </ul>
 
-        <p>Assurez-vous de réserver bien à l’avance ! La demande sera élevée en raison des Fêtes du Pilar</p>
+        <p>Assurez-vous de réserver bien à l’avance ! La demande sera élevée en raison des Fêtes du Pilar.</p>
       </div>
-
       <img src="rose-light.webp">
     </section>
   </body>

@@ -94,7 +94,7 @@
             <div class="wedding">Wedding</div><div class="program">program</div>
           </div>
           <div lang="es">
-            <div class="program">programa de</div><div class="wedding">La Boba</div>
+            <div class="program">programa de</div><div class="wedding">La Boda</div>
           </div>
           <div lang="fr">
             <div class="program">programme du</div><div class="wedding">Marriage</div>
@@ -257,7 +257,10 @@
           <!-- Tab content -->
           <div id="pay-link" class="tab-content">
             <p>
-              Send money via Revolut:<br>
+              <span lang="en">Send money via Revolut:</span>
+              <span lang="es">Enviar dinero por Revolut:</span>
+              <span lang="fr">Envoyer de l’argent via Revolut&nbsp;:</span>
+              <br>
               <a href="https://revolut.me/legato" target="_blank">
                 https:&#47;&#47;revolut.me&#47;legato
               </a>
@@ -372,16 +375,20 @@
     </section>
 
     <section class="rsvp-section">
-      <div class="section-row">
-        <div class="rsvp-button-triplet">
-          <img src="./flowers3-dark.webp">
-          <a href="./rsvp.html" class="capsule">R.S.V.P.</a>
-          <img src="./flowers3-dark.webp">
-        </div>
-      </div>
       <p lang="en">Please confirm your attendance by 1<sup>st</sup> September 2016.</p>
       <p lang="es">Por favor, confirmad vuestra asistencia antes del 1 de septiembre de 2016.</p>
       <p lang="fr">Merci de confirmer votre présence avant le 1er septembre 2016.</p>
+      <div class="section-row">
+        <div class="rsvp-button-triplet">
+          <img src="./flowers3-dark.webp">
+          <a href="./rsvp.html" class="capsule">
+            <span lang="en">click here</span>
+            <span lang="es">pulse aquí</span>
+            <span lang="fr">cliquez ici</span>
+          </a>
+          <img src="./flowers3-dark.webp">
+        </div>
+      </div>
       <div class="octagon-wrapper">
         <img src="./londonmemory7.jpeg">
       </div>

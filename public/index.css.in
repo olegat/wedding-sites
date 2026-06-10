@@ -394,6 +394,7 @@ body {
     color: var(--color-dark);
     font-style: italic;
     max-width: 80vw;
+    font-size: 1.2rem;
 }
 
 .rsvp-button-triplet img {
@@ -411,7 +412,7 @@ body {
 .capsule {
     display: inline-block;
     font-family: 'New Icon Serif Regular';
-    font-size: 2rem;
+    font-size: 1.8rem;
     background: var(--color-light);
     border-radius: 9999px;
     border: 2px solid var(--color-mid);

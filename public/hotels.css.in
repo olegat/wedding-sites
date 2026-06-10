@@ -102,6 +102,6 @@ img[src='rose-light.webp'] {
     margin-left: 2em;
 }
 
-
-
-
+.discount-code {
+    font-weight: bolder;
+}
