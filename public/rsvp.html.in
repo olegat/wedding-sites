@@ -181,9 +181,9 @@
     </h1>
 
     <em>
-      <p lang="en">Please confirm your attendance by 1<sup>st</sup> September 2016.</p>
-      <p lang="es">Por favor, confirmad vuestra asistencia antes del 1 de septiembre de 2016.</p>
-      <p lang="fr">Merci de confirmer votre présence avant le 1er septembre 2016.</p>
+      <p lang="en">Please confirm your attendance by 1<sup>st</sup> September 2026.</p>
+      <p lang="es">Por favor, confirmad vuestra asistencia antes del 1 de septiembre de 2026.</p>
+      <p lang="fr">Merci de confirmer votre présence avant le 1er septembre 2026.</p>
     </em>
 
     <form id="rsvp-form" method="POST" action="https://getform.io/f/bdrkrodb">
