@@ -189,18 +189,30 @@
             </div>
           </li>
           <li>
-            <time>00:05</time>
+            <time>22:00</time>
             <div lang="en">
-              <strong>Shuttle Bus Return</strong>
+              <strong>Early Shuttle Bus Return</strong>
               <p>Return to Zaragoza city centre.</p>
             </div>
             <div lang="es">
-              <strong>Regreso en autobús</strong>
+              <strong>Primer regreso en autobús</strong>
               <p>Vuelta al centro de Zaragoza.</p>
             </div>
             <div lang="fr">
-              <strong>Retour en navette</strong>
+              <strong>Premier retour en navette</strong>
               <p>Retour vers le centre de Saragosse.</p>
+            </div>
+          </li>
+          <li>
+            <time>00:00</time>
+            <div lang="en">
+              <strong>Final Shuttle Bus Return</strong>
+            </div>
+            <div lang="es">
+              <strong>Último regreso en autobús</strong>
+            </div>
+            <div lang="fr">
+              <strong>Dernier retour en navette</strong>
             </div>
           </li>
         </ul>
